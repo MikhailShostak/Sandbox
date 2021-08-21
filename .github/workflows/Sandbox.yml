@@ -1,0 +1,19 @@
+name: Sandbox
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with CMake
+        uses: lukka/run-cmake@v3.4
