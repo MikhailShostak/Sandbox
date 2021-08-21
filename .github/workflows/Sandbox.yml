@@ -15,5 +15,7 @@ jobs:
     name: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Build with CMake
         uses: lukka/run-cmake@v3.4
