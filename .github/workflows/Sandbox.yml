@@ -8,14 +8,18 @@ on:
       - main
 jobs:
   build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
     strategy:
       matrix:
-        os: [windows-latest]
-    runs-on: ${{ matrix.os }}
-    name: ${{ matrix.os }}
+        config:
+          - { name: "Windows (MSVC)", os: windows-latest, cc: "cl", cxx: "cl" }
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Build with CMake
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+      - name: Get latest CMake and Ninja
         uses: lukka/run-cmake@v3.4
