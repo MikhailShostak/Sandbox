@@ -7,3 +7,6 @@
 [submodule "ThirdParty/glfw"]
 	path = ThirdParty/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "ThirdParty/DiligentEngine"]
+	path = ThirdParty/DiligentEngine
+	url = https://github.com/DiligentGraphics/DiligentEngine.git
