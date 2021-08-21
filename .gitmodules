@@ -22,6 +22,9 @@
 [submodule "ThirdParty/imgui-node-editor"]
 	path = ThirdParty/imgui-node-editor
 	url = https://github.com/thedmd/imgui-node-editor.git
+[submodule "ThirdParty/range-v3"]
+	path = ThirdParty/range-v3
+	url = https://github.com/ericniebler/range-v3.git
 [submodule "ThirdParty/yaml-cpp"]
 	path = ThirdParty/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git

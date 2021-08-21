@@ -83,6 +83,11 @@ set(IMGUI_SOURCES
     imgui-node-editor/imgui_node_editor_api.cpp
 )
 
+# Ranges
+set(RANGES_INCLUDES
+    range-v3/include
+)
+
 # All ThirdParty
 set(DEFINES
     -DBOOST_ALL_NO_LIB
@@ -90,6 +95,7 @@ set(DEFINES
 set(INCLUDES
     ${BOOST_INCLUDES}
     ${IMGUI_INCLUDES}
+    ${RANGES_INCLUDES}
 )
 set(LIBRARIES
     Diligent-Common
