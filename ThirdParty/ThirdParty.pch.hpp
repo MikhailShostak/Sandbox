@@ -25,7 +25,6 @@
 #include <stack>
 #include <streambuf>
 #include <string>
-#include <strstream>
 #include <tuple>
 #include <type_traits>
 #include <typeinfo>
