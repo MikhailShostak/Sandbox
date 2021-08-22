@@ -3,4 +3,4 @@ set(SOURCES
 )
 
 add_executable(Sandbox ${SOURCES})
-target_link_libraries(Sandbox ${DEFAULT_APP_DEPENDENCIES})
+target_link_libraries(Sandbox Frameworks)
