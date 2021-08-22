@@ -8,7 +8,6 @@ option(DILIGENT_NO_DIRECT3D11 "Disable DirectX 11" ON)
 option(DILIGENT_NO_DIRECT3D12 "Disable DirectX 12" ON)
 option(DILIGENT_NO_OPENGL "Disable OpenGL" ON)
 add_subdirectory(DiligentEngine/DiligentCore)
-target_compile_definitions(Diligent-ShaderTools PRIVATE _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING=1)
 
 # Boost
 set(BOOST_INCLUDES
