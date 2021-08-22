@@ -1,25 +1,52 @@
 name: Sandbox
 on:
+
   push:
-    branches: 
+    branches:
       - main
+
   pull_request:
     branches:
       - main
+
+  workflow_dispatch:
+
 jobs:
   build:
+
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     strategy:
       matrix:
         config:
           - { name: "Windows (MSVC)", os: windows-latest, cc: "cl", cxx: "cl" }
+
+    env:
+      BUILD_DIR: ${{ github.workspace }}/.build
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Fetch Submodules
+        run: git submodule > .gitmodules.txt
+
+      - name: Cache Submodules
+        uses: actions/cache@v2
         with:
-          submodules: recursive
-      - uses: ilammy/msvc-dev-cmd@v1
+          path: .git/modules
+          key: submodules-${{ hashFiles('.gitmodules.txt') }}
+
+      - name: Checkout Submodules
+        run: git submodule update --recursive --init --jobs=32
+
+      - name: Select Visual Studio Developer Environment (amd64)
+        uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
-      - name: Get latest CMake and Ninja
+
+      - name: Build
         uses: lukka/run-cmake@v3.4
+        with:
+          buildDirectory: ${{ env.BUILD_DIR }}
+          buildWithCMakeArgs: --target Sandbox
