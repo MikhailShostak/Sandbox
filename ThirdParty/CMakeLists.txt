@@ -111,6 +111,7 @@ add_library(ThirdParty
     ${IMGUI_SOURCES}
     ${BOOST_SOURCES}
 )
+target_precompile_headers(ThirdParty PUBLIC ThirdParty.pch.hpp)
 target_compile_definitions(ThirdParty PUBLIC ${DEFINES})
 target_include_directories(ThirdParty PUBLIC ${INCLUDES})
 target_link_libraries(ThirdParty ${LIBRARIES})
