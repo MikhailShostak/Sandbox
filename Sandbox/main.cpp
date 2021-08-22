@@ -1,4 +1,32 @@
-int main()
+class Sandbox final : public NativeApplication
 {
-    return 0;
-}
+public:
+
+    bool PreInit() override
+    {
+        MainWindowTitle = "Sandbox";
+        return true;
+    }
+
+    bool Init() override
+    {
+        return true;
+    }
+
+    void Update(float dt) override
+    {
+
+    }
+
+    void UpdateUI(float dt) override
+    {
+        ImGui::ShowDemoWindow();
+    }
+
+    void Draw() override
+    {
+
+    }
+};
+
+DEFINE_MAIN_APPLICATION(Sandbox)
