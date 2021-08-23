@@ -22,6 +22,7 @@ set(BOOST_INCLUDES
     boost/libs/core/include
     boost/libs/date_time/include
     boost/libs/detail/include
+    boost/libs/dll/include
     boost/libs/endian/include
     boost/libs/filesystem/include
     boost/libs/function/include
