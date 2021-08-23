@@ -14,27 +14,34 @@ set(BOOST_INCLUDES
     boost/libs/algorithm/include
     boost/libs/asio/include
     boost/libs/assert/include
+    boost/libs/beast/include
     boost/libs/bind/include
     boost/libs/concept_check/include
     boost/libs/config/include
     boost/libs/container_hash/include
     boost/libs/core/include
+    boost/libs/date_time/include
     boost/libs/detail/include
+    boost/libs/endian/include
     boost/libs/filesystem/include
     boost/libs/function/include
     boost/libs/fusion/include
-    boost/libs/io/include
     boost/libs/integer/include
+    boost/libs/intrusive/include
+    boost/libs/io/include
     boost/libs/iterator/include
+    boost/libs/logic/include
     boost/libs/move/include
+    boost/libs/mp11/include
     boost/libs/mpl/include
+    boost/libs/numeric/conversion/include
     boost/libs/optional/include
     boost/libs/predef/include
     boost/libs/preprocessor/include
     boost/libs/process/include
     boost/libs/range/include
-    boost/libs/static_assert/include
     boost/libs/smart_ptr/include
+    boost/libs/static_assert/include
     boost/libs/system/include
     boost/libs/throw_exception/include
     boost/libs/type_index/include
