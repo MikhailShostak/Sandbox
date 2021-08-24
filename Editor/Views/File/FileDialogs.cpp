@@ -11,22 +11,20 @@ void ShowNewDialog()
 {
     if(File::DisplayNewDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("NewDialog", "Choose File", ".txt", ".");
+        ImGuiFileDialog::Instance()->OpenModal("NewDialog", "New File", ".*,.txt", ".");
         File::DisplayNewDialog = false;
     }
 
     ImGui::SetNextWindowSize({800, 480});
     if (ImGuiFileDialog::Instance()->Display("NewDialog"))
     {
-        // action if OK
         if (ImGuiFileDialog::Instance()->IsOk())
         {
-            std::string filePathName = ImGuiFileDialog::Instance()->GetFilePathName();
-            std::string filePath = ImGuiFileDialog::Instance()->GetCurrentPath();
-            // action
+            std::string path = ImGuiFileDialog::Instance()->GetFilePathName();
+            std::fstream f;
+            f.open(path, std::ios::binary | std::ios::out);
         }
 
-        // close
         ImGuiFileDialog::Instance()->Close();
     }
 }

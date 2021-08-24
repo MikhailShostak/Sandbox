@@ -15,7 +15,7 @@ void ShowContextMenu(const std::filesystem::path &path, bool root)
     {
         //auto directory = is_directory ? path : path.parent_path();
 
-        ImGui::MenuItem("New...");
+        ImGui::MenuItem("New...", nullptr, &File::DisplayNewDialog);
         ImGui::Separator();
         ImGui::MenuItem("Rename", nullptr, &RenamePopup);
         ImGui::MenuItem("Remove", nullptr, &RemovalConfirmPopup);
