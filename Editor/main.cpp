@@ -135,6 +135,7 @@ public:
     void Terminate() override
     {
         YAML::Emitter out;
+        out << Config;
         std::ofstream file;
         file.open(ApplicationConfig, std::ios::binary);
         if(file.is_open())
