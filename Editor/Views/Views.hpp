@@ -11,6 +11,7 @@ inline bool DisplayNewDialog = false;
 inline bool DisplayOpenFileDialog = false;
 inline bool DisplayOpenFolderDialog = false;
 inline bool DisplaySaveAsDialog = false;
+inline std::filesystem::path DialogWorkingDirectory = ".";
 inline std::filesystem::path FileToSave;
 void ShowNewDialog();
 void ShowOpenFileDialog();

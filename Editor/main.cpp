@@ -101,6 +101,10 @@ public:
         {
             Config = YAML::LoadFile(ApplicationConfig);
             ReloadExtensionsFromConfig();
+            if(OpenedFolders().IsSequence())
+            {
+                File::DialogWorkingDirectory = OpenedFolders()[0].as<std::filesystem::path>();
+            }
         }
 
         Editors.insert({"BinaryEditor", std::make_unique<DefaultExtensions::BinaryEditor>() });

@@ -7,15 +7,16 @@
 namespace View
 {
 
-void ShowContextMenu(const std::filesystem::path &path, bool root)
+void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_directory)
 {
     bool RenamePopup = false;
     bool RemovalConfirmPopup = false;
     if (ImGui::BeginPopupContextItem())
     {
-        //auto directory = is_directory ? path : path.parent_path();
-
-        ImGui::MenuItem("New...", nullptr, &File::DisplayNewDialog);
+        if (ImGui::MenuItem("New...", nullptr, &File::DisplayNewDialog))
+        {
+            File::DialogWorkingDirectory = is_directory ? path : path.parent_path();
+        }
         ImGui::Separator();
         ImGui::MenuItem("Rename", nullptr, &RenamePopup);
         ImGui::MenuItem("Remove", nullptr, &RemovalConfirmPopup);
@@ -95,7 +96,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         {
             OpenFile(path, false);
         }
-        ShowContextMenu(path, root);
+        ShowContextMenu(path, root, is_directory);
     }
     else if(is_directory)
     {
@@ -103,7 +104,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         {
             return;
         }
-        ShowContextMenu(path, root);
+        ShowContextMenu(path, root, is_directory);
 
         for (const auto &e : std::filesystem::directory_iterator(path))
         {

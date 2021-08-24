@@ -11,7 +11,7 @@ void ShowNewDialog()
 {
     if(File::DisplayNewDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("NewDialog", "New File", ".*,.txt", ".");
+        ImGuiFileDialog::Instance()->OpenModal("NewDialog", "New File", ".*,.txt", File::DialogWorkingDirectory.generic_string());
         File::DisplayNewDialog = false;
     }
 
@@ -20,7 +20,7 @@ void ShowNewDialog()
     {
         if (ImGuiFileDialog::Instance()->IsOk())
         {
-            std::string path = ImGuiFileDialog::Instance()->GetFilePathName();
+            std::filesystem::path path = ImGuiFileDialog::Instance()->GetFilePathName();
             std::fstream f;
             f.open(path, std::ios::binary | std::ios::out);
         }
@@ -34,7 +34,7 @@ void ShowOpenFileDialog()
 {
     if(File::DisplayOpenFileDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("OpenFileDialog", "Open File", ".*,.txt", ".");
+        ImGuiFileDialog::Instance()->OpenModal("OpenFileDialog", "Open File", ".*,.txt", File::DialogWorkingDirectory.generic_string());
         File::DisplayOpenFileDialog = false;
     }
 
@@ -54,7 +54,7 @@ void ShowOpenFolderDialog()
 {
     if(File::DisplayOpenFolderDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("OpenFolderDialog", "Open Folder", "", ".");
+        ImGuiFileDialog::Instance()->OpenModal("OpenFolderDialog", "Open Folder", "", File::DialogWorkingDirectory.generic_string());
         File::DisplayOpenFolderDialog = false;
     }
 
