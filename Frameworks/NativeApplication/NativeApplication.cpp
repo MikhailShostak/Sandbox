@@ -137,6 +137,8 @@ NativeApplication::~NativeApplication()
     if (m_pImmediateContext)
         m_pImmediateContext->Flush();
 
+    g_ImGui.reset();
+
     m_pSwapChain        = nullptr;
     m_pImmediateContext = nullptr;
     m_pDevice           = nullptr;
