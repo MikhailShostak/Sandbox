@@ -51,18 +51,19 @@ void ShowFileTypes()
     ImGui::InputText("Title", &title);
 
     static int SelectedItem = 0;
-    ImGui::Combo("Editor", &SelectedItem, EditorNames.data(), EditorNames.size());
-    static std::string editor;
-    //ImGui::InputText("Editor", &editor);
+    if(ImGui::Combo("Editor", &SelectedItem, EditorNames.data(), EditorNames.size()))
+    {
+        EditorNames[SelectedItem];
+    }
 
     static std::string extensions;
     ImGui::InputText("Extensions", &extensions);
 
-    if (ImGui::Button("Add") && title.size() && editor.size() && extensions.size())
+    if (ImGui::Button("Add") && title.size() && extensions.size())
     {
         YAML::Node fileType;
         fileType["Title"] = title;
-        fileType["Editor"] = editor;
+        fileType["Editor"] = EditorNames[SelectedItem];
         fileType["Extensions"] = extensions;
         FileTypes.push_back(fileType);
     }
