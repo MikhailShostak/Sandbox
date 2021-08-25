@@ -32,6 +32,7 @@ set(SOURCES
 
 set(ASSETS
     Assets/config.yaml
+    Assets/Extensions/Anonymous.HelloWorld/.extension.yaml
 )
 
 add_executable(Editor ${SOURCES})
