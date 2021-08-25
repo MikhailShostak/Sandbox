@@ -38,6 +38,10 @@ void LoadExtension(const std::filesystem::path &configPath)
 void ReloadExtensions()
 {
     ExtensionsCache.clear();
+    if(!std::filesystem::is_directory(ExtensionsSearchDirectory))
+    {
+        return;
+    }
     for(const auto &entry: std::filesystem::directory_iterator{ExtensionsSearchDirectory})
     {
         std::filesystem::path configPath = entry.path() / ExtensionConfigFilename;
