@@ -89,6 +89,7 @@ void ShowExtensions()
         CreateRequest = false;
     }
 
+    ImGui::SetNextWindowSize({400, 100}, ImGuiCond_FirstUseEver);
     if(ImGui::BeginPopupModal("CreateNewExtensionPopup"))
     {
         std::string id = GetExtensionID(ExtensionAuthor, ExtensionTitle);
@@ -100,6 +101,7 @@ void ShowExtensions()
             CreateExtension(path / ExtensionConfigFilename);
             ImGui::CloseCurrentPopup();
         }
+        ImGui::SameLine();
         if(ImGui::Button("Cancel"))
         {
             ImGui::CloseCurrentPopup();
