@@ -1,0 +1,54 @@
+Extensions:
+  SearchDirectory: Extensions
+File:
+  PinnedPaths:
+    - Extensions
+FileTypes:
+  - Title: Text File
+    Editor: TextEditor
+    Extensions: .txt
+  - Title: JSON File
+    Editor: TextEditor
+    Extensions: .json
+  - Title: XML File
+    Editor: TextEditor
+    Extensions: .xml
+  - Title: YAML File
+    Editor: TextEditor
+    Extensions: .yaml
+  - Title: C Header File
+    Editor: TextEditor
+    Extensions: .h
+  - Title: C Source File
+    Editor: TextEditor
+    Extensions: .c
+  - Title: C++ Header File
+    Editor: TextEditor
+    Extensions: .hpp
+  - Title: C++ Source File
+    Editor: TextEditor
+    Extensions: .cpp
+  - Title: Objective-C Source File
+    Editor: TextEditor
+    Extensions: .m
+  - Title: Objective-C++ Source File
+    Editor: TextEditor
+    Extensions: .mm
+  - Title: Python File
+    Editor: TextEditor
+    Extensions: .py
+  - Title: HTML File
+    Editor: TextEditor
+    Extensions: .html
+  - Title: CSS File
+    Editor: TextEditor
+    Extensions: .css
+  - Title: JavaScript File
+    Editor: TextEditor
+    Extensions: .js
+  - Title: TypeScript File
+    Editor: TextEditor
+    Extensions: .ts
+  - Title: ClassGen File
+    Editor: TextEditor
+    Extensions: .cg

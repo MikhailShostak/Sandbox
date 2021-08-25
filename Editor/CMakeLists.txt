@@ -30,6 +30,10 @@ set(SOURCES
     main.cpp
 )
 
+set(ASSETS
+    Assets/config.yaml
+)
 
 add_executable(Editor ${SOURCES})
+target_copy_assets(Editor ${ASSETS})
 target_link_libraries(Editor Frameworks)
