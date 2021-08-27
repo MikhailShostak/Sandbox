@@ -1,6 +1,3 @@
-[submodule "ThirdParty/fmt"]
-	path = ThirdParty/fmt
-	url = https://github.com/fmtlib/fmt.git
 [submodule "ThirdParty/DiligentEngine"]
 	path = ThirdParty/DiligentEngine
 	url = https://github.com/DiligentGraphics/DiligentEngine.git

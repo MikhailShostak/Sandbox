@@ -1,6 +1,3 @@
-# Libraries with CMake Build System
-add_subdirectory(fmt)
-
 # Diligent Core
 option(DILIGENT_NO_DIRECT3D11 "Disable DirectX 11" ON)
 option(DILIGENT_NO_DIRECT3D12 "Disable DirectX 12" ON)
@@ -48,7 +45,6 @@ set(LIBRARIES
     Diligent-GraphicsEngine
     Diligent-GraphicsEngineVk-static
     Diligent-GraphicsTools
-    fmt
 )
 add_library(ThirdParty
     ${IMGUI_SOURCES}
