@@ -1,0 +1,16 @@
+name: Setup
+description: Prepares development environment on Windows with MSVC
+inputs:
+  devenv:
+    description: Selects Visual Studio Developer Environment
+    required: true
+    default: amd64
+runs:
+  using: composite
+  steps:
+    - name: Select Visual Studio Developer Environment (${{ inputs.devenv }})
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: ${{ inputs.devenv }}
+    - name: Setup
+      uses: ./.github/steps/setup

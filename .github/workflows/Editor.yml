@@ -1,4 +1,4 @@
-name: Sandbox
+name: Editor
 on:
   push:
     branches:

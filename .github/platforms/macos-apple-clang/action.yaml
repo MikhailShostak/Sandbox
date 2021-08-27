@@ -1,0 +1,7 @@
+name: Setup
+description: Prepares development environment on macOS with Apple Clang
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      uses: ./.github/steps/setup

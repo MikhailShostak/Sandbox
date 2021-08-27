@@ -4,7 +4,6 @@ project(Sandbox)
 set(CMAKE_CXX_STANDARD 17)
 add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING=1)
 
-#prerequisites: conan install . -if .build
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 

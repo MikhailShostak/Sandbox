@@ -1,0 +1,26 @@
+name: Setup
+description: Install dependencies
+runs:
+  using: composite
+  steps:
+    - name: Install packages
+      shell: bash
+      env:
+        BUILD_ARCHITECTURE: ${{ matrix.platform.arch }}
+        BUILD_CONFIGURATION: ${{ matrix.config }}
+        BUILD_DIR: ${{ github.workspace }}/.build
+      run: python3 conansetup.py --install-conan --create-profile
+
+    - name: Fetch Submodules
+      shell: bash
+      run: git submodule > .gitmodules.txt
+
+    - name: Cache Submodules
+      uses: actions/cache@v2
+      with:
+        path: .git/modules
+        key: submodules-${{ hashFiles('.gitmodules.txt') }}
+
+    - name: Checkout Submodules
+      shell: bash
+      run: git submodule update --recursive --init --jobs=32
