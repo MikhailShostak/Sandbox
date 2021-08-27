@@ -1,7 +1,6 @@
 # Libraries with CMake Build System
 add_subdirectory(fmt)
 add_subdirectory(glfw)
-add_subdirectory(yaml-cpp)
 
 # Diligent Core
 option(DILIGENT_NO_DIRECT3D11 "Disable DirectX 11" ON)
@@ -52,7 +51,6 @@ set(LIBRARIES
     Diligent-GraphicsTools
     fmt
     glfw
-    yaml-cpp
 )
 add_library(ThirdParty
     ${IMGUI_SOURCES}
