@@ -9,60 +9,6 @@ option(DILIGENT_NO_DIRECT3D12 "Disable DirectX 12" ON)
 option(DILIGENT_NO_OPENGL "Disable OpenGL" ON)
 add_subdirectory(DiligentEngine/DiligentCore)
 
-# Boost
-set(BOOST_INCLUDES
-    boost/libs/algorithm/include
-    boost/libs/asio/include
-    boost/libs/assert/include
-    boost/libs/beast/include
-    boost/libs/bind/include
-    boost/libs/concept_check/include
-    boost/libs/config/include
-    boost/libs/container_hash/include
-    boost/libs/core/include
-    boost/libs/date_time/include
-    boost/libs/detail/include
-    boost/libs/dll/include
-    boost/libs/endian/include
-    boost/libs/filesystem/include
-    boost/libs/function/include
-    boost/libs/fusion/include
-    boost/libs/integer/include
-    boost/libs/intrusive/include
-    boost/libs/io/include
-    boost/libs/iterator/include
-    boost/libs/logic/include
-    boost/libs/move/include
-    boost/libs/mp11/include
-    boost/libs/mpl/include
-    boost/libs/numeric/conversion/include
-    boost/libs/optional/include
-    boost/libs/predef/include
-    boost/libs/preprocessor/include
-    boost/libs/process/include
-    boost/libs/range/include
-    boost/libs/smart_ptr/include
-    boost/libs/static_assert/include
-    boost/libs/system/include
-    boost/libs/throw_exception/include
-    boost/libs/type_index/include
-    boost/libs/type_traits/include
-    boost/libs/utility/include
-    boost/libs/winapi/include
-)
-set(BOOST_SOURCES
-    boost/libs/filesystem/src/codecvt_error_category.cpp
-    boost/libs/filesystem/src/exception.cpp
-    boost/libs/filesystem/src/operations.cpp
-    boost/libs/filesystem/src/directory.cpp
-    boost/libs/filesystem/src/path.cpp
-    boost/libs/filesystem/src/path_traits.cpp
-    boost/libs/filesystem/src/portability.cpp
-    boost/libs/filesystem/src/unique_path.cpp
-    boost/libs/filesystem/src/utf8_codecvt_facet.cpp
-    boost/libs/filesystem/src/windows_file_codecvt.cpp
-)
-
 # ImGui + Addons#
 set(IMGUI_INCLUDES
     imgui
@@ -98,11 +44,10 @@ set(RANGES_INCLUDES
 
 # All ThirdParty
 set(DEFINES
-    -DBOOST_ALL_NO_LIB
+
 )
 set(INCLUDES
     .
-    ${BOOST_INCLUDES}
     ${IMGUI_INCLUDES}
     ${RANGES_INCLUDES}
 )
@@ -117,7 +62,6 @@ set(LIBRARIES
 )
 add_library(ThirdParty
     ${IMGUI_SOURCES}
-    ${BOOST_SOURCES}
 )
 target_precompile_headers(ThirdParty PUBLIC ThirdParty.pch.hpp)
 target_compile_definitions(ThirdParty PUBLIC ${DEFINES})
