@@ -122,4 +122,4 @@ add_library(ThirdParty
 target_precompile_headers(ThirdParty PUBLIC ThirdParty.pch.hpp)
 target_compile_definitions(ThirdParty PUBLIC ${DEFINES})
 target_include_directories(ThirdParty PUBLIC ${INCLUDES})
-target_link_libraries(ThirdParty ${LIBRARIES})
+target_link_libraries(ThirdParty ${LIBRARIES} ${CONAN_LIBS})

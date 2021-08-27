@@ -4,6 +4,10 @@ project(Sandbox)
 set(CMAKE_CXX_STANDARD 20)
 add_definitions(-D_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING=1)
 
+#prerequisites: conan install . -if .build
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 function(target_copy_assets target)
     foreach(INPUT_FILE IN ITEMS ${ARGN})
         set(REGEX_SPLIT_BY_FIRST_SLASH "([^\/]+)\/(.+)")
