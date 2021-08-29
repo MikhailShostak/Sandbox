@@ -25,8 +25,19 @@ jobs:
       BUILD_DIR: ${{ github.workspace }}/.build
 
     steps:
+      - name: Select Visual Studio Developer Environment (amd64)
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+
+      - name: Install Conan
+        run: pip install conan
+
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Install packages
+        run: conan install . -if .build --update
 
       - name: Fetch Submodules
         run: git submodule > .gitmodules.txt
@@ -39,11 +50,6 @@ jobs:
 
       - name: Checkout Submodules
         run: git submodule update --recursive --init --jobs=32
-
-      - name: Select Visual Studio Developer Environment (amd64)
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: amd64
 
       - name: Build
         uses: lukka/run-cmake@v3.4
