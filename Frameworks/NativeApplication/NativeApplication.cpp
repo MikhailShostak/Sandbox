@@ -35,7 +35,7 @@ void GLFW_ResizeCallback(GLFWwindow* window, int width, int height)
     {
         w->MainWindowSize.x = width;
         w->MainWindowSize.y = height;
-        w->m_pSwapChain->Resize(static_cast<Uint32>(width), static_cast<Uint32>(height));
+        w->m_pSwapChain->Resize(static_cast<Diligent::Uint32>(width), static_cast<Diligent::Uint32>(height));
         w->UpdateWindow();
     }
 }
@@ -149,25 +149,25 @@ NativeApplication::~NativeApplication()
 bool NativeApplication::InitEngine()
 {
 #if PLATFORM_WIN32
-    Win32NativeWindow Window{glfwGetWin32Window(g_MainWindow)};
+    Diligent::Win32NativeWindow Window{glfwGetWin32Window(g_MainWindow)};
 #elif PLATFORM_LINUX
-    LinuxNativeWindow Window;
+    Diligent::LinuxNativeWindow Window;
     Window.WindowId = glfwGetX11Window(g_MainWindow);
     Window.pDisplay = glfwGetX11Display();
 #elif PLATFORM_MACOS
-    MacOSNativeWindow Window;
+    Diligent::MacOSNativeWindow Window;
     Window.pNSView = GetNSWindowView(g_MainWindow);
 #endif
 
-    SwapChainDesc SCDesc;
+    Diligent::SwapChainDesc SCDesc;
 
 #if EXPLICITLY_LOAD_ENGINE_VK_DLL
     // Load the dll and import GetEngineFactoryVk() function
-    auto* GetEngineFactoryVk = LoadGraphicsEngineVk();
+    auto* GetEngineFactoryVk = Diligent::LoadGraphicsEngineVk();
 #endif
-    auto* pFactoryVk = GetEngineFactoryVk();
+    auto* pFactoryVk = Diligent::GetEngineFactoryVk();
 
-    EngineVkCreateInfo EngineCI;
+    Diligent::EngineVkCreateInfo EngineCI;
     pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &m_pDevice, &m_pImmediateContext);
     pFactoryVk->CreateSwapChainVk(m_pDevice, m_pImmediateContext, SCDesc, Window, &m_pSwapChain);
 
@@ -179,17 +179,17 @@ bool NativeApplication::InitEngine()
 
 bool NativeApplication::InitUI()
 {
-    class ImGuiImplGLFW final : public ImGuiImplDiligent
+    class ImGuiImplGLFW final : public Diligent::ImGuiImplDiligent
     {
     public:
         ImGuiImplGLFW(GLFWwindow* window,
            const char *config,
-           IRenderDevice* pDevice,
-           TEXTURE_FORMAT BackBufferFmt,
-           TEXTURE_FORMAT DepthBufferFmt,
-           Uint32         InitialVertexBufferSize = ImGuiImplDiligent::DefaultInitialVBSize,
-           Uint32         InitialIndexBufferSize  = ImGuiImplDiligent::DefaultInitialIBSize):
-           ImGuiImplDiligent{pDevice, BackBufferFmt, DepthBufferFmt, InitialVertexBufferSize, InitialIndexBufferSize}
+           Diligent::IRenderDevice* pDevice,
+           Diligent::TEXTURE_FORMAT BackBufferFmt,
+           Diligent::TEXTURE_FORMAT DepthBufferFmt,
+           Diligent::Uint32         InitialVertexBufferSize = Diligent::ImGuiImplDiligent::DefaultInitialVBSize,
+           Diligent::Uint32         InitialIndexBufferSize  = Diligent::ImGuiImplDiligent::DefaultInitialIBSize):
+           Diligent::ImGuiImplDiligent{pDevice, BackBufferFmt, DepthBufferFmt, InitialVertexBufferSize, InitialIndexBufferSize}
         {
             ImGuiIO& io = ImGui::GetIO(); (void)io;
             io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
@@ -212,9 +212,9 @@ bool NativeApplication::InitUI()
         ImGuiImplGLFW& operator = (      ImGuiImplGLFW&&) = delete;
         // clang-format on
 
-        virtual void NewFrame(Uint32 RenderSurfaceWidth, Uint32 RenderSurfaceHeight, SURFACE_TRANSFORM SurfacePreTransform) override final
+        virtual void NewFrame(Diligent::Uint32 RenderSurfaceWidth, Diligent::Uint32 RenderSurfaceHeight, Diligent::SURFACE_TRANSFORM SurfacePreTransform) override final
         {
-            VERIFY(SurfacePreTransform == SURFACE_TRANSFORM_IDENTITY, "Unexpected surface pre-transform");
+            VERIFY(SurfacePreTransform == Diligent::SURFACE_TRANSFORM_IDENTITY, "Unexpected surface pre-transform");
 
             ImGui_ImplGlfw_NewFrame();
             ImGuiImplDiligent::NewFrame(RenderSurfaceWidth, RenderSurfaceHeight, SurfacePreTransform);
@@ -278,18 +278,18 @@ void NativeApplication::UpdateWindow()
 
 void NativeApplication::Clear()
 {
-    ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
-    m_pImmediateContext->SetRenderTargets(1, &pRTV, nullptr, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+    Diligent::ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
+    m_pImmediateContext->SetRenderTargets(1, &pRTV, nullptr, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
     const float ClearColor[4] = {};
-    m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, RESOURCE_STATE_TRANSITION_MODE_VERIFY);
+    m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, Diligent::RESOURCE_STATE_TRANSITION_MODE_VERIFY);
 }
 
 void NativeApplication::Flush()
 {
-    ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
-    ITextureView* pDSV = m_pSwapChain->GetDepthBufferDSV();
-    m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+    Diligent::ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
+    Diligent::ITextureView* pDSV = m_pSwapChain->GetDepthBufferDSV();
+    m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     if (g_ImGui)
     {
         g_ImGui->Render(m_pImmediateContext);

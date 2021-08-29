@@ -6,8 +6,6 @@
 #include <RenderDevice.h>
 #include <SwapChain.h>
 
-using namespace Diligent;
-
 namespace Diligent
 {
 
@@ -30,9 +28,9 @@ public:
     using Seconds = std::chrono::duration<float>;
     Clock::time_point m_LastUpdate = {};
 
-    RefCntAutoPtr<IRenderDevice>  m_pDevice;
-    RefCntAutoPtr<IDeviceContext> m_pImmediateContext;
-    RefCntAutoPtr<ISwapChain>     m_pSwapChain;
+    Diligent::RefCntAutoPtr<Diligent::IRenderDevice>  m_pDevice;
+    Diligent::RefCntAutoPtr<Diligent::IDeviceContext> m_pImmediateContext;
+    Diligent::RefCntAutoPtr<Diligent::ISwapChain>     m_pSwapChain;
 
     NativeApplication();
     virtual ~NativeApplication();
