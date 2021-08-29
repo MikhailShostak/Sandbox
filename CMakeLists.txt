@@ -13,7 +13,7 @@ function(target_copy_assets target)
         set(REGEX_SPLIT_BY_FIRST_SLASH "([^\/]+)\/(.+)")
         string(REGEX REPLACE ${REGEX_SPLIT_BY_FIRST_SLASH} "\\2" OUTPUT_FILE ${INPUT_FILE})
         get_filename_component(INPUT_FILE ${INPUT_FILE} REALPATH BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-        get_filename_component(OUTPUT_FILE ${OUTPUT_FILE} REALPATH BASE_DIR ${CMAKE_CURRENT_BINARY_DIR})
+        get_filename_component(OUTPUT_FILE ${OUTPUT_FILE} REALPATH BASE_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
         add_custom_command(
             OUTPUT ${OUTPUT_FILE}
             COMMAND ${CMAKE_COMMAND} -E copy_if_different ${INPUT_FILE} ${OUTPUT_FILE}
