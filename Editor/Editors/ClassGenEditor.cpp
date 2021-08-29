@@ -314,6 +314,11 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
 {
     auto &FileData = ClassGenCache[path.generic_string()];
 
+    if(!FileData["Type"].IsDefined())
+    {
+        FileData["Type"] = "Class";
+    }
+
     std::string Type = FileData["Type"].as<std::string>();
 
     if(ImGui::BeginPopupContextWindow())
