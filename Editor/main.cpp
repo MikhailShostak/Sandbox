@@ -43,9 +43,7 @@ void OnContentUpdate()
                     FilesToClose.push_back(f);
                 }
                 ImGui::Separator();
-                Utils::Menu::CopyFullPath(f);
-                Utils::Menu::ShowInExplorer(f);
-                Utils::Menu::OpenTerminalHere(f);
+                Utils::Menu::ShowDefaultFileOperations(f);
                 ImGui::EndPopup();
             }
 

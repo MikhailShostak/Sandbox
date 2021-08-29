@@ -24,6 +24,7 @@ set(SOURCES
     Views/Settings/EnvironmentView.cpp
     Views/Settings/ExtensionsView.cpp
     Views/Settings/FileTypesView.cpp
+    Views/Settings/GeneralSettingsView.cpp
     Views/Settings/SettingsView.cpp
     Views/View/ConsoleView.cpp
     Views/Views.hpp

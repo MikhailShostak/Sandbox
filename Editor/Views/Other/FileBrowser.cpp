@@ -26,9 +26,7 @@ void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_direc
             ImGui::MenuItem("Close");
         }
         ImGui::Separator();
-        Utils::Menu::CopyFullPath(path);
-        Utils::Menu::ShowInExplorer(path);
-        Utils::Menu::OpenTerminalHere(path);
+        Utils::Menu::ShowDefaultFileOperations(path);
         ImGui::EndPopup();
     }
 

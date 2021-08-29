@@ -20,6 +20,8 @@ struct convert<std::filesystem::path> {
 
 inline YAML::Node Config;
 
+inline YAML::Node GeneralConfig() { return Config["General"]; }
+
 inline YAML::Node FileConfig() { return Config["File"]; }
 inline YAML::Node RecentFiles() { return FileConfig()["RecentFiles"]; }
 inline YAML::Node OpenedFiles() { return FileConfig()["OpenedFiles"]; }

@@ -3,6 +3,8 @@ Extensions:
 File:
   PinnedPaths:
     - Extensions
+General:
+  ExternalTextEditor: code
 FileTypes:
   - Title: Text File
     Editor: TextEditor

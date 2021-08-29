@@ -31,6 +31,7 @@ namespace Settings
 
 inline bool DisplaySettings = false;
 void ShowSettings();
+void ShowGeneralSettings();
 void ShowEnvironment();
 void ShowFileTypes();
 void ShowExtensions();
@@ -58,7 +59,9 @@ namespace Menu
 {
 void CopyFullPath(const std::filesystem::path &path);
 void ShowInExplorer(const std::filesystem::path &path);
+void ShowInExternalTextEditor(const std::filesystem::path &path);
 void OpenTerminalHere(const std::filesystem::path &path);
+void ShowDefaultFileOperations(const std::filesystem::path &path);
 }
 
 }

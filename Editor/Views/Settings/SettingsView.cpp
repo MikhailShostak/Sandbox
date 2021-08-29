@@ -1,6 +1,7 @@
 #include "../Views.hpp"
 
 std::vector<SettingsEntry> SettingsEntries = {
+    { "General", &Settings::ShowGeneralSettings },
     { "Environment", &Settings::ShowEnvironment },
     { "Extensions", &Settings::ShowExtensions },
     { "File Types", &Settings::ShowFileTypes },
