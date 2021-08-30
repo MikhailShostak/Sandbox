@@ -6,6 +6,8 @@
 #include <RenderDevice.h>
 #include <SwapChain.h>
 
+#include <Utils.hpp>
+
 namespace Diligent
 {
 
@@ -24,10 +26,7 @@ public:
     Vec<int> MainWindowSize = { 1280, 720 };
     Vec<float> BackgroundColor = { 0.2f, 0.2f, 0.2f, 1.00f };
 
-    using Clock   = std::chrono::high_resolution_clock;
-    using Seconds = std::chrono::duration<float>;
-    Clock::time_point m_LastUpdate = {};
-
+    Counter<HighResolution::Clock> m_Counter;
     Diligent::RefCntAutoPtr<Diligent::IRenderDevice>  m_pDevice;
     Diligent::RefCntAutoPtr<Diligent::IDeviceContext> m_pImmediateContext;
     Diligent::RefCntAutoPtr<Diligent::ISwapChain>     m_pSwapChain;

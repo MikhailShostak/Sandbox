@@ -238,7 +238,7 @@ bool NativeApplication::InitUI()
 
 void NativeApplication::Loop()
 {
-    m_LastUpdate = Clock::now();
+    m_Counter.Start();
 
     bool running = true;
     while (running)
@@ -250,9 +250,7 @@ void NativeApplication::Loop()
 
 void NativeApplication::UpdateWindow()
 {
-    const auto time = Clock::now();
-    const auto dt   = std::chrono::duration_cast<Seconds>(time - m_LastUpdate).count();
-    m_LastUpdate    = time;
+    auto dt = m_Counter.CountValueAs<SecondRatio>();
 
     if (g_ImGui)
     {
