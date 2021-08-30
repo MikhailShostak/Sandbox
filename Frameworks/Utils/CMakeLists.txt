@@ -1,4 +1,5 @@
 set(SOURCES
+    Memory/InplaceStorage.hpp
     Utils.hpp
 )
 
