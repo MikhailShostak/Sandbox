@@ -1,7 +1,9 @@
 add_subdirectory(NativeApplication)
+add_subdirectory(Utils)
 
 set(LIBRARIES
     NativeApplication
+    Utils
 )
 
 add_library(Frameworks INTERFACE)
