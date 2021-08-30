@@ -1,32 +1,39 @@
-class Sandbox final : public NativeApplication
+#include "main.hpp"
+
+Sandbox::Sandbox()
 {
-public:
 
-    bool PreInit() override
-    {
-        MainWindowTitle = "Sandbox";
-        return true;
-    }
+}
 
-    bool Init() override
-    {
-        return true;
-    }
+Sandbox::~Sandbox()
+{
 
-    void Update(float dt) override
-    {
+}
 
-    }
+bool Sandbox::PreInit()
+{
+    MainWindowTitle = "Sandbox";
+    return true;
+}
 
-    void UpdateUI(float dt) override
-    {
-        ImGui::ShowDemoWindow();
-    }
+bool Sandbox::Init()
+{
+    return true;
+}
 
-    void Draw() override
-    {
+void Sandbox::Update(float dt)
+{
 
-    }
-};
+}
+
+void Sandbox::UpdateUI(float dt)
+{
+    ImGui::ShowDemoWindow();
+}
+
+void Sandbox::Draw()
+{
+
+}
 
 DEFINE_MAIN_APPLICATION(Sandbox)

@@ -1,5 +1,6 @@
 set(SOURCES
     main.cpp
+    main.hpp
 )
 
 add_executable(Sandbox ${SOURCES})
