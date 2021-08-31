@@ -279,8 +279,7 @@ void NativeApplication::Clear()
     Diligent::ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
     m_pImmediateContext->SetRenderTargets(1, &pRTV, nullptr, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
-    const float ClearColor[4] = {};
-    m_pImmediateContext->ClearRenderTarget(pRTV, ClearColor, Diligent::RESOURCE_STATE_TRANSITION_MODE_VERIFY);
+    m_pImmediateContext->ClearRenderTarget(pRTV, &BackgroundColor.x, Diligent::RESOURCE_STATE_TRANSITION_MODE_VERIFY);
 }
 
 void NativeApplication::Flush()
