@@ -1,19 +1,6 @@
 #pragma once
 
-#include <BasicMath.hpp>
-#include <DeviceContext.h>
-#include <RefCntAutoPtr.hpp>
-#include <RenderDevice.h>
-#include <SwapChain.h>
-
 #include <Utils.hpp>
-
-namespace Diligent
-{
-
-class ImGuiImplDiligent;
-
-}
 
 class NativeApplication
 {
@@ -25,11 +12,6 @@ public:
     std::string ConfigFile = "config.ini";
     Vec<int> MainWindowSize = { 1280, 720 };
     Vec<float> BackgroundColor = { 0.2f, 0.2f, 0.2f, 1.00f };
-
-    Counter<HighResolution::Clock> m_Counter;
-    Diligent::RefCntAutoPtr<Diligent::IRenderDevice>  m_pDevice;
-    Diligent::RefCntAutoPtr<Diligent::IDeviceContext> m_pImmediateContext;
-    Diligent::RefCntAutoPtr<Diligent::ISwapChain>     m_pSwapChain;
 
     NativeApplication();
     virtual ~NativeApplication();
@@ -53,6 +35,8 @@ public:
     void Flush();
 
     void Quit();
+
+    InplaceStorage<struct NativeApplicationData, 32, 8> m_Data;
 };
 
 std::unique_ptr<NativeApplication> CreateApp();

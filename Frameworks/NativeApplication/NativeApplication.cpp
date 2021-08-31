@@ -1,5 +1,11 @@
 #include "NativeApplication.hpp"
 
+#include <BasicMath.hpp>
+#include <DeviceContext.h>
+#include <RefCntAutoPtr.hpp>
+#include <RenderDevice.h>
+#include <SwapChain.h>
+
 #define PLATFORM_WIN32 1
 #define ENGINE_DLL 0
 #define VULKAN_SUPPORTED 1
@@ -25,17 +31,25 @@ extern void* GetNSWindowView(GLFWwindow* wnd);
 #include <imgui_impl_glfw.h>
 #include <ImGuiImplDiligent.hpp>
 
+struct NativeApplicationData
+{
+    Counter<HighResolution::Clock> m_Counter;
+    Diligent::RefCntAutoPtr<Diligent::IRenderDevice>  m_pDevice;
+    Diligent::RefCntAutoPtr<Diligent::IDeviceContext> m_pImmediateContext;
+    Diligent::RefCntAutoPtr<Diligent::ISwapChain>     m_pSwapChain;
+};
+
 namespace
 {
 
 void GLFW_ResizeCallback(GLFWwindow* window, int width, int height)
 {
     auto* w = static_cast<NativeApplication*>(glfwGetWindowUserPointer(window));
-    if (w->m_pSwapChain != nullptr)
+    if (w->m_Data->m_pSwapChain != nullptr)
     {
         w->MainWindowSize.x = width;
         w->MainWindowSize.y = height;
-        w->m_pSwapChain->Resize(static_cast<Diligent::Uint32>(width), static_cast<Diligent::Uint32>(height));
+        w->m_Data->m_pSwapChain->Resize(static_cast<Diligent::Uint32>(width), static_cast<Diligent::Uint32>(height));
         w->UpdateWindow();
     }
 }
@@ -134,14 +148,16 @@ NativeApplication::NativeApplication()
 
 NativeApplication::~NativeApplication()
 {
-    if (m_pImmediateContext)
-        m_pImmediateContext->Flush();
+    if (m_Data->m_pImmediateContext)
+    {
+        m_Data->m_pImmediateContext->Flush();
+    }
 
     g_ImGui.reset();
 
-    m_pSwapChain        = nullptr;
-    m_pImmediateContext = nullptr;
-    m_pDevice           = nullptr;
+    m_Data->m_pSwapChain = nullptr;
+    m_Data->m_pImmediateContext = nullptr;
+    m_Data->m_pDevice = nullptr;
 
     GLFW_DestroyMainWindow();
 }
@@ -168,11 +184,13 @@ bool NativeApplication::InitEngine()
     auto* pFactoryVk = Diligent::GetEngineFactoryVk();
 
     Diligent::EngineVkCreateInfo EngineCI;
-    pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &m_pDevice, &m_pImmediateContext);
-    pFactoryVk->CreateSwapChainVk(m_pDevice, m_pImmediateContext, SCDesc, Window, &m_pSwapChain);
+    pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &m_Data->m_pDevice, &m_Data->m_pImmediateContext);
+    pFactoryVk->CreateSwapChainVk(m_Data->m_pDevice, m_Data->m_pImmediateContext, SCDesc, Window, &m_Data->m_pSwapChain);
 
-    if (m_pDevice == nullptr || m_pImmediateContext == nullptr || m_pSwapChain == nullptr)
+    if (m_Data->m_pDevice == nullptr || m_Data->m_pImmediateContext == nullptr || m_Data->m_pSwapChain == nullptr)
+    {
         return false;
+    }
 
     return true;
 }
@@ -231,14 +249,14 @@ bool NativeApplication::InitUI()
         }
     };
 
-    const auto& SCDesc = m_pSwapChain->GetDesc();
-    g_ImGui = std::make_unique<ImGuiImplGLFW>(g_MainWindow, ConfigFile.data(), m_pDevice, SCDesc.ColorBufferFormat, SCDesc.DepthBufferFormat);
+    const auto& SCDesc = m_Data->m_pSwapChain->GetDesc();
+    g_ImGui = std::make_unique<ImGuiImplGLFW>(g_MainWindow, ConfigFile.data(), m_Data->m_pDevice, SCDesc.ColorBufferFormat, SCDesc.DepthBufferFormat);
     return true;
 }
 
 void NativeApplication::Loop()
 {
-    m_Counter.Start();
+    m_Data->m_Counter.Start();
 
     bool running = true;
     while (running)
@@ -250,14 +268,13 @@ void NativeApplication::Loop()
 
 void NativeApplication::UpdateWindow()
 {
-    auto dt = m_Counter.CountValueAs<SecondRatio>();
-
     if (g_ImGui)
     {
-        const auto SCDesc = m_pSwapChain->GetDesc();
+        const auto SCDesc = m_Data->m_pSwapChain->GetDesc();
         g_ImGui->NewFrame(SCDesc.Width, SCDesc.Height, SCDesc.PreTransform);
     }
 
+    auto dt = m_Data->m_Counter.CountValueAs<SecondRatio>();
     Update(dt);
     UpdateUI(dt);
 
@@ -276,20 +293,20 @@ void NativeApplication::UpdateWindow()
 
 void NativeApplication::Clear()
 {
-    Diligent::ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
-    m_pImmediateContext->SetRenderTargets(1, &pRTV, nullptr, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+    Diligent::ITextureView* pRTV = m_Data->m_pSwapChain->GetCurrentBackBufferRTV();
+    m_Data->m_pImmediateContext->SetRenderTargets(1, &pRTV, nullptr, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
 
-    m_pImmediateContext->ClearRenderTarget(pRTV, &BackgroundColor.x, Diligent::RESOURCE_STATE_TRANSITION_MODE_VERIFY);
+    m_Data->m_pImmediateContext->ClearRenderTarget(pRTV, &BackgroundColor.x, Diligent::RESOURCE_STATE_TRANSITION_MODE_VERIFY);
 }
 
 void NativeApplication::Flush()
 {
-    Diligent::ITextureView* pRTV = m_pSwapChain->GetCurrentBackBufferRTV();
-    Diligent::ITextureView* pDSV = m_pSwapChain->GetDepthBufferDSV();
-    m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
+    Diligent::ITextureView* pRTV = m_Data->m_pSwapChain->GetCurrentBackBufferRTV();
+    Diligent::ITextureView* pDSV = m_Data->m_pSwapChain->GetDepthBufferDSV();
+    m_Data->m_pImmediateContext->SetRenderTargets(1, &pRTV, pDSV, Diligent::RESOURCE_STATE_TRANSITION_MODE_TRANSITION);
     if (g_ImGui)
     {
-        g_ImGui->Render(m_pImmediateContext);
+        g_ImGui->Render(m_Data->m_pImmediateContext);
 
         ImGuiIO& io = ImGui::GetIO();
         if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
@@ -299,8 +316,8 @@ void NativeApplication::Flush()
         }
     }
 
-    m_pImmediateContext->Flush();
-    m_pSwapChain->Present();
+    m_Data->m_pImmediateContext->Flush();
+    m_Data->m_pSwapChain->Present();
 }
 
 int NativeApplication::Run()
