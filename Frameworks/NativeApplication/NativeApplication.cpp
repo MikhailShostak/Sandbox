@@ -6,19 +6,6 @@
 #include <RenderDevice.h>
 #include <SwapChain.h>
 
-#define PLATFORM_WIN32 1
-#define ENGINE_DLL 0
-#define VULKAN_SUPPORTED 1
-
-#if PLATFORM_WIN32
-#define GLFW_EXPOSE_NATIVE_WIN32 1
-#undef GetObject
-#elif PLATFORM_LINUX
-#define GLFW_EXPOSE_NATIVE_X11 1
-#elif PLATFORM_MACOS
-#define GLFW_EXPOSE_NATIVE_COCOA 1
-#endif
-
 #include <EngineFactoryVk.h>
 
 #include <GLFW/glfw3.h>
