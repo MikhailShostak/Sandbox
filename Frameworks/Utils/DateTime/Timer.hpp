@@ -6,8 +6,8 @@ class Timer
 public:
 
     using Clock = ClockType;
-    using Time = Clock::time_point;
-    using Duration = Clock::duration;
+    using Time = typename Clock::time_point;
+    using Duration = typename Clock::duration;
 
     [[nodiscard]] bool IsStarted() const noexcept { return m_StartTime != nullptr; }
     [[nodiscard]] bool IsElapsed() const noexcept { return GetCurrentTime() >= m_FinishTime; }

@@ -6,8 +6,8 @@ class Counter
 public:
 
     using Clock = ClockType;
-    using Time = Clock::time_point;
-    using Duration = Clock::duration;
+    using Time = typename Clock::time_point;
+    using Duration = typename Clock::duration;
 
     [[nodiscard]] const Time &GetStartTime() const noexcept { return m_Time; }
     [[nodiscard]] Time GetCurrentTime() const noexcept { return Clock::now(); }

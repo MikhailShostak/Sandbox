@@ -21,6 +21,7 @@ using Clock = std::chrono::high_resolution_clock;
 using Time = ::Time<Clock>;
 }
 
+#if __cplusplus > 202000
 namespace UTC
 {
 using Clock = std::chrono::utc_clock;
@@ -50,6 +51,7 @@ namespace Local
 template<typename Duration>
 using Time = ::Time<std::chrono::local_t, Duration>;
 }
+#endif
 
 namespace Unix
 {

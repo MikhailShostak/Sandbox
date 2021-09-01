@@ -1,5 +1,6 @@
 #pragma once
 
+#if __cplusplus > 202000
 using Year = std::chrono::year;
 using Month = std::chrono::month;
 using Day = std::chrono::day;
@@ -40,3 +41,4 @@ using std::chrono::December;
 }
 
 }
+#endif

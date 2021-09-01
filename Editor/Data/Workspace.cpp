@@ -5,14 +5,15 @@
 std::string GetFileTitle(const std::filesystem::path &path)
 {
     auto title = path.filename().generic_string();
-    if(UnsavedFiles.contains(path.generic_string()))
+    auto it = UnsavedFiles.find(path.generic_string());
+    if(it != UnsavedFiles.end())
     {
         title.append("*");
     }
     return title + "###" + path.generic_string();
 }
 
-void RemovePathFromNode(auto &node, const auto &path)
+void RemovePathFromNode(YAML::Node &node, const std::filesystem::path &path)
 {
     auto it = std::find_if(node.begin(), node.end(), [&](auto v)
     {
@@ -88,9 +89,10 @@ void SaveFile(const std::filesystem::path &source, const std::filesystem::path &
 {
     auto sourcePathString = source.generic_string();
     bool saved = false;
-    if(UnsavedFiles.contains(sourcePathString))
+    auto it = UnsavedFiles.find(sourcePathString);
+    if(it != UnsavedFiles.end())
     {
-        saved = UnsavedFiles[sourcePathString]->SaveFile(source, destination);
+        saved = it->second->SaveFile(source, destination);
         UnsavedFiles.erase(sourcePathString);
     }
 

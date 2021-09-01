@@ -148,7 +148,8 @@ YAML::Node FindClassByName(const std::string &fullname)
 void ClassGenEditor::IndexFile(const std::filesystem::path &path)
 {
     std::string pathString = path.generic_string();
-    if(ClassGenCache.contains(pathString))
+    auto it = ClassGenCache.find(pathString);
+    if(it != ClassGenCache.end())
     {
         fmt::print("Class {} already exists", pathString);
         return;

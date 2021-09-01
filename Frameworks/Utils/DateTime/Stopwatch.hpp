@@ -5,8 +5,8 @@ class Stopwatch
 {
 public:
     using Clock = ClockType;
-    using Time = Clock::duration;
-    using Duration = Clock::time_point;
+    using Time = typename Clock::duration;
+    using Duration = typename Clock::time_point;
 
     [[nodiscard]] const Time &GetStartTime() const noexcept { return m_Time; }
     [[nodiscard]] Time GetCurrentTime() const noexcept { return Clock::now(); }

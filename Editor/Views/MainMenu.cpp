@@ -3,7 +3,7 @@
 #include "../Data/Workspace.hpp"
 
 std::filesystem::path PathToOpen;
-void ShowPathList(const auto &list) {
+void ShowPathList(const YAML::Node &list) {
     for(const auto &node : list)
     {
         auto f = node.as<std::filesystem::path>();
@@ -14,7 +14,7 @@ void ShowPathList(const auto &list) {
     }
 }
 
-void ShowPathListMenu(const char *title, const auto &list) {
+void ShowPathListMenu(const char *title, const YAML::Node &list) {
     if (ImGui::BeginMenu(title, list.size() > 0))
     {
         ShowPathList(list);
@@ -32,8 +32,8 @@ void ShowMainMenu()
             ImGui::Separator();
             ImGui::MenuItem("Open File...", nullptr, &File::DisplayOpenFileDialog);
             ImGui::MenuItem("Open Folder...", nullptr, &File::DisplayOpenFolderDialog);
-            auto recentFiles = RecentFiles();
-            auto recentFolders = RecentFolders();
+            YAML::Node recentFiles = RecentFiles();
+            YAML::Node recentFolders = RecentFolders();
             if (ImGui::BeginMenu("Open Recent", recentFiles.size() > 0 || recentFolders.size() > 0))
             {
                 if(recentFolders.size() > 0)
