@@ -1,5 +1,8 @@
 #pragma once
 
+namespace DateTime
+{
+
 template<typename ClockType>
 class Stopwatch
 {
@@ -45,3 +48,5 @@ private:
     Counter<Clock> m_Counter{};
     Time m_Time{};
 };
+
+}

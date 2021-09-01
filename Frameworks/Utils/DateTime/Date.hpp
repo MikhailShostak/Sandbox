@@ -1,5 +1,8 @@
 #pragma once
 
+namespace DateTime
+{
+
 #if __cplusplus > 202000
 using Year = std::chrono::year;
 using Month = std::chrono::month;
@@ -42,3 +45,5 @@ using std::chrono::December;
 
 }
 #endif
+
+}

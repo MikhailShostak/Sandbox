@@ -1,7 +1,13 @@
 #pragma once
 
-template <typename RepresentationType, typename Period>
+namespace DateTime
+{
+
+namespace Templates
+{
+template<typename RepresentationType, typename Period>
 using Duration = std::chrono::duration<RepresentationType, Period>;
+}
 
 using Nanoseconds = std::chrono::nanoseconds;
 using Microseconds = std::chrono::microseconds;
@@ -28,3 +34,5 @@ using WeekRatio = std::chrono::duration<float, Weeks::period>;
 using MonthRatio = std::chrono::duration<float, Months::period>;
 using YearRatio = std::chrono::duration<float, Years::period>;
 #endif
+
+}

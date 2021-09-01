@@ -1,5 +1,8 @@
 #pragma once
 
+namespace DateTime
+{
+
 template<typename ClockType>
 class Counter
 {
@@ -41,3 +44,5 @@ private:
 
     Time m_Time{};
 };
+
+}

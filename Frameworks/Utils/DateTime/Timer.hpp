@@ -1,5 +1,8 @@
 #pragma once
 
+namespace DateTime
+{
+
 template<typename ClockType>
 class Timer
 {
@@ -39,3 +42,5 @@ private:
     Time m_StartTime{};
     Time m_FinishTime{};
 };
+
+}

@@ -20,7 +20,7 @@ extern void* GetNSWindowView(GLFWwindow* wnd);
 
 struct NativeApplicationData
 {
-    Counter<HighResolution::Clock> m_Counter;
+    DateTime::Counter<DateTime::HighResolution::Clock> m_Counter;
     Diligent::RefCntAutoPtr<Diligent::IRenderDevice>  m_pDevice;
     Diligent::RefCntAutoPtr<Diligent::IDeviceContext> m_pImmediateContext;
     Diligent::RefCntAutoPtr<Diligent::ISwapChain>     m_pSwapChain;
@@ -261,7 +261,7 @@ void NativeApplication::UpdateWindow()
         g_ImGui->NewFrame(SCDesc.Width, SCDesc.Height, SCDesc.PreTransform);
     }
 
-    auto dt = m_Data->m_Counter.CountValueAs<SecondRatio>();
+    auto dt = m_Data->m_Counter.CountValueAs<DateTime::SecondRatio>();
     Update(dt);
     UpdateUI(dt);
 
