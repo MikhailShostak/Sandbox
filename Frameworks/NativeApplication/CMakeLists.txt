@@ -3,6 +3,13 @@ set(SOURCES
     NativeApplication.hpp
 )
 
+if(CMAKE_SYSTEM_NAME STREQUAL Darwin)
+    if(NOT IOS)
+        list(APPEND SOURCES CocoaUtils.mm)
+        set_source_files_properties(CocoaUtils.mm PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+    endif()
+endif()
+
 add_library(NativeApplication ${SOURCES})
 target_include_directories(NativeApplication INTERFACE .)
 target_link_libraries(NativeApplication ThirdParty Utils)
