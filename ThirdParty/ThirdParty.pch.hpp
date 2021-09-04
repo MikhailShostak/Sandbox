@@ -34,7 +34,6 @@
 #include <vector>
 
 #include <boost/beast.hpp>
-#include <boost/dll.hpp>
 #include <boost/process.hpp>
 
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
