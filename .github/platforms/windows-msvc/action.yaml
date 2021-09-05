@@ -13,4 +13,7 @@ runs:
       with:
         arch: ${{ inputs.devenv }}
     - name: Setup
+      env:
+        BUILD_COMPILER: Visual Studio
+        BUILD_COMPILER_VERSION: '16'
       uses: ./.github/steps/setup

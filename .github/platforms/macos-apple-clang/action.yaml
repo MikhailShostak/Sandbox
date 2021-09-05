@@ -4,4 +4,7 @@ runs:
   using: composite
   steps:
     - name: Setup
+      env:
+        BUILD_COMPILER: apple-clang
+        BUILD_COMPILER_VERSION: '12.0'
       uses: ./.github/steps/setup

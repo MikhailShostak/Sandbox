@@ -14,5 +14,8 @@ runs:
       shell: bash
       run: sudo apt-get install -y ${{ join(inputs.dependencies, ' ') }}
     - name: Setup
+      env:
+        BUILD_COMPILER: gcc
+        BUILD_COMPILER_VERSION: '9'
         BUILD_STDLIB: libstdc++11
       uses: ./.github/steps/setup
