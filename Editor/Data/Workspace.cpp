@@ -17,7 +17,8 @@ void RemovePathFromNode(YAML::Node &node, const std::filesystem::path &path)
 {
     auto it = std::find_if(node.begin(), node.end(), [&](auto v)
     {
-        return v.template as<std::filesystem::path>() == path;
+        auto p = v.template as<std::filesystem::path>();
+        return p == path;
     });
     if(it != node.end())
     {
@@ -65,7 +66,8 @@ void OpenFile(const std::filesystem::path &path, bool remember)
     auto OpenedFilesNode = OpenedFiles();
     auto it = std::find_if(OpenedFilesNode.begin(), OpenedFilesNode.end(), [&](auto v)
     {
-        return v.template as<std::filesystem::path>() == path;
+        auto p = v.template as<std::filesystem::path>();
+        return p == path;
     });
 
     if(it != OpenedFilesNode.end())
@@ -139,7 +141,8 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
     auto OpenedFoldersNode = OpenedFolders();
     auto it = std::find_if(OpenedFoldersNode.begin(), OpenedFoldersNode.end(), [&](auto v)
     {
-        return v.template as<std::filesystem::path>() == path;
+        auto p = v.template as<std::filesystem::path>();
+        return p == path;
     });
 
     if(it != OpenedFoldersNode.end())

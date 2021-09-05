@@ -50,7 +50,8 @@ void OnContentUpdate()
             std::string EditorName = "TextEditor";
             auto it1 = std::find_if(FileTypes.begin(), FileTypes.end(), [&](const auto &v)
             {
-                return v["Extensions"].template as<std::string>() == ext;
+                auto e = v["Extensions"].template as<std::string>();
+                return e == ext;
             });
             if(it1 != FileTypes.end())
             {
