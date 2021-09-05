@@ -9,7 +9,7 @@ conan_basic_setup()
 
 function(target_copy_assets target)
     foreach(INPUT_FILE IN ITEMS ${ARGN})
-        set(REGEX_SPLIT_BY_FIRST_SLASH "([^\/]+)\/(.+)")
+        set(REGEX_SPLIT_BY_FIRST_SLASH "([^\\/]+)\\/(.+)")
         string(REGEX REPLACE ${REGEX_SPLIT_BY_FIRST_SLASH} "\\2" OUTPUT_FILE ${INPUT_FILE})
         get_filename_component(INPUT_FILE ${INPUT_FILE} REALPATH BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
         get_filename_component(OUTPUT_FILE ${OUTPUT_FILE} REALPATH BASE_DIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
