@@ -13,3 +13,4 @@ runs:
       with:
         buildDirectory: ${{ github.workspace }}/.build/${{ matrix.config }}-${{ matrix.platform.arch }}
         buildWithCMakeArgs: --target ${{ inputs.target }}
+        cmakeBuildType: ${{ matrix.config }}
