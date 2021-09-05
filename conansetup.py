@@ -37,6 +37,8 @@ for arch in ARCHITECTURES:
             if 'BUILD_COMPILER' in os.environ and 'BUILD_COMPILER_VERSION' in os.environ:
                 run(['conan', 'profile', 'update', 'settings.compiler=' + os.environ['BUILD_COMPILER'], profile])
                 run(['conan', 'profile', 'update', 'settings.compiler.version=' + os.environ['BUILD_COMPILER_VERSION'], profile])
+            if 'BUILD_STDLIB' in os.environ:
+                run(['conan', 'profile', 'update', 'settings.compiler.libcxx=' + os.environ.get('BUILD_STDLIB'), profile])
 
         if '--keep-remote-packages' not in sys.argv:
             run(['conan', 'install', '.', '-if', os.path.join(BUILD_DIR, profile)] + ['--profile', profile, '--update', '--build=missing'])
