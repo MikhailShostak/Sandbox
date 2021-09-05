@@ -18,8 +18,8 @@ public:
 
     virtual bool PreInit() { return true; }
     virtual bool Init() { return true; }
-    virtual void Update(float dt) {}
-    virtual void UpdateUI(float dt) {}
+    virtual void Update([[maybe_unused]] float dt) {}
+    virtual void UpdateUI([[maybe_unused]] float dt) {}
     virtual void PreDraw() {}
     virtual void Draw() {}
     virtual void Terminate() {}

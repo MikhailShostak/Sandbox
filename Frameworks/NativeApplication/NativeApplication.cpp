@@ -1,6 +1,5 @@
 #include "NativeApplication.hpp"
 
-#include <BasicMath.hpp>
 #include <DeviceContext.h>
 #include <RefCntAutoPtr.hpp>
 #include <RenderDevice.h>

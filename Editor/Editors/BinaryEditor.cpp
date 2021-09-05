@@ -3,7 +3,7 @@
 namespace DefaultExtensions
 {
 
-void BinaryEditor::RenderFile(const std::filesystem::path &path)
+void BinaryEditor::RenderFile([[maybe_unused]] const std::filesystem::path &path)
 {
 
 }

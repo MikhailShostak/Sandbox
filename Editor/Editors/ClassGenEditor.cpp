@@ -22,7 +22,7 @@ void ShowGraph()
         //TODO: ax::NodeEditor::DestroyEditor(g_Context);
     }
 
-    auto &io = ImGui::GetIO();
+    /*auto &io = ImGui::GetIO();
     auto swapButtons = [&io](size_t i, size_t j){
         std::swap(io.MouseDown[i], io.MouseDown[j]);
         std::swap(io.MouseClickedPos[i], io.MouseClickedPos[j]);
@@ -36,7 +36,7 @@ void ShowGraph()
         std::swap(io.MouseDownDurationPrev[i], io.MouseDownDurationPrev[j]);
         std::swap(io.MouseDragMaxDistanceAbs[i], io.MouseDragMaxDistanceAbs[j]);
         std::swap(io.MouseDragMaxDistanceSqr[i], io.MouseDragMaxDistanceSqr[j]);
-    };
+    };*/
 
     if (ImGui::Begin("GraphWindow"))
     {
@@ -45,8 +45,8 @@ void ShowGraph()
         ax::NodeEditor::Begin("GraphEditor");
 
         ax::NodeEditor::NodeId contextNodeId = 0;
-        ax::NodeEditor::PinId contextPinId = 0;
-        ax::NodeEditor::LinkId contextLinkId = 0;
+        //ax::NodeEditor::PinId contextPinId = 0;
+        //ax::NodeEditor::LinkId contextLinkId = 0;
 
         for (const auto &node : Nodes)
         {
@@ -119,7 +119,7 @@ YAML::Node FindClassByName(const std::string &name, const std::string &nameSpace
         bool result = true;
         if(!nameSpace.empty() && v.second["Namespace"].IsDefined())
         {
-            result = v.second["Namespace"].as<std::string>() == nameSpace;
+            result = v.second["Namespace"].template as<std::string>() == nameSpace;
         }
 
         return result && std::filesystem::path(v.first).stem().generic_string() == name;
@@ -170,27 +170,27 @@ void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, co
         ImGui::Columns(2);
         for(auto i : node["Properties"])
         {
-            std::string name = i["Name"].as<std::string>();
+            auto propertyName = i["Name"].as<std::string>();
             ImGui::Text(name.data());
             //ImGui::TreeNode("Test", name.data());
-            auto propertyName = "##Property" + name;
+            auto propertyId = "##Property" + propertyName;
 
-            std::string type = i["Type"].as<std::string>();
+            auto type = i["Type"].as<std::string>();
             ImGui::NextColumn();
             if (type == "Boolean")
             {
                 static bool value = true;
-                ImGui::Checkbox(propertyName.data(), &value);
+                ImGui::Checkbox(propertyId.data(), &value);
             }
             else if (type == "Integer")
             {
                 static int value = 100;
-                ImGui::DragInt(propertyName.data(), &value, 1);
+                ImGui::DragInt(propertyId.data(), &value, 1);
             }
             else if (type == "Float")
             {
                 static float value = 1.0f;
-                ImGui::DragFloat(propertyName.data(), &value, 0.01f);
+                ImGui::DragFloat(propertyId.data(), &value, 0.01f);
             }
             ImGui::NextColumn();
         }
@@ -253,8 +253,9 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, YAML::Node
     }
 }
 
-void ClassGenEditor::RenderData(const std::filesystem::path &path, YAML::Node &FileData, std::string &Namespace)
+void ClassGenEditor::RenderData(const std::filesystem::path &path, [[maybe_unused]] YAML::Node &FileData, std::string &Namespace)
 {
+    //TODO: Check FileData
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2,2));
     RenderDataRecursively(path, Namespace.empty() ? path.stem().generic_string() : (Namespace + "." + path.stem().generic_string()));
     ImGui::PopStyleVar();

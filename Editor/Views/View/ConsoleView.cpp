@@ -35,7 +35,7 @@ struct ExampleAppLog
                 LineOffsets.push_back(old_size + 1);
     }
 
-    void Draw(const char* title, bool* p_open = NULL)
+    void Draw(const char* title, bool* p_open = nullptr)
     {
         if (!ImGui::Begin(title, p_open))
         {

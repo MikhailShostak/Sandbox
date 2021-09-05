@@ -50,7 +50,7 @@ void ShowInExternalTextEditor(const std::filesystem::path &path)
         return;
     }
 
-    std::string editor = node.as<std::string>();
+    auto editor = node.as<std::string>();
     if(editor.empty())
     {
         return;

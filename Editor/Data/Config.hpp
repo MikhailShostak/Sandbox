@@ -3,8 +3,8 @@
 namespace YAML {
 
 template<>
-struct convert<std::filesystem::path> {
-    static Node encode(const std::filesystem::path& rhs)
+struct [[maybe_unused]] convert<std::filesystem::path> {
+    [[maybe_unused]] static Node encode(const std::filesystem::path& rhs)
     {
         return Node(rhs.generic_string());
     }

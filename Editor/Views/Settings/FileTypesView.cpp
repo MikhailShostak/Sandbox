@@ -27,15 +27,15 @@ void ShowFileTypes()
             ImGui::TableNextRow();
 
             ImGui::TableSetColumnIndex(0);
-            std::string id = node["Title"].as<std::string>();
+            auto id = node["Title"].as<std::string>();
             ImGui::Text(node["Title"].as<std::string>().data());
 
             ImGui::TableSetColumnIndex(1);
-            std::string editor = node["Editor"].as<std::string>();
+            auto editor = node["Editor"].as<std::string>();
 
-            int SelectedItem = std::distance(EditorNames.begin(), std::find(EditorNames.begin(), EditorNames.end(), editor));
+            int SelectedItem = static_cast<int>(std::distance(EditorNames.begin(), std::find(EditorNames.begin(), EditorNames.end(), editor)));
             ImGui::PushItemWidth(-1);
-            if (ImGui::Combo(("##Editor "+ id).data(), &SelectedItem, EditorNames.data(), EditorNames.size()))
+            if (ImGui::Combo(("##Editor "+ id).data(), &SelectedItem, EditorNames.data(), static_cast<int>(EditorNames.size())))
             {
                 node["Editor"] = std::string(EditorNames[SelectedItem]);
             }
@@ -51,15 +51,12 @@ void ShowFileTypes()
     ImGui::InputText("Title", &title);
 
     static int SelectedItem = 0;
-    if(ImGui::Combo("Editor", &SelectedItem, EditorNames.data(), EditorNames.size()))
-    {
-        EditorNames[SelectedItem];
-    }
+    ImGui::Combo("Editor", &SelectedItem, EditorNames.data(), static_cast<int>(EditorNames.size()));
 
     static std::string extensions;
     ImGui::InputText("Extensions", &extensions);
 
-    if (ImGui::Button("Add") && title.size() && extensions.size())
+    if (ImGui::Button("Add") && !title.empty() && !extensions.empty())
     {
         YAML::Node fileType;
         fileType["Title"] = title;

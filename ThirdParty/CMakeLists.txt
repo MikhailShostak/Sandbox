@@ -42,7 +42,6 @@ set(INCLUDES
 )
 set(LIBRARIES
     Diligent-Common
-    Diligent-GraphicsEngine
     Diligent-GraphicsEngineVk-static
     Diligent-GraphicsTools
 )

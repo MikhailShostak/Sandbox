@@ -3,7 +3,6 @@
 #include "Data/Workspace.hpp"
 #include "Editors/BinaryEditor.hpp"
 #include "Editors/ClassGenEditor.hpp"
-#include "Editors/Editor.hpp"
 #include "Editors/TextEditor.hpp"
 #include "Views/Views.hpp"
 
@@ -51,7 +50,7 @@ void OnContentUpdate()
             std::string EditorName = "TextEditor";
             auto it1 = std::find_if(FileTypes.begin(), FileTypes.end(), [&](const auto &v)
             {
-                return v["Extensions"].as<std::string>() == ext;
+                return v["Extensions"].template as<std::string>() == ext;
             });
             if(it1 != FileTypes.end())
             {

@@ -3,9 +3,9 @@
 class Editor
 {
 public:
-    virtual void IndexFile(const std::filesystem::path &path) {}
-    virtual void RenderFile(const std::filesystem::path &path) {}
-    virtual bool SaveFile(const std::filesystem::path &source, const std::filesystem::path &destination) { return false; }
+    virtual void IndexFile([[maybe_unused]] const std::filesystem::path &path) {}
+    virtual void RenderFile([[maybe_unused]] const std::filesystem::path &path) {}
+    virtual bool SaveFile([[maybe_unused]] const std::filesystem::path &source, [[maybe_unused]] const std::filesystem::path &destination) { return false; }
     void MarkFileDirty(const std::filesystem::path &path);
 };
 

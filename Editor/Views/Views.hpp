@@ -1,6 +1,5 @@
 #pragma once
 
-inline bool DisplayWelcomePage = true;
 void ShowRootView(const std::function<void()> &callback);
 void ShowMainMenu();
 void ShowWelcomePage();
