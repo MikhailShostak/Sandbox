@@ -27,9 +27,11 @@ jobs:
           submodules: recursive
       - name: Setup
         uses: ./.github-actions/platforms/macos-apple-clang
+      - name: Download Cache
+        uses: ./.github-actions/steps/download-conan-cache
       - name: Build
         uses: ./.github-actions/steps/build
-  ubuntu:
+  ubuntu-gcc:
     name: Ubuntu (GCC 9)
     runs-on: ubuntu-latest
     strategy:
@@ -48,7 +50,35 @@ jobs:
         uses: ./.github-actions/platforms/ubuntu-gcc
         with:
           dependencies: libgl-dev
+      - name: Download Cache
+        uses: ./.github-actions/steps/download-conan-cache
       - name: Build
+        uses: ./.github-actions/steps/build
+  ubuntu-clang:
+    name: Ubuntu (Clang 11)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+          - arch: x86_64
+        config:
+          - Release
+          - Debug
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup
+        uses: ./.github-actions/platforms/ubuntu-clang
+        with:
+          dependencies: libgl-dev
+      - name: Download Cache
+        uses: ./.github-actions/steps/download-conan-cache
+      - name: Build
+        env:
+          CC: clang
+          CXX: clang++
         uses: ./.github-actions/steps/build
   windows:
     name: Windows (MSVC 16)
@@ -67,5 +97,7 @@ jobs:
           submodules: recursive
       - name: Setup
         uses: ./.github-actions/platforms/windows-msvc
+      - name: Download Cache
+        uses: ./.github-actions/steps/download-conan-cache
       - name: Build
         uses: ./.github-actions/steps/build

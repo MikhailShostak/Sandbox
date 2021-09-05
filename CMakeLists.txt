@@ -19,7 +19,9 @@ conan_cmake_run(REQUIRES
     imgui/1.84.0-ext
     range-v3/0.11.0
     yaml-cpp/0.7.0
-BASIC_SETUP)
+    BUILD missing
+    BASIC_SETUP
+)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()

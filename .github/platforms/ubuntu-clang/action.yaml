@@ -1,0 +1,20 @@
+name: Setup
+description: Prepares development environment on Ubuntu with GCC
+inputs:
+  dependencies:
+    description: Dependencies will be installed via apt-get
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Run apt-get update (${{ join(inputs.dependencies, ', ') }})
+      shell: bash
+      run: sudo apt-get update
+    - name: Run apt-get install (${{ join(inputs.dependencies, ', ') }})
+      shell: bash
+      run: sudo apt-get install -y ${{ join(inputs.dependencies, ' ') }}
+    - name: Setup
+      env:
+        BUILD_COMPILER: clang
+        BUILD_COMPILER_VERSION: '11'
+      uses: ./.github/steps/setup
