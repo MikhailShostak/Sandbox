@@ -7,6 +7,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+env:
+  CONAN_PACKAGES_ACCESS_TOKEN: ${{ secrets.CONAN_PACKAGES_ACCESS_TOKEN }}
 jobs:
   macos:
     name: macOS (Apple Clang 12)
