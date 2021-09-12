@@ -6,6 +6,9 @@ set(SOURCES
     DateTime/Stopwatch.hpp
     DateTime/Time.hpp
     DateTime/Timer.hpp
+    Meta/Aliases.hpp
+    Meta/Inheritance.hpp
+    Meta/Substitution.hpp
     Utils.hpp
 )
 

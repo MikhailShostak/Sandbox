@@ -7,3 +7,6 @@
 #include <DateTime/Stopwatch.hpp>
 #include <DateTime/Time.hpp>
 #include <DateTime/Timer.hpp>
+#include <Meta/Aliases.hpp>
+#include <Meta/Inheritance.hpp>
+#include <Meta/Substitution.hpp>
