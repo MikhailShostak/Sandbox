@@ -9,6 +9,7 @@ set(SOURCES
     Meta/Aliases.hpp
     Meta/Inheritance.hpp
     Meta/Substitution.hpp
+    Reflection/Reflection.hpp
     Serialization/Serialization.hpp
     Serialization/Serializer.hpp
     Serialization/Storage.hpp
