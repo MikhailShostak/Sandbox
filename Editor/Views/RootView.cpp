@@ -29,7 +29,7 @@ void ShowRootView(const std::function<void()> &callback)
         ImGuiID Workspace = ImGui::GetID("Workspace");
         ImGui::DockSpace(Workspace/*, {}, ImGuiDockNodeFlags_AutoHideTabBar*/);
         ShowMainMenu();
-        if(OpenedFiles().size() == 0)
+        if(Config.File.OpenedFiles.size() == 0)
         {
             ImGui::SetNextWindowDockID(Workspace);
             ShowWelcomePage();

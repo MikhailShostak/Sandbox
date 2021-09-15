@@ -14,7 +14,6 @@ void ShowFileTypes()
         EditorNames.push_back(v.first.data());
     }
 
-    auto FileTypes = Config["FileTypes"];
     if (ImGui::BeginTable("FileTypesTable", 3, DefaultTableFlags))
     {
         ImGui::TableSetupColumn("Title", ImGuiTableColumnFlags_WidthFixed);
@@ -22,47 +21,41 @@ void ShowFileTypes()
         ImGui::TableSetupColumn("Extensions", ImGuiTableColumnFlags_WidthStretch);
         ImGui::TableHeadersRow();
 
-        for(auto node : FileTypes)
+        for(auto &fileType : Config.FileTypes)
         {
             ImGui::TableNextRow();
 
             ImGui::TableSetColumnIndex(0);
-            auto id = node["Title"].as<std::string>();
-            ImGui::Text(node["Title"].as<std::string>().data());
+            auto id = fileType.Title;
+            ImGui::Text(fileType.Title.data());
 
             ImGui::TableSetColumnIndex(1);
-            auto editor = node["Editor"].as<std::string>();
-
-            int SelectedItem = static_cast<int>(std::distance(EditorNames.begin(), std::find(EditorNames.begin(), EditorNames.end(), editor)));
+            int SelectedItem = static_cast<int>(std::distance(EditorNames.begin(), ranges::find(EditorNames, fileType.Editor)));
             ImGui::PushItemWidth(-1);
             if (ImGui::Combo(("##Editor "+ id).data(), &SelectedItem, EditorNames.data(), static_cast<int>(EditorNames.size())))
             {
-                node["Editor"] = std::string(EditorNames[SelectedItem]);
+                fileType.Editor = std::string(EditorNames[SelectedItem]);
             }
             ImGui::PopItemWidth();
 
             ImGui::TableSetColumnIndex(2);
-            ImGui::Text(node["Extensions"].as<std::string>().data());
+            ImGui::Text(fileType.Extensions.data());
         }
         ImGui::EndTable();
     }
 
-    static std::string title;
-    ImGui::InputText("Title", &title);
+    static DataConfig::FileType fileType;
+    ImGui::InputText("Title", &fileType.Title);
 
     static int SelectedItem = 0;
     ImGui::Combo("Editor", &SelectedItem, EditorNames.data(), static_cast<int>(EditorNames.size()));
 
-    static std::string extensions;
-    ImGui::InputText("Extensions", &extensions);
+    ImGui::InputText("Extensions", &fileType.Extensions);
 
-    if (ImGui::Button("Add") && !title.empty() && !extensions.empty())
+    if (ImGui::Button("Add") && !fileType.Title.empty() && !fileType.Extensions.empty())
     {
-        YAML::Node fileType;
-        fileType["Title"] = title;
-        fileType["Editor"] = EditorNames[SelectedItem];
-        fileType["Extensions"] = extensions;
-        FileTypes.push_back(fileType);
+        fileType.Editor = EditorNames[SelectedItem];
+        Config.FileTypes.push_back(fileType);
     }
 }
 

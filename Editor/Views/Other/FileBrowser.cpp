@@ -121,8 +121,7 @@ void ShowFileBrowser()
 
     if (ImGui::Begin("File Browser"))
     {
-        auto folders = OpenedFolders();
-
+        auto folders = Config.File.OpenedFolders;
         if (folders.size() == 0)
         {
             if (ImGui::Button("Open Folder"))
@@ -132,9 +131,8 @@ void ShowFileBrowser()
         }
         else
         {
-            for(auto node : folders)
+            for(auto f : folders)
             {
-                auto f = node.as<std::filesystem::path>();
                 ShowPath(f, true);
             }
         }

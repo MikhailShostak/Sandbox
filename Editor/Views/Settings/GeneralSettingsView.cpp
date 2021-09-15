@@ -7,15 +7,10 @@ namespace Settings
 
 void ShowGeneralSettings()
 {
-    std::string externalTextEditor;
-    auto config = GeneralConfig();
-    if(config["ExternalTextEditor"].IsDefined())
-    {
-        externalTextEditor = config["ExternalTextEditor"].as<std::string>();
-    }
+    std::string externalTextEditor = Config.General.ExternalTextEditor;    
     if (ImGui::InputText("External Text Editor", &externalTextEditor, ImGuiInputTextFlags_EnterReturnsTrue))
     {
-        config["ExternalTextEditor"] = externalTextEditor;
+        Config.General.ExternalTextEditor = externalTextEditor;
     }
 }
 

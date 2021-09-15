@@ -8,36 +8,36 @@ void ShowWelcomePage()
     if(ImGui::Begin("Welcome Page", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |ImGuiWindowFlags_NoMove))
     {
         ImGui::Text("Pinned Paths");
-        for(const auto &node : PinnedPaths())
+        for(const auto &path : Config.File.PinnedPaths)
         {
-            auto path = std::filesystem::absolute(node.as<std::filesystem::path>());
-            if(ImGui::Selectable(path.string().data()))
+            auto absolutePath = std::filesystem::absolute(path);
+            if(ImGui::Selectable(absolutePath.string().data()))
             {
-                OpenPath(path);
+                OpenPath(absolutePath);
             }
         }
 
         ImGui::Separator();
 
         ImGui::Text("Recent Folders");
-        for(const auto &node : RecentFolders())
+        for(const auto &path : Config.File.RecentFolders)
         {
-            auto path = std::filesystem::absolute(node.as<std::filesystem::path>());
-            if(ImGui::Selectable(path.string().data()))
+            auto absolutePath = std::filesystem::absolute(path);
+            if(ImGui::Selectable(absolutePath.string().data()))
             {
-                OpenFolder(path);
+                OpenFolder(absolutePath);
             }
         }
 
         ImGui::Separator();
 
         ImGui::Text("Recent Files");
-        for(const auto &node : RecentFiles())
+        for(const auto &path : Config.File.RecentFiles)
         {
-            auto path = std::filesystem::absolute(node.as<std::filesystem::path>());
-            if(ImGui::Selectable(path.string().data()))
+            auto absolutePath = std::filesystem::absolute(path);
+            if(ImGui::Selectable(absolutePath.string().data()))
             {
-                OpenFile(path);
+                OpenFile(absolutePath);
             }
         }
     }

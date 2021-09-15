@@ -9,7 +9,7 @@ std::string GetExtensionID(const std::string &author, const std::string &title)
 
 std::filesystem::path GetExtensionPath(const std::string &id)
 {
-    return std::filesystem::current_path() / ExtensionsSearchDirectory / id;
+    return std::filesystem::current_path() / Config.Extensions.SearchDirectory / id;
 }
 
 std::filesystem::path GetExtensionPath(const std::string &author, const std::string &title)
@@ -19,7 +19,7 @@ std::filesystem::path GetExtensionPath(const std::string &author, const std::str
 
 std::filesystem::path GetExtensionConfig(const std::string &id)
 {
-    return GetExtensionPath(id) / ExtensionConfigFilename;
+    return GetExtensionPath(id) / Config.Extensions.ConfigFilename;
 }
 
 std::filesystem::path GetExtensionConfig(const std::string &author, const std::string &title)
@@ -29,22 +29,21 @@ std::filesystem::path GetExtensionConfig(const std::string &author, const std::s
 
 void LoadExtension(const std::filesystem::path &configPath)
 {
-    YAML::Node config = YAML::LoadFile(configPath.generic_string());
-    ExtensionsCache.insert({configPath.parent_path().generic_string(), config});
-
-
+    Extension ext;
+    Serialization::FromFile(configPath, ext);
+    ExtensionsCache.insert({configPath.parent_path().generic_string(), std::move(ext)});
 }
 
 void ReloadExtensions()
 {
     ExtensionsCache.clear();
-    if(!std::filesystem::is_directory(ExtensionsSearchDirectory))
+    if(!std::filesystem::is_directory(Config.Extensions.SearchDirectory))
     {
         return;
     }
-    for(const auto &entry: std::filesystem::directory_iterator{ExtensionsSearchDirectory})
+    for(const auto &entry: std::filesystem::directory_iterator{Config.Extensions.SearchDirectory})
     {
-        std::filesystem::path configPath = entry.path() / ExtensionConfigFilename;
+        std::filesystem::path configPath = entry.path() / Config.Extensions.ConfigFilename;
         if(!std::filesystem::exists(configPath))
         {
             continue;
@@ -62,13 +61,3 @@ void CreateExtension(const std::filesystem::path &path)
     file.close();
 }
 
-
-void ReloadExtensionsFromConfig()
-{
-    auto node = Config["Extensions"]["SearchDirectory"];
-    if(node.IsDefined())
-    {
-        ExtensionsSearchDirectory = Config["Extensions"]["SearchDirectory"].as<std::string>();
-    }
-    ReloadExtensions();
-}

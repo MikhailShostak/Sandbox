@@ -10,14 +10,12 @@ void OnContentUpdate()
 {
     ImGuiID Workspace = ImGui::GetID("Workspace");
 
-    auto FileTypes = Config["FileTypes"];
     std::vector<std::filesystem::path> FilesToClose;
-    for(const auto &node : OpenedFiles())
+    for (const auto &f : Config.File.OpenedFiles)
     {
         ImGui::SetNextWindowDockID(Workspace, ImGuiCond_Once);
         bool IsOpen = true;
-        auto f = node.as<std::filesystem::path>();
-        if(ImGui::Begin(GetFileTitle(f).data(), &IsOpen))
+        if (ImGui::Begin(GetFileTitle(f).data(), &IsOpen))
         {
             ImGuiContext& g = *GImGui;
             if (ImGui::IsMouseReleased(1) && (g.CurrentWindow->ID == g.HoveredId || ImGui::IsItemHovered()))
@@ -48,21 +46,20 @@ void OnContentUpdate()
 
             std::string ext = f.extension().string();
             std::string EditorName = "TextEditor";
-            auto it1 = std::find_if(FileTypes.begin(), FileTypes.end(), [&](const auto &v)
+            auto it1 = ranges::find_if(Config.FileTypes, [&](const auto &v)
             {
-                auto e = v["Extensions"].template as<std::string>();
-                return e == ext;
+                return v.Extensions == ext;
             });
-            if(it1 != FileTypes.end())
+            if (it1 != Config.FileTypes.end())
             {
-                EditorName = (*it1)["Editor"].as<std::string>();
+                EditorName = it1->Editor;
             }
 
             auto it2 = std::find_if(Editors.begin(), Editors.end(), [&](const auto &v)
             {
                 return v.first == EditorName;
             });
-            if(it2 == Editors.end())
+            if (it2 == Editors.end())
             {
                 continue;
             }
@@ -71,7 +68,7 @@ void OnContentUpdate()
             editor->RenderFile(f);
         }
 
-        if(!IsOpen)
+        if (!IsOpen)
         {
             FilesToClose.push_back(f);
         }
@@ -95,13 +92,13 @@ public:
 
     bool Init() override
     {
-        if(std::filesystem::exists(ApplicationConfig))
+        if (std::filesystem::exists(ApplicationConfig))
         {
-            Config = YAML::LoadFile(ApplicationConfig);
-            ReloadExtensionsFromConfig();
-            if(OpenedFolders().IsSequence())
+            Serialization::FromFile(ApplicationConfig, Config);
+            ReloadExtensions();
+            if (Config.File.OpenedFolders.empty())
             {
-                File::DialogWorkingDirectory = OpenedFolders()[0].as<std::filesystem::path>();
+                File::DialogWorkingDirectory = Config.File.OpenedFolders[0];
             }
         }
 
@@ -123,7 +120,7 @@ public:
         Settings::ShowSettings();
         View::ShowFileBrowser();
         View::ShowConsole();
-        if(Debug::DisplayImGuiDemo)
+        if (Debug::DisplayImGuiDemo)
         {
             ImGui::ShowDemoWindow();
         }
@@ -136,14 +133,7 @@ public:
 
     void Terminate() override
     {
-        YAML::Emitter out;
-        out << Config;
-        std::ofstream file;
-        file.open(ApplicationConfig, std::ios::binary);
-        if(file.is_open())
-        {
-            file << out.c_str();
-        }
+        Serialization::ToFile(Config, ApplicationConfig);
     }
 };
 

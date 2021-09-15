@@ -13,19 +13,6 @@ std::string GetFileTitle(const std::filesystem::path &path)
     return title + "###" + path.generic_string();
 }
 
-void RemovePathFromNode(YAML::Node &node, const std::filesystem::path &path)
-{
-    auto it = std::find_if(node.begin(), node.end(), [&](auto v)
-    {
-        auto p = v.template as<std::filesystem::path>();
-        return p == path;
-    });
-    if(it != node.end())
-    {
-        node.remove(std::distance(node.begin(), it));
-    }
-}
-
 bool LoadFile(const std::filesystem::path &path)
 {
     if (!std::filesystem::exists(path))
@@ -50,9 +37,9 @@ void ReloadFiles()
 {
     FileCache.clear();
 
-    for(const auto &node : OpenedFiles())
+    for(const auto &path : Config.File.OpenedFiles)
     {
-        LoadFile(node.as<std::string>());
+        LoadFile(path);
     }
 }
 
@@ -63,14 +50,8 @@ void OpenFile(const std::filesystem::path &path, bool remember)
         return;
     }
 
-    auto OpenedFilesNode = OpenedFiles();
-    auto it = std::find_if(OpenedFilesNode.begin(), OpenedFilesNode.end(), [&](auto v)
-    {
-        auto p = v.template as<std::filesystem::path>();
-        return p == path;
-    });
-
-    if(it != OpenedFilesNode.end())
+    auto it = ranges::find(Config.File.OpenedFiles, path);
+    if(it != Config.File.OpenedFiles.end())
     {
         //TODO: select file
         return;
@@ -78,11 +59,10 @@ void OpenFile(const std::filesystem::path &path, bool remember)
 
     if(remember)
     {
-        auto RecentFilesNode = RecentFiles();
-        RemovePathFromNode(RecentFilesNode, path);
-        RecentFilesNode.push_back(path);
+        ranges::remove(Config.File.RecentFiles, path);
+        Config.File.RecentFiles.push_back(path);
     }
-    OpenedFilesNode.push_back(path);
+    Config.File.OpenedFiles.push_back(path);
 
     LoadFile(path);
 }
@@ -113,9 +93,7 @@ void SaveFile(const std::filesystem::path &path)
 
 void CloseFile(const std::filesystem::path &path)
 {
-    auto OpenedFilesNode = OpenedFiles();
-    RemovePathFromNode(OpenedFilesNode, path);
-
+    ranges::remove(Config.File.OpenedFiles, path);
     FileCache.erase(path.generic_string());
 }
 
@@ -127,7 +105,7 @@ void CloseFiles(const std::vector<std::filesystem::path> &paths)
 
 void CloseAllFiles()
 {
-    OpenedFiles() = {};
+    Config.File.OpenedFiles.clear();
     FileCache.clear();
 }
 
@@ -138,33 +116,25 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
         return;
     }
 
-    auto OpenedFoldersNode = OpenedFolders();
-    auto it = std::find_if(OpenedFoldersNode.begin(), OpenedFoldersNode.end(), [&](auto v)
-    {
-        auto p = v.template as<std::filesystem::path>();
-        return p == path;
-    });
-
-    if(it != OpenedFoldersNode.end())
+    auto it = ranges::find(Config.File.OpenedFolders, path);
+    if(it != Config.File.OpenedFolders.end())
     {
         return;
     }
 
     if(remember)
     {
-        auto RecentFoldersNode = RecentFolders();
-        RemovePathFromNode(RecentFoldersNode, path);
-        RecentFoldersNode.push_back(path);
+        ranges::remove(Config.File.RecentFolders, path);
+        Config.File.RecentFolders.push_back(path);
     }
 
-    OpenedFoldersNode.push_back(path);
+    Config.File.OpenedFolders.push_back(path);
     //TODO
 }
 
 void CloseFolder(const std::filesystem::path &path)
 {
-    auto OpenedFoldersNode = OpenedFolders();
-    RemovePathFromNode(OpenedFoldersNode, path);
+    ranges::remove(Config.File.OpenedFolders, path);
     //TODO
 }
 
@@ -175,7 +145,7 @@ void CloseFolders(const std::vector<std::filesystem::path> &paths)
 
 void CloseAllFolders()
 {
-    OpenedFolders() = {};
+    Config.File.OpenedFolders.clear();
     //TODO
 }
 

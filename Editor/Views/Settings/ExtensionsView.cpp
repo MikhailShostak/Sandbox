@@ -6,47 +6,28 @@
 namespace Settings
 {
 
-void ShowExtension(const std::filesystem::path &path, const YAML::Node &extension)
+void ShowExtension(const std::filesystem::path &path, Extension &extension)
 {
-    if (
-        !extension["Title"].IsDefined() ||
-        !extension["Version"].IsDefined() ||
-        !extension["Author"].IsDefined() ||
-        !extension["Description"].IsDefined() ||
-        !extension["Enabled"].IsDefined()
-    )
-    {
-        return;
-    }
     std::string id = path.filename().generic_string();
 
-    std::string title = extension["Title"].as<std::string>();
-    ImGui::Text(title.data());
-
+    ImGui::Text(extension.Title.data());
     ImGui::SameLine();
-
     ImGui::Text(id.data());
-
     ImGui::SameLine();
+    ImGui::Text(extension.Version.data());
 
-    std::string version = extension["Version"].as<std::string>();
-    ImGui::Text(version.data());
+    ImGui::Text(extension.Author.data());
 
-    std::string author = extension["Author"].as<std::string>();
-    ImGui::Text(author.data());
+    ImGui::Text(extension.Description.data());
 
-    std::string description = extension["Description"].as<std::string>();
-    ImGui::Text(description.data());
-
-    bool enabled = extension["Enabled"].as<bool>();
-    if(ImGui::Checkbox("Enabled", &enabled))
+    if (ImGui::Checkbox("Enabled", &extension.Enabled))
     {
         //Config["Extensions"] = id;
     }
 
     ImGui::SameLine();
 
-    if(ImGui::Button("Content"))
+    if (ImGui::Button("Content"))
     {
         std::string str = fmt::format("explorer \"{}\"", (std::filesystem::current_path() / path).make_preferred().string());
         std::cout << str << std::endl;
@@ -56,7 +37,7 @@ void ShowExtension(const std::filesystem::path &path, const YAML::Node &extensio
 
 void ShowExtensions()
 {
-    ImGui::InputText("SearchDirectory", &ExtensionsSearchDirectory);
+    ImGui::InputText("SearchDirectory", &Config.Extensions.SearchDirectory);
     ImGui::SameLine();
     if (ImGui::Button("Reload"))
     {
@@ -65,20 +46,19 @@ void ShowExtensions()
 
     if (ImGui::BeginChild("ExtensionScroll", { 0, -ImGui::GetFrameHeightWithSpacing() * 3 }))
     {
-        for(const auto &pair : ExtensionsCache)
+        for(auto &pair : ExtensionsCache)
         {
             ShowExtension(pair.first, pair.second);
         }
     }
     ImGui::EndChild();
 
-    static std::string ExtensionTitle;
-    ImGui::InputText("Title", &ExtensionTitle);
-    static std::string ExtensionAuthor;
-    ImGui::InputText("Author", &ExtensionAuthor);
+    static Extension extension;
+    ImGui::InputText("Title", &extension.Title);
+    ImGui::InputText("Author", &extension.Author);
 
     bool CreateRequest = false;
-    if(ImGui::Button("Create"))
+    if (ImGui::Button("Create"))
     {
         CreateRequest = true;
     }
@@ -90,19 +70,19 @@ void ShowExtensions()
     }
 
     ImGui::SetNextWindowSize({400, 100}, ImGuiCond_FirstUseEver);
-    if(ImGui::BeginPopupModal("CreateNewExtensionPopup"))
+    if (ImGui::BeginPopupModal("CreateNewExtensionPopup"))
     {
-        std::string id = GetExtensionID(ExtensionAuthor, ExtensionTitle);
+        std::string id = GetExtensionID(extension.Author, extension.Title);
         auto path = GetExtensionPath(id);
         std::string text = fmt::format("Create new extension ({}) at \"{}\"?", id, path.generic_string());
         ImGui::TextWrapped(text.data());
-        if(ImGui::Button("Create"))
+        if (ImGui::Button("Create"))
         {
-            CreateExtension(path / ExtensionConfigFilename);
+            CreateExtension(path / Config.Extensions.ConfigFilename);
             ImGui::CloseCurrentPopup();
         }
         ImGui::SameLine();
-        if(ImGui::Button("Cancel"))
+        if (ImGui::Button("Cancel"))
         {
             ImGui::CloseCurrentPopup();
         }

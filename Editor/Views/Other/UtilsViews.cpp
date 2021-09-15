@@ -44,19 +44,12 @@ void ShowInExternalTextEditor(const std::filesystem::path &path)
         return;
     }
 
-    auto node = GeneralConfig()["ExternalTextEditor"];
-    if(!node.IsDefined())
+    if(Config.General.ExternalTextEditor.empty())
     {
         return;
     }
 
-    auto editor = node.as<std::string>();
-    if(editor.empty())
-    {
-        return;
-    }
-
-    auto executable = boost::process::search_path(editor);
+    auto executable = boost::process::search_path(Config.General.ExternalTextEditor);
     std::string arg = std::filesystem::path(path).make_preferred().string();
     std::cout << executable << " " << arg << std::endl;
     boost::process::spawn(executable, arg);

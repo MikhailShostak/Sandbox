@@ -1,32 +1,75 @@
 #pragma once
 
-namespace YAML {
-
-template<>
-struct [[maybe_unused]] convert<std::filesystem::path> {
-    [[maybe_unused]] static Node encode(const std::filesystem::path& rhs)
+struct DataConfig
+{
+    struct
     {
-        return Node(rhs.generic_string());
-    }
+        std::string ExternalTextEditor;
 
-    static bool decode(const Node& node, std::filesystem::path& rhs)
+        template<typename T>
+        void Serialize(T &&data)
+        {
+            data["ExternalTextEditor"] & ExternalTextEditor;
+        }
+    } General;
+
+    struct
     {
-        rhs = node.as<std::string>();
-        return true;
+        std::vector<std::filesystem::path> RecentFiles;
+        std::vector<std::filesystem::path> OpenedFiles;
+        std::vector<std::filesystem::path> RecentFolders;
+        std::vector<std::filesystem::path> OpenedFolders;
+        std::vector<std::filesystem::path> PinnedPaths;
+
+        template<typename T>
+        void Serialize(T &&data)
+        {
+            data["RecentFiles"] & RecentFiles;
+            data["OpenedFiles"] & OpenedFiles;
+            data["RecentFolders"] & RecentFolders;
+            data["OpenedFolders"] & OpenedFolders;
+            data["PinnedPaths"] & PinnedPaths;
+        }
+    } File;
+
+    struct
+    {
+        std::string ConfigFilename = ".extension.yaml";
+        std::string SearchDirectory = "Extensions";
+
+        template<typename T>
+        void Serialize(T &&data)
+        {
+            data["SearchDirectory"] & SearchDirectory;
+        }
+    } Extensions;
+
+    struct FileType
+    {
+        std::string Title;
+        std::string Editor;
+        std::string Extensions;
+
+        template<typename T>
+        void Serialize(T &&data)
+        {
+            data["Title"] & Title;
+            data["Editor"] & Editor;
+            data["Extensions"] & Extensions;
+        }
+    };
+
+    std::vector<FileType> FileTypes;
+
+
+    template<typename T>
+    void Serialize(T &&data)
+    {
+        data["General"] & General;
+        data["File"] & File;
+        data["FileTypes"] & FileTypes;
+        data["Extensions"] & Extensions;
     }
 };
 
-}
-
-inline YAML::Node Config;
-
-inline YAML::Node GeneralConfig() { return Config["General"]; }
-
-inline YAML::Node FileConfig() { return Config["File"]; }
-inline YAML::Node RecentFiles() { return FileConfig()["RecentFiles"]; }
-inline YAML::Node OpenedFiles() { return FileConfig()["OpenedFiles"]; }
-
-inline YAML::Node OpenedFolders() { return FileConfig()["OpenedFolders"]; }
-inline YAML::Node RecentFolders() { return FileConfig()["RecentFolders"]; }
-
-inline YAML::Node PinnedPaths() { return FileConfig()["PinnedPaths"]; }
+inline DataConfig Config;
