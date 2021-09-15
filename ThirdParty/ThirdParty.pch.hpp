@@ -35,6 +35,7 @@
 
 #include <boost/beast.hpp>
 #include <boost/process.hpp>
+#include <boost/range/algorithm_ext/erase.hpp>
 
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS

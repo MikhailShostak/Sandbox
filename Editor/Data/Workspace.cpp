@@ -59,7 +59,7 @@ void OpenFile(const std::filesystem::path &path, bool remember)
 
     if(remember)
     {
-        ranges::remove(Config.File.RecentFiles, path);
+        boost::remove_erase(Config.File.RecentFiles, path);
         Config.File.RecentFiles.push_back(path);
     }
     Config.File.OpenedFiles.push_back(path);
@@ -93,7 +93,7 @@ void SaveFile(const std::filesystem::path &path)
 
 void CloseFile(const std::filesystem::path &path)
 {
-    ranges::remove(Config.File.OpenedFiles, path);
+    boost::remove_erase(Config.File.OpenedFiles, path);
     FileCache.erase(path.generic_string());
 }
 
@@ -124,7 +124,7 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
 
     if(remember)
     {
-        ranges::remove(Config.File.RecentFolders, path);
+        boost::remove_erase(Config.File.RecentFolders, path);
         Config.File.RecentFolders.push_back(path);
     }
 
@@ -134,7 +134,7 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
 
 void CloseFolder(const std::filesystem::path &path)
 {
-    ranges::remove(Config.File.OpenedFolders, path);
+    boost::remove_erase(Config.File.OpenedFolders, path);
     //TODO
 }
 
