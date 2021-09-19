@@ -67,7 +67,11 @@ struct Serializer<OutputValue, Type>
             Details::ProcessObject(map, std::forward<ValueType>(value));
             for (const auto &[k, v] : map.m_Data)
             {
-                data.m_Storage[k] = std::move(v.m_Storage);
+                bool empty = v.m_Storage.IsNull() || v.m_Storage.IsScalar() && v.m_Storage.Scalar().empty();
+                if (!empty)
+                {
+                    data.m_Storage[k] = std::move(v.m_Storage);
+                }
             }
         }
     }
