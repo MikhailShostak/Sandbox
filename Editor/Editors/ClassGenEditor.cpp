@@ -108,18 +108,18 @@ void ShowGraph()
 namespace DefaultExtensions
 {
 
-std::unordered_map<std::string, YAML::Node> ClassGenCache;
+std::unordered_map<std::string, ClassGen::FileInfo> ClassGenCache;
 
-YAML::Node FindClassByName(const std::string &name, const std::string &nameSpace)
+ClassGen::FileInfo FindClassByName(const std::string &name, const std::string &nameSpace)
 {
-    YAML::Node node;
+    ClassGen::FileInfo node;
 
     auto it = std::find_if(ClassGenCache.begin(), ClassGenCache.end(), [&](const auto &v)
     {
         bool result = true;
-        if(!nameSpace.empty() && v.second["Namespace"].IsDefined())
+        if(!nameSpace.empty() && !v.second.Instance->Namespace.empty())
         {
-            result = v.second["Namespace"].template as<std::string>() == nameSpace;
+            result = v.second.Instance->Namespace == nameSpace;
         }
 
         return result && std::filesystem::path(v.first).stem().generic_string() == name;
@@ -132,7 +132,7 @@ YAML::Node FindClassByName(const std::string &name, const std::string &nameSpace
     return node;
 }
 
-YAML::Node FindClassByName(const std::string &fullname)
+ClassGen::FileInfo FindClassByName(const std::string &fullname)
 {
     std::filesystem::path p(fullname);
     if(p.has_extension())
@@ -147,6 +147,11 @@ YAML::Node FindClassByName(const std::string &fullname)
 
 void ClassGenEditor::IndexFile(const std::filesystem::path &path)
 {
+    if (path.extension() != ".cg")
+    {
+        return;
+    }
+
     std::string pathString = path.generic_string();
     auto it = ClassGenCache.find(pathString);
     if(it != ClassGenCache.end())
@@ -155,27 +160,37 @@ void ClassGenEditor::IndexFile(const std::filesystem::path &path)
         return;
     }
 
-    auto node = YAML::LoadFile(pathString);
-    if (node["Type"].IsDefined())
+    Serialization::Data data;
+    data.FromFile(pathString);
+
+    auto fileInfo = Serialization::Deserialize<ClassGen::FileInfo>(data);
+    if (fileInfo.Type == "Class")
     {
-        ClassGenCache.insert({pathString, node});
+        auto classInfo = std::make_shared<ClassGen::ClassInfo>();
+        Serialization::Deserialize(data, *classInfo);
+        fileInfo.Instance = classInfo;
+        ClassGenCache.insert({ pathString, fileInfo });
     }
 }
 
 void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, const std::string &name)
 {
-    YAML::Node node = FindClassByName(name);
+    ClassGen::FileInfo fileInfo = FindClassByName(name);
+    auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
+    if (!classInfo)
+    {
+        ImGui::Text(fmt::format("Base Class Not Found: {}", name).data());
+        return;
+    }
+
     if (ImGui::CollapsingHeader(name.data(), ImGuiTreeNodeFlags_DefaultOpen))
     {
         ImGui::Columns(2);
-        for(auto i : node["Properties"])
+        for(auto &p : classInfo->Properties)
         {
-            auto propertyName = i["Name"].as<std::string>();
-            ImGui::Text(name.data());
-            //ImGui::TreeNode("Test", name.data());
-            auto propertyId = "##Property" + propertyName;
-
-            auto type = i["Type"].as<std::string>();
+            ImGui::Text(p.Name.data());
+            auto propertyId = fmt::format("##PropertyValue{}", (void*)&p);
+            auto type = writeRecursively(p.Type);
             ImGui::NextColumn();
             if (type == "Boolean")
             {
@@ -192,112 +207,233 @@ void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, co
                 static float value = 1.0f;
                 ImGui::DragFloat(propertyId.data(), &value, 0.01f);
             }
+            else
+            {
+                ImGui::PushItemWidth(-1);
+                if (type == "std.string")
+                {
+                    static std::string value;
+                    ImGui::InputText(propertyId.data(), &value);
+                }
+                else if (type == "std.filesystem.path")
+                {
+                    static std::string value;
+                    ImGui::InputText(propertyId.data(), &value);
+                }
+                ImGui::PopItemWidth();
+            }
             ImGui::NextColumn();
         }
         ImGui::Columns(1);
     }
-    if (node["BaseType"])
+    auto baseType = writeRecursively(classInfo->BaseType);
+    if (!baseType.empty())
     {
-        RenderDataRecursively(root, node["BaseType"].as<std::string>());
+        RenderDataRecursively(root, baseType);
     }
 }
 
-void ClassGenEditor::RenderDetails(const std::filesystem::path &path, YAML::Node &FileData, std::string &Namespace)
+void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo)
 {
     if (ImGui::CollapsingHeader("Details", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        if (ImGui::InputText("Namespace", &Namespace))
+        ImGui::Columns(2);
+
+        ImGui::Text("Namespace");
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        if (ImGui::InputText("##Namespace", &classInfo.Namespace))
         {
-            FileData["Namespace"] = Namespace;
             MarkFileDirty(path);
         }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
 
-        std::string BaseType;
-        if(FileData["BaseType"].IsDefined())
+        ImGui::Text("Base Type");
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        if(ImGui::InputText("##BaseType", &classInfo.BaseType.Name))
         {
-            BaseType = FileData["BaseType"].as<std::string>();
-        }
-        if(ImGui::InputText("Base Type", &BaseType))
-        {
-            FileData["BaseType"] = BaseType;
             MarkFileDirty(path);
         }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
 
-        ImGui::Separator();
+        ImGui::Text("Attributes");
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        auto attributes = boost::join(classInfo.Attributes, " ");
+        if (ImGui::InputText("##Attributes", &attributes))
+        {
+            boost::split(classInfo.Attributes, attributes, boost::is_any_of(" "));
+            MarkFileDirty(path);
+        }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
+
+        /*ImGui::Separator();
 
         ImGui::Text("Interfaces");
         std::string Interfaces;
         for(auto i : FileData["Interfaces"])
         {
             ImGui::Text(i.as<std::string>().data());
-        }
+        }*/
+        ImGui::Columns(1);
     }
 
     if (ImGui::CollapsingHeader("Properties", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        std::string Properties;
-        for(auto i : FileData["Properties"])
+        static ClassGen::PropertyInfo *selectedProperty = nullptr;
+        bool selection = false;
+        for (auto &p : classInfo.Properties)
         {
-            std::string type = i["Type"].as<std::string>();
-            std::string name = i["Name"].as<std::string>();
-            if(ImGui::InputText(("Type##" + name).data(), &type, ImGuiInputTextFlags_EnterReturnsTrue))
+            bool selected = selectedProperty == &p;
+            if (ImGui::Selectable(fmt::format("{}##PropertyItem", p.Name).data(), &selected))
             {
-                i["Type"] = type;
+                selectedProperty = &p;
             }
-            if(ImGui::InputText(("Name##" + name).data(), &name, ImGuiInputTextFlags_EnterReturnsTrue))
+            selection |= selected;
+        }
+        if (!selection)
+        {
+            selectedProperty = nullptr;
+        }
+        else
+        {
+            ImGui::Separator();
+        }
+        ImGui::Columns(2);
+        if (selectedProperty)
+        {
+            std::string type = writeRecursively(selectedProperty->Type);
+            ImGui::Text("Name");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if (ImGui::InputText(fmt::format("##PropertyName{}", (void *)selectedProperty).data(), &selectedProperty->Name))
             {
-                i["Name"] = name;
+                MarkFileDirty(path);
                 ImGui::SetKeyboardFocusHere(-1);
             }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ImGui::Text("Type");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if(ImGui::InputText(fmt::format("##PropertyType{}", (void*)selectedProperty).data(), &type))
+            {
+                readRecursively(type, selectedProperty->Type);                
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ImGui::Text("Attributes");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            auto attributes = boost::join(selectedProperty->Attributes, " ");
+            if (ImGui::InputText(fmt::format("##PropertyAttributes{}", (void *)selectedProperty).data(), &attributes))
+            {
+                boost::split(selectedProperty->Attributes, attributes, boost::is_any_of(" "));
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
         }
+        ImGui::Columns(1);
     }
 }
 
-void ClassGenEditor::RenderData(const std::filesystem::path &path, [[maybe_unused]] YAML::Node &FileData, std::string &Namespace)
+void ClassGenEditor::RenderData(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo)
 {
     //TODO: Check FileData
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2,2));
-    RenderDataRecursively(path, Namespace.empty() ? path.stem().generic_string() : (Namespace + "." + path.stem().generic_string()));
+    RenderDataRecursively(path, classInfo.Namespace.empty() ? path.stem().generic_string() : (classInfo.Namespace + "." + path.stem().generic_string()));
     ImGui::PopStyleVar();
 }
 
 void ClassGenEditor::RenderFile(const std::filesystem::path &path)
 {
-    auto &FileData = ClassGenCache[path.generic_string()];
+    auto &fileInfo = ClassGenCache[path.generic_string()];
 
-    if(!FileData["Type"].IsDefined())
-    {
-        FileData["Type"] = "Class";
-    }
-
-    std::string Type = FileData["Type"].as<std::string>();
+    auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
 
     if(ImGui::BeginPopupContextWindow())
     {
         if(ImGui::MenuItem("Add property"))
         {
-            YAML::Node node;
-            node["Type"] = "Boolean";
-            node["Name"] = "NewProperty";
-            FileData["Properties"].push_back(node);
+            ClassGen::PropertyInfo p;
+            p.Type.Name = "Boolean";
+            p.Name = "NewProperty";
+            classInfo->Properties.push_back(std::move(p));
             MarkFileDirty(path);
         }
         ImGui::EndPopup();
     }
 
-    ImGui::Text(Type.data());
-
-    std::string Namespace;
-    if(FileData["Namespace"].IsDefined())
+    ImGui::Text(fileInfo.Type.data());
+    ImGui::SameLine();
+    if (ImGui::Button("Generate"))
     {
-        Namespace = FileData["Namespace"].as<std::string>();
+        bool isStruct = ranges::contains(classInfo->Attributes, "Structure");
+        auto className = path.stem().generic_string();
+        auto classNamespace = boost::replace_all_copy(classInfo->Namespace, ".", "::");
+        auto classBaseType = writeRecursivelyResolved(classInfo->BaseType);
+        auto p = std::filesystem::path(path).replace_extension(".hpp");
+        std::ofstream file;
+        file.open(p.generic_string(), std::ios::binary);
+        file << "#pragma once\n";
+        file << "\n";
+        if (!classNamespace.empty())
+        {
+            file << "namespace " << classNamespace << "\n";
+            file << "{\n";
+        }
+        file << "struct " << className << "\n";
+        if (!classInfo->BaseType.Name.empty())
+        {
+            file << "    : public " << classBaseType << "\n";
+        }
+        file << "{\n";
+        file << "    using This = " << className << ";\n";
+        if (!classInfo->BaseType.Name.empty())
+        {
+            file << "    using Super = " << classBaseType << ";\n";
+        }
+        for (const auto &p : classInfo->Properties)
+        {
+            file << "    " << writeRecursivelyResolved(p.Type) << " " << p.Name << ";\n";
+        }
+        if (!isStruct)
+        {
+            file << "\n";
+            file << "    virtual ~" << className << "() {}\n";
+        }
+        file << "\n";
+        file << "    template<typename T>\n";
+        file << "    void Serialize(T &&data)\n";
+        file << "    {\n";
+        for (const auto &p : classInfo->Properties)
+        {
+            if (ranges::contains(p.Attributes, "Serialize"))
+            {
+                file << "        data[\"" << p.Name << "\"] & " << p.Name << ";\n";
+            }
+        }
+        file << "    }\n";
+        file << "};\n";
+        if (!classNamespace.empty())
+        {
+            file << "}\n";
+        }
     }
 
     if (ImGui::BeginTabBar("##ClassTabBarDetails"))
     {
         if(ImGui::BeginTabItem("Details"))
         {
-            RenderDetails(path, FileData, Namespace);
+            RenderDetails(path, *classInfo);
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
@@ -306,7 +442,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     {
         if(ImGui::BeginTabItem("Data"))
         {
-            RenderData(path, FileData, Namespace);
+            RenderData(path, *classInfo);
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
@@ -317,18 +453,12 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
 
 bool ClassGenEditor::SaveFile(const std::filesystem::path &source, const std::filesystem::path &destination)
 {
-    auto node = ClassGenCache.at(source.generic_string());
-    YAML::Emitter out;
-    out << YAML::Block << node;
-
-    std::ofstream file;
-    file.open(destination.generic_string(), std::ios::binary);
-    if(!file.is_open())
-    {
-        return false;
-    }
-
-    file << out.c_str();
+    auto fileInfo = ClassGenCache.at(source.generic_string());
+    Serialization::Data data;
+    Serialization::Serialize(fileInfo, data);
+    auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
+    Serialization::Serialize(*classInfo, data);
+    data.ToFile(destination);
     return true;
 }
 
