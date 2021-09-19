@@ -40,7 +40,7 @@ struct Data
             return false;
         }
 
-        file << ToString();
+        file << ToString() << "\n";
         return true;
     }
 };
