@@ -137,7 +137,9 @@ ClassGen::FileInfo FindClassByName(const std::string &fullname)
     std::filesystem::path p(fullname);
     if(p.has_extension())
     {
-        return FindClassByName(p.extension().generic_string(), p.stem().generic_string());
+        auto name = p.extension().generic_string();
+        boost::trim_left_if(name, boost::is_any_of("."));
+        return FindClassByName(name, p.stem().generic_string());
     }
     else
     {
