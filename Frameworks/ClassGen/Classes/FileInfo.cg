@@ -1,0 +1,11 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Type
+    Type: std.string
+  - Name: Instance
+    Type: std.shared_ptr<ClassGen.BaseInfo>

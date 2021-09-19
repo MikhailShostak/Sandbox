@@ -1,0 +1,7 @@
+Type: Class
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Namespace
+    Type: std.string

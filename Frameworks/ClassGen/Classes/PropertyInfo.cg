@@ -1,0 +1,17 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Type
+    Type: ClassGen.TypeInfo
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: std.string
+  - Attributes:
+      - Serialize
+    Name: Attributes
+    Type: std.vector<std.string>
