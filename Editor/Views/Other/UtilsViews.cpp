@@ -34,7 +34,7 @@ void ShowInExplorer(const std::filesystem::path &path)
 
 void ShowInExternalTextEditor(const std::filesystem::path &path)
 {
-    if (!ImGui::MenuItem("Show In External Text Editor"))
+    if (!ImGui::MenuItem("Open In External Text Editor"))
     {
         return;
     }
