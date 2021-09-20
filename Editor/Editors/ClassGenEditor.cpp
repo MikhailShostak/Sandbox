@@ -166,6 +166,12 @@ void ClassGenEditor::IndexFile(const std::filesystem::path &path)
     data.FromFile(pathString);
 
     auto fileInfo = Serialization::Deserialize<ClassGen::FileInfo>(data);
+
+    if (fileInfo.Type.empty())
+    {
+        fileInfo.Type = "Class";
+    }
+
     if (fileInfo.Type == "Class")
     {
         auto classInfo = std::make_shared<ClassGen::ClassInfo>();
