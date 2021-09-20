@@ -15,7 +15,7 @@ std::string GetFileTitle(const std::filesystem::path &path)
 
 bool LoadFile(const std::filesystem::path &path)
 {
-    if (!std::filesystem::exists(path))
+    if (!std::filesystem::is_regular_file(path))
     {
         return false;
     }
