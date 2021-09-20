@@ -8,6 +8,7 @@ inline std::unordered_map<std::string, class Editor*> UnsavedFiles; //path, edit
 std::string GetFileTitle(const std::filesystem::path &path);
 
 bool LoadFile(const std::filesystem::path &path);
+bool LoadFolder(const std::filesystem::path &path);
 void ReloadFiles();
 
 void OpenFile(const std::filesystem::path &path, bool remember = true);

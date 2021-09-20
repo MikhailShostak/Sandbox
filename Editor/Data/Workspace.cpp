@@ -33,6 +33,21 @@ bool LoadFile(const std::filesystem::path &path)
     return true;
 }
 
+bool LoadFolder(const std::filesystem::path &path)
+{
+    if (!std::filesystem::is_regular_file(path))
+    {
+        return false;
+    }
+
+    for (auto &entry : std::filesystem::recursive_directory_iterator(path))
+    {
+        LoadFile(entry.path());
+    }
+
+    return true;
+}
+
 void ReloadFiles()
 {
     FileCache.clear();
@@ -40,6 +55,11 @@ void ReloadFiles()
     for(const auto &path : Config.File.OpenedFiles)
     {
         LoadFile(path);
+    }
+
+    for (const auto &path : Config.File.OpenedFolders)
+    {
+        LoadFolder(path);
     }
 }
 
@@ -129,7 +149,8 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
     }
 
     Config.File.OpenedFolders.push_back(path);
-    //TODO
+    
+    LoadFolder(path);
 }
 
 void CloseFolder(const std::filesystem::path &path)
