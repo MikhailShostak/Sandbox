@@ -1,0 +1,21 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: std.string
+  - Attributes:
+      - Serialize
+    Name: InputParameters
+    Type: std.vector<ClassGen.ParameterInfo>
+  - Attributes:
+      - Serialize
+    Name: OutputParameters
+    Type: std.vector<ClassGen.ParameterInfo>
+  - Attributes:
+      - Serialize
+    Name: ExecutionBranches
+    Type: std.vector<std.string>

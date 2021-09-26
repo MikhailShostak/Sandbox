@@ -11,6 +11,8 @@ struct ClassInfo
     std::vector<ClassGen::TypeInfo> Interfaces;
     std::vector<std::string> Attributes;
     std::vector<ClassGen::PropertyInfo> Properties;
+    std::vector<ClassGen::FunctionInfo> Functions;
+    std::map<std::string, ClassGen::GraphInfo> Graphs;
 
     virtual ~ClassInfo() {}
 
@@ -21,6 +23,8 @@ struct ClassInfo
         data["Interfaces"] & Interfaces;
         data["Attributes"] & Attributes;
         data["Properties"] & Properties;
+        data["Functions"] & Functions;
+        data["Graphs"] & Graphs;
     }
 };
 }

@@ -1,0 +1,13 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Source
+    Type: std.filesystem.path
+  - Attributes:
+      - Serialize
+    Name: Destination
+    Type: std.filesystem.path

@@ -1,78 +1,213 @@
 #include "ClassGenEditor.hpp"
 
+#include "../Views/Views.hpp"
 #include "../Data/Workspace.hpp"
 
 #include <imgui_node_editor.h>
 
-static ax::NodeEditor::EditorContext* g_Context = nullptr;
+static ax::NodeEditor::EditorContext *g_Context = nullptr;
 
-struct Node
+std::unordered_map<std::string, ClassGen::FunctionInfo> g_FunctionCache;
+
+float padding = 0;
+const float PaddingSize = 16;
+void PushPadding() { padding += PaddingSize; }
+void PopPadding() { padding -= PaddingSize; }
+void ApplyPadding() { ImGui::SetCursorPosX(ImGui::GetCursorPosX() + padding); }
+
+std::string g_GraphName;
+std::string g_GraphID;
+ClassGen::GraphInfo *g_CurrentGraph = nullptr;
+
+namespace DefaultExtensions
 {
-    size_t id = 0;
-    std::string name;
-};
 
-std::vector<Node> Nodes;
+std::unordered_map<std::string, ClassGen::FileInfo> ClassGenCache;
 
-void ShowGraph()
+void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
 {
-    if(g_Context == nullptr)
+    if (g_Context == nullptr)
     {
         g_Context = ax::NodeEditor::CreateEditor();
         //TODO: ax::NodeEditor::DestroyEditor(g_Context);
     }
-
-    /*auto &io = ImGui::GetIO();
-    auto swapButtons = [&io](size_t i, size_t j){
-        std::swap(io.MouseDown[i], io.MouseDown[j]);
-        std::swap(io.MouseClickedPos[i], io.MouseClickedPos[j]);
-        std::swap(io.MouseClickedTime[i], io.MouseClickedTime[j]);
-        std::swap(io.MouseClicked[i], io.MouseClicked[j]);
-        std::swap(io.MouseDoubleClicked[i], io.MouseDoubleClicked[j]);
-        std::swap(io.MouseReleased[i], io.MouseReleased[j]);
-        std::swap(io.MouseDownOwned[i], io.MouseDownOwned[j]);
-        std::swap(io.MouseDownWasDoubleClick[i], io.MouseDownWasDoubleClick[j]);
-        std::swap(io.MouseDownDuration[i], io.MouseDownDuration[j]);
-        std::swap(io.MouseDownDurationPrev[i], io.MouseDownDurationPrev[j]);
-        std::swap(io.MouseDragMaxDistanceAbs[i], io.MouseDragMaxDistanceAbs[j]);
-        std::swap(io.MouseDragMaxDistanceSqr[i], io.MouseDragMaxDistanceSqr[j]);
-    };*/
-
-    if (ImGui::Begin("GraphWindow"))
+    if (ImGui::Begin("Classes##ClassGen"))
     {
-        //swapButtons(1, 2);
+        if (ImGui::BeginTable("ClassTable##ClassGen", 3, DefaultTableFlags))
+        {
+            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed);
+            ImGui::TableSetupColumn("Path", ImGuiTableColumnFlags_WidthStretch);
+            ImGui::TableHeadersRow();
+
+            for (auto &p : ClassGenCache)
+            {
+                ImGui::TableNextRow();
+                ImGui::TableSetColumnIndex(0);
+                ClassGen::FileInfo &f = p.second;
+                ImGui::Text(std::filesystem::path(p.first).stem().generic_string().data());
+
+                ImGui::TableSetColumnIndex(1);
+                ImGui::Text(f.Type.data());
+
+                ImGui::TableSetColumnIndex(2);
+                ImGui::TextWrapped(p.first.data());
+
+            }
+
+            ImGui::EndTable();
+        }
+    }
+    ImGui::End();
+
+    std::string tooltip;
+    if (ImGui::Begin(("Graph: " + g_GraphName + "###ClassGen").data()))
+    {
         ax::NodeEditor::SetCurrentEditor(g_Context);
         ax::NodeEditor::Begin("GraphEditor");
 
         ax::NodeEditor::NodeId contextNodeId = 0;
-        //ax::NodeEditor::PinId contextPinId = 0;
-        //ax::NodeEditor::LinkId contextLinkId = 0;
+        ax::NodeEditor::PinId contextPinId = 0;
+        ax::NodeEditor::LinkId contextLinkId = 0;
 
-        for (const auto &node : Nodes)
+        for (const auto &node : g_CurrentGraph->Nodes)
         {
-            ax::NodeEditor::BeginNode(node.id);
-            ImGui::Text(node.name.data());
-            ax::NodeEditor::Suspend();
-            if (ax::NodeEditor::ShowNodeContextMenu(&contextNodeId))
-                ImGui::OpenPopup("Node Context Menu");
-            /*else if (ax::NodeEditor::ShowPinContextMenu(&contextPinId))
-                ImGui::OpenPopup("Pin Context Menu");
-            else if (ax::NodeEditor::ShowLinkContextMenu(&contextLinkId))
-                ImGui::OpenPopup("Link Context Menu");*/
-            else if (ax::NodeEditor::ShowBackgroundContextMenu())
+            ax::NodeEditor::BeginNode((ax::NodeEditor::NodeId)&node);
+            ImGui::Text(node.Name.data());
+
+            if (node.Name == "Input")
             {
-                ImGui::OpenPopup("Create New Node");
+                ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)0, ax::NodeEditor::PinKind::Output);
+                ImGui::Text("[ ]");
+                ax::NodeEditor::EndPin();
+
+                auto it = g_FunctionCache.find(g_GraphID);
+                if (it != g_FunctionCache.end())
+                {
+                    const ClassGen::FunctionInfo &f = it->second;
+                    for (auto &p : f.InputParameters)
+                    {
+                        ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)&p, ax::NodeEditor::PinKind::Output);
+                        ImGui::Text(p.Name.data());
+                        ImGui::SameLine();
+                        ImGui::Text("[ ]");
+                        ax::NodeEditor::EndPin();
+                        if (ImGui::IsItemHovered())
+                        {
+                            tooltip = writeRecursively(p.Type);
+                        }
+                    }
+                }
+                ax::NodeEditor::EndNode();
+                continue;
             }
-            ax::NodeEditor::Resume();
+            else if (node.Name == "Output")
+            {
+                ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)1, ax::NodeEditor::PinKind::Input);
+                ImGui::Text("[ ]");
+                ax::NodeEditor::EndPin();
+                auto it = g_FunctionCache.find(g_GraphID);
+                if (it != g_FunctionCache.end())
+                {
+                    const ClassGen::FunctionInfo &f = it->second;
+                    for (auto &p : f.OutputParameters)
+                    {
+                        ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)&p, ax::NodeEditor::PinKind::Input);
+                        ImGui::Text("[ ]");
+                        ImGui::SameLine();
+                        ImGui::Text(p.Name.data());
+                        ax::NodeEditor::EndPin();
+                        if (ImGui::IsItemHovered())
+                        {
+                            tooltip = writeRecursively(p.Type);
+                        }
+                    }
+                }
+                ax::NodeEditor::EndNode();
+                continue;
+            }
+
+            std::vector<std::string> id;
+            boost::split(id, node.ID, boost::is_any_of("-"));
+            auto it = g_FunctionCache.find(id[0]);
+            if (it != g_FunctionCache.end())
+            {
+                const ClassGen::FunctionInfo &f = it->second;
+                ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)0, ax::NodeEditor::PinKind::Input);
+                ImGui::Text("[ ]");
+                ax::NodeEditor::EndPin();
+                ImGui::SameLine();
+                ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)1, ax::NodeEditor::PinKind::Output);
+                ImGui::Text("[ ]");
+                ax::NodeEditor::EndPin();
+                size_t s = std::max(f.InputParameters.size(), f.OutputParameters.size());
+                for (size_t i = 0; i < s; ++i)
+                {
+                    bool sameLine = false;
+                    if (i < f.InputParameters.size())
+                    {
+                        auto &p = f.InputParameters[i];
+                        ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)&p, ax::NodeEditor::PinKind::Input);
+                        ImGui::Text("[ ]");
+                        ImGui::SameLine();
+                        ImGui::Text(p.Name.data());
+                        ax::NodeEditor::EndPin();
+                        if (ImGui::IsItemHovered())
+                        {
+                            tooltip = writeRecursively(p.Type);
+                        }
+                        sameLine = true;
+                    }
+
+                    if (i < f.OutputParameters.size())
+                    {
+                        auto &p = f.OutputParameters[i];
+                        if (sameLine)
+                        {
+                            ImGui::SameLine();
+                        }
+                        ax::NodeEditor::BeginPin((ax::NodeEditor::PinId)&p, ax::NodeEditor::PinKind::Input);
+                        ImGui::Text(p.Name.data());
+                        ImGui::SameLine();
+                        ImGui::Text("[ ]");
+                        ax::NodeEditor::EndPin();
+                        if (ImGui::IsItemHovered())
+                        {
+                            tooltip = writeRecursively(p.Type);
+                        }
+                    }
+                }
+            }
+
             ax::NodeEditor::EndNode();
         }
-
         ax::NodeEditor::Suspend();
+        if (ax::NodeEditor::ShowNodeContextMenu(&contextNodeId))
+        {
+            ImGui::OpenPopup("Node Context Menu");
+        }
+        else if (ax::NodeEditor::ShowPinContextMenu(&contextPinId))
+        {
+            ImGui::OpenPopup("Pin Context Menu");
+        }
+        else if (ax::NodeEditor::ShowLinkContextMenu(&contextLinkId))
+        {
+            ImGui::OpenPopup("Link Context Menu");
+        }
+        if (ax::NodeEditor::ShowNodeContextMenu(&contextNodeId))
+        {
+            ImGui::OpenPopup("Node Context Menu");
+        }
+        else if (ax::NodeEditor::ShowBackgroundContextMenu())
+        {
+            ImGui::OpenPopup("Create New Node");
+        }
+
         if (ImGui::BeginPopup("Node Context Menu"))
         {
-            if(ImGui::MenuItem("Remove"))
+            if (ImGui::MenuItem("Remove"))
             {
-                //ed::DeleteNode(contextNodeId);
+                ax::NodeEditor::DeleteNode(contextNodeId);
             }
             ImGui::EndPopup();
         }
@@ -80,35 +215,26 @@ void ShowGraph()
         if (ImGui::BeginPopup("Create New Node"))
         {
             std::string name;
-            if(ImGui::InputText("Find##GraphSearch", &name, ImGuiInputTextFlags_EnterReturnsTrue))
+            if (ImGui::InputText("Find##GraphSearch", &name, ImGuiInputTextFlags_EnterReturnsTrue))
             {
-                Node n;
-                n.id = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-                n.name = name;
-                Nodes.push_back(n);
+                ClassGen::NodeInfo n;
+                n.ID = fmt::format("{}-{:x}", name, std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+                n.Name = name;
+                g_CurrentGraph->Nodes.push_back(n);
+                MarkFileDirty(path);
             }
             ImGui::EndPopup();
         }
         ax::NodeEditor::Resume();
-
-        //bool ShowPinContextMenu(PinId* pinId);
-        //bool ShowLinkContextMenu(LinkId* linkId);
-
         ax::NodeEditor::End();
-        //swapButtons(1, 2);
-
-        /*if(ImGui::BeginPopupContextWindow())
-        {
-            ImGui::EndPopup();
-        }*/
+    }
+    ImGui::End();
+    if (ImGui::Begin("Tooltip##ClassGen"))
+    {
+        ImGui::TextWrapped(tooltip.data());
     }
     ImGui::End();
 }
-
-namespace DefaultExtensions
-{
-
-std::unordered_map<std::string, ClassGen::FileInfo> ClassGenCache;
 
 ClassGen::FileInfo FindClassByName(const std::string &name, const std::string &nameSpace)
 {
@@ -147,6 +273,95 @@ ClassGen::FileInfo FindClassByName(const std::string &fullname)
     }
 }
 
+namespace
+{
+
+template<class Key, class T, class Compare, class Alloc, class Pred>
+typename std::map<Key, T, Compare, Alloc>::size_type erase_if(std::map<Key, T, Compare, Alloc> &c, Pred pred)
+{
+    auto old_size = c.size();
+    for (auto i = c.begin(), last = c.end(); i != last; ) {
+        if (pred(*i)) {
+            i = c.erase(i);
+        }
+        else {
+            ++i;
+        }
+    }
+    return old_size - c.size();
+}
+
+template<class Key, class T, class Compare, class Alloc, class Pred>
+typename std::unordered_map<Key, T, Compare, Alloc>::size_type erase_if(std::unordered_map<Key, T, Compare, Alloc> &c, Pred pred)
+{
+    auto old_size = c.size();
+    for (auto i = c.begin(), last = c.end(); i != last; ) {
+        if (pred(*i)) {
+            i = c.erase(i);
+        }
+        else {
+            ++i;
+        }
+    }
+    return old_size - c.size();
+}
+
+}
+
+void ClearIndex(const std::string &namespaceName)
+{
+    auto prefix = namespaceName + ".";
+    erase_if(g_FunctionCache, [&](auto &pair) {
+        return boost::starts_with(pair.first, prefix);
+    });
+}
+
+void IndexFunctions(const std::vector<ClassGen::FunctionInfo> &functions, const std::string &namespaceName)
+{
+    for (const auto &f : functions)
+    {
+        ClassGen::FunctionInfo function = f;
+        function.Name = namespaceName + "." + function.Name;
+        g_FunctionCache[function.Name] = std::move(function);
+    }
+}
+
+void IndexProperties(const std::vector<ClassGen::PropertyInfo> &properties, const std::string &namespaceName)
+{
+    for (const auto &p : properties)
+    {
+        ClassGen::FunctionInfo getter;
+        getter.Name = namespaceName + ".Get" + p.Name;
+        getter.InputParameters = { ClassGen::ParameterInfo{ p.Type, p.Name } };
+        g_FunctionCache[getter.Name] = std::move(getter);
+
+        ClassGen::FunctionInfo setter;
+        setter.Name = namespaceName + ".Set" + p.Name;
+        setter.OutputParameters = { ClassGen::ParameterInfo{ p.Type, p.Name } };
+        g_FunctionCache[setter.Name] = std::move(setter);
+    }
+}
+
+void IndexFileData(const std::filesystem::path &path, const ClassGen::BaseInfo &baseInfo)
+{
+    auto namespaceName = path.stem().generic_string();
+    if (!baseInfo.Namespace.empty())
+    {
+        namespaceName = baseInfo.Namespace + "." + namespaceName;
+    }
+
+    ClearIndex(namespaceName);
+
+    auto classInfo = dynamic_cast<const ClassGen::ClassInfo*>(&baseInfo);
+    if (!classInfo)
+    {
+        return;
+    }
+
+    IndexProperties(classInfo->Properties, namespaceName);
+    IndexFunctions(classInfo->Functions, namespaceName);
+}
+
 void ClassGenEditor::IndexFile(const std::filesystem::path &path)
 {
     if (path.extension() != ".cg")
@@ -178,6 +393,7 @@ void ClassGenEditor::IndexFile(const std::filesystem::path &path)
         Serialization::Deserialize(data, *classInfo);
         fileInfo.Instance = classInfo;
         ClassGenCache.insert({ pathString, fileInfo });
+        IndexFileData(path, *classInfo);
     }
 }
 
@@ -252,6 +468,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
         ImGui::PushItemWidth(-1);
         if (ImGui::InputText("##Namespace", &classInfo.Namespace))
         {
+            IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
         ImGui::PopItemWidth();
@@ -262,6 +479,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
         ImGui::PushItemWidth(-1);
         if(ImGui::InputText("##BaseType", &classInfo.BaseType.Name))
         {
+            IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
         ImGui::PopItemWidth();
@@ -274,6 +492,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
         if (ImGui::InputText("##Attributes", &attributes))
         {
             boost::split(classInfo.Attributes, attributes, boost::is_any_of(" "));
+            IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
         ImGui::PopItemWidth();
@@ -320,6 +539,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
             ImGui::PushItemWidth(-1);
             if (ImGui::InputText(fmt::format("##PropertyName{}", (void *)selectedProperty).data(), &selectedProperty->Name))
             {
+                IndexFileData(path, classInfo);
                 MarkFileDirty(path);
                 ImGui::SetKeyboardFocusHere(-1);
             }
@@ -329,9 +549,10 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
             ImGui::Text("Type");
             ImGui::NextColumn();
             ImGui::PushItemWidth(-1);
-            if(ImGui::InputText(fmt::format("##PropertyType{}", (void*)selectedProperty).data(), &type))
+            if (ImGui::InputText(fmt::format("##PropertyType{}", (void *)selectedProperty).data(), &type))
             {
-                readRecursively(type, selectedProperty->Type);                
+                readRecursively(type, selectedProperty->Type);
+                IndexFileData(path, classInfo);
                 MarkFileDirty(path);
             }
             ImGui::PopItemWidth();
@@ -344,10 +565,158 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
             if (ImGui::InputText(fmt::format("##PropertyAttributes{}", (void *)selectedProperty).data(), &attributes))
             {
                 boost::split(selectedProperty->Attributes, attributes, boost::is_any_of(" "));
+                IndexFileData(path, classInfo);
                 MarkFileDirty(path);
             }
             ImGui::PopItemWidth();
             ImGui::NextColumn();
+        }
+        ImGui::Columns(1);
+    }
+
+    if (ImGui::CollapsingHeader("Functions", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        static ClassGen::FunctionInfo *selectedFunction = nullptr;
+        bool selection = false;
+        for (auto &f : classInfo.Functions)
+        {
+            bool selected = selectedFunction == &f;
+            if (ImGui::Selectable(fmt::format("{}##FunctionItem", f.Name).data(), &selected))
+            {
+                selectedFunction = &f;
+            }
+            selection |= selected;
+        }
+        if (!selection)
+        {
+            selectedFunction = nullptr;
+        }
+        else
+        {
+            ImGui::Separator();
+        }
+        ImGui::Columns(2);
+        if (selectedFunction)
+        {
+            ImGui::Text("Name");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            std::string currentName = std::string("Function.") + selectedFunction->Name;
+            if (ImGui::InputText(fmt::format("##FunctionName{}", (void *)selectedFunction).data(), &selectedFunction->Name))
+            {
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+                ImGui::SetKeyboardFocusHere(-1);
+
+                //TODO: rework
+                std::string oldName = std::move(currentName);
+                currentName = std::string("Function.") + selectedFunction->Name;
+                classInfo.Graphs[currentName] = classInfo.Graphs[oldName];
+                classInfo.Graphs.erase(oldName);
+            }
+            g_CurrentGraph = &classInfo.Graphs[currentName];
+            g_GraphName = selectedFunction->Name;
+            g_GraphID = (classInfo.Namespace.empty() ? path.stem().generic_string() : (classInfo.Namespace + "." + path.stem().generic_string())) + "." + selectedFunction->Name;
+            auto it = ranges::find_if(g_CurrentGraph->Nodes, [](ClassGen::NodeInfo &node) { return node.ID == "Input"; });
+            if (it == g_CurrentGraph->Nodes.end())
+            {
+                ClassGen::NodeInfo node;
+                node.ID = "Input";
+                node.Name = "Input";
+                g_CurrentGraph->Nodes.push_back(std::move(node));
+            }
+            it = ranges::find_if(g_CurrentGraph->Nodes, [](ClassGen::NodeInfo &node) { return node.ID == "Output"; });
+            if (it == g_CurrentGraph->Nodes.end())
+            {
+                ClassGen::NodeInfo node;
+                node.ID = "Output";
+                node.Name = "Output";
+                g_CurrentGraph->Nodes.push_back(std::move(node));
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            /*std::string returnType = writeRecursively(selectedFunction->ReturnType);
+            ImGui::Text("ReturnType");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if (ImGui::InputText(fmt::format("##FunctionReturnType{}", (void *)selectedFunction).data(), &returnType))
+            {
+                readRecursively(returnType, selectedFunction->ReturnType);
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();*/
+
+            auto ArrayProperty = [this, &path, &classInfo](const char *label, auto &data)
+            {
+                ImGui::Text(label);
+                ImGui::NextColumn();
+                ImGui::PushItemWidth(-1);
+                if (ImGui::Button(fmt::format("+##{}", (void*)&data).data()))
+                {
+                    data.push_back({});
+                }
+                ImGui::PopItemWidth();
+                ImGui::NextColumn();
+
+                PushPadding();
+                ImGui::Separator();
+                size_t itemToRemove = -1;
+                for (size_t i = 0; i < data.size(); ++i)
+                {
+                    auto &p = data[i];
+
+                    ApplyPadding();
+                    ImGui::Text(fmt::format("{}", i).data());
+                    ImGui::NextColumn();
+
+                    if (ImGui::Button(fmt::format("-##{}", (void *)&p).data()))
+                    {
+                        itemToRemove = i;
+                    }
+                    ImGui::NextColumn();
+                    ImGui::Separator();
+
+                    PushPadding();
+                    ApplyPadding();
+                    ImGui::Text("Name");
+                    ImGui::NextColumn();
+                    ImGui::PushItemWidth(-1);
+                    if (ImGui::InputText(fmt::format("##Name{}", (void *)&p).data(), &p.Name))
+                    {
+                        IndexFileData(path, classInfo);
+                        MarkFileDirty(path);
+                        ImGui::SetKeyboardFocusHere(-1);
+                    }
+                    ImGui::PopItemWidth();
+                    ImGui::NextColumn();
+
+                    ApplyPadding();
+                    ImGui::Text("Type");
+                    ImGui::NextColumn();
+                    std::string type = writeRecursively(p.Type);
+                    ImGui::PushItemWidth(-1);
+                    if (ImGui::InputText(fmt::format("##Type{}", (void *)&p).data(), &type))
+                    {
+                        readRecursively(type, p.Type);
+                        IndexFileData(path, classInfo);
+                        MarkFileDirty(path);
+                    }
+                    ImGui::PopItemWidth();
+                    ImGui::NextColumn();
+                    ImGui::Separator();
+                    PopPadding();
+                }
+                PopPadding();
+                if (itemToRemove != -1)
+                {
+                    data.erase(data.begin() + itemToRemove);
+                }
+            };
+
+            ArrayProperty("InputParameters", selectedFunction->InputParameters);
+            ArrayProperty("OutputParameters", selectedFunction->OutputParameters);
         }
         ImGui::Columns(1);
     }
@@ -365,16 +734,26 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
 {
     auto &fileInfo = ClassGenCache[path.generic_string()];
 
-    auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
+    auto &classInfo = *std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
+    g_CurrentGraph = nullptr;
 
     if(ImGui::BeginPopupContextWindow())
     {
-        if(ImGui::MenuItem("Add property"))
+        if (ImGui::MenuItem("Add property"))
         {
             ClassGen::PropertyInfo p;
             p.Type.Name = "Boolean";
             p.Name = "NewProperty";
-            classInfo->Properties.push_back(std::move(p));
+            classInfo.Properties.push_back(std::move(p));
+            IndexFileData(path, classInfo);
+            MarkFileDirty(path);
+        }
+        if (ImGui::MenuItem("Add function"))
+        {
+            ClassGen::FunctionInfo f;
+            f.Name = "NewFunction";
+            classInfo.Functions.push_back(std::move(f));
+            IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
         ImGui::EndPopup();
@@ -384,10 +763,10 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     ImGui::SameLine();
     if (ImGui::Button("Generate"))
     {
-        bool isStruct = ranges::contains(classInfo->Attributes, "Structure");
+        bool isStruct = ranges::contains(classInfo.Attributes, "Structure");
         auto className = path.stem().generic_string();
-        auto classNamespace = boost::replace_all_copy(classInfo->Namespace, ".", "::");
-        auto classBaseType = writeRecursivelyResolved(classInfo->BaseType);
+        auto classNamespace = boost::replace_all_copy(classInfo.Namespace, ".", "::");
+        auto classBaseType = writeRecursivelyResolved(classInfo.BaseType);
         auto p = std::filesystem::path(path).replace_extension(".hpp");
         std::ofstream file;
         file.open(p.generic_string(), std::ios::binary);
@@ -399,17 +778,17 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
             file << "{\n";
         }
         file << "struct " << className << "\n";
-        if (!classInfo->BaseType.Name.empty())
+        if (!classInfo.BaseType.Name.empty())
         {
             file << "    : public " << classBaseType << "\n";
         }
         file << "{\n";
         file << "    using This = " << className << ";\n";
-        if (!classInfo->BaseType.Name.empty())
+        if (!classInfo.BaseType.Name.empty())
         {
             file << "    using Super = " << classBaseType << ";\n";
         }
-        for (const auto &p : classInfo->Properties)
+        for (const auto &p : classInfo.Properties)
         {
             file << "    " << writeRecursivelyResolved(p.Type) << " " << p.Name << ";\n";
         }
@@ -422,7 +801,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
         file << "    template<typename T>\n";
         file << "    void Serialize(T &&data)\n";
         file << "    {\n";
-        for (const auto &p : classInfo->Properties)
+        for (const auto &p : classInfo.Properties)
         {
             if (ranges::contains(p.Attributes, "Serialize"))
             {
@@ -430,7 +809,27 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
             }
         }
         file << "    }\n";
+        for (const ClassGen::FunctionInfo &f : classInfo.Functions)
+        {
+            std::vector<std::string> parameters = f.InputParameters | ranges::view::transform([](auto &p) { return "const " + writeRecursivelyResolved(p.Type) + " &" + p.Name; }) | ranges::to<std::vector<std::string>>();
+
+            auto resolveReturnType = [&]() -> std::string
+            {
+                if (f.OutputParameters.empty())
+                {
+                    return "void";
+                }
+
+                std::vector<std::string> parameters = f.OutputParameters | ranges::view::transform([](auto &p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<std::vector<std::string>>();
+                return "std::tuple<" + boost::join(parameters, ", ") + ">";
+            };
+
+            file << "    " << resolveReturnType() << " " << f.Name << "(" << boost::join(parameters, ", ") << ")\n";
+            file << "    {\n";
+            file << "    }\n";
+        }
         file << "};\n";
+
         if (!classNamespace.empty())
         {
             file << "}\n";
@@ -441,7 +840,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     {
         if(ImGui::BeginTabItem("Details"))
         {
-            RenderDetails(path, *classInfo);
+            RenderDetails(path, classInfo);
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
@@ -450,13 +849,16 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     {
         if(ImGui::BeginTabItem("Data"))
         {
-            RenderData(path, *classInfo);
+            RenderData(path, classInfo);
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
     }
 
-    ShowGraph();
+    if (g_CurrentGraph)
+    {
+        ShowGraph(path);
+    }
 }
 
 bool ClassGenEditor::SaveFile(const std::filesystem::path &source, const std::filesystem::path &destination)

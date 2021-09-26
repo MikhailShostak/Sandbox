@@ -3,6 +3,11 @@ set(SOURCES
     Classes/BaseInfo.hpp
     Classes/ClassInfo.hpp
     Classes/FileInfo.hpp
+    Classes/FunctionInfo.hpp
+    Classes/Graph/ConnectionInfo.hpp
+    Classes/Graph/GraphInfo.hpp
+    Classes/Graph/NodeInfo.hpp
+    Classes/ParameterInfo.hpp
     Classes/PropertyInfo.hpp
     Classes/TypeInfo.hpp
     Classes/TypeInfoSerializer.hpp

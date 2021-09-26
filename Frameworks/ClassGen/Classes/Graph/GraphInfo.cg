@@ -1,0 +1,13 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Nodes
+    Type: std.vector<ClassGen.NodeInfo>
+  - Attributes:
+      - Serialize
+    Name: Connections
+    Type: std.vector<ClassGen.ConnectionInfo>

@@ -18,3 +18,11 @@ Properties:
       - Serialize
     Name: Properties
     Type: std.vector<ClassGen.PropertyInfo>
+  - Attributes:
+      - Serialize
+    Name: Functions
+    Type: std.vector<ClassGen.FunctionInfo>
+  - Attributes:
+      - Serialize
+    Name: Graphs
+    Type: std.map<std.string, ClassGen.GraphInfo>
