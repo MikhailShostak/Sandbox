@@ -1,4 +1,12 @@
 set(SOURCES
+    Containers/Array.hpp
+    Containers/List.hpp
+    Containers/Map.hpp
+    Containers/Queue.hpp
+    Containers/Set.hpp
+    Containers/SortedMap.hpp
+    Containers/SortedSet.hpp
+    Containers/StaticArray.hpp
     Memory/InplaceStorage.hpp
     DateTime/Counter.hpp
     DateTime/Date.hpp
