@@ -21,6 +21,7 @@ set(SOURCES
     Serialization/Serialization.hpp
     Serialization/Serializer.hpp
     Serialization/Storage.hpp
+    Text/String.hpp
     Utils.hpp
 )
 

@@ -22,3 +22,4 @@
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
+#include <Text/String.hpp>
