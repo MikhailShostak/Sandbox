@@ -5,10 +5,10 @@ namespace ClassGen
 struct FunctionInfo
 {
     using This = FunctionInfo;
-    std::string Name;
-    std::vector<ClassGen::ParameterInfo> InputParameters;
-    std::vector<ClassGen::ParameterInfo> OutputParameters;
-    std::vector<std::string> ExecutionBranches;
+    String Name;
+    Array<ClassGen::ParameterInfo> InputParameters;
+    Array<ClassGen::ParameterInfo> OutputParameters;
+    Array<String> ExecutionBranches;
 
     template<typename T>
     void Serialize(T &&data)

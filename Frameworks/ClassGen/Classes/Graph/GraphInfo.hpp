@@ -5,8 +5,8 @@ namespace ClassGen
 struct GraphInfo
 {
     using This = GraphInfo;
-    std::vector<ClassGen::NodeInfo> Nodes;
-    std::vector<ClassGen::ConnectionInfo> Connections;
+    Array<ClassGen::NodeInfo> Nodes;
+    Array<ClassGen::ConnectionInfo> Connections;
 
     template<typename T>
     void Serialize(T &&data)

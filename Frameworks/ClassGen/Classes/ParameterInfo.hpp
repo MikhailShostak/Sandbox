@@ -6,7 +6,7 @@ struct ParameterInfo
 {
     using This = ParameterInfo;
     ClassGen::TypeInfo Type;
-    std::string Name;
+    String Name;
 
     template<typename T>
     void Serialize(T &&data)

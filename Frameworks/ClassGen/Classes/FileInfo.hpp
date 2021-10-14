@@ -5,7 +5,7 @@ namespace ClassGen
 struct FileInfo
 {
     using This = FileInfo;
-    std::string Type;
+    String Type;
     std::shared_ptr<ClassGen::BaseInfo> Instance;
 
     template<typename T>

@@ -6,8 +6,8 @@ Properties:
   - Attributes:
       - Serialize
     Name: Name
-    Type: std.string
+    Type: String
   - Attributes:
       - Serialize
     Name: Parameters
-    Type: std.vector<ClassGen.TypeInfo>
+    Type: Array<ClassGen.TypeInfo>

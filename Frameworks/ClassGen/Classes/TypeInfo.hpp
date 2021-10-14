@@ -5,8 +5,8 @@ namespace ClassGen
 struct TypeInfo
 {
     using This = TypeInfo;
-    std::string Name;
-    std::vector<ClassGen::TypeInfo> Parameters;
+    String Name;
+    Array<ClassGen::TypeInfo> Parameters;
 
     template<typename T>
     void Serialize(T &&data)

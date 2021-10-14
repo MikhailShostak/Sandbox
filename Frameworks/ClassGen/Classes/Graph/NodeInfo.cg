@@ -4,8 +4,8 @@ Properties:
   - Attributes:
       - Serialize
     Name: ID
-    Type: std.string
+    Type: String
   - Attributes:
       - Serialize
     Name: Name
-    Type: std.string
+    Type: String

@@ -6,6 +6,6 @@ Properties:
   - Attributes:
       - Serialize
     Name: Type
-    Type: std.string
+    Type: String
   - Name: Instance
     Type: std.shared_ptr<ClassGen.BaseInfo>

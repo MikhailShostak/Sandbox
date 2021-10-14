@@ -5,8 +5,8 @@ namespace ClassGen
 struct NodeInfo
 {
     using This = NodeInfo;
-    std::string ID;
-    std::string Name;
+    String ID;
+    String Name;
 
     virtual ~NodeInfo() {}
 

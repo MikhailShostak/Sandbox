@@ -6,16 +6,16 @@ Properties:
   - Attributes:
       - Serialize
     Name: Name
-    Type: std.string
+    Type: String
   - Attributes:
       - Serialize
     Name: InputParameters
-    Type: std.vector<ClassGen.ParameterInfo>
+    Type: Array<ClassGen.ParameterInfo>
   - Attributes:
       - Serialize
     Name: OutputParameters
-    Type: std.vector<ClassGen.ParameterInfo>
+    Type: Array<ClassGen.ParameterInfo>
   - Attributes:
       - Serialize
     Name: ExecutionBranches
-    Type: std.vector<std.string>
+    Type: Array<String>

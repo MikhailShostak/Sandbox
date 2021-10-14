@@ -10,4 +10,4 @@ Properties:
   - Attributes:
       - Serialize
     Name: Name
-    Type: std.string
+    Type: String

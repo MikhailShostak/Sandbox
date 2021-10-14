@@ -9,20 +9,20 @@ Properties:
   - Attributes:
       - Serialize
     Name: Interfaces
-    Type: std.vector<ClassGen.TypeInfo>
+    Type: Array<ClassGen.TypeInfo>
   - Attributes:
       - Serialize
     Name: Attributes
-    Type: std.vector<std.string>
+    Type: Array<String>
   - Attributes:
       - Serialize
     Name: Properties
-    Type: std.vector<ClassGen.PropertyInfo>
+    Type: Array<ClassGen.PropertyInfo>
   - Attributes:
       - Serialize
     Name: Functions
-    Type: std.vector<ClassGen.FunctionInfo>
+    Type: Array<ClassGen.FunctionInfo>
   - Attributes:
       - Serialize
     Name: Graphs
-    Type: std.map<std.string, ClassGen.GraphInfo>
+    Type: SortedMap<String, ClassGen.GraphInfo>

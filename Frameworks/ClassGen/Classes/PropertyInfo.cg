@@ -10,8 +10,8 @@ Properties:
   - Attributes:
       - Serialize
     Name: Name
-    Type: std.string
+    Type: String
   - Attributes:
       - Serialize
     Name: Attributes
-    Type: std.vector<std.string>
+    Type: Array<String>

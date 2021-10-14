@@ -5,8 +5,8 @@ namespace ClassGen
 struct ConnectionInfo
 {
     using This = ConnectionInfo;
-    std::filesystem::path Source;
-    std::filesystem::path Destination;
+    System::Path Source;
+    System::Path Destination;
 
     template<typename T>
     void Serialize(T &&data)

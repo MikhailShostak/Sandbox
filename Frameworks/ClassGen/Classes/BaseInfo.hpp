@@ -5,7 +5,7 @@ namespace ClassGen
 struct BaseInfo
 {
     using This = BaseInfo;
-    std::string Namespace;
+    String Namespace;
 
     virtual ~BaseInfo() {}
 

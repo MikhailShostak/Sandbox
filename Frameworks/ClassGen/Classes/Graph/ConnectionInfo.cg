@@ -6,8 +6,8 @@ Properties:
   - Attributes:
       - Serialize
     Name: Source
-    Type: std.filesystem.path
+    Type: System.Path
   - Attributes:
       - Serialize
     Name: Destination
-    Type: std.filesystem.path
+    Type: System.Path

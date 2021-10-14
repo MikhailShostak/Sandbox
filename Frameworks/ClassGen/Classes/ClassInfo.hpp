@@ -8,11 +8,11 @@ struct ClassInfo
     using This = ClassInfo;
     using Super = ClassGen::BaseInfo;
     ClassGen::TypeInfo BaseType;
-    std::vector<ClassGen::TypeInfo> Interfaces;
-    std::vector<std::string> Attributes;
-    std::vector<ClassGen::PropertyInfo> Properties;
-    std::vector<ClassGen::FunctionInfo> Functions;
-    std::map<std::string, ClassGen::GraphInfo> Graphs;
+    Array<ClassGen::TypeInfo> Interfaces;
+    Array<String> Attributes;
+    Array<ClassGen::PropertyInfo> Properties;
+    Array<ClassGen::FunctionInfo> Functions;
+    SortedMap<String, ClassGen::GraphInfo> Graphs;
 
     virtual ~ClassInfo() {}
 

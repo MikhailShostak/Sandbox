@@ -6,8 +6,8 @@ struct PropertyInfo
 {
     using This = PropertyInfo;
     ClassGen::TypeInfo Type;
-    std::string Name;
-    std::vector<std::string> Attributes;
+    String Name;
+    Array<String> Attributes;
 
     template<typename T>
     void Serialize(T &&data)

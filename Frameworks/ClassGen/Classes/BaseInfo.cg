@@ -4,4 +4,4 @@ Properties:
   - Attributes:
       - Serialize
     Name: Namespace
-    Type: std.string
+    Type: String

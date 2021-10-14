@@ -6,8 +6,8 @@ Properties:
   - Attributes:
       - Serialize
     Name: Nodes
-    Type: std.vector<ClassGen.NodeInfo>
+    Type: Array<ClassGen.NodeInfo>
   - Attributes:
       - Serialize
     Name: Connections
-    Type: std.vector<ClassGen.ConnectionInfo>
+    Type: Array<ClassGen.ConnectionInfo>
