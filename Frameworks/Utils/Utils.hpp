@@ -22,4 +22,6 @@
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
+#include <System/Filesystem.hpp>
+#include <System/Process.hpp>
 #include <Text/String.hpp>
