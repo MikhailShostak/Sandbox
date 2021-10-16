@@ -16,6 +16,7 @@
 #include <DateTime/Timer.hpp>
 #include <Memory/Allocation.hpp>
 #include <Memory/InplaceStorage.hpp>
+#include <Memory/References.hpp>
 #include <Meta/Aliases.hpp>
 #include <Meta/Inheritance.hpp>
 #include <Meta/Substitution.hpp>

@@ -15,6 +15,7 @@ set(SOURCES
     DateTime/Timer.hpp
     Memory/Allocation.hpp
     Memory/InplaceStorage.hpp
+    Memory/References.hpp
     Meta/Aliases.hpp
     Meta/Inheritance.hpp
     Meta/Substitution.hpp
