@@ -152,6 +152,43 @@ inline Type Deserialize(const Serialization::Data &data)
     return value;
 }
 
+template<typename Type>
+struct MetaObjectTag {};
+
+}
+
+namespace Serialization
+{
+
+template<typename Type>
+struct Serializer<InputValue, Reflection::MetaObjectTag<Type>>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue &&data, ValueType &&value)
+    {
+        if (data.m_Storage.IsScalar())
+        {
+            value = Reflection::Find<Type>(data.m_Storage.template as<std::string>());
+        }
+    }
+};
+
+template<typename Type>
+struct Serializer<OutputValue, Reflection::MetaObjectTag<Type>>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue &&data, ValueType &&value)
+    {
+        if (value)
+        {
+            data.m_Storage = value->m_Name;
+        }
+    }
+};
+
+template<typename Type> struct Serializer<InputValue, Reflection::MetaObject<Type>*> : public Serializer<InputValue, Reflection::MetaObjectTag<Type>> {};
+template<typename Type> struct Serializer<OutputValue, Reflection::MetaObject<Type>*> : public Serializer<OutputValue, Reflection::MetaObjectTag<Type>> {};
+
 }
 
 /*
