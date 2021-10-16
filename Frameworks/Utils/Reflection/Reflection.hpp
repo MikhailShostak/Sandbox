@@ -1,13 +1,55 @@
 #pragma once
 
+#include "Memory/Allocation.hpp"
+#include "Memory/References.hpp"
 #include "Serialization/Serialization.hpp"
+#include "Text/String.hpp"
 
 namespace Reflection
 {
 
-struct IMetaObject
+template<typename ClassType>
+struct MetaObject : public MetaObject<typename Meta::GetBaseType<ClassType>::Type>
+{
+    using Super = MetaObject<typename Meta::GetBaseType<ClassType>::Type>;
+
+    MetaObject(const char *name)
+    {
+        Super::m_Name = name;
+        Super::ConstructorFunction = []() -> void* { return CreateAs<ClassType, Meta::RootType<ClassType>>(); };
+        Super::DestructorFunction = &::DestroyAs<ClassType>;
+        if constexpr (true) //TODO: disable if serialization is not implemented for class
+        {
+            Super::SerializeFunction = [](const void *object, Serialization::Data &data)
+            {
+                auto base = reinterpret_cast<const Meta::RootType<ClassType> *>(object);
+                auto derived = static_cast<const ClassType *>(base);
+                Serialization::Serialize(*derived, data);
+            };
+            Super::DeserializeFunction = [](const Serialization::Data &data, void *object)
+            {
+                auto base = reinterpret_cast<Meta::RootType<ClassType> *>(object);
+                auto derived = static_cast<ClassType *>(base);
+                Serialization::Deserialize(data, *derived);
+            };
+        }
+    }
+
+    UniqueReference<ClassType> Create()
+    {
+        auto base = reinterpret_cast<Meta::RootType<ClassType> *>(Super::ConstructorFunction());
+        return UniqueReference<ClassType>{ static_cast<ClassType *>(base) };
+    }
+protected:
+    MetaObject() {}
+};
+
+template<>
+struct MetaObject<Meta::False>
 {
 public:
+    virtual ~MetaObject() {};
+
     const char *m_Name = nullptr;
     template<typename ClassType>
     void Serialize(const ClassType &value, Serialization::Data &data) const
@@ -22,32 +64,15 @@ public:
         DeserializeFunction(data, base);
     }
 protected:
+    Meta::ConstructorPointer<void> ConstructorFunction;
+    Meta::DestructorPointer<void> DestructorFunction;
     Meta::VoidFunctionPointer<const void *, Serialization::Data &> SerializeFunction;
     Meta::VoidFunctionPointer<const Serialization::Data &, void *> DeserializeFunction;
 };
 
-inline std::unordered_map<size_t, std::unique_ptr<IMetaObject>> g_Types;
+using BaseMetaObject = MetaObject<Meta::False>;
 
-template<typename ClassType>
-struct MetaObject : public IMetaObject
-{
-    MetaObject(const char *name)
-    {
-        m_Name = name;
-        SerializeFunction = [](const void *object, Serialization::Data &data)
-        {
-            auto base = reinterpret_cast<const Meta::RootType<ClassType> *>(object);
-            auto derived = static_cast<const ClassType *>(base);
-            Serialization::Serialize(*derived, data);
-        };
-        DeserializeFunction = [](const Serialization::Data &data, void *object)
-        {
-            auto base = reinterpret_cast<Meta::RootType<ClassType> *>(object);
-            auto derived = static_cast<ClassType *>(base);
-            Serialization::Deserialize(data, *derived);
-        };
-    }
-};
+inline std::unordered_map<size_t, std::unique_ptr<BaseMetaObject>> g_Types;
 
 template<typename Type>
 inline void Add(const char *name)
@@ -59,6 +84,30 @@ template<typename Type>
 inline void Remove()
 {
     g_Types.erase(typeid(Type).hash_code());
+}
+
+template<typename Type>
+MetaObject<Type>* Find(const String &name)
+{
+    auto it = ranges::find_if(g_Types, [&name](auto &pair) { return pair.second->m_Name == name; });
+    if (it == g_Types.end())
+    {
+        return nullptr;
+    }
+
+    return dynamic_cast<MetaObject<Type>*>(it->second.get());
+}
+
+template<typename Type>
+Type *Create(const String &name)
+{
+    auto metaObject = Find<Type>(name);
+    if (!metaObject)
+    {
+        return nullptr;
+    }
+
+    return metaObject->Create();
 }
 
 template<typename Type>
