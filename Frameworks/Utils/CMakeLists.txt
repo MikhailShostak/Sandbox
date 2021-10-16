@@ -7,13 +7,14 @@ set(SOURCES
     Containers/SortedMap.hpp
     Containers/SortedSet.hpp
     Containers/StaticArray.hpp
-    Memory/InplaceStorage.hpp
     DateTime/Counter.hpp
     DateTime/Date.hpp
     DateTime/Duration.hpp
     DateTime/Stopwatch.hpp
     DateTime/Time.hpp
     DateTime/Timer.hpp
+    Memory/Allocation.hpp
+    Memory/InplaceStorage.hpp
     Meta/Aliases.hpp
     Meta/Inheritance.hpp
     Meta/Substitution.hpp
