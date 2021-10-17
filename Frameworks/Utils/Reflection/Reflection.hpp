@@ -72,6 +72,9 @@ protected:
 
 using BaseMetaObject = MetaObject<Meta::False>;
 
+template<typename Type>
+using ClassReference = Reflection::MetaObject<Type> *;
+
 inline std::unordered_map<size_t, std::unique_ptr<BaseMetaObject>> g_Types;
 
 template<typename Type>
@@ -156,6 +159,8 @@ template<typename Type>
 struct MetaObjectTag {};
 
 }
+
+using Reflection::ClassReference;
 
 namespace Serialization
 {
