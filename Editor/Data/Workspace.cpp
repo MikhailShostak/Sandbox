@@ -35,7 +35,7 @@ bool LoadFile(const std::filesystem::path &path)
 
 bool LoadFolder(const std::filesystem::path &path)
 {
-    if (!std::filesystem::is_regular_file(path))
+    if (!std::filesystem::is_directory(path))
     {
         return false;
     }
