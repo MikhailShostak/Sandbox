@@ -90,7 +90,19 @@ inline void Remove()
 }
 
 template<typename Type>
-MetaObject<Type>* Find(const String &name)
+inline ClassReference<Type> Find()
+{
+    auto it = g_Types.find(typeid(Type).hash_code());
+    if (it == g_Types.end())
+    {
+        return nullptr;
+    }
+
+    return dynamic_cast<ClassReference<Type>>(it->second.get());
+}
+
+template<typename Type>
+inline ClassReference<Type> Find(const String &name)
 {
     auto it = ranges::find_if(g_Types, [&name](auto &pair) { return pair.second->m_Name == name; });
     if (it == g_Types.end())
@@ -98,11 +110,20 @@ MetaObject<Type>* Find(const String &name)
         return nullptr;
     }
 
-    return dynamic_cast<MetaObject<Type>*>(it->second.get());
+    return dynamic_cast<ClassReference<Type>>(it->second.get());
 }
 
 template<typename Type>
-Type *Create(const String &name)
+inline Array<ClassReference<Type>> FindAll()
+{
+    return g_Types
+        | ranges::view::filter([](auto &pair) { return dynamic_cast<ClassReference<Type>>(pair.second.get()); })
+        | ranges::view::transform([](auto &pair) { return static_cast<ClassReference<Type>>(pair.second.get()); })
+        | ranges::to<Array<ClassReference<Type>>>();
+}
+
+template<typename Type>
+inline Type *Create(const String &name)
 {
     auto metaObject = Find<Type>(name);
     if (!metaObject)
