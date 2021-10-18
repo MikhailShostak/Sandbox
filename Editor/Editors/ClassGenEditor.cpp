@@ -373,7 +373,7 @@ void ClassGenEditor::IndexFile(const std::filesystem::path &path)
     auto it = ClassGenCache.find(pathString);
     if(it != ClassGenCache.end())
     {
-        fmt::print("Class {} already exists", pathString);
+        fmt::print("Class {} already exists\n", pathString);
         return;
     }
 
