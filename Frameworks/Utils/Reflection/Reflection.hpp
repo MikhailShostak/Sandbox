@@ -75,25 +75,30 @@ using BaseMetaObject = MetaObject<Meta::False>;
 template<typename Type>
 using ClassReference = Reflection::MetaObject<Type> *;
 
-inline std::unordered_map<size_t, std::unique_ptr<BaseMetaObject>> g_Types;
+//TODO: this temp function should be replaced with singleton storage for plugin support
+inline auto &GetTypes()
+{
+    static std::unordered_map<size_t, std::unique_ptr<BaseMetaObject>> Types;
+    return Types;
+}
 
 template<typename Type>
 inline void Add(const char *name)
 {
-    g_Types.insert({ typeid(Type).hash_code(), std::make_unique<MetaObject<Type>>(name) });
+    GetTypes().insert({ typeid(Type).hash_code(), std::make_unique<MetaObject<Type>>(name) });
 }
 
 template<typename Type>
 inline void Remove()
 {
-    g_Types.erase(typeid(Type).hash_code());
+    GetTypes().erase(typeid(Type).hash_code());
 }
 
 template<typename Type>
 inline ClassReference<Type> Find()
 {
-    auto it = g_Types.find(typeid(Type).hash_code());
-    if (it == g_Types.end())
+    auto it = GetTypes().find(typeid(Type).hash_code());
+    if (it == GetTypes().end())
     {
         return nullptr;
     }
@@ -104,8 +109,8 @@ inline ClassReference<Type> Find()
 template<typename Type>
 inline ClassReference<Type> Find(const String &name)
 {
-    auto it = ranges::find_if(g_Types, [&name](auto &pair) { return pair.second->m_Name == name; });
-    if (it == g_Types.end())
+    auto it = ranges::find_if(GetTypes(), [&name](auto &pair) { return pair.second->m_Name == name; });
+    if (it == GetTypes().end())
     {
         return nullptr;
     }
@@ -116,7 +121,7 @@ inline ClassReference<Type> Find(const String &name)
 template<typename Type>
 inline Array<ClassReference<Type>> FindAll()
 {
-    return g_Types
+    return GetTypes()
         | ranges::view::filter([](auto &pair) { return dynamic_cast<ClassReference<Type>>(pair.second.get()); })
         | ranges::view::transform([](auto &pair) { return static_cast<ClassReference<Type>>(pair.second.get()); })
         | ranges::to<Array<ClassReference<Type>>>();
@@ -138,8 +143,8 @@ template<typename Type>
 inline void Serialize(const Type &value, Serialization::Data &data)
 {
     const size_t hash = typeid(value).hash_code();
-    auto it = g_Types.find(hash);
-    if (it == g_Types.end())
+    auto it = GetTypes().find(hash);
+    if (it == GetTypes().end())
     {
         return;
     }
@@ -159,8 +164,8 @@ template<typename Type>
 inline void Deserialize(const Serialization::Data &data, Type &value)
 {
     const size_t hash = typeid(value).hash_code();
-    auto it = g_Types.find(hash);
-    if (it == g_Types.end())
+    auto it = GetTypes().find(hash);
+    if (it == GetTypes().end())
     {
         return;
     }
