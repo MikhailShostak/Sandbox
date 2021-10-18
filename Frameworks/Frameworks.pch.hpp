@@ -2,6 +2,6 @@
 
 #include <ThirdParty.pch.hpp>
 
-#include <Classes.hpp>
+#include <ClassGen.hpp>
 #include <NativeApplication.hpp>
 #include <Utils.hpp>

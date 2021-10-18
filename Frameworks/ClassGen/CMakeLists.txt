@@ -1,5 +1,4 @@
 set(SOURCES
-    Classes.hpp
     Classes/BaseInfo.hpp
     Classes/ClassInfo.hpp
     Classes/FileInfo.hpp
@@ -11,6 +10,7 @@ set(SOURCES
     Classes/PropertyInfo.hpp
     Classes/TypeInfo.hpp
     Classes/TypeInfoSerializer.hpp
+    ClassGen.hpp
 )
 
 add_library(ClassGen INTERFACE ${SOURCES})
