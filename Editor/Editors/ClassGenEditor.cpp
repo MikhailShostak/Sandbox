@@ -730,6 +730,71 @@ void ClassGenEditor::RenderData(const std::filesystem::path &path, ClassGen::Cla
     ImGui::PopStyleVar();
 }
 
+void RenderGlobalFile()
+{
+    //TODO: this temp code should be fully reworked
+    Map<String, std::ofstream> Files;
+    auto beginFile = [](std::ofstream &f, const String &pch) {
+        f << "#include <" << pch << ">\n\n";
+        f << "namespace { struct { struct Dummy { Dummy() {\n";
+    };
+    auto processClassGenFile = [](std::ofstream &f, const System::Path &path, const ClassGen::FileInfo &fileInfo) {
+        auto &classInfo = *std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
+
+        auto className = path.stem().generic_string();
+        if (!classInfo.Namespace.empty())
+        {
+            className = classInfo.Namespace + "." + className;
+        }
+        auto resolvedClassName = boost::replace_all_copy(className, ".", "::");
+        f << "Reflection::Add<" + resolvedClassName + ">(\"" + className + "\");\n";
+    };
+    auto endFile = [](std::ofstream &f) {
+        f << "} } Dummy; } Dummy; }\n";
+    };
+
+    SortedSet<System::Path> ProjectFolders;
+    for (System::Path p : Config.File.OpenedFolders)
+    {
+        auto root = p.root_path();
+        while (p.has_parent_path() && p != root)
+        {
+            System::Path cmake = p / "CMakeLists.txt";
+            if (std::filesystem::exists(cmake))
+            {
+                ProjectFolders.insert(p);
+            }
+            p = p.parent_path();
+        }
+    }
+    for (auto &pair : ClassGenCache)
+    {
+        for (auto &p : ProjectFolders | ranges::view::reverse)
+        {
+            if (boost::starts_with(System::Path(pair.first).parent_path().generic_string(), p.generic_string()))
+            {
+                auto pch = p.filename().generic_string() + ".hpp";
+                auto filepath = p / "Class.gen.hpp";
+                auto filepathString = filepath.generic_string();
+                std::ofstream &f = Files[filepathString];
+                if (!f.is_open())
+                {
+                    f.open(filepathString, std::ios::binary);
+                    fmt::print("Write: {}\n", filepathString);
+                    beginFile(f, pch);
+                }
+                processClassGenFile(f, pair.first, pair.second);
+                break;
+            }
+        }
+    }
+    for (auto &f : Files)
+    {
+        endFile(f.second);
+        f.second.close();
+    }
+}
+
 void ClassGenEditor::RenderFile(const std::filesystem::path &path)
 {
     auto &fileInfo = ClassGenCache[path.generic_string()];
@@ -763,6 +828,8 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     ImGui::SameLine();
     if (ImGui::Button("Generate"))
     {
+        RenderGlobalFile();
+
         bool isStruct = ranges::contains(classInfo.Attributes, "Structure");
         auto className = path.stem().generic_string();
         auto classNamespace = boost::replace_all_copy(classInfo.Namespace, ".", "::");
@@ -770,6 +837,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
         auto p = std::filesystem::path(path).replace_extension(".hpp");
         std::ofstream file;
         file.open(p.generic_string(), std::ios::binary);
+        fmt::print("Write: {}\n", p.generic_string());
         file << "#pragma once\n";
         file << "\n";
         if (!classNamespace.empty())

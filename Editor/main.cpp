@@ -6,6 +6,8 @@
 #include "Editors/TextEditor.hpp"
 #include "Views/Views.hpp"
 
+#include <Class.gen.hpp>
+
 void OnContentUpdate()
 {
     ImGuiID Workspace = ImGui::GetID("Workspace");
