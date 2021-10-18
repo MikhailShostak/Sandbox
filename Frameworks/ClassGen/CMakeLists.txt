@@ -1,15 +1,15 @@
 set(SOURCES
-    Classes/BaseInfo.hpp
-    Classes/ClassInfo.hpp
-    Classes/FileInfo.hpp
-    Classes/FunctionInfo.hpp
+    Classes/Declaration/BaseInfo.hpp
+    Classes/Declaration/ClassInfo.hpp
+    Classes/Declaration/FileInfo.hpp
+    Classes/Declaration/FunctionInfo.hpp
+    Classes/Declaration/ParameterInfo.hpp
+    Classes/Declaration/PropertyInfo.hpp
+    Classes/Declaration/TypeInfo.hpp
+    Classes/Declaration/TypeInfoSerializer.hpp
     Classes/Graph/ConnectionInfo.hpp
     Classes/Graph/GraphInfo.hpp
     Classes/Graph/NodeInfo.hpp
-    Classes/ParameterInfo.hpp
-    Classes/PropertyInfo.hpp
-    Classes/TypeInfo.hpp
-    Classes/TypeInfoSerializer.hpp
     ClassGen.hpp
 )
 
