@@ -8,14 +8,14 @@ namespace DefaultExtensions
 class ClassGenEditor : public Editor
 {
 public:
-    void IndexFile(const std::filesystem::path &path) override;
-    void RenderFile(const std::filesystem::path &path) override;
-    bool SaveFile(const std::filesystem::path &source, const std::filesystem::path &destination) override;
+    void IndexFile(const System::Path &path) override;
+    void RenderFile(const System::Path &path) override;
+    bool SaveFile(const System::Path &source, const System::Path &destination) override;
 private:
-    void ShowGraph(const std::filesystem::path &path);
-    void RenderDetails(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo);
-    void RenderData(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo);
-    void RenderDataRecursively(const std::filesystem::path &root, const std::string &name);
+    void ShowGraph(const System::Path &path);
+    void RenderDetails(const System::Path &path, ClassGen::ClassInfo &classInfo);
+    void RenderData(const System::Path &path, ClassGen::ClassInfo &classInfo);
+    void RenderDataRecursively(const System::Path &root, const String &name);
 };
 
 }

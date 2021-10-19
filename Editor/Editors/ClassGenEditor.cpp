@@ -7,7 +7,7 @@
 
 static ax::NodeEditor::EditorContext *g_Context = nullptr;
 
-std::unordered_map<std::string, ClassGen::FunctionInfo> g_FunctionCache;
+Map<String, ClassGen::FunctionInfo> g_FunctionCache;
 
 float padding = 0;
 const float PaddingSize = 16;
@@ -15,16 +15,16 @@ void PushPadding() { padding += PaddingSize; }
 void PopPadding() { padding -= PaddingSize; }
 void ApplyPadding() { ImGui::SetCursorPosX(ImGui::GetCursorPosX() + padding); }
 
-std::string g_GraphName;
-std::string g_GraphID;
+String g_GraphName;
+String g_GraphID;
 ClassGen::GraphInfo *g_CurrentGraph = nullptr;
 
 namespace DefaultExtensions
 {
 
-std::unordered_map<std::string, ClassGen::FileInfo> ClassGenCache;
+Map<String, ClassGen::FileInfo> ClassGenCache;
 
-void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
+void ClassGenEditor::ShowGraph(const System::Path &path)
 {
     if (g_Context == nullptr)
     {
@@ -45,7 +45,7 @@ void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
                 ImGui::TableNextRow();
                 ImGui::TableSetColumnIndex(0);
                 ClassGen::FileInfo &f = p.second;
-                ImGui::Text(std::filesystem::path(p.first).stem().generic_string().data());
+                ImGui::Text(System::Path(p.first).stem().generic_string().data());
 
                 ImGui::TableSetColumnIndex(1);
                 ImGui::Text(f.Type.data());
@@ -60,7 +60,7 @@ void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
     }
     ImGui::End();
 
-    std::string tooltip;
+    String tooltip;
     if (ImGui::Begin(("Graph: " + g_GraphName + "###ClassGen").data()))
     {
         ax::NodeEditor::SetCurrentEditor(g_Context);
@@ -127,7 +127,7 @@ void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
                 continue;
             }
 
-            std::vector<std::string> id;
+            Array<String> id;
             boost::split(id, node.ID, boost::is_any_of("-"));
             auto it = g_FunctionCache.find(id[0]);
             if (it != g_FunctionCache.end())
@@ -214,11 +214,11 @@ void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
 
         if (ImGui::BeginPopup("Create New Node"))
         {
-            std::string name;
+            String name;
             if (ImGui::InputText("Find##GraphSearch", &name, ImGuiInputTextFlags_EnterReturnsTrue))
             {
                 ClassGen::NodeInfo n;
-                n.ID = fmt::format("{}-{:x}", name, std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+                n.ID = fmt::format("{}-{:x}", name, std::chrono::duration_cast<DateTime::Milliseconds>(DateTime::System::Clock::now().time_since_epoch()).count());
                 n.Name = name;
                 g_CurrentGraph->Nodes.push_back(n);
                 MarkFileDirty(path);
@@ -236,7 +236,7 @@ void ClassGenEditor::ShowGraph(const std::filesystem::path &path)
     ImGui::End();
 }
 
-ClassGen::FileInfo FindClassByName(const std::string &name, const std::string &nameSpace)
+ClassGen::FileInfo FindClassByName(const String &name, const String &nameSpace)
 {
     ClassGen::FileInfo node;
 
@@ -248,7 +248,7 @@ ClassGen::FileInfo FindClassByName(const std::string &name, const std::string &n
             result = v.second.Instance->Namespace == nameSpace;
         }
 
-        return result && std::filesystem::path(v.first).stem().generic_string() == name;
+        return result && System::Path(v.first).stem().generic_string() == name;
     });
     if(it != ClassGenCache.end())
     {
@@ -258,9 +258,9 @@ ClassGen::FileInfo FindClassByName(const std::string &name, const std::string &n
     return node;
 }
 
-ClassGen::FileInfo FindClassByName(const std::string &fullname)
+ClassGen::FileInfo FindClassByName(const String &fullname)
 {
-    std::filesystem::path p(fullname);
+    System::Path p(fullname);
     if(p.has_extension())
     {
         auto name = p.extension().generic_string();
@@ -269,7 +269,7 @@ ClassGen::FileInfo FindClassByName(const std::string &fullname)
     }
     else
     {
-        return FindClassByName(p.stem().generic_string(), std::string());
+        return FindClassByName(p.stem().generic_string(), String());
     }
 }
 
@@ -308,7 +308,7 @@ typename std::unordered_map<Key, T, Compare, Alloc>::size_type erase_if(std::uno
 
 }
 
-void ClearIndex(const std::string &namespaceName)
+void ClearIndex(const String &namespaceName)
 {
     auto prefix = namespaceName + ".";
     erase_if(g_FunctionCache, [&](auto &pair) {
@@ -316,7 +316,7 @@ void ClearIndex(const std::string &namespaceName)
     });
 }
 
-void IndexFunctions(const std::vector<ClassGen::FunctionInfo> &functions, const std::string &namespaceName)
+void IndexFunctions(const Array<ClassGen::FunctionInfo> &functions, const String &namespaceName)
 {
     for (const auto &f : functions)
     {
@@ -326,7 +326,7 @@ void IndexFunctions(const std::vector<ClassGen::FunctionInfo> &functions, const 
     }
 }
 
-void IndexProperties(const std::vector<ClassGen::PropertyInfo> &properties, const std::string &namespaceName)
+void IndexProperties(const Array<ClassGen::PropertyInfo> &properties, const String &namespaceName)
 {
     for (const auto &p : properties)
     {
@@ -342,7 +342,7 @@ void IndexProperties(const std::vector<ClassGen::PropertyInfo> &properties, cons
     }
 }
 
-void IndexFileData(const std::filesystem::path &path, const ClassGen::BaseInfo &baseInfo)
+void IndexFileData(const System::Path &path, const ClassGen::BaseInfo &baseInfo)
 {
     auto namespaceName = path.stem().generic_string();
     if (!baseInfo.Namespace.empty())
@@ -362,14 +362,14 @@ void IndexFileData(const std::filesystem::path &path, const ClassGen::BaseInfo &
     IndexFunctions(classInfo->Functions, namespaceName);
 }
 
-void ClassGenEditor::IndexFile(const std::filesystem::path &path)
+void ClassGenEditor::IndexFile(const System::Path &path)
 {
     if (path.extension() != ".cg")
     {
         return;
     }
 
-    std::string pathString = path.generic_string();
+    String pathString = path.generic_string();
     auto it = ClassGenCache.find(pathString);
     if(it != ClassGenCache.end())
     {
@@ -397,7 +397,7 @@ void ClassGenEditor::IndexFile(const std::filesystem::path &path)
     }
 }
 
-void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, const std::string &name)
+void ClassGenEditor::RenderDataRecursively(const System::Path &root, const String &name)
 {
     ClassGen::FileInfo fileInfo = FindClassByName(name);
     auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
@@ -436,12 +436,12 @@ void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, co
                 ImGui::PushItemWidth(-1);
                 if (type == "std.string")
                 {
-                    static std::string value;
+                    static String value;
                     ImGui::InputText(propertyId.data(), &value);
                 }
                 else if (type == "std.filesystem.path")
                 {
-                    static std::string value;
+                    static String value;
                     ImGui::InputText(propertyId.data(), &value);
                 }
                 ImGui::PopItemWidth();
@@ -457,7 +457,7 @@ void ClassGenEditor::RenderDataRecursively(const std::filesystem::path &root, co
     }
 }
 
-void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo)
+void ClassGenEditor::RenderDetails(const System::Path &path, ClassGen::ClassInfo &classInfo)
 {
     if (ImGui::CollapsingHeader("Details", ImGuiTreeNodeFlags_DefaultOpen))
     {
@@ -501,10 +501,10 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
         /*ImGui::Separator();
 
         ImGui::Text("Interfaces");
-        std::string Interfaces;
+        String Interfaces;
         for(auto i : FileData["Interfaces"])
         {
-            ImGui::Text(i.as<std::string>().data());
+            ImGui::Text(i.as<String>().data());
         }*/
         ImGui::Columns(1);
     }
@@ -533,7 +533,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
         ImGui::Columns(2);
         if (selectedProperty)
         {
-            std::string type = writeRecursively(selectedProperty->Type);
+            String type = writeRecursively(selectedProperty->Type);
             ImGui::Text("Name");
             ImGui::NextColumn();
             ImGui::PushItemWidth(-1);
@@ -601,7 +601,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
             ImGui::Text("Name");
             ImGui::NextColumn();
             ImGui::PushItemWidth(-1);
-            std::string currentName = std::string("Function.") + selectedFunction->Name;
+            String currentName = String("Function.") + selectedFunction->Name;
             if (ImGui::InputText(fmt::format("##FunctionName{}", (void *)selectedFunction).data(), &selectedFunction->Name))
             {
                 IndexFileData(path, classInfo);
@@ -609,8 +609,8 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
                 ImGui::SetKeyboardFocusHere(-1);
 
                 //TODO: rework
-                std::string oldName = std::move(currentName);
-                currentName = std::string("Function.") + selectedFunction->Name;
+                String oldName = std::move(currentName);
+                currentName = String("Function.") + selectedFunction->Name;
                 classInfo.Graphs[currentName] = classInfo.Graphs[oldName];
                 classInfo.Graphs.erase(oldName);
             }
@@ -636,7 +636,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
             ImGui::PopItemWidth();
             ImGui::NextColumn();
 
-            /*std::string returnType = writeRecursively(selectedFunction->ReturnType);
+            /*String returnType = writeRecursively(selectedFunction->ReturnType);
             ImGui::Text("ReturnType");
             ImGui::NextColumn();
             ImGui::PushItemWidth(-1);
@@ -695,7 +695,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
                     ApplyPadding();
                     ImGui::Text("Type");
                     ImGui::NextColumn();
-                    std::string type = writeRecursively(p.Type);
+                    String type = writeRecursively(p.Type);
                     ImGui::PushItemWidth(-1);
                     if (ImGui::InputText(fmt::format("##Type{}", (void *)&p).data(), &type))
                     {
@@ -722,7 +722,7 @@ void ClassGenEditor::RenderDetails(const std::filesystem::path &path, ClassGen::
     }
 }
 
-void ClassGenEditor::RenderData(const std::filesystem::path &path, ClassGen::ClassInfo &classInfo)
+void ClassGenEditor::RenderData(const System::Path &path, ClassGen::ClassInfo &classInfo)
 {
     //TODO: Check FileData
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2,2));
@@ -795,7 +795,7 @@ void RenderGlobalFile()
     }
 }
 
-void ClassGenEditor::RenderFile(const std::filesystem::path &path)
+void ClassGenEditor::RenderFile(const System::Path &path)
 {
     auto &fileInfo = ClassGenCache[path.generic_string()];
 
@@ -834,7 +834,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
         auto className = path.stem().generic_string();
         auto classNamespace = boost::replace_all_copy(classInfo.Namespace, ".", "::");
         auto classBaseType = writeRecursivelyResolved(classInfo.BaseType);
-        auto p = std::filesystem::path(path).replace_extension(".hpp");
+        auto p = System::Path(path).replace_extension(".hpp");
         std::ofstream file;
         file.open(p.generic_string(), std::ios::binary);
         fmt::print("Write: {}\n", p.generic_string());
@@ -879,16 +879,16 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
         file << "    }\n";
         for (const ClassGen::FunctionInfo &f : classInfo.Functions)
         {
-            std::vector<std::string> parameters = f.InputParameters | ranges::view::transform([](auto &p) { return "const " + writeRecursivelyResolved(p.Type) + " &" + p.Name; }) | ranges::to<std::vector<std::string>>();
+            Array<String> parameters = f.InputParameters | ranges::view::transform([](auto &p) { return "const " + writeRecursivelyResolved(p.Type) + " &" + p.Name; }) | ranges::to<Array<String>>();
 
-            auto resolveReturnType = [&]() -> std::string
+            auto resolveReturnType = [&]() -> String
             {
                 if (f.OutputParameters.empty())
                 {
                     return "void";
                 }
 
-                std::vector<std::string> parameters = f.OutputParameters | ranges::view::transform([](auto &p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<std::vector<std::string>>();
+                Array<String> parameters = f.OutputParameters | ranges::view::transform([](auto &p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<Array<String>>();
                 return "std::tuple<" + boost::join(parameters, ", ") + ">";
             };
 
@@ -929,7 +929,7 @@ void ClassGenEditor::RenderFile(const std::filesystem::path &path)
     }
 }
 
-bool ClassGenEditor::SaveFile(const std::filesystem::path &source, const std::filesystem::path &destination)
+bool ClassGenEditor::SaveFile(const System::Path &source, const System::Path &destination)
 {
     auto fileInfo = ClassGenCache.at(source.generic_string());
     Serialization::Data data;
