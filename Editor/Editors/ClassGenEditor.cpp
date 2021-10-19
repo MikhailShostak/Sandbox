@@ -22,7 +22,7 @@ ClassGen::GraphInfo *g_CurrentGraph = nullptr;
 namespace DefaultExtensions
 {
 
-Map<String, ClassGen::FileInfo> ClassGenCache;
+SortedMap<String, ClassGen::FileInfo> ClassGenCache;
 
 void ClassGenEditor::ShowGraph(const System::Path &path)
 {
