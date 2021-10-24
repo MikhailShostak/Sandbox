@@ -892,9 +892,7 @@ void ClassGenEditor::RenderFile(const System::Path &path)
                 return "std::tuple<" + boost::join(parameters, ", ") + ">";
             };
 
-            file << "    " << resolveReturnType() << " " << f.Name << "(" << boost::join(parameters, ", ") << ")\n";
-            file << "    {\n";
-            file << "    }\n";
+            file << "    virtual " << resolveReturnType() << " " << f.Name << "(" << boost::join(parameters, ", ") << ");\n";
         }
         file << "};\n";
 
