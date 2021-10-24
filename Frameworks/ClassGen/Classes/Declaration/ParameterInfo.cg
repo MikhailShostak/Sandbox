@@ -11,3 +11,11 @@ Properties:
       - Serialize
     Name: Name
     Type: String
+  - Attributes:
+      - Serialize
+    Name: Writable
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: Copy
+    Type: bool

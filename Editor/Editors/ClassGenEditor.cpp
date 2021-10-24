@@ -705,6 +705,29 @@ void ClassGenEditor::RenderDetails(const System::Path &path, ClassGen::ClassInfo
                     }
                     ImGui::PopItemWidth();
                     ImGui::NextColumn();
+
+                    ImGui::Text("Writable");
+                    ImGui::NextColumn();
+                    ImGui::PushItemWidth(-1);
+                    if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Writable).data(), &p.Writable))
+                    {
+                        IndexFileData(path, classInfo);
+                        MarkFileDirty(path);
+                    }
+                    ImGui::PopItemWidth();
+                    ImGui::NextColumn();
+
+                    ImGui::Text("Copy");
+                    ImGui::NextColumn();
+                    ImGui::PushItemWidth(-1);
+                    if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Copy).data(), &p.Copy))
+                    {
+                        IndexFileData(path, classInfo);
+                        MarkFileDirty(path);
+                    }
+                    ImGui::PopItemWidth();
+                    ImGui::NextColumn();
+
                     ImGui::Separator();
                     PopPadding();
                 }
@@ -879,7 +902,12 @@ void ClassGenEditor::RenderFile(const System::Path &path)
         file << "    }\n";
         for (const ClassGen::FunctionInfo &f : classInfo.Functions)
         {
-            Array<String> parameters = f.InputParameters | ranges::view::transform([](auto &p) { return "const " + writeRecursivelyResolved(p.Type) + " &" + p.Name; }) | ranges::to<Array<String>>();
+            Array<String> parameters = f.InputParameters | ranges::view::transform([](auto &p)
+            {
+                auto addReference = [&](const String &name) { return p.Copy ? name : (name + " &"); };
+                auto addConst = [&](const String &name) { return p.Writable ? name : ("const " + name); };
+                return addConst(addReference(writeRecursivelyResolved(p.Type))) + " " + p.Name;
+            }) | ranges::to<Array<String>>();
 
             auto resolveReturnType = [&]() -> String
             {
