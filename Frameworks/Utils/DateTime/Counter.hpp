@@ -31,13 +31,13 @@ public:
     template<typename DurationType>
     [[nodiscard]] auto CountAs() noexcept
     {
-        return std::chrono::duration_cast<DurationType>(Count());
+        return std::chrono::template duration_cast<DurationType>(Count());
     }
 
     template<typename DurationType>
     [[nodiscard]] auto CountValueAs() noexcept
     {
-        return std::chrono::duration_cast<DurationType>(Count()).count();
+        return std::chrono::template duration_cast<DurationType>(Count()).count();
     }
 
 private:
