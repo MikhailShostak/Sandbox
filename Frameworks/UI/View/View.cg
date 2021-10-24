@@ -1,0 +1,52 @@
+Type: Class
+Functions:
+  - Name: Layout
+  - Name: PreDraw
+  - Name: Draw
+  - Name: PostDraw
+  - Name: Update
+Graphs:
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Layout:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.PostDraw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.PreDraw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: UI
+Properties:
+  - Name: TextID
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Position
+    Type: ImVec2
+  - Attributes:
+      - Serialize
+    Name: Size
+    Type: ImVec2
+  - Name: Views
+    Type: Array<SharedReference<UI.View>>

@@ -1,0 +1,17 @@
+Type: Class
+BaseType: UI.View
+Functions:
+  - Name: Draw
+Graphs:
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: UI
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Text
+    Type: String

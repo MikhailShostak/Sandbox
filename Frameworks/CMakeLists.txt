@@ -1,10 +1,12 @@
 add_subdirectory(ClassGen)
 add_subdirectory(NativeApplication)
+add_subdirectory(UI)
 add_subdirectory(Utils)
 
 set(LIBRARIES
     ClassGen
     NativeApplication
+    UI
     Utils
 )
 
