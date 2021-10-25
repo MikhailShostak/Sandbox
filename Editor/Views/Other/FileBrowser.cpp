@@ -118,10 +118,18 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         ShowContextMenu(path, root, is_directory);
 
         PreviousFile.clear();
+
+        Array<System::Path> paths;
         for (const auto &e : std::filesystem::directory_iterator(path))
         {
-            ShowPath(e.path());
+            paths.push_back(e.path());
         }
+        ranges::sort(paths, [](const auto &l, const auto &r) { return std::filesystem::is_directory(l) && !std::filesystem::is_directory(r); });
+        for (const auto &p : paths)
+        {
+            ShowPath(p);
+        }
+
         ImGui::TreePop();
     }
 }
