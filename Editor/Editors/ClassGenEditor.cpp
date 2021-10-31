@@ -7,8 +7,6 @@
 
 static ax::NodeEditor::EditorContext *g_Context = nullptr;
 
-Map<String, ClassGen::FunctionInfo> g_FunctionCache;
-
 float padding = 0;
 const float PaddingSize = 16;
 void PushPadding() { padding += PaddingSize; }

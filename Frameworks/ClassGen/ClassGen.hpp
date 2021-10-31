@@ -14,3 +14,6 @@
 #include "Classes/Graph/NodeInfo.hpp"
 #include "Classes/Graph/GraphInfo.hpp"
 #include "Classes/Declaration/ClassInfo.hpp"
+#include "Classes/Extension/ExtensionLibrary.hpp"
+#include "Classes/Extension/ExtensionInterface.hpp"
+#include "ClassGenGlobals.hpp"

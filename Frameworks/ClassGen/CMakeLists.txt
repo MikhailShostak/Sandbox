@@ -7,12 +7,18 @@ set(SOURCES
     Classes/Declaration/PropertyInfo.hpp
     Classes/Declaration/TypeInfo.hpp
     Classes/Declaration/TypeInfoSerializer.hpp
+    Classes/Extension/ExtensionInterface.cpp
+    Classes/Extension/ExtensionInterface.hpp
+    Classes/Extension/ExtensionLibrary.cpp
+    Classes/Extension/ExtensionLibrary.hpp
     Classes/Graph/ConnectionInfo.hpp
     Classes/Graph/GraphInfo.hpp
     Classes/Graph/NodeInfo.hpp
     ClassGen.hpp
+    ClassGenGlobals.hpp
 )
 
-add_library(ClassGen INTERFACE ${SOURCES})
-target_include_directories(ClassGen INTERFACE .)
-target_link_libraries(ClassGen INTERFACE Utils)
+add_library(ClassGen ${SOURCES})
+target_precompile_headers(ClassGen PRIVATE ClassGen.hpp)
+target_include_directories(ClassGen PUBLIC .)
+target_link_libraries(ClassGen PUBLIC Utils)

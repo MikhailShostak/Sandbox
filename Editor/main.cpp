@@ -8,6 +8,8 @@
 
 #include <Class.gen.hpp>
 
+Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
+
 void OnContentUpdate()
 {
     ImGuiID Workspace = ImGui::GetID("Workspace");
@@ -107,6 +109,14 @@ public:
         Editors.insert({"BinaryEditor", std::make_unique<DefaultExtensions::BinaryEditor>() });
         Editors.insert({"TextEditor", std::make_unique<DefaultExtensions::TextEditor>() });
         Editors.insert({"ClassGenEditor", std::make_unique<DefaultExtensions::ClassGenEditor>() });
+        
+        auto extensions = Reflection::FindAll<ClassGen::ExtensionInterface>();
+        for (auto &e : extensions)
+        {
+            auto i = e->Create();
+            i->Load(g_ExtensionLibrary);
+            g_Extensions.push_back(std::move(i));
+        }
 
         ReloadFiles();
 

@@ -1,0 +1,24 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+    Name: Load
+    OutputParameters:
+      - Copy: false
+        Name: FileInfo
+        Type: ClassGen.FileInfo
+        Writable: false
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: Types
+    Type: Map<String, ClassReference<ClassGen.BaseInfo>>
