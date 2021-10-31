@@ -17,4 +17,6 @@
 #include "Classes/Editor/FileEditor.hpp"
 #include "Classes/Extension/ExtensionLibrary.hpp"
 #include "Classes/Extension/ExtensionInterface.hpp"
+#include "Classes/Extension/Class/ClassFileEditor.hpp"
+#include "Classes/Extension/Class/ClassExtension.hpp"
 #include "ClassGenGlobals.hpp"

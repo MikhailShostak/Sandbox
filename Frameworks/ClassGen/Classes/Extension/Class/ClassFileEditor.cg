@@ -1,0 +1,72 @@
+Type: Class
+BaseType: ClassGen.FileEditor
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+    Name: ShowGraph
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+      - Copy: false
+        Name: ClassInfo
+        Type: ClassGen.ClassInfo
+        Writable: true
+    Name: RenderDetails
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+      - Copy: false
+        Name: ClassInfo
+        Type: ClassGen.ClassInfo
+        Writable: true
+    Name: RenderData
+  - InputParameters:
+      - Copy: false
+        Name: Root
+        Type: System.Path
+        Writable: false
+      - Copy: false
+        Name: Name
+        Type: String
+        Writable: false
+    Name: RenderDataRecursively
+  - Name: RenderFile
+Graphs:
+  Function.RenderData:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderDataRecursively:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderDetails:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderFile:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ShowGraph:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen

@@ -3,6 +3,9 @@
 namespace ClassGen
 {
 
+//TODO: remove
+void IndexFileData(const System::Path &path, const ClassGen::BaseInfo &baseInfo);
+
 std::tuple<ClassGen::FileInfo/*FileInfo*/> ExtensionLibrary::Load(const System::Path &Path)
 {
     Serialization::Data data;
@@ -27,6 +30,10 @@ std::tuple<ClassGen::FileInfo/*FileInfo*/> ExtensionLibrary::Load(const System::
     Reflection::Deserialize(data, *fileInfo.Instance);
 
     g_ClassGenCache.insert({ Path.generic_string(), fileInfo });
+    if (fileInfo.Type == "Class")
+    {
+        IndexFileData(Path, *std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance));
+    }
 
     return { fileInfo };
 }

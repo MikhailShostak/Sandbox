@@ -9,6 +9,10 @@ set(SOURCES
     Classes/Declaration/TypeInfoSerializer.hpp
     Classes/Editor/FileEditor.cpp
     Classes/Editor/FileEditor.hpp
+    Classes/Extension/Class/ClassExtension.cpp
+    Classes/Extension/Class/ClassExtension.hpp
+    Classes/Extension/Class/ClassFileEditor.cpp
+    Classes/Extension/Class/ClassFileEditor.hpp
     Classes/Extension/ExtensionInterface.cpp
     Classes/Extension/ExtensionInterface.hpp
     Classes/Extension/ExtensionLibrary.cpp
