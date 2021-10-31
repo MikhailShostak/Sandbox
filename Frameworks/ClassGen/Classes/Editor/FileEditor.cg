@@ -1,0 +1,18 @@
+Type: Class
+Functions:
+  - Name: RenderFile
+Graphs:
+  Function.RenderFile:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: Data
+    Type: ClassGen.FileInfo
+  - Name: Path
+    Type: System.Path
+  - Name: MarkFileDirty
+    Type: Function<void, System.Path>

@@ -5,6 +5,7 @@ namespace ClassGen
 struct ExtensionLibrary
 {
     using This = ExtensionLibrary;
+    Map<String, ClassReference<ClassGen::FileEditor>> FileEditors;
     Map<String, ClassReference<ClassGen::BaseInfo>> Types;
 
     virtual ~ExtensionLibrary() {}

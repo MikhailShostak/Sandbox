@@ -7,6 +7,8 @@ set(SOURCES
     Classes/Declaration/PropertyInfo.hpp
     Classes/Declaration/TypeInfo.hpp
     Classes/Declaration/TypeInfoSerializer.hpp
+    Classes/Editor/FileEditor.cpp
+    Classes/Editor/FileEditor.hpp
     Classes/Extension/ExtensionInterface.cpp
     Classes/Extension/ExtensionInterface.hpp
     Classes/Extension/ExtensionLibrary.cpp

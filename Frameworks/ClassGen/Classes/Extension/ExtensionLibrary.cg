@@ -20,5 +20,7 @@ Graphs:
         Name: Output
 Namespace: ClassGen
 Properties:
+  - Name: FileEditors
+    Type: Map<String, ClassReference<ClassGen.FileEditor>>
   - Name: Types
     Type: Map<String, ClassReference<ClassGen.BaseInfo>>
