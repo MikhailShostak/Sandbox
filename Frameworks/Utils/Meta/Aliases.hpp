@@ -83,4 +83,7 @@ using MemberPointerValueType = decltype(Details::MemberValueType(MemberPointer))
 template<auto MemberPointer>
 using MemberPointerClassType = decltype(Details::MemberClassType(MemberPointer));
 
+template<typename ReturnType, typename ...ArgumentTypes>
+using Function = std::function<ReturnType(ArgumentTypes...)>;
+
 }
