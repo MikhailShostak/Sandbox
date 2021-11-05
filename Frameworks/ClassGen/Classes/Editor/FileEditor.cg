@@ -1,4 +1,11 @@
 Type: Class
+Events:
+  - InputParameters:
+      - Copy: false
+        Name: FilePath
+        Type: System.Path
+        Writable: false
+    Name: MarkFileDirty
 Functions:
   - Name: RenderFile
 Graphs:
@@ -14,5 +21,3 @@ Properties:
     Type: ClassGen.FileInfo
   - Name: Path
     Type: System.Path
-  - Name: MarkFileDirty
-    Type: Function<void, System.Path>
