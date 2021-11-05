@@ -539,6 +539,144 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ImGui::Columns(1);
     }
 
+    auto ArrayProperty = [this, &path, &classInfo](const char *label, auto &data)
+    {
+        ImGui::Text(label);
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        if (ImGui::Button(fmt::format("+##{}", (void *)&data).data()))
+        {
+            data.push_back({});
+        }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
+
+        PushPadding();
+        ImGui::Separator();
+        size_t itemToRemove = -1;
+        for (size_t i = 0; i < data.size(); ++i)
+        {
+            auto &p = data[i];
+
+            ApplyPadding();
+            ImGui::Text(fmt::format("{}", i).data());
+            ImGui::NextColumn();
+
+            if (ImGui::Button(fmt::format("-##{}", (void *)&p).data()))
+            {
+                itemToRemove = i;
+            }
+            ImGui::NextColumn();
+            ImGui::Separator();
+
+            PushPadding();
+            ApplyPadding();
+            ImGui::Text("Name");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if (ImGui::InputText(fmt::format("##Name{}", (void *)&p).data(), &p.Name))
+            {
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+                ImGui::SetKeyboardFocusHere(-1);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ApplyPadding();
+            ImGui::Text("Type");
+            ImGui::NextColumn();
+            String type = writeRecursively(p.Type);
+            ImGui::PushItemWidth(-1);
+            if (ImGui::InputText(fmt::format("##Type{}", (void *)&p).data(), &type))
+            {
+                readRecursively(type, p.Type);
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ImGui::Text("Writable");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Writable).data(), &p.Writable))
+            {
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ImGui::Text("Copy");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Copy).data(), &p.Copy))
+            {
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ImGui::Separator();
+            PopPadding();
+        }
+        PopPadding();
+        if (itemToRemove != -1)
+        {
+            data.erase(data.begin() + itemToRemove);
+        }
+    };
+
+    if (ImGui::CollapsingHeader("Events", ImGuiTreeNodeFlags_DefaultOpen))
+    {
+        static ClassGen::EventInfo *selectedEvent = nullptr;
+        bool selection = false;
+        for (auto &e : classInfo.Events)
+        {
+            bool selected = selectedEvent == &e;
+            if (ImGui::Selectable(fmt::format("{}##EventItem", e.Name).data(), &selected))
+            {
+                selectedEvent = &e;
+            }
+            selection |= selected;
+        }
+        if (!selection)
+        {
+            selectedEvent = nullptr;
+        }
+        else
+        {
+            ImGui::Separator();
+        }
+        ImGui::Columns(2);
+        if (selectedEvent)
+        {
+            ImGui::Text("Name");
+            ImGui::NextColumn();
+            ImGui::PushItemWidth(-1);
+            String currentName = String("Event.") + selectedEvent->Name;
+            if (ImGui::InputText(fmt::format("##EventName{}", (void *)selectedEvent).data(), &selectedEvent->Name))
+            {
+                IndexFileData(path, classInfo);
+                MarkFileDirty(path);
+                ImGui::SetKeyboardFocusHere(-1);
+
+                //TODO: rework
+                String oldName = std::move(currentName);
+                currentName = String("Event.") + selectedEvent->Name;
+                //classInfo.Graphs[currentName] = classInfo.Graphs[oldName];
+                //classInfo.Graphs.erase(oldName);
+            }
+            ImGui::PopItemWidth();
+            ImGui::NextColumn();
+
+            ArrayProperty("InputParameters", selectedEvent->InputParameters);
+        }
+        ImGui::Columns(1);
+    }
+
     if (ImGui::CollapsingHeader("Functions", ImGuiTreeNodeFlags_DefaultOpen))
     {
         static ClassGen::FunctionInfo *selectedFunction = nullptr;
@@ -612,96 +750,6 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
             }
             ImGui::PopItemWidth();
             ImGui::NextColumn();*/
-
-            auto ArrayProperty = [this, &path, &classInfo](const char *label, auto &data)
-            {
-                ImGui::Text(label);
-                ImGui::NextColumn();
-                ImGui::PushItemWidth(-1);
-                if (ImGui::Button(fmt::format("+##{}", (void *)&data).data()))
-                {
-                    data.push_back({});
-                }
-                ImGui::PopItemWidth();
-                ImGui::NextColumn();
-
-                PushPadding();
-                ImGui::Separator();
-                size_t itemToRemove = -1;
-                for (size_t i = 0; i < data.size(); ++i)
-                {
-                    auto &p = data[i];
-
-                    ApplyPadding();
-                    ImGui::Text(fmt::format("{}", i).data());
-                    ImGui::NextColumn();
-
-                    if (ImGui::Button(fmt::format("-##{}", (void *)&p).data()))
-                    {
-                        itemToRemove = i;
-                    }
-                    ImGui::NextColumn();
-                    ImGui::Separator();
-
-                    PushPadding();
-                    ApplyPadding();
-                    ImGui::Text("Name");
-                    ImGui::NextColumn();
-                    ImGui::PushItemWidth(-1);
-                    if (ImGui::InputText(fmt::format("##Name{}", (void *)&p).data(), &p.Name))
-                    {
-                        IndexFileData(path, classInfo);
-                        MarkFileDirty(path);
-                        ImGui::SetKeyboardFocusHere(-1);
-                    }
-                    ImGui::PopItemWidth();
-                    ImGui::NextColumn();
-
-                    ApplyPadding();
-                    ImGui::Text("Type");
-                    ImGui::NextColumn();
-                    String type = writeRecursively(p.Type);
-                    ImGui::PushItemWidth(-1);
-                    if (ImGui::InputText(fmt::format("##Type{}", (void *)&p).data(), &type))
-                    {
-                        readRecursively(type, p.Type);
-                        IndexFileData(path, classInfo);
-                        MarkFileDirty(path);
-                    }
-                    ImGui::PopItemWidth();
-                    ImGui::NextColumn();
-
-                    ImGui::Text("Writable");
-                    ImGui::NextColumn();
-                    ImGui::PushItemWidth(-1);
-                    if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Writable).data(), &p.Writable))
-                    {
-                        IndexFileData(path, classInfo);
-                        MarkFileDirty(path);
-                    }
-                    ImGui::PopItemWidth();
-                    ImGui::NextColumn();
-
-                    ImGui::Text("Copy");
-                    ImGui::NextColumn();
-                    ImGui::PushItemWidth(-1);
-                    if (ImGui::Checkbox(fmt::format("##{}", (void *)&p.Copy).data(), &p.Copy))
-                    {
-                        IndexFileData(path, classInfo);
-                        MarkFileDirty(path);
-                    }
-                    ImGui::PopItemWidth();
-                    ImGui::NextColumn();
-
-                    ImGui::Separator();
-                    PopPadding();
-                }
-                PopPadding();
-                if (itemToRemove != -1)
-                {
-                    data.erase(data.begin() + itemToRemove);
-                }
-            };
 
             ArrayProperty("InputParameters", selectedFunction->InputParameters);
             ArrayProperty("OutputParameters", selectedFunction->OutputParameters);
@@ -809,6 +857,14 @@ void ClassFileEditor::RenderFile()
             IndexFileData(Path, classInfo);
             MarkFileDirty(Path);
         }
+        if (ImGui::MenuItem("Add event"))
+        {
+            ClassGen::EventInfo e;
+            e.Name = "NewEvent";
+            classInfo.Events.push_back(std::move(e));
+            IndexFileData(Path, classInfo);
+            MarkFileDirty(Path);
+        }
         ImGui::EndPopup();
     }
 
@@ -865,6 +921,17 @@ void ClassFileEditor::RenderFile()
             }
         }
         file << "    }\n";
+        for (const ClassGen::EventInfo &e : classInfo.Events)
+        {
+            Array<String> parameters = e.InputParameters | ranges::view::transform([](auto &p)
+            {
+                auto addReference = [&](const String &name) { return p.Copy ? name : (name + " &"); };
+                auto addConst = [&](const String &name) { return p.Writable ? name : ("const " + name); };
+                return addConst(addReference(writeRecursivelyResolved(p.Type))) + " /*" + p.Name + "*/";
+            }) | ranges::to<Array<String>>();
+
+            file << "    Meta::Function<void, " << boost::join(parameters, ", ") << "> " << e.Name << ";\n";
+        }
         for (const ClassGen::FunctionInfo &f : classInfo.Functions)
         {
             Array<String> parameters = f.InputParameters | ranges::view::transform([](auto &p)

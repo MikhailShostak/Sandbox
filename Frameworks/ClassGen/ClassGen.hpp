@@ -8,6 +8,7 @@
 #include "Classes/Declaration/TypeInfo.hpp"
 #include "Classes/Declaration/TypeInfoSerializer.hpp"
 #include "Classes/Declaration/ParameterInfo.hpp"
+#include "Classes/Declaration/EventInfo.hpp"
 #include "Classes/Declaration/FunctionInfo.hpp"
 #include "Classes/Declaration/PropertyInfo.hpp"
 #include "Classes/Graph/ConnectionInfo.hpp"

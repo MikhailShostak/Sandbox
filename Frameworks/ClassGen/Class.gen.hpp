@@ -3,6 +3,7 @@
 namespace { struct { struct Dummy { Dummy() {
 Reflection::Add<ClassGen::BaseInfo>("ClassGen.BaseInfo");
 Reflection::Add<ClassGen::ClassInfo>("ClassGen.ClassInfo");
+Reflection::Add<ClassGen::EventInfo>("ClassGen.EventInfo");
 Reflection::Add<ClassGen::FileInfo>("ClassGen.FileInfo");
 Reflection::Add<ClassGen::FunctionInfo>("ClassGen.FunctionInfo");
 Reflection::Add<ClassGen::ParameterInfo>("ClassGen.ParameterInfo");

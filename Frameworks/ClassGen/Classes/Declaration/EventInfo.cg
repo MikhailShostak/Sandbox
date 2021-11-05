@@ -1,0 +1,13 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: InputParameters
+    Type: Array<ClassGen.ParameterInfo>

@@ -12,6 +12,7 @@ struct ClassInfo
     Array<String> Attributes;
     Array<ClassGen::PropertyInfo> Properties;
     Array<ClassGen::FunctionInfo> Functions;
+    Array<ClassGen::EventInfo> Events;
     SortedMap<String, ClassGen::GraphInfo> Graphs;
 
     virtual ~ClassInfo() {}
@@ -24,6 +25,7 @@ struct ClassInfo
         data["Attributes"] & Attributes;
         data["Properties"] & Properties;
         data["Functions"] & Functions;
+        data["Events"] & Events;
         data["Graphs"] & Graphs;
     }
 };

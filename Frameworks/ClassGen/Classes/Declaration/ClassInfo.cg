@@ -24,5 +24,9 @@ Properties:
     Type: Array<ClassGen.FunctionInfo>
   - Attributes:
       - Serialize
+    Name: Events
+    Type: Array<ClassGen.EventInfo>
+  - Attributes:
+      - Serialize
     Name: Graphs
     Type: SortedMap<String, ClassGen.GraphInfo>

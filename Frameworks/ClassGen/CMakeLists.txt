@@ -1,6 +1,7 @@
 set(SOURCES
     Classes/Declaration/BaseInfo.hpp
     Classes/Declaration/ClassInfo.hpp
+    Classes/Declaration/EventInfo.hpp
     Classes/Declaration/FileInfo.hpp
     Classes/Declaration/FunctionInfo.hpp
     Classes/Declaration/ParameterInfo.hpp
