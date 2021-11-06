@@ -1,14 +1,4 @@
-set(SOURCES
-    UI.hpp
-    View/Button.cpp
-    View/Button.hpp
-    View/Label.cpp
-    View/Label.hpp
-    View/TextField.cpp
-    View/TextField.hpp
-    View/View.cpp
-    View/View.hpp
-)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.hpp *.cpp)
 
 add_library(UI ${SOURCES})
 target_precompile_headers(UI PRIVATE UI.hpp)

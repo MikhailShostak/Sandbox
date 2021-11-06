@@ -1,7 +1,4 @@
-set(SOURCES
-    NativeApplication.cpp
-    NativeApplication.hpp
-)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.hpp *.cpp)
 
 if(CMAKE_SYSTEM_NAME STREQUAL Darwin)
     if(NOT IOS)
