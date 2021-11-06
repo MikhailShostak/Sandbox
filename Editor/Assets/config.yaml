@@ -52,5 +52,5 @@ FileTypes:
     Editor: TextEditor
     Extensions: .ts
   - Title: ClassGen File
-    Editor: TextEditor
+    Editor: ClassGenEditor
     Extensions: .cg
