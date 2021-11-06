@@ -5,7 +5,7 @@
 inline std::unordered_map<std::string, std::string> FileCache; //path, data
 inline std::unordered_map<std::string, class Editor*> UnsavedFiles; //path, editor
 
-std::string GetFileTitle(const std::filesystem::path &path);
+std::string GetFileTitle(const std::filesystem::path &path, bool showExtensionOnly = false);
 
 bool LoadFile(const std::filesystem::path &path);
 bool LoadFolder(const std::filesystem::path &path);

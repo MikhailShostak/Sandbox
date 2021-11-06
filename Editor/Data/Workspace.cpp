@@ -2,9 +2,9 @@
 
 #include "../Editors/Editor.hpp"
 
-std::string GetFileTitle(const std::filesystem::path &path)
+std::string GetFileTitle(const std::filesystem::path &path, bool showExtensionOnly)
 {
-    auto title = path.filename().generic_string();
+    auto title = (showExtensionOnly ? path.extension() : path.filename()).generic_string();
     auto it = UnsavedFiles.find(path.generic_string());
     if(it != UnsavedFiles.end())
     {

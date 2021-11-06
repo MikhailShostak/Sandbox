@@ -15,6 +15,17 @@ struct DataConfig
 
     struct
     {
+        bool CombineFilesWithSameBasename = true;
+
+        template<typename T>
+        void Serialize(T &&data)
+        {
+            data["CombineFilesWithSameBasename"] & CombineFilesWithSameBasename;
+        }
+    } FileBrowser;
+
+    struct
+    {
         std::vector<std::filesystem::path> RecentFiles;
         std::vector<std::filesystem::path> OpenedFiles;
         std::vector<std::filesystem::path> RecentFolders;
@@ -66,6 +77,7 @@ struct DataConfig
     void Serialize(T &&data)
     {
         data["General"] & General;
+        data["FileBrowser"] & FileBrowser;
         data["File"] & File;
         data["FileTypes"] & FileTypes;
         data["Extensions"] & Extensions;

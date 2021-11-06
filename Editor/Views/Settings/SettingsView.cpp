@@ -2,6 +2,7 @@
 
 std::vector<SettingsEntry> SettingsEntries = {
     { "General", &Settings::ShowGeneralSettings },
+    { "FileBrowser", &Settings::ShowFileBrowserSettings },
     { "Environment", &Settings::ShowEnvironment },
     { "Extensions", &Settings::ShowExtensions },
     { "File Types", &Settings::ShowFileTypes },

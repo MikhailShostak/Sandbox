@@ -7,6 +7,8 @@
 namespace View
 {
 
+static std::filesystem::path PreviousFile;
+
 void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_directory)
 {
     bool RenamePopup = false;
@@ -82,19 +84,30 @@ void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_direc
 
 void ShowPath(const std::filesystem::path &path, bool root = false)
 {
-    //ImGui::Selectable();
     bool is_directory = std::filesystem::is_directory(path);
     bool is_file = std::filesystem::is_regular_file(path);
 
     if (is_file)
     {
-        ImGui::AlignTextToFramePadding();
+        bool needCombine = Config.FileBrowser.CombineFilesWithSameBasename && !PreviousFile.empty() && PreviousFile == path.stem();
+        if (needCombine)
+        {
+            ImGui::SameLine();
+            ImGui::Text("|");
+            ImGui::SameLine();
+        }
+        else
+        {
+            ImGui::AlignTextToFramePadding();
+        }
 
-        if (ImGui::Selectable(GetFileTitle(path).data()))
+        if (ImGui::Selectable(GetFileTitle(path, needCombine).data(), false, ImGuiSelectableFlags_AllowItemOverlap))
         {
             OpenFile(path, false);
         }
         ShowContextMenu(path, root, is_directory);
+
+        PreviousFile = path.stem();
     }
     else if(is_directory)
     {
@@ -104,6 +117,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         }
         ShowContextMenu(path, root, is_directory);
 
+        PreviousFile.clear();
         for (const auto &e : std::filesystem::directory_iterator(path))
         {
             ShowPath(e.path());

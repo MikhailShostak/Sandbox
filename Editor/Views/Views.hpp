@@ -31,6 +31,7 @@ namespace Settings
 inline bool DisplaySettings = false;
 void ShowSettings();
 void ShowGeneralSettings();
+void ShowFileBrowserSettings();
 void ShowEnvironment();
 void ShowFileTypes();
 void ShowExtensions();
