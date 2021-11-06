@@ -100,7 +100,7 @@ public:
         {
             Serialization::FromFile(ApplicationConfig, Config);
             ReloadExtensions();
-            if (Config.File.OpenedFolders.empty())
+            if (!Config.File.OpenedFolders.empty())
             {
                 File::DialogWorkingDirectory = Config.File.OpenedFolders[0];
             }
