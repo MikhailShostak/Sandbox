@@ -16,6 +16,7 @@
 #include <DateTime/Stopwatch.hpp>
 #include <DateTime/Time.hpp>
 #include <DateTime/Timer.hpp>
+#include <Debug/DebugUtils.hpp>
 #include <Memory/Allocation.hpp>
 #include <Memory/InplaceStorage.hpp>
 #include <Memory/References.hpp>
