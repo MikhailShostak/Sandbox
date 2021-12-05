@@ -1,0 +1,5 @@
+{
+    "Namespace" : "UI",
+    "Type" : "Enumeration",
+    "Values" : ["Input", "Output"]
+}

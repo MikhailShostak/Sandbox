@@ -1,0 +1,29 @@
+{
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCLinkageSettingsDataObject",
+		"Package" : ""
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "LibraryPaths",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "Libraries",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "Frameworks",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

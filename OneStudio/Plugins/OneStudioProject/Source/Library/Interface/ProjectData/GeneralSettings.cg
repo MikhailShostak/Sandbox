@@ -1,0 +1,11 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioProject",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "BuildingSettings",
+		"Type" : "OneStudioProject.BuildingSettings",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

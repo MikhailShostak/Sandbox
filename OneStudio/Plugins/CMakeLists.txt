@@ -1,0 +1,3 @@
+add_subdirectory(ClassGen)
+add_subdirectory(OneStudioCLanguage)
+add_subdirectory(OneStudioProject)

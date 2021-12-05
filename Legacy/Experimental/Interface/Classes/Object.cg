@@ -1,0 +1,5 @@
+{
+    "Includes": ["AObject.h"],
+    "Source": "using Object = AObject;",
+    "Type": "BasicType"
+}

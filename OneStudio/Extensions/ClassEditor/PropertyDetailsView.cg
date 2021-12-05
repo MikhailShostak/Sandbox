@@ -1,0 +1,6 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.ListView",
+    "Interfaces" : ["UI.ItemAdapter"]
+}

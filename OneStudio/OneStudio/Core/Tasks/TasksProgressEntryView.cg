@@ -1,0 +1,179 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Name" : "TasksProgressEntryView",
+	"Namespace" : "OneStudio",
+	"Type" : "View",
+	"Values":{
+		"Data" : [{
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}],
+		"Direction" : "Vertical",
+		"HorizontalSizePolicy" : "Fixed",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Padding" : {
+			"Bottom" : 8.000000,
+			"Left" : 8.000000,
+			"Right" : 8.000000,
+			"Top" : 8.000000
+		},
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Spacing" : 8.000000
+	},
+	"Views" : [{
+		"BaseType" : "UI.ImageView",
+		"Name" : "ExpandIcon",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 190.000000,
+				"Y" : 80.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Pause",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 280.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.ImageView",
+		"Name" : "StatusIcon",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 190.000000,
+				"Y" : 80.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Hide",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 280.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.Label",
+		"Name" : "Title",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 190.000000,
+				"Y" : 80.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Stop",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 280.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}]
+}

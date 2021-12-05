@@ -1,0 +1,12 @@
+{
+	"FragmentColor" : "vec4 color = texture2D(ColorMap, vUV);\n\nif(color.a < 0.5) discard\nvec3 pos = vec3(0.0, 1.0, 0.0);\nfloat radius = 10.0;\n\nvec3 ambient = vec3(0.2);\n\nfloat diffuse = max(dot(pos - vPosition, vNormal), 0.0);\nfloat attenuation = max(1.0 -  length(pos - vPosition) / radius, 0.0);\n\nreturn vec4(color.rgb * (ambient + attenuation * diffuse), color.a));",
+	"General" : {
+		"BaseMaterial" : "ModelMaterial",
+		"Name" : "FoliageMaterial",
+		"Package" : "Core"
+	},
+	"MeshLayout" : [["Position", "Float3"], ["Normal", "Float3"], ["UV", "Float2"]],
+	"Properties" : [["ColorMap", "Texture"], ["NormalMap", "Texture"], ["AlphaMap", "Texture"]],
+	"Scheme" : "Material",
+	"VertexPosition" : "vPosition = Position;\nvNormal = normalize(Normal);\nvUV = UV;\nreturn ModelViewProjectionMatrix * vec4(Position, 1.0);"
+}

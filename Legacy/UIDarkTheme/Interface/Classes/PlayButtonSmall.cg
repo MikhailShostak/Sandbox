@@ -1,0 +1,7 @@
+{
+	"Compilation" : "Embedded",
+	"Filtration" : "Nearest",
+	"Path" : "PlayButtonSmall.png",
+	"Type" : "Texture",
+	"Wrapping" : "WrapToEdge"
+}

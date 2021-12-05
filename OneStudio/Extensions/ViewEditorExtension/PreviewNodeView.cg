@@ -1,0 +1,17 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.Overlay",
+    "Properties" : [{
+        "Name" : "Instance",
+        "Type" : "SharedReference<UI.View>"
+    }],
+    "Views" : [{
+        "Name" : "BorderView",
+        "BaseType" : "UI.BorderImageView",
+		"Variable" : true
+    }],
+    "Values" : {
+        "Data" : [{}, {}]
+    }
+}

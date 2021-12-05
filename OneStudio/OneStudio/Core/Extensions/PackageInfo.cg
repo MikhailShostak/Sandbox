@@ -1,0 +1,18 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Name" : "PackagePath",
+		"Type" : "Path",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Version",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Versions",
+		"Type" : "Array<Text>",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

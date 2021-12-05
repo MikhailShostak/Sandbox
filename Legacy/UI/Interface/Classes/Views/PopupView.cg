@@ -1,0 +1,108 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Overlay",
+    "Values" : {
+        "HorizontalSizePolicy" : "Expanded",
+        "VerticalSizePolicy" : "Expanded",
+        "Data" : [{
+            "HorizontalAlignment" : "Center",
+            "VerticalAlignment" : "Center"
+        }, {
+            "HorizontalAlignment" : "Center",
+            "VerticalAlignment" : "Center",
+            "Padding" : {
+                "Bottom" : 9.000000,
+                "Left" : 9.000000,
+                "Right" : 9.000000,
+                "Top" : 9.000000
+            }
+        }]
+    },
+    "Views" :[{
+        "BaseType" : "UI.BorderImageView",
+        "Name" : "Background",
+        "External" : true,
+        "Default" : {
+            "BaseType" : "UI.BorderImageView",
+            "Name" : "DefaultPopupBackground",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "VerticalSizePolicy" : "Expanded",
+                "Border" : {
+                    "Bottom" : 16.000000,
+                    "Left" : 16.000000,
+                    "Right" : 16.000000,
+                    "Top" : 42.000000
+                }
+            }
+        }
+	}, {
+        "BaseType" : "UI.FlexBox",
+        "Name" : "ContentView",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded",
+            "Direction" : "Vertical",
+            "Data" : [{
+                "Alignment" : "Center"
+            }, {
+                "Alignment" : "Center"
+            }, {
+                "Alignment" : "Center"
+            }],
+            "Padding" : {
+                "Bottom" : 4.000000,
+                "Left" : 4.000000,
+                "Right" : 4.000000,
+                "Top" : 4.000000
+            },
+            "Spacing" : 12
+        },
+        "Views" : [{
+            "BaseType" : "UI.View",
+            "Name" : "Header",
+            "External" : true,
+            "Default" : {
+                "BaseType" : "UI.Label",
+                "Name" : "Title",
+                "Values" : {
+                    "Text" : "Popup Title",
+                    "TextAlign" : "Center",
+                    "HorizontalSizePolicy" : "ContentWrapped",
+                    "VerticalSizePolicy" : "ContentWrapped"
+                }
+            }
+        }, {
+            "BaseType" : "UI.View",
+            "Name" : "Content",
+            "External" : true,
+            "Default" : {
+                "BaseType" : "UI.Label",
+                "Name" : "NoContentLabel",
+                "Values" : {
+                    "Text" : "No Content",
+                    "TextAlign" : "Center",
+                    "HorizontalSizePolicy" : "Expanded",
+                    "VerticalSizePolicy" : "Expanded"
+                }
+            }
+        }, {
+            "BaseType" : "UI.View",
+            "Name" : "Footer",
+            "External" : true,
+            "Default" : {
+                "BaseType" : "UI.TextButton",
+                "Name" : "CloseButton",
+                "Values" : {
+                    "Text" : "Close",
+                    "Size" : {
+                        "Y" : 20
+                    },
+                    "HorizontalSizePolicy" : "ContentWrapped",
+                    "VerticalSizePolicy" : "Fixed"
+                }
+            }
+        }]
+    }]
+}

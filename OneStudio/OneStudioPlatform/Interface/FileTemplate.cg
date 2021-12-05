@@ -1,0 +1,19 @@
+{
+    "Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Description",
+		"Type" : "String"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Extensions",
+        "Parameters" : ["String"],
+		"Type" : "Array"
+	}]
+}

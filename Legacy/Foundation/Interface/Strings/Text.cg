@@ -1,0 +1,5 @@
+{
+    "Includes": ["String.h"],
+    "Source" : "using Text = String;",
+    "Type": "BasicType"
+}

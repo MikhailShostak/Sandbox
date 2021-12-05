@@ -1,0 +1,6 @@
+{
+	"Namespace" : "UI",
+	"Type" : "Class",
+    "Attributes" : ["Native"],
+	"BaseType" : "UI.View"
+}

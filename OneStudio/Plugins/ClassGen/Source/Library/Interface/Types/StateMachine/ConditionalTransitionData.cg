@@ -1,0 +1,12 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"BaseType" : "ClassGen.TransitionData",
+	"Properties" : [{
+		"Name" : "Condition",
+		"Type" : "String",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}],
+	"Type" : "Class"
+}

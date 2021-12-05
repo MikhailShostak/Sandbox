@@ -1,0 +1,12 @@
+{
+	"Interfaces" : ["ApplicationComponent", "OneStudioPlatform.ApplicationContext"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Name" : "Entries",
+		"Type" : "Array<OneStudio.SettingsEntry>"
+	}, {
+		"Name" : "DeveloperLibrary",
+		"Type" : "OneStudio.DeveloperLibrary"
+	}],
+	"Type" : "Class"
+}

@@ -1,0 +1,5 @@
+{
+	"Namespace" : "Graphics",
+	"Type" : "Enumeration",
+	"Values" : ["TiledWrapping", "HorizontalTiledWrapping", "VerticalTiledWrapping", "MirroredTiledWrapping", "HorizontalMirroredTiledWrapping", "VerticalMirroredTiledWrapping", "WrapToBorder", "WrapToEdge"]
+}

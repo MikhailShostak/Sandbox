@@ -1,0 +1,38 @@
+{
+	"Aliases" : [],
+	"Eventhandlers" : [],
+	"Functions" : [],
+	"General" : {
+		"BaseClass" : "AOperation",
+		"Name" : "OSLinkageOperation",
+		"OverrideConstructor" : false,
+		"OverrideDestructor" : false
+	},
+	"GlobalIncludes" : [["AFoundation"]],
+	"ImplicitDeclarations" : [],
+	"LocalIncludes" : [],
+	"Properties" : [{
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "SourceFiles",
+			"Storage" : "",
+			"Type" : "APathList",
+			"Visibity" : "Public"
+		}
+	}, {
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "DestinationPath",
+			"Storage" : "",
+			"Type" : "APath",
+			"Visibity" : "Public"
+		}
+	}],
+	"Scheme" : "Object"
+}

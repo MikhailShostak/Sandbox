@@ -1,0 +1,31 @@
+{
+	"BaseType" : "UI.View",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Name" : "Image",
+		"Type" : "Graphics.Texture",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "Border",
+		"Type" : "Math.Offsets",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "FillCenter",
+		"Type" : "Boolean",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "UseOriginalContentSize",
+		"Type" : "Boolean",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"FillCenter" : true,
+		"UseOriginalContentSize" : true
+	}
+}

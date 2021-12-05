@@ -1,0 +1,19 @@
+{
+	"BaseType" : "UI.DropDown",
+	"Properties" : [{
+        "Attributes" : "Serialized",
+		"Name" : "Elements",
+		"Parameters" : ["String"],
+		"Type" : "Array",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["updateMenuActions"]
+	}, {
+        "Attributes" : "Serialized",
+		"Name" : "CurrentIndex",
+		"Type" : "SizeInteger",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["updateCurrentItem"]
+	}],
+	"Namespace":"UI",
+	"Type" : "Class"
+}

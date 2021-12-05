@@ -1,0 +1,39 @@
+{
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCFilesSettingsDataObject",
+		"Package" : ""
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "ObjectFileName",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "StaticLibraryFileName",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "DynamicLibraryFileName",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "ApplicationFileName",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "DebugSymbolsFileName",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

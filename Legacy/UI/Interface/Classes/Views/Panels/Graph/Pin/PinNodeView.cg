@@ -1,0 +1,49 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.NamedNodeView",
+    "Content" : [{
+        "BaseType" : "UI.FlexBox",
+        "Name" : "Content",
+        "Views" : [{
+            "BaseType" : "UI.FlexBox",
+            "Name" : "InputPins",
+            "Variable" : true,
+            "Values" : {
+                "Direction" : "Vertical",
+                "HorizontalSizePolicy" : "ContentWrapped"
+            }
+        }, {
+            "BaseType" : "UI.View",
+            "Name" : "NodeContent",
+            "External" : true,
+            "Default" : {
+                "BaseType" : "UI.View",
+                "Name" : "EmptyContent",
+                "Values" : {
+                    "HorizontalSizePolicy" : "Expanded",
+                    "VerticalSizePolicy" : "Expanded"
+                }
+            }
+        }, {
+            "BaseType" : "UI.FlexBox",
+            "Name" : "OutputPins",
+            "Variable" : true,
+            "Values" : {
+                "Direction" : "Vertical",
+                "HorizontalSizePolicy" : "ContentWrapped"
+            }
+        }],
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded",
+            "Border" : {
+                "Left" : 8,
+                "Top" : 8,
+                "Right" : 8,
+                "Bottom" : 8
+            },
+            "Data" : [{}, {}, {}]
+        }
+    }]
+}

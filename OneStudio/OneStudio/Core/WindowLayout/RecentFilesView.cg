@@ -1,0 +1,51 @@
+BaseType: UI.FlexBox
+Namespace: OneStudio
+Properties:
+  - Attributes: Serialized
+    Name: Title
+    Type: Text
+Type: View
+Values:
+  Data:
+    - {}
+    - {}
+    - {}
+    - {}
+  Direction: Vertical
+  Spacing: 4
+  VerticalSizePolicy: Expanded
+Views:
+  - BaseType: UI.GroupPanel
+    Content:
+      Body:
+        BaseType: UI.ListView
+        Bindings:
+          CountItems: FileManager::getThisInstance().getWorkspaceData().PinnedFiles.size()
+          Item:
+            BaseType: UI.DefaultTextItemView
+            Values:
+              Text: FileManager::getThisInstance().getWorkspaceData().PinnedFiles[Index]
+          OnItemTapped: FileManager::getThisInstance().openFile(FileManager::getThisInstance().getWorkspaceData().PinnedFiles[Index])
+        Name: PinnedFilesList
+        Values:
+          VerticalSizePolicy: ContentWrapped
+        Variable: false
+    Name: PinnedFilesPanel
+    Variable: true
+  - BaseType: UI.GroupPanel
+    Content:
+      Body:
+        BaseType: UI.ListView
+        Bindings:
+          CountItems: FileManager::getThisInstance().getWorkspaceData().RecentFiles.size()
+          Item:
+            BaseType: UI.DefaultTextItemView
+            Values:
+              Text: FileManager::getThisInstance().getWorkspaceData().RecentFiles[Index]
+          OnItemTapped: FileManager::getThisInstance().openFile(FileManager::getThisInstance().getWorkspaceData().RecentFiles[Index])
+        Name: RecentFilesList
+        Values:
+          VerticalSizePolicy: ContentWrapped
+        Variable: false
+    Name: RecentFilesPanel
+    Variable: true

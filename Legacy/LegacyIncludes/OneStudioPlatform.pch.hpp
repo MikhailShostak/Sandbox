@@ -1,0 +1,20 @@
+#pragma once
+
+#include <Includes/ExtensionDependency.gen.h>
+#include <Includes/FileContext.gen.h>
+#include <Includes/FileSystemItem.gen.h>
+#include <Includes/FileSystemObserver.gen.h>
+#include <Includes/FileTemplate.gen.h>
+#include <Includes/Outliner.gen.h>
+#include <Includes/OutlinerPlugin.gen.h>
+#include <Includes/Task.gen.h>
+#include <Includes/TaskContext.gen.h>
+#include <Includes/AbstractSingleton.gen.h>
+#include <Includes/Allocator.gen.h>
+#include <Includes/ApplicationContext.gen.h>
+#include <Includes/DataInstanceEditor.gen.h>
+#include <Includes/EditorData.gen.h>
+#include <Includes/EditorInstance.gen.h>
+#include <Includes/EditorPlugin.gen.h>
+#include <Includes/Extension.gen.h>
+#include <Includes/ExtensionContext.gen.h>

@@ -1,0 +1,15 @@
+Namespace: Core
+Properties:
+  - Attributes: Serialized
+    Name: Composition
+    Type: SharedReference<Graphics.Composition>
+  - Attributes: Serialized
+    Name: Title
+    Type: String
+  - Attributes: Serialized
+    Name: BackgroundColor
+    Type: Color
+  - Attributes: Serialized
+    Name: InitialSize
+    Type: Math.IntegerVector
+Type: Class

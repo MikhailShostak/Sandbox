@@ -1,0 +1,6 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "Class",
+    "BaseType" : "UI.TreeView<UI.EditableProperty>",
+    "Interfaces" : ["UI.TreeAdapter<UI.EditableProperty>", "FieldEditor"]
+}

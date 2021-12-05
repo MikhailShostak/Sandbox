@@ -1,0 +1,13 @@
+{
+	"ExtensionDescription" : {
+		"Implementation" : "TextureEditorExtension",
+		"Interface" : "ClassGen.TypeExtension",
+		"Package" : "com.Devernity.TextureEditorExtension",
+		"Revision" : 0,
+		"Version" : "1.0.0"
+	},
+	"Type" : "Extension",
+	"Dependencies" : [
+        "Fields"
+    ]
+}

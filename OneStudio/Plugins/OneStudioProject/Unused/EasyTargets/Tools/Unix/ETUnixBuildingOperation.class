@@ -1,0 +1,89 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "compilationOperations",
+		"Type" : {
+			"Name" : "AOperationList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Private",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "compilationSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixCompilationSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "linkingSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixLinkingSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "objectFiles",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : false,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : false,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Parameters" : [{
+			"Name" : "path",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "APath",
+				"Type" : "Data"
+			}
+		}],
+		"Type" : {
+			"Name" : "void",
+			"Type" : "Data"
+		},
+		"Name" : "addSourceFile"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "compile"
+	}],
+	"Extends" : "ETBuildingOperation",
+	"Name" : "ETUnixBuildingOperation"
+}

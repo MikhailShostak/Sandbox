@@ -1,0 +1,7 @@
+{
+	"Compilation" : "Embedded",
+	"Filtration" : "Nearest",
+	"Path" : "MinimizeButtonSmall.png",
+	"Type" : "Texture",
+	"Wrapping" : "WrapToEdge"
+}

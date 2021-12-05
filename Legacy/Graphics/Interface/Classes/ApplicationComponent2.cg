@@ -1,0 +1,14 @@
+Functions:
+  - Callable: true
+    Identifier: Load
+  - Callable: true
+    Identifier: Unload
+  - Callable: true
+    Identifier: Update
+Namespace: Core
+Properties:
+  - Name: Tags
+    Type: Array<String>
+  - Name: Active
+    Type: Boolean
+Type: Class

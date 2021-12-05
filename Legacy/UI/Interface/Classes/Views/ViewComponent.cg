@@ -1,0 +1,6 @@
+{
+	"BaseType" : "Core.Component",
+	"Properties" : [],
+	"Namespace":"UI",
+	"Type" : "Class"
+}

@@ -1,0 +1,60 @@
+{
+	"BaseType" : "UI.ListView",
+	"Namespace" : "UI",
+	"Type" : "Class",
+	"Attributes" : ["Native"],
+    "BindingContext" : {
+        "OnTreeItemSelected" : {
+		    "InputArguments" : [{
+			    "Type": "PlainReference<TreeItemType>",
+			    "Name": "Item"
+            }]
+        },
+        "OnTreeItemTapped" : {
+		    "InputArguments" : [{
+			    "Type": "UI.TapGestureEvent",
+			    "Name": "Event"
+            }, {
+			    "Type": "PlainReference<TreeItemType>",
+			    "Name": "Item"
+            }]
+        },
+        "CountRootItems" : {
+            "BaseType": "SizeInteger"
+        },
+        "RootItem" : {
+            "BaseType": "PlainReference<TreeItemType>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+		    }]
+        },
+        "CountChildItems" : {
+            "BaseType": "SizeInteger",
+		    "InputArguments" : [{
+			    "Type": "PlainReference<TreeItemType>",
+			    "Name": "ParentItem"
+		    }]
+        },
+        "ChildItem" : {
+            "BaseType": "PlainReference<TreeItemType>",
+		    "InputArguments" : [{
+			    "Type": "PlainReference<TreeItemType>",
+			    "Name": "ParentItem"
+		    }, {
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+		    }]
+        },
+        "TreeItem" : {
+            "BaseType": "SharedReference<UI.View>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "Depth"
+		    }, {
+			    "Type": "PlainReference<TreeItemType>",
+			    "Name": "Item"
+		    }]
+        }
+    }
+}

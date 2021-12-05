@@ -1,0 +1,17 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Properties" : [],
+	"Namespace":"UI",
+	"Type" : "View",
+    "Values" : {
+        "Data" : [{}]
+    },
+    "Views" : [{
+        "BaseType" : "UI.TextButton",
+        "Name" : "Button",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded"
+        },
+        "Variable" : true
+    }]
+}

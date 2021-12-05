@@ -1,0 +1,46 @@
+{
+	"BaseType" : "UI.ItemView<UI.ItemAdapter>",
+	"Namespace" : "UI",
+	"Type" : "Class",
+    "Interfaces" : ["ReorderingAdapter"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Type" : "UI.Direction",
+		"Name" : "Direction"
+	}],
+    "Content" : [{
+		"BaseType" : "UI.FlexBox",
+		"Name" : "Content",
+		"Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "ContentWrapped"
+		}
+	}],
+    "BindingContext" : {
+        "OnItemSelected" : {
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+            }]
+        },
+        "OnItemTapped" : {
+		    "InputArguments" : [{
+			    "Type": "UI.TapGestureEvent",
+			    "Name": "Event"
+            }, {
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+            }]
+        },
+        "CountItems" : {
+            "BaseType": "SizeInteger"
+        },
+        "Item" : {
+            "BaseType": "SharedReference<UI.View>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+		    }]
+        }
+    }
+}

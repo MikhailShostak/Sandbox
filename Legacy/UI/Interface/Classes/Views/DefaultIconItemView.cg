@@ -1,0 +1,23 @@
+{
+	"BaseType" : "UI.DefaultTextItemView",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}]
+	},
+	"PreViews" : [{
+		"BaseType" : "UI.ImageView",
+		"Name" : "Icon",
+		"Values" : {
+			"AffectsParentLayout" : true,
+			"HorizontalSizePolicy" : "ContentWrapped",
+			"Image" : "FileIcon",
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}]
+}

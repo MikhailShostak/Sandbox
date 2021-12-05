@@ -1,0 +1,120 @@
+{
+	"Configurations" : [{
+		"Name" : "Debug",
+		"Settings" : {
+			"com.InsaneTeam.OneStudio.CLanguage" : {
+				"CompilerSettings" : {
+					"Flags" : "$(Inherits);-g;-gcodeview;-gno-column-info;-O0"
+				}
+			}
+		}
+	}, {
+		"Name" : "Release",
+		"Settings" : {
+			"com.InsaneTeam.OneStudio.CLanguage" : {
+				"CompilerSettings" : {
+					"Flags" : "$(Inherits);-O3"
+				}
+			}
+		}
+	}],
+	"Entries" : ["Source"],
+	"Targets" : [{
+		"Actions" : [{
+			"Name" : "Install",
+			"Tasks" : [{
+				"Title" : "Install C++ headers into Library",
+				"Type" : "com.InsaneTeam.OneStudio.InstallUnixFramework",
+				"Values" : {
+					"Dependencies" : "Foundation;Data",
+					"Header" : "OneStudioCLanguage",
+					"Interface Directory" : "$(ProjectDirectory)/Source/$(TargetName)/Interface",
+					"Library Directory" : "$(DestinationDirectory)"
+				}
+			}]
+		}, {
+			"Name" : "Uninstall",
+			"Tasks" : [{
+				"Title" : "Uninstall c++ Library",
+				"Type" : "com.InsaneTeam.OneStudio.Project.TargetTasks.UninstallLibrary",
+				"Values" : {
+					"Name" : "$(ProductName)",
+					"Version" : "1.0.0"
+				}
+			}]
+		}, {
+			"Name" : "Build",
+			"Tasks" : [{
+				"Title" : "Generate C++ classes",
+				"Type" : "com.InsaneTeam.OneStudio.Project.TargetTasks.Extecute",
+				"Values" : {
+					"Application" : "ClassGen.exe",
+					"Arguments" : "-ImportAs=$(LibraryDirectory)/Math/CurrentVersion/Interface;Math -ImportAs=$(LibraryDirectory)/MathClasses/CurrentVersion/Math;Math -ImportAs=$(LibraryDirectory)/Foundation/CurrentVersion/Interface;Foundation -ImportAs=$(LibraryDirectory)/ExperimentalDebug/CurrentVersion/Interface;Experimental -Source=$(ProjectDirectory)/Source/$(TargetName)"
+				}
+			}, {
+				"Title" : "Compile static library",
+				"Type" : "com.InsaneTeam.OneStudio.CLanguage",
+				"Values" : {
+					"ProductType" : "Static Library"
+				}
+			}]
+		}],
+		"Name" : "Library",
+		"Settings" : {
+			"com.InsaneTeam.OneStudio.CLanguage" : {
+				"LinkageSettings" : {
+					"Frameworks" : "$(Inherits);OneStudioProjectLibrary$(Configuration);OneStudioPlatform"
+				}
+			},
+			"com.InsaneTeam.OneStudio.General" : {
+				"BuildingSettings" : {
+					"ProductName" : "OneStudioCLanguage$(Configuration)"
+				}
+			}
+		}
+	}, {
+		"Actions" : [{
+			"Name" : "Install",
+			"Tasks" : [{
+				"Type" : "com.InsaneTeam.OneStudio.Project.TargetTasks.Copy",
+				"Values" : {
+					"Destination path" : "$(DeveloperDirectory)$(DebugConfiguration)/Tasks/$(ProductName).dll",
+					"Source path" : "$(DestinationDirectory)/$(ProductName).dll"
+				}
+			}]
+		}, {
+			"Name" : "Build",
+			"Tasks" : [{
+				"Title" : "Compile task plugin",
+				"Type" : "com.InsaneTeam.OneStudio.CLanguage",
+				"Values" : {
+					"ProductType" : "Shared Library"
+				}
+			}, {
+				"Title" : "Install library",
+				"Type" : "com.InsaneTeam.OneStudio.Project.TargetTasks.DependencyTarget",
+				"Values" : {
+					"Action" : "Install",
+					"Configuration" : "$(Configuration)",
+					"Target" : "Library"
+				}
+			}]
+		}],
+		"Name" : "Task",
+		"Run" : {
+			"Command" : "$(DeveloperDirectory)$(DebugConfiguration)/Tools/OSBuild.exe"
+		},
+		"Settings" : {
+			"com.InsaneTeam.OneStudio.CLanguage" : {
+				"LinkageSettings" : {
+					"Frameworks" : "$(Inherits);OneStudioCLanguage$(Configuration);OneStudioProjectLibrary$(Configuration);OneStudioPlatform"
+				}
+			},
+			"com.InsaneTeam.OneStudio.General" : {
+				"BuildingSettings" : {
+					"ProductName" : "com.InsaneTeam.OneStudio.CLanguage.Task"
+				}
+			}
+		}
+	}]
+}

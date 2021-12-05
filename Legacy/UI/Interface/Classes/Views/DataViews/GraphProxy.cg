@@ -1,0 +1,5 @@
+{
+    "Namespace" : "UI",
+    "Type" : "Class",
+    "Interfaces" : ["UI.ItemAdapter"]
+}

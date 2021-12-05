@@ -1,0 +1,26 @@
+{
+	"Namespace" : "UI",
+    "Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Red",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Green",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Blue",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Alpha",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

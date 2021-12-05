@@ -1,0 +1,54 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{}, {}, {}],
+		"Padding" : {
+			"Bottom" : 4.000000,
+			"Left" : 4.000000,
+			"Right" : 4.000000,
+			"Top" : 4.000000
+		},
+		"Spacing" : 4.000000,
+		"Direction" : "Vertical"
+	},
+	"Views" : [{
+		"BaseType" : "UI.TextField",
+		"Name" : "SearchField",
+		"Values" : {
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.ListView",
+		"Name" : "SearchResults",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"X" : 300.000000,
+				"Y" : 300.000000
+			},
+			"VerticalSizePolicy" : "Fixed",
+            "AffectsParentLayout" : true
+		},
+		"Variable" : true,
+        "Bindings": {
+            "CountItems": "FoundFunctions.size()",
+            "Item": {
+	            "BaseType" : "UI.Label",
+                "Values" : {
+                    "Text" : "FoundFunctions[Index].Identifier"
+                }
+            }
+        }
+	}, {
+		"BaseType" : "UI.TextButton",
+		"Name" : "AddButton",
+		"Values" : {
+			"Text" : "Add",
+			"HorizontalSizePolicy" : "Expanded"
+		},
+		"Variable" : true
+	}]
+}

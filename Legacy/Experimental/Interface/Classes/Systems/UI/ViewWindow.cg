@@ -1,0 +1,11 @@
+{
+	"Namespace" : "UI",
+	"Type" : "Class",
+	"BaseType" : "Core.Window",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "View",
+		"Type" : "SharedReference<UI.View>",
+		"Visibility" : "Public"
+	}]
+}

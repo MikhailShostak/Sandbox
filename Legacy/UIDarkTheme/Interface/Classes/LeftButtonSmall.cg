@@ -1,0 +1,7 @@
+{
+	"Compilation" : "Embedded",
+	"Filtration" : "Nearest",
+	"Path" : "LeftButtonSmall.png",
+	"Type" : "Texture",
+	"Wrapping" : "WrapToEdge"
+}

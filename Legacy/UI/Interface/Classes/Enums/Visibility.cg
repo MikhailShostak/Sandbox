@@ -1,0 +1,5 @@
+{
+	"Namespace" : "UI",
+	"Type" : "Flags",
+	"Values" : ["SelfHidden", "ChildrenHidden", "SelfInactive", "ChildrenInactive", "SelfDisabled", "ChildrenDisabled", "SelfCollapsed", "ChildrenCollapsed"]
+}

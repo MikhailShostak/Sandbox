@@ -1,0 +1,31 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioCLanguage",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "ObjectFileName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "StaticLibraryFileName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DynamicLibraryFileName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "ApplicationFileName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DebugSymbolsFileName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

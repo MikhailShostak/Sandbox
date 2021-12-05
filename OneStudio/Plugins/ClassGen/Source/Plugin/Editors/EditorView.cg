@@ -1,0 +1,27 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.FlexBox",
+    "Views" :[{
+        "BaseType" : "UI.FlexBox",
+        "Name" : "ActionBar",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "ContentWrapped",
+            "Border" : {
+                "Bottom" : 8.000000,
+                "Left" : 8.000000,
+                "Right" : 8.000000,
+                "Top" : 8.000000
+            },
+            "Spacing" : 8
+        }
+	}],
+    "Values" : {
+        "Data" : [{
+            "Alignment" : "Start"
+        }, {
+            "Alignment" : "Center"
+        }]
+    }
+}

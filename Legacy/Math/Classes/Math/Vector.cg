@@ -1,0 +1,23 @@
+{
+	"BaseType" : "Object",
+    "Namespace" : "Math",
+	"Attributes": ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "X",
+		"Type" : "Float"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Y",
+		"Type" : "Float"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Z",
+		"Type" : "Float"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "W",
+		"Type" : "Float"
+	}],
+	"Type" : "Class"
+}

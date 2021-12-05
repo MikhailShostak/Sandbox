@@ -1,0 +1,59 @@
+{
+	"BaseType" : "UI.GroupPanel",
+	"Interfaces" : ["UI.ItemAdapter"],
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+	"Content" : {
+		"Body" : {
+			"BaseType" : "UI.FlexBox",
+			"Values" : {
+				"Data" : [{
+
+				}, {
+
+				}, {
+
+				}, {
+
+				}, {
+
+				}],
+				"Spacing" : 8,
+				"Padding" : { "Top" : 8, "Left" : 8, "Right" : 8, "Bottom" : 8 },
+				"Direction" : "Vertical"
+			},
+			"Views" : [{
+				"BaseType" : "UI.Label",
+				"Name" : "NameLabel",
+				"Values" : {
+					"Text" : "Name"
+				}
+			}, {
+				"BaseType" : "UI.TextField",
+				"Name" : "NameView",
+				"Variable" : true
+			}, {
+				"BaseType" : "UI.Label",
+				"Name" : "ParametersLabel",
+				"Values" : {
+					"Text" : "Parameters"
+				}
+			}, {
+				"BaseType" : "UI.TextButton",
+				"Name" : "ParametersAddButton",
+				"Values" : {
+					"HorizontalSizePolicy" : "Expanded",
+					"Text" : "Add"
+				},
+				"Variable" : true
+			}, {
+				"BaseType" : "UI.ListView",
+				"Name" : "ParametersView",
+				"Values" : {
+					"AffectsParentLayout" : true
+				},
+				"Variable" : true
+			}]
+		}
+	}
+}

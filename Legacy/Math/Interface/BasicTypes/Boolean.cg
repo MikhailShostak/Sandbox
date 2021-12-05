@@ -1,0 +1,4 @@
+{
+    "Source" : "using Boolean = bool;",
+    "Type": "BasicType"
+}

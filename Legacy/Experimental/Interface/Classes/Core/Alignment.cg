@@ -1,0 +1,5 @@
+{
+    "Type": "Enumeration",
+    "Namespace": "Core",
+    "Values": ["Start", "Center", "End"]
+}

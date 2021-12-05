@@ -1,0 +1,37 @@
+{
+	"CGClassDataDataObject" : {
+		"a08659f816c2045b" : {
+			"Base" : "ADataObject",
+			"Name" : "OSBuildingSettingsDataObject",
+			"Type" : "DataObject"
+		}
+	},
+	"CGPropertyDataObject" : {
+		"231f692c1a5c0932" : {
+			"Name" : "ProductName",
+			"Type" : "String"
+		},
+		"2f8193a22e70068b" : {
+			"Base" : "ADataObject",
+			"Name" : "OSBuildingSettingsDataObject",
+			"Type" : "DataObject"
+		},
+		"7e753bb093896b3a" : {
+			"Name" : "BuildingDirectory",
+			"Type" : "String"
+		},
+		"8e8199868ad54ed6" : {
+			"Name" : "SourcePaths",
+			"Type" : "String"
+		},
+		"a08659f816c2045b" : {
+			"Base" : "ADataObject",
+			"Name" : "OSBuildingSettingsDataObject",
+			"Type" : "DataObject"
+		},
+		"baea277001c0f55c" : {
+			"Name" : "DestinationDirectory",
+			"Type" : "String"
+		}
+	}
+}

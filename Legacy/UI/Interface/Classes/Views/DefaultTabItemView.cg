@@ -1,0 +1,23 @@
+{
+	"BaseType" : "UI.DefaultTextItemView",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}]
+	},
+	"Views" : [{
+		"BaseType" : "UI.Button",
+		"Name" : "CloseButton",
+		"Values" : {
+			"AffectsParentLayout" : true,
+			"HorizontalSizePolicy" : "ContentWrapped",
+			"Image" : "CloseIcon",
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}]
+}

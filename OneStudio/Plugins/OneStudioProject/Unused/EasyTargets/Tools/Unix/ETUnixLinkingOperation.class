@@ -1,0 +1,50 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "sourcePaths",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "destinationPath",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "settings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixLinkingSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETUnixLinkingOperation"
+}

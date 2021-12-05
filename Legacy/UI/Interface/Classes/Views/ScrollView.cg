@@ -1,0 +1,144 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Namespace" : "UI",
+	"Type" : "View",
+    "Properties" : [{
+        "Name" : "InternalSize",
+        "Type" : "Math.IntegerVector"
+    }, {
+        "Name" : "AlwaysShowVerticalShadow",
+        "Attributes" : "Serialized",
+        "Type" : "Boolean",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }, {
+        "Name" : "AlwaysShowHorizontalShadow",
+        "Attributes" : "Serialized",
+        "Type" : "Boolean",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }, {
+        "Name" : "ContentFit",
+        "Attributes" : "Serialized",
+        "Type" : "UI.ContentFit",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }, {
+        "Name" : "ContentPaddings",
+        "Attributes" : "Serialized",
+        "Type" : "Math.Offsets",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }, {
+        "Name" : "SliderVisibility",
+        "Attributes" : "Serialized",
+        "Type" : "UI.ScrollBarVisibility",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }],
+    "Values" : {
+        "Data" : [{}, {}, {
+            "HorizontalAlignment" : "End"
+        }, {
+            "VerticalAlignment" : "End"
+        }, {}, {
+            "HorizontalAlignment" : "End"
+        }, {
+            "VerticalAlignment" : "End"
+        }],
+        "AlwaysShowVerticalShadow" : false,
+        "AlwaysShowHorizontalShadow" : false,
+        "ContentFit" : "Fit",
+        "SliderVisibility" : "Dynamic",
+        "ContentPaddings" : {
+            "Top" : 0,
+            "Right" : 0,
+            "Bottom" : 0,
+            "Left" : 0
+        },
+        "AffectsParentLayout" : false,
+        "HorizontalSizePolicy" : "Expanded",
+        "VerticalSizePolicy" : "Expanded"
+    },
+    "Views" : [{
+        "BaseType" : "UI.CanvasView",
+        "Name" : "Surface",
+        "Values" : {
+            "AffectsParentLayout" : false,
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded"
+        },
+        "Views" : [{
+            "BaseType" : "UI.View",
+            "Name" : "ContentView",
+            "External" : true,
+            "Default" : {
+                "BaseType" : "UI.Overlay",
+                "Name" : "DefaultOverlayContentView",
+                "Values" : {
+                    "HorizontalSizePolicy" : "Expanded",
+                    "VerticalSizePolicy" : "Expanded"
+                }
+            },
+            "Variable" : true
+        }],
+        "Variable" : true
+    }, {
+        "BaseType" : "UI.ImageView",
+        "Name" : "ShadowTop",
+        "Variable" : true,
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Fixed",
+            "AffectsParentLayout" : false,
+            "Image" : "ShadowBottom",
+            "Visibility" : "SelfDisabled"
+        }
+	}, {
+        "BaseType" : "UI.ImageView",
+        "Name" : "ShadowRight",
+        "Variable" : true,
+        "Values" : {
+            "HorizontalSizePolicy" : "Fixed",
+            "VerticalSizePolicy" : "Expanded",
+            "AffectsParentLayout" : false,
+            "Image" : "ShadowLeft",
+            "Visibility" : "SelfDisabled"
+        }
+	}, {
+        "BaseType" : "UI.ImageView",
+        "Name" : "ShadowBottom",
+        "Variable" : true,
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Fixed",
+            "AffectsParentLayout" : false,
+            "Image" : "ShadowTop",
+            "Visibility" : "SelfDisabled"
+        }
+	}, {
+        "BaseType" : "UI.ImageView",
+        "Name" : "ShadowLeft",
+        "Variable" : true,
+        "Values" : {
+            "HorizontalSizePolicy" : "Fixed",
+            "VerticalSizePolicy" : "Expanded",
+            "AffectsParentLayout" : false,
+            "Image" : "ShadowRight",
+            "Visibility" : "SelfDisabled"
+        }
+	}, {
+        "BaseType" : "UI.Slider",
+        "Name" : "VerticalSlider",
+        "Values" : {
+            "HorizontalSizePolicy" : "ContentWrapped",
+            "VerticalSizePolicy" : "Expanded",
+            "AffectsParentLayout" : false
+        },
+        "Variable" : true
+    }, {
+        "BaseType" : "UI.Slider",
+        "Name" : "HorizontalSlider",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "ContentWrapped",
+            "AffectsParentLayout" : false
+        },
+        "Variable" : true
+    }]
+}

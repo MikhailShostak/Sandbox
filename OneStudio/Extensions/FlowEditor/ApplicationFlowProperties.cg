@@ -1,0 +1,5 @@
+{
+    "Namespace" : "ClassGen",
+    "BaseType" : "UI.ListView",
+    "Type" : "View"
+}

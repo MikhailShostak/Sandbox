@@ -1,0 +1,26 @@
+{
+    "Namespace" : "Math",
+	"Attributes": ["Structure"],
+	"Properties" : [{
+		"Name" : "X",
+		"Attributes" : "Serialized",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Y",
+		"Attributes" : "Serialized",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Z",
+		"Attributes" : "Serialized",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "W",
+		"Attributes" : "Serialized",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

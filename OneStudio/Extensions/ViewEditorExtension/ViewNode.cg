@@ -1,0 +1,24 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "Class",
+    "Attributes" : ["Structure"],
+    "Properties" : [{
+        "Name" : "Name",
+        "Type" : "String"
+    }, {
+        "Name" : "View",
+        "Type" : "SharedReference<ClassGen.PreviewNodeView>"
+    }, {
+        "Name" : "Items",
+        "Type" : "Array<SharedReference<ViewNode>>"
+    }, {
+        "Name" : "TreeItem",
+        "Type" : "WeakReference<UI.DefaultTreeItemView>"
+    }, {
+        "Name" : "Type",
+        "Type" : "ClassGen.TypeInfo"
+    }, {
+        "Name" : "Data",
+        "Type" : "AJSONObject"
+    }]
+}

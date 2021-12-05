@@ -1,0 +1,14 @@
+{
+	"Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Package",
+		"Type" : "String"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Version",
+		"Type" : "String"
+	}]
+}

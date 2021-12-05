@@ -1,0 +1,38 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "destinationFile",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : false,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : false,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "settings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixCompilationSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}],
+	"Extends" : "ETCompilationOperation",
+	"Name" : "ETUnixCompilationOperation"
+}

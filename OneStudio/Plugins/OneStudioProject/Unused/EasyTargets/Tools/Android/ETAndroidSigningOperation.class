@@ -1,0 +1,14 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETAndroidSigningOperation"
+}

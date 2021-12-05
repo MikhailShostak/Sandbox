@@ -1,0 +1,6 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.Overlay",
+    "Interfaces" : ["ClassGen.Editor", "UI.ItemAdapter"]
+}

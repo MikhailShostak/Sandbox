@@ -1,0 +1,158 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Namespace" : "OneStudio",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Data" : [{
+			"Alignment" : "Start"
+		}, {
+			"Alignment" : "Start"
+		}],
+		"Direction" : "Horizontal",
+		"HorizontalSizePolicy" : "Expanded",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Padding" : {
+			"Bottom" : 0.000000,
+			"Left" : 0.000000,
+			"Right" : 0.000000,
+			"Top" : 0.000000
+		},
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Spacing" : 0.000000,
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "Expanded"
+	},
+	"Views" : [{
+		"BaseType" : "UI.ListView",
+		"Name" : "CategoriesView",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Fixed",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 200.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Expanded"
+		}
+	}, {
+		"BaseType" : "UI.Overlay",
+		"Name" : "ContentView",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Data" : [{
+				"HorizontalAlignment" : "Start",
+				"Padding" : {
+					"Bottom" : 0.000000,
+					"Left" : 0.000000,
+					"Right" : 0.000000,
+					"Top" : 0.000000
+				},
+				"VerticalAlignment" : "Start"
+			}],
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Expanded"
+		}
+	}]
+}

@@ -1,0 +1,45 @@
+{
+	"BaseType" : "UI.View",
+	"Properties" : [{
+        "Attributes" : "Serialized",
+		"Name" : "HandlePosition",
+		"Type" : "SignedInteger",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["clampHandle", "updateSlider", "notifySlider"]
+	}, {
+        "Attributes" : "Serialized",
+		"Name" : "HandleSize",
+		"Type" : "SizeInteger",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["clampHandle", "updateSlider", "notifySlider"]
+	}, {
+        "Attributes" : "Serialized",
+		"Name" : "SliderSize",
+		"Type" : "SizeInteger",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["clampHandle", "updateSlider", "notifySlider"]
+	}, {
+        "Attributes" : "Serialized",
+		"Name" : "SliderBorder",
+		"Type" : "Math.Offsets",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["updateSlider"]
+	}, {
+		"Name" : "DraggingComponent",
+		"Type" : "SharedReference<DraggingGestureRecognizer>",
+		"Visibility" : "Public"
+	}],
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"HorizontalSizePolicy" : "ContentWrapped",
+		"VerticalSizePolicy" : "ContentWrapped",
+        "HandleSize" : 1,
+        "SliderSize" : 100
+	},
+    "Views" : [{
+        "Name" : "SliderView",
+        "BaseType" : "UI.Button",
+        "Variable" : true
+    }]
+}

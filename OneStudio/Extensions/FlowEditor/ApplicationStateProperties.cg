@@ -1,0 +1,5 @@
+{
+    "Namespace" : "ClassGen",
+    "BaseType" : "ClassGen.ObjectEditor",
+    "Type" : "View"
+}

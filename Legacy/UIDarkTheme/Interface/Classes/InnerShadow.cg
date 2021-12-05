@@ -1,0 +1,7 @@
+{
+	"Compilation" : "Embedded",
+	"Filtration" : "Nearest",
+	"Path" : "InnerShadow.png",
+	"Type" : "Texture",
+	"Wrapping" : "WrapToEdge"
+}

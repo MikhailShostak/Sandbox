@@ -1,0 +1,25 @@
+{
+	"BaseType" : "UI.DefaultIconItemView",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Center"
+		}]
+	},
+	"PreViews" : [{
+		"BaseType" : "UI.Button",
+		"Name" : "ExpandButton",
+        "Values" : {
+			"AffectsParentLayout" : true,
+			"HorizontalSizePolicy" : "ContentWrapped",
+			"Image" : "CloseIcon",
+			"VerticalSizePolicy" : "ContentWrapped"
+        },
+		"Variable" : true
+	}]
+}

@@ -1,0 +1,9 @@
+{
+	"CGClassDataDataObject" : {
+		"14b85215b7ccf2c6" : {
+			"Base" : "APlugin",
+			"Name" : "OSTaskPlugin",
+			"Type" : "Object"
+		}
+	}
+}

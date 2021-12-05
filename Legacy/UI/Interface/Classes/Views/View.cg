@@ -1,0 +1,133 @@
+{
+	"BaseType" : "AObject",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Transform",
+		"Type" : "Math.Transform",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Size",
+		"Type" : "Math.IntegerVector",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "HorizontalSizePolicy",
+		"Type" : "UI.SizePolicy",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "VerticalSizePolicy",
+		"Type" : "UI.SizePolicy",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Visibility",
+		"Type" : "UI.Visibility",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "AffectsParentLayout",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "ReadOnly|Mapped",
+		"Name" : "ContentSize",
+		"Type" : "Math.IntegerVector",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "ReadOnly|Mapped",
+		"Name" : "MinimalSize",
+		"Type" : "Math.IntegerVector",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "ReadOnly",
+		"Name" : "GlobalMatrix",
+		"Type" : "Math.Matrix",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "ReadOnly",
+		"Name" : "GraphicsMatrix",
+		"Type" : "Math.Matrix",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Views",
+		"Parameters" : ["UI.View"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "GestureRecognizers",
+		"Parameters" : ["Boolean"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Owner",
+		"Parameters" : ["UI.ViewComponent"],
+		"Type" : "PlainReference",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Parent",
+		"Parameters" : ["UI.View"],
+		"Type" : "PlainReference",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "NeededLayoutUpdate",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "NeededGraphicsUpdate",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "NeededGlobalMatrixUpdate",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "NeededGraphicsMatrixUpdate",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"HorizontalSizePolicy" : "Expanded",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "ContentWrapped"
+	}
+}

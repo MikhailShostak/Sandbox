@@ -1,0 +1,44 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "ExecutionBranches",
+		"Parameters" : ["UI.Connection"],
+		"Type" : "Array",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Connections",
+		"Parameters" : ["UI.Connection"],
+		"Type" : "Array",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Identifier",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Type",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Position",
+		"Type" : "Math.Vector",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Data",
+		"Type" : "AJSONObject",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

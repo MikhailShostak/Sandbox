@@ -1,0 +1,36 @@
+{
+	"BaseType" : "UI.View",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Text",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Placeholder",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"BindingContext" : {
+			"OnTextEditStart" : {
+				"InputArguments" : [{
+					"Type": "String",
+					"Name": "Text"
+				}]
+			},
+			"OnTextEditFinish" : {
+				"InputArguments" : [{
+					"Type": "String",
+					"Name": "Text"
+				}]
+			},
+			"OnTextEdit" : {
+				"InputArguments" : [{
+					"Type": "String",
+					"Name": "Text"
+				}]
+			}
+	},
+	"Namespace":"UI",
+	"Type" : "Class"
+}

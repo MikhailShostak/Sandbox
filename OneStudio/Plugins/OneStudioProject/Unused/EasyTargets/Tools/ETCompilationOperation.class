@@ -1,0 +1,29 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "sourceFile",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "destinationDirectory",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETCompilationOperation"
+}

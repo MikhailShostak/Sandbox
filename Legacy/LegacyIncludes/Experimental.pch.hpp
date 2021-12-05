@@ -1,0 +1,32 @@
+#pragma once
+
+#include <UI2.pch.hpp>
+#include <UI.pch.hpp>
+#include <Graphics>
+#include <GraphicsEngine.pch.hpp>
+#include <Foundation.pch.hpp>
+#include <Data>
+#include <Math.pch.hpp>
+#include <System.pch.hpp>
+#include <Assets.pch.hpp>
+#include <Console.pch.hpp>
+#include <Reflection.pch.hpp>
+#include <ImageFormats.pch.hpp>
+#include <UIDarkTheme.pch.hpp>
+#include <Fonts.pch.hpp>
+#include <Flow.pch.hpp>
+#include <freetype.pch.hpp>
+#include <glew.pch.hpp>
+#include <glfw.pch.hpp>
+#include <jpeg.pch.hpp>
+#include <png.pch.hpp>
+#include <zlib.pch.hpp>
+
+#include "Includes/ApplicationHeader.gen.h"
+#include "Includes/CommandShortcut.gen.h"
+#include "Includes/Renderer.gen.h"
+#include "Includes/Space.gen.h"
+#include "Includes/SplineComponent.gen.h"
+#include "Includes/SystemFunctions.h"
+#include "SuggestionsModel.h"
+#include "ViewFactory.h"

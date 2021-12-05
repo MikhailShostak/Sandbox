@@ -1,0 +1,18 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Type",
+		"Type" : "ClassGen.TypeInfo",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}]
+}

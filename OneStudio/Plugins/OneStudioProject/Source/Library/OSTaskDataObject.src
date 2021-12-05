@@ -1,0 +1,50 @@
+{
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSTaskDataObject",
+		"Package" : ""
+	},
+	"Properties" : [{
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "Package",
+			"Type" : "String"
+		}
+	}, {
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "Index",
+			"Type" : "uint64_t"
+		}
+	}, {
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "StepType",
+			"Type" : "String"
+		}
+	}, {
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "Description",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

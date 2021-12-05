@@ -1,0 +1,294 @@
+{
+	"Nodes" : [{
+		"Connections" : [{
+			"Data" : {
+				"Event" : "View.AboutButton.onClicked"
+			},
+			"Target" : "AboutWindow"
+		}, {
+			"Data" : {
+				"Event" : "View.NewFileButton.onClicked"
+			},
+			"Target" : "NewFileDialog"
+		}, {
+			"Data" : {
+				"Event" : "View.OpenFileButton.onClicked"
+			},
+			"Target" : "OpenFileDialog"
+		}, {
+			"Data" : {
+				"Event" : "View.SettingsButton.onClicked"
+			},
+			"Target" : "SettingsWindow"
+		}, {
+			"Data" : {
+				"Event" : "onClosed"
+			},
+			"Target" : "UnsavedFiles"
+		}],
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 100.000000,
+						"Y" : 100.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 1800.000000,
+						"Y" : 900.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "One Studio",
+				"View" : "OneStudio.MainView"
+			}
+		},
+		"Identifier" : "MainWindow",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 10.000000,
+			"Y" : 230.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}, {
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 100.000000,
+						"Y" : 100.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 1800.000000,
+						"Y" : 900.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "Settings",
+				"View" : "OneStudio.SettingsView"
+			}
+		},
+		"Identifier" : "SettingsWindow",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 230.000000,
+			"Y" : 180.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}, {
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 100.000000,
+						"Y" : 100.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 800.000000,
+						"Y" : 480.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "New",
+				"View" : "OneStudio.NewFileView"
+			}
+		},
+		"Identifier" : "NewFileDialog",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 240.000000,
+			"Y" : 280.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}, {
+		"Data" : {
+			"BaseType" : "OneStudio.FileManager"
+		},
+		"Identifier" : "FileManager",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 10.000000,
+			"Y" : 10.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "AplicationComponent"
+	}, {
+		"Data" : {
+			"BaseType" : "OneStudio.TaskManager"
+		},
+		"Identifier" : "TaskManager",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 10.000000,
+			"Y" : 30.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "AplicationComponent"
+	}, {
+		"Data" : {
+			"BaseType" : "OneStudio.WindowManager"
+		},
+		"Identifier" : "WindowManager",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 10.000000,
+			"Y" : 50.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "AplicationComponent"
+	}, {
+		"Data" : {
+			"BaseType" : "OneStudio.ApplicationManager"
+		},
+		"Identifier" : "ApplicationManager",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 10.000000,
+			"Y" : 50.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "AplicationComponent"
+	}, {
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 100.000000,
+						"Y" : 100.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 800.000000,
+						"Y" : 480.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "Open",
+				"View" : "OneStudio.OpenFileView"
+			}
+		},
+		"Identifier" : "OpenFileDialog",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 240.000000,
+			"Y" : 230.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}, {
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "About",
+				"View" : "OneStudio.AboutView"
+			}
+		},
+		"Identifier" : "AboutWindow",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 240.000000,
+			"Y" : 130.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}, {
+		"Data" : {
+			"BaseType" : "UI.ViewWindow",
+			"Values" : {
+				"BackgroundColor" : {
+					"Alpha" : 1.000000,
+					"Blue" : 0.15,
+					"Green" : 0.15,
+					"Red" : 0.15
+				},
+				"Geometry" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					},
+					"Size" : {
+						"W" : 0.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					}
+				},
+				"Title" : "UnsavedFiles",
+				"View" : "OneStudio.UnsavedFilesView"
+			}
+		},
+		"Identifier" : "UnsavedFiles",
+		"Position" : {
+			"W" : 0.000000,
+			"X" : 240.000000,
+			"Y" : 330.000000,
+			"Z" : 0.000000
+		},
+		"Type" : "State"
+	}],
+	"Type" : "ApplicationFlow"
+}

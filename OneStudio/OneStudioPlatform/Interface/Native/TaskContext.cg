@@ -1,0 +1,5 @@
+{
+	"Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Native"]
+}

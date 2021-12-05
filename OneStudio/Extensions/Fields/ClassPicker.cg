@@ -1,0 +1,33 @@
+BaseType: UI.FlexBox
+Functions:
+  - Callable: true
+    Identifier: ShowClass
+  - Callable: true
+    Identifier: OpenClass
+Namespace: ClassGen
+Type: View
+Values:
+  Data:
+    - {}
+    - {}
+    - {}
+Views:
+  - BaseType: UI.TextField
+    Name: TextField
+    Values:
+      Placeholder: Class Type
+    Variable: true
+  - BaseType: UI.TextButton
+    Bindings:
+      OnClick: showClass()
+    Name: NavigateButton
+    Values:
+      Text: Show
+    Variable: true
+  - BaseType: UI.TextButton
+    Bindings:
+      OnClick: openClass()
+    Name: OpenButton
+    Values:
+      Text: Open
+    Variable: true

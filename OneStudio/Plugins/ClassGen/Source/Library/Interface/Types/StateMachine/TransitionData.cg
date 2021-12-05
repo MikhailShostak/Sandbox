@@ -1,0 +1,16 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"Properties" : [{
+		"Name" : "Event",
+		"Type" : "String",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "TranstionType",
+		"Type" : "String",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}],
+	"Type" : "Class"
+}

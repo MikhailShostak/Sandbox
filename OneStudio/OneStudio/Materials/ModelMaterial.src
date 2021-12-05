@@ -1,0 +1,13 @@
+{
+	"FragmentColor" : "return vec4(1.0, 1.0, 1.0, 1.0);",
+	"General" : {
+		"BaseMaterial" : "Material",
+		"Name" : "ModelMaterial",
+		"Package" : "Core"
+	},
+	"MeshLayout" : [],
+	"Meshlayout" : [["Position", "Float3"]],
+	"Properties" : [["ModelViewProjectionMatrix", "Matrix4"]],
+	"Scheme" : "Material",
+	"VertexPosition" : "vPosition = Position;\nreturn ModelViewProjectionMatrix * vec4(Position, 1.0);"
+}

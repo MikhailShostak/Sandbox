@@ -1,0 +1,9 @@
+{
+    "Namespace" : "Core",
+    "Type" : "Class",
+	"Properties" : [{
+		"Name" : "Entities",
+		"Parameters" : ["Core.Entity"],
+		"Type" : "ArrayWithSharedData"
+	}]
+}

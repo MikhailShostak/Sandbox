@@ -1,0 +1,11 @@
+BaseType: Core.Window2
+Namespace: OneStudio
+Type: DataAsset
+Values:
+  Composition:
+    UI.UIComposition:
+      Root: OneStudio.MainViewAsset
+  InitialSize:
+    X: 800
+    Y: 480
+  Title: One Studio

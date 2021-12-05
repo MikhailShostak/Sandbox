@@ -1,0 +1,29 @@
+{
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCCompilationSettingsDataObject",
+		"Package" : ""
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "Defines",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "Includes",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "IncludePaths",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

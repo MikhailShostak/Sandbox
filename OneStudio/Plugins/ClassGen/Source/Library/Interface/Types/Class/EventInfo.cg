@@ -1,0 +1,22 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "BaseType",
+		"Type" : "ClassGen::TypeInfo",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "InputArguments",
+		"Parameters" : ["ClassGen.Parameter"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}]
+}

@@ -1,0 +1,14 @@
+{
+	"Attributes" : "Structure",
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Name" : "Identifier",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "View",
+		"Type" : "SharedReference<UI.View>",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

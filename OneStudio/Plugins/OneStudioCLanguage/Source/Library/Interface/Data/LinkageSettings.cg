@@ -1,0 +1,21 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioCLanguage",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Libraries",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "LibraryPaths",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Frameworks",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

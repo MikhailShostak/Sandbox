@@ -1,0 +1,36 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioCLanguage",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "CompilerSettings",
+		"Type" : "OneStudioCLanguage.CompilerSettings",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "CompilationSettings",
+		"Type" : "OneStudioCLanguage.CompilationSettings",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "ArchiverSettings",
+		"Type" : "OneStudioCLanguage.ArchiverSettings",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "LinkerSettings",
+		"Type" : "OneStudioCLanguage.LinkerSettings",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "LinkageSettings",
+		"Type" : "OneStudioCLanguage.LinkageSettings",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "FilesSettings",
+		"Type" : "OneStudioCLanguage.FilesSettings",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

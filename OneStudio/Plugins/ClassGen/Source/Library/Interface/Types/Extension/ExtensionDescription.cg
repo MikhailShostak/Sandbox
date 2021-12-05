@@ -1,0 +1,31 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Interface",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Implementation",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Package",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Version",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Revision",
+		"Type" : "UnsignedInteger",
+		"Visibility" : "Public"
+	}]
+}

@@ -1,0 +1,6 @@
+{
+	"BaseType" : "UI.Switch",
+	"Namespace" : "ClassGen",
+    "Type" : "View",
+    "Interfaces" : ["FieldEditor"]
+}

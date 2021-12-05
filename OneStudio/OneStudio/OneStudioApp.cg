@@ -1,0 +1,26 @@
+BaseType: Core.Application2
+Namespace: OneStudio
+Type: DataAsset
+Values:
+  Components:
+    - GraphicsComponent:
+        Active: true
+    - LaunchComponent:
+        Active: true
+        Windows:
+          - OneStudio.OneStudioMainWindow
+    - UIComponent:
+        Active: true
+        MainView:
+          OneStudio.MainView:
+            VerticalSizePolicy: Expanded
+    - UI.LegacyApplication:
+        Active: true
+    - OneStudio.FileManager:
+        Active: true
+    - OneStudio.TaskManager:
+        Active: true
+    - OneStudio.WindowManager:
+        Active: true
+    - OneStudio.ApplicationManager:
+        Active: true

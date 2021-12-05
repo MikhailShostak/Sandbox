@@ -1,0 +1,205 @@
+{
+	"BaseType" : "UI.View",
+	"Name" : "CreateFileDialog",
+	"Type" : "View",
+	"Values" : {
+		"HorizontalSizePolicy" : "Fixed",
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 770.000000,
+			"Y" : 130.000000,
+			"Z" : 0.000000
+		},
+		"VerticalSizePolicy" : "Fixed"
+	},
+	"Views" : [{
+		"BaseType" : "UI.Label",
+		"Name" : "TypeLabel",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 250.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Type",
+			"TextAlign" : "End",
+			"TextWrapping" : "Inline",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 10.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : false
+	}, {
+		"BaseType" : "UI.DropDownList",
+		"Name" : "TypeList",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 490.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 270.000000,
+					"Y" : 10.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.TextButton",
+		"Name" : "CreateButton",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 80.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Create",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 590.000000,
+					"Y" : 100.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.TextButton",
+		"Name" : "CancelButton",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 80.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Cancel",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 680.000000,
+					"Y" : 100.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.Label",
+		"Name" : "NameLabel",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 250.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Name",
+			"TextAlign" : "End",
+			"TextWrapping" : "Inline",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 40.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : false
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "NameTextField",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 490.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 270.000000,
+					"Y" : 40.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.Label",
+		"Name" : "NamespaceLabel",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 250.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Namespace",
+			"TextAlign" : "End",
+			"TextWrapping" : "Inline",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 70.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : false
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "NamespaceTextField",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 490.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 270.000000,
+					"Y" : 70.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Variable" : true
+	}]
+}

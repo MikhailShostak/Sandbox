@@ -1,0 +1,10 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Namespace" : "OneStudio",
+	"Type" : "View",
+	"Views" : [{
+		"BaseType" : "UI.ImageView"
+	}, {
+		"BaseType" : "UI.Label"
+	}]
+}

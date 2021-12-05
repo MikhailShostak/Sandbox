@@ -1,0 +1,149 @@
+{
+	"BaseType" : "UI.SplitView",
+	"Interfaces" : ["ClassGen.Editor", "UI.ItemAdapter", "UI.TreeAdapter<ClassGen.ViewNode>"],
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+
+		}, {
+
+		}, {
+
+		}],
+		"HorizontalSizePolicy" : "Expanded",
+		"VerticalSizePolicy" : "Expanded"
+	},
+	"Views" : [{
+		"BaseType" : "UI.FlexBox",
+		"Name" : "PropertiesView",
+		"Values" : {
+			"Data" : [{}, {}, {}, {}],
+			"Direction" : "Vertical",
+			"Spacing" : 4.000000
+		},
+		"Variable" : false,
+		"Views" : [{
+			"BaseType" : "UI.GroupPanel",
+			"Content" : {
+				"Body" : {
+					"BaseType" : "UI.TreeView<ClassGen.ViewNode>",
+					"Name" : "Outliner",
+					"Variable" : true
+				}
+			},
+			"Name" : "ViewsGroupPanel",
+			"Values" : {
+				"VerticalSizePolicy" : "Expanded"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "UI.TextButton",
+			"Name" : "TestButton",
+			"Values" : {
+				"Text" : "Test"
+			},
+			"Variable" : true
+		}]
+	}, {
+		"BaseType" : "UI.FlexBox",
+		"Name" : "Content",
+		"Values" : {
+			"Data" : [{
+
+			}, {
+
+			}],
+			"Direction" : "Vertical",
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "Expanded"
+		},
+		"Variable" : false,
+		"Views" : [{
+			"BaseType" : "UI.FlexBox",
+			"Name" : "Toolbar",
+			"Values" : {
+				"Data" : [{
+
+				}, {
+
+				}, {
+
+				}, {
+
+				}]
+			},
+			"Variable" : false,
+			"Views" : [{
+				"BaseType" : "UI.TextButton",
+				"Name" : "SnapToGridSwitcher",
+				"Values" : {
+					"Text" : "Snap"
+				},
+				"Variable" : true
+			}, {
+				"BaseType" : "UI.TextButton",
+				"Name" : "GridSwitcher",
+				"Values" : {
+					"Text" : "Grid"
+				},
+				"Variable" : true
+			}, {
+				"BaseType" : "UI.TextButton",
+				"Name" : "CheckSwitcher",
+				"Values" : {
+					"Text" : "Check"
+				},
+				"Variable" : true
+			}]
+		}, {
+			"BaseType" : "UI.GridView",
+			"Content" : {
+				"Root" : {
+					"BaseType" : "UI.ScrollView",
+					"Name" : "Graph",
+					"Values" : {
+						"AlwaysShowHorizontalShadow" : true,
+						"AlwaysShowVerticalShadow" : true,
+						"ContentFit" : "HalfPaddings"
+					},
+					"Variable" : true
+				}
+			},
+			"Name" : "GridView",
+			"Values" : {
+				"VerticalSizePolicy" : "Expanded"
+			},
+			"Variable" : true
+		}]
+	}, {
+		"BaseType" : "UI.Overlay",
+		"Values" : {
+			"Data" : [{
+
+			}, {
+
+			}],
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "Expanded"
+		},
+		"Variable" : false,
+		"Views" : [{
+			"BaseType" : "ClassGen.ViewPropertiesEditor",
+			"Name" : "PropertiesView",
+			"Values" : {
+				"HorizontalSizePolicy" : "Expanded",
+				"VerticalSizePolicy" : "Expanded"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "ClassGen.ClassEditor",
+			"Name" : "ClassEditor",
+			"Values" : {
+				"HorizontalSizePolicy" : "Expanded",
+				"VerticalSizePolicy" : "Expanded"
+			},
+			"Variable" : true
+		}]
+	}]
+}

@@ -1,0 +1,10 @@
+#if APlatformWindowsDesktop
+    font.setFamily("Consolas");
+    font.setPointSize(9);
+#elif APlatformApple
+    font.setFamily("Menlo");
+    font.setPointSize(10);
+#else
+    font.setFamily("Courier");
+    font.setPointSize(8);
+#endif

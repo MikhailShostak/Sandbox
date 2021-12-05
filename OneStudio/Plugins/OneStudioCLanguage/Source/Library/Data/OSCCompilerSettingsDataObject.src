@@ -1,0 +1,49 @@
+{
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCCompilerSettingsDataObject",
+		"Package" : ""
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "Compiler",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "IncludeFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "IncludePathFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "DefineFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "OutputFileFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "CompilationFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "Flags",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

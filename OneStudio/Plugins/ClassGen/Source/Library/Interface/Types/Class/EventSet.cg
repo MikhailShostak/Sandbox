@@ -1,0 +1,12 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Events",
+        "Parameters" : ["ClassGen.FunctionInfo"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}]
+}

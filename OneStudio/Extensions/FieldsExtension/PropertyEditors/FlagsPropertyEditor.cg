@@ -1,0 +1,6 @@
+{
+	"BaseType" : "UI.ListView",
+	"Namespace" : "ClassGen",
+    "Type" : "View",
+    "Interfaces" : ["FieldEditor"]
+}

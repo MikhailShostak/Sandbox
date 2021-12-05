@@ -1,0 +1,15 @@
+{
+	"Namespace":"Graphics",
+	"Type" : "Class",
+    "Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Wrapping",
+		"Type" : "Graphics.TextureWrapping",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Filtration",
+		"Type" : "Graphics.TextureFiltration",
+		"Visibility" : "Public"
+	}]
+}

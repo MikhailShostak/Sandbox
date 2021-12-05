@@ -1,0 +1,13 @@
+{
+	"BaseType" : "UI.SplitView",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Areas",
+		"Parameters" : ["UI.DockViewArea"],
+		"Type" : "Array",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["UpdateAreas"]
+	}],
+	"Namespace":"UI",
+	"Type" : "View"
+}

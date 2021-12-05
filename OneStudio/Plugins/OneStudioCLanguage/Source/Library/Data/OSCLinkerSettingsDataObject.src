@@ -1,0 +1,52 @@
+{
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCLinkerSettingsDataObject"
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "Linker",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "LibraryFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "LibraryPathFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "OutputFileFlag",
+			"Type" : "String"
+		}
+	}, {
+		"General" : {
+			"Name" : "Flags",
+			"Type" : "String"
+		}
+	}, {
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "ApplicationFlags",
+			"Type" : "String"
+		}
+	}, {
+		"Description" : {
+			"Link" : "",
+			"Notes" : ""
+		},
+		"General" : {
+			"Name" : "LibraryFlags",
+			"Type" : "String"
+		}
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

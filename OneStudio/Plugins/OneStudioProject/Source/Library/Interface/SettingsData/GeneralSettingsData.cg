@@ -1,0 +1,47 @@
+{
+	"Namespace" : "OneStudioProject2",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "ProductName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Package",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Revision",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "VersionCode",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "VersionName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "BuildingDirectory",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DestinationDirectory",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "SourcePaths",
+		"Parameters" : ["String"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+    "BaseType" : "AObject"
+}

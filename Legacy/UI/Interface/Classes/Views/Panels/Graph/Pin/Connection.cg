@@ -1,0 +1,21 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Name" : "Source",
+		"Type" : "String",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "Target",
+		"Type" : "String",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}, {
+		"Name" : "Data",
+		"Type" : "AJSONObject",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}],
+	"Type" : "Class"
+}

@@ -1,0 +1,5 @@
+{
+	"TemplateTypes" : ["Type"],
+	"Type" : "Class",
+	"ContainerLayout" : ["Type"]
+}

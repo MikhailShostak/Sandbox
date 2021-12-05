@@ -1,0 +1,33 @@
+{
+	"CGClassDataDataObject" : {
+		"460cd1a70b6ea6f1" : {
+			"Base" : "AOperation",
+			"Name" : "OSBuildingOperation",
+			"Type" : "Object"
+		}
+	},
+	"CGPropertyDataObject" : {
+		"3ea922155638bfa1" : {
+			"Name" : "StepType",
+			"Type" : "String"
+		},
+		"460cd1a70b6ea6f1" : {
+			"Base" : "AOperation",
+			"Name" : "OSBuildingOperation",
+			"Type" : "Object"
+		},
+		"538775a51d3e6c61" : {
+			"Base" : "AOperation",
+			"Name" : "OSBuildingOperation",
+			"Type" : "Object"
+		},
+		"6481f6558eb8bc55" : {
+			"Name" : "Package",
+			"Type" : "String"
+		},
+		"7ecffbede2072728" : {
+			"Name" : "Index",
+			"Type" : "uint64_t"
+		}
+	}
+}

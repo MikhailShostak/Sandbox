@@ -1,0 +1,30 @@
+{
+    "Attributes" : ["Structure"],
+	"Namespace" : "OneStudioProject2",
+	"Type" : "Class",
+    "Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Targets",
+		"Parameters" : ["OneStudioProject2.Target"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Entries",
+		"Parameters" : ["Path"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Configurations",
+		"Parameters" : ["OneStudioProject2.Configuration"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Settings",
+		"Parameters" : ["OneStudioProject2.Settings"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}]
+}

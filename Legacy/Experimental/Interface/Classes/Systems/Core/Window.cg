@@ -1,0 +1,47 @@
+{
+	"Events" : [{
+		"Name" : "OnVisibilityChanged"
+	}, {
+		"Name" : "OnClosed"
+	}],
+	"Namespace" : "Core",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "BackgroundColor",
+		"Type" : "UI.Color",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Title",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Geometry",
+		"Type" : "Math.IntegerRectangle",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"BackgroundColor" : {
+			"Alpha" : 0.000000,
+			"Blue" : 0.000000,
+			"Green" : 0.000000,
+			"Red" : 0.000000
+		},
+		"Geometry" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		}
+	}
+}

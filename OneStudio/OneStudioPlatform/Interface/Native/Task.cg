@@ -1,0 +1,20 @@
+{
+	"Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Native"],
+	"Properties" : [{
+		"Name" : "Title",
+		"Type" : "String"
+	}, {
+		"Name" : "Text",
+		"Type" : "String"
+	}],
+	"Functions" : [{
+		"Attributes" : "Abstract",
+		"Identifier" : "CreateSubTask",
+		"OutputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.OSPTask>",
+			"Name": "SubTask"
+		}]
+	}]
+}

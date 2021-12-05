@@ -1,0 +1,16 @@
+{
+	"Namespace" : "Core",
+    "Attributes" : ["Structure"],
+	"Type" : "Class",
+    "Properties" : [{
+		"Name" : "KeyCode",
+		"Type" : "SizeInteger",
+		"Visibility" : "Public",
+        "Attributes" : "Serialized"
+	}, {
+		"Name" : "KeyModifier",
+		"Type" : "Core.KeyModifier",
+		"Visibility" : "Public",
+        "Attributes" : "Serialized"
+	}]
+}

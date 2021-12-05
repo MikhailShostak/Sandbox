@@ -1,0 +1,16 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "targets",
+		"Type" : {
+			"Name" : "Array<SharedReference<EATargets>>",
+			"Type" : "Data"
+		},
+		"Movable" : false,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : false,
+		"Mutable" : false
+	}],
+	"Name" : "ETProject"
+}

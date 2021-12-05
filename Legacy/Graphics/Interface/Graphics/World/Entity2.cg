@@ -1,0 +1,6 @@
+Namespace: Core
+Properties:
+  - Attributes: Serialized
+    Name: Components
+    Type: SharedReference<Core.EntityComponent>
+Type: Class

@@ -1,0 +1,81 @@
+{
+	"BaseType" : "UI.PopupView",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"HorizontalSizePolicy" : "ContentWrapped",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "ContentWrapped"
+	},
+	"Content" : [{
+		"BaseType" : "UI.Label",
+		"Name" : "Header",
+		"Values" : {
+			"Text" : "Find File",
+			"TextAlign" : "Center",
+			"HorizontalSizePolicy" : "ContentWrapped",
+			"VerticalSizePolicy" : "ContentWrapped"
+		}
+	}, {
+		"BaseType" : "UI.FlexBox",
+		"Name" : "Content",
+		"Values" : {
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "Expanded",
+			"Direction" : "Vertical",
+			"Spacing" : 8,
+			"Data" : [{
+
+			}, {
+
+			}]
+		},
+		"Views" : [{
+			"BaseType" : "UI.ListView",
+			"Name" : "List",
+			"Values" : {
+				"HorizontalSizePolicy" : "Expanded",
+				"VerticalSizePolicy" : "Expanded"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "UI.TextField",
+			"Name" : "SearchField",
+			"Values" : {
+				"HorizontalSizePolicy" : "Expanded",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}]
+	}]
+}

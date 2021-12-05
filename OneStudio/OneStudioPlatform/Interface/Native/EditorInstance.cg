@@ -1,0 +1,42 @@
+{
+	"Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Native"],
+	"Functions" : [{
+		"Attributes" : "Abstract",
+		"Identifier" : "IndexFile",
+		"InputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.FileSystemItem>",
+			"Name": "Item"
+		}]
+	}, {
+		"Identifier" : "LoadFile",
+		"InputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.FileSystemItem>",
+			"Name": "Item"
+		}, {
+			"Type": "String",
+			"Name": "Identifier"
+		}],
+		"OutputArguments" : [{
+			"Type": "SharedReference<UI.View>",
+			"Name": "EditorView"
+		}]
+	}, {
+		"Identifier" : "SaveFile",
+		"InputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.FileSystemItem>",
+			"Name": "Item"
+		}],
+		"OutputArguments" : [{
+			"Type": "Boolean",
+			"Name": "Result"
+		}]
+	}, {
+		"Identifier" : "CloseFile",
+		"InputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.FileSystemItem>",
+			"Name": "Item"
+		}]
+	}]
+}

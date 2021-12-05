@@ -1,0 +1,15 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Alignment",
+		"Type" : "Core.Alignment",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"Alignment" : "Start",
+		"Direction" : "Horizontal"
+	}
+}

@@ -1,0 +1,5 @@
+{
+    "Type": "Enumeration",
+    "Namespace": "ClassGen",
+    "Values": ["Value", "Array", "Stack", "Queue", "OrederedSet", "UnorderedSet", "OrderedDictionary", "UnorderedDictionary"]
+}

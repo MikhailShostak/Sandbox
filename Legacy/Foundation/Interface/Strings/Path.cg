@@ -1,0 +1,5 @@
+{
+    "Includes": ["APath.h"],
+    "Source" : "using Path = APath;",
+    "Type": "BasicType"
+}

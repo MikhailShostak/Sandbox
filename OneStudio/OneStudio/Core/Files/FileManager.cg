@@ -1,0 +1,22 @@
+{
+	"Namespace" : "OneStudio",
+	"Type" : "Class",
+    "Interfaces" : ["ApplicationComponent", "OneStudioPlatform.FileContext"],
+	"Properties" : [{
+		"Name" : "WorkspaceData",
+		"Type" : "OneStudio.WorkspaceData",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Types",
+		"Type" : "Array<OneStudio.TypeData>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Editors",
+		"Type" : "Array<OneStudioPlatform.EditorData>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "OpenedFiles",
+		"Type" : "Array<OneStudio.EditableFile>",
+		"Visibility" : "Public"
+	}]
+}

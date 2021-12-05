@@ -1,0 +1,5 @@
+{
+    "Type": "Flags",
+    "Namespace": "ClassGen",
+    "Values": ["Abstract", "Constant"]
+}

@@ -1,0 +1,5 @@
+{
+	"Namespace" : "Graphics",
+	"Type" : "Enumeration",
+	"Values" : ["Nearest", "Bilinear", "Trilinear", "Anisotropic"]
+}

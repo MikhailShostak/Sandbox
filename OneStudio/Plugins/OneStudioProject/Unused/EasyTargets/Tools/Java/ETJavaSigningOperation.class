@@ -1,0 +1,86 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "sourcePackage",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "destinationPackage",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "keyStoreFile",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "keyStorePassword",
+		"Type" : {
+			"Name" : "String",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "keyName",
+		"Type" : {
+			"Name" : "String",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "keyPassword",
+		"Type" : {
+			"Name" : "String",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETJavaSigningOperation"
+}

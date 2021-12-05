@@ -1,0 +1,6 @@
+{
+	"Namespace" : "OneStudio",
+	"Type" : "Class",
+    "Attributes" : ["Native"],
+	"BaseType" : "UI.TreeWidget<OneStudio.Task>"
+}

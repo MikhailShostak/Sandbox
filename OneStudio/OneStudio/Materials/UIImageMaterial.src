@@ -1,0 +1,12 @@
+{
+	"FragmentColor" : "if(vUV.x < ClippingTopLeft.x || (ClippingBottomRight.x) < vUV.x  || vUV.y < ClippingTopLeft.y || (ClippingBottomRight.y) < vUV.y)\ndiscard;\nreturn texture2D(Image, (vUV * ImageScale) + ImageOffset) * Color;",
+	"General" : {
+		"BaseMaterial" : "Core::ModelMaterial",
+		"Name" : "ImageMaterial",
+		"Package" : "UI"
+	},
+	"MeshLayout" : [["Position", "Float3"], ["Normal", "Float3"], ["UV", "Float2"]],
+	"Properties" : [["Image", "Texture"], ["ClippingTopLeft", "Float2"], ["ClippingBottomRight", "Float2"], ["ImageOffset", "Float2"], ["Color", "Color"], ["ImageScale", "Float2"]],
+	"Scheme" : "Material",
+	"VertexPosition" : "vPosition = Position;\nvUV = UV;\nreturn ModelViewProjectionMatrix * vec4(Position, 1.0);"
+}

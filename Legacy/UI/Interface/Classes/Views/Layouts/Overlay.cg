@@ -1,0 +1,15 @@
+{
+	"BaseType" : "UI.View",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Data",
+		"Type" : "Array<UI.OverlayData>",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"HorizontalSizePolicy" : "Expanded",
+		"VerticalSizePolicy" : "ContentWrapped"
+	}
+}

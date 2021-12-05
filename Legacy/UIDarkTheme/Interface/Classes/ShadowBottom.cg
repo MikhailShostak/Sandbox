@@ -1,0 +1,7 @@
+{
+	"Compilation" : "Embedded",
+	"Filtration" : "Trilinear",
+	"Path" : "ShadowBottom.png",
+	"Type" : "Texture",
+	"Wrapping" : "WrapToEdge"
+}

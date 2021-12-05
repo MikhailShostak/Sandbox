@@ -1,0 +1,5 @@
+{
+	"Namespace" : "OneStudio",
+	"Source" : "using FileInstance = OSFileSystemItem;",
+	"Type" : "BasicType"
+}

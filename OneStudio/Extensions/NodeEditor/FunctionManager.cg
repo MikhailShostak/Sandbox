@@ -1,0 +1,11 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Test",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}]
+}

@@ -1,0 +1,4 @@
+{
+    "Source" : "using ByteInteger = unsigned char;",
+    "Type": "BasicType"
+}

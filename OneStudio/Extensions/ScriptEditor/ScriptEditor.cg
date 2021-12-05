@@ -1,0 +1,113 @@
+{
+	"BaseType" : "ClassGen.GraphEditor",
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+    "Values" : {
+        "Data": [{}, {}]
+    },
+    "Properties" : [{
+        "Parameters" : ["UI.NodeSearchView"],
+        "Type" : "SharedReference",
+        "Name" : "NodeSearchView",
+        "Values" : {
+            "AffectsParentLayout" : true
+        },
+        "Variable" : true
+    }],
+    "PreViews" : [{
+        "BaseType" : "UI.FlexBox",
+        "Values" : {
+            "Data": [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+            "Direction" : "Vertical",
+            "Spacing" : 8,
+            "VerticalSizePolicy" : "Expanded"
+        },
+        "Views" : [{
+            "BaseType" : "UI.Label",
+            "Name" : "CurrentGraphLabel",
+            "Values" : {
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed",
+                "AffectsParentLayout" : true
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "UI.TextButton",
+            "Name" : "MainGraphButton",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "Text": "Show Main Graph",
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "UI.TextButton",
+            "Name" : "RunButton",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "Text": "Run"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "UI.GroupView",
+            "Name" : "DetailsView",
+            "Variable" : true,
+            "Values" : {
+                "AffectsParentLayout" : true
+            },
+            "Bindings": {
+                "CountGroups": "Items.size()",
+                "Group": "Items[GroupIndex].CreateGroup()",
+                "CountGroupItems": "Items[GroupIndex].Size",
+                "GroupItem" : "Items[GroupIndex].CreateItem(Index)"
+            }
+        }, {
+            "BaseType" : "UI.GroupHeader",
+            "Name" : "DetailsHeader",
+            "Values" : {
+                "AffectsParentLayout" : true,
+                "VerticalSizePolicy" : "ContentWrapped",
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "ClassGen.PropertyDetailsView",
+            "Name" : "PropertyDetails",
+            "Values" : {
+                "AffectsParentLayout" : true,
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "ClassGen.EventDetailsView",
+            "Name" : "EventDetails",
+            "Values" : {
+                "AffectsParentLayout" : true,
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "ClassGen.FunctionDetailsView",
+            "Name" : "FunctionDetails",
+            "Values" : {
+                "AffectsParentLayout" : true,
+                "Visibility" : "SelfCollapsed|ChildrenCollapsed"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "UI.GroupHeader",
+            "Name" : "ValuesHeader",
+            "Values" : {
+                "AffectsParentLayout" : true,
+                "VerticalSizePolicy" : "ContentWrapped"
+            },
+            "Variable" : true
+        }, {
+            "BaseType" : "ClassGen.EmbeddedObjectFieldEditor",
+            "Name" : "PropertiesTree",
+            "Values" : {
+                "AffectsParentLayout" : true
+            },
+            "Variable" : true
+        }]
+    }]
+}

@@ -1,0 +1,68 @@
+{
+	"BaseType" : "AObject",
+	"Interfaces" : ["NewInterface"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Name" : "ArrayProperty",
+		"Parameters" : ["Boolean"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "OrderedDictionaryProperty",
+		"Parameters" : ["ClassGen.VisibilityType", "Graphics.Texture"],
+		"Type" : "OrderedDictionary",
+		"Visibility" : "Private"
+	}, {
+		"Attributes" : "Abstract",
+		"Name" : "AbstractProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Protected"
+	}, {
+		"Attributes" : "ReadOnly",
+		"Name" : "ReadOnlyProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Replicated",
+		"Name" : "ReplicatedProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Mapped",
+		"Name" : "MappedProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "SerializedProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "PropertyWithCallbacks",
+		"PostCallbacks" : ["Callback3", "Callback4"],
+		"PreCallbacks" : ["Callback1", "Callback2"],
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "ProtectedProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Protected"
+	}, {
+		"Name" : "PrivateProperty",
+		"Type" : "Boolean",
+		"Visibility" : "Private"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"AbstractProperty" : false,
+		"ArrayProperty" : [true, false, true],
+		"MappedProperty" : false,
+		"OrderedDictionaryProperty" : [["Public", "TestTexture"], ["Protected", "TestTexture2"], ["Private", "TestTexture3"]],
+		"PrivateProperty" : false,
+		"PropertyWithCallbacks" : false,
+		"ProtectedProperty" : false,
+		"ReadOnlyProperty" : false,
+		"ReplicatedProperty" : false,
+		"SerializedProperty" : false
+	}
+}

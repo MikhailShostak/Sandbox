@@ -1,0 +1,42 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.SplitView",
+    "Interfaces" : ["ClassGen.Editor", "UI.GraphAdapter"],
+    "Properties" : [{
+		"Name" : "Graphs",
+		"Parameters" : ["String", "ClassGen.GraphData"],
+		"Type" : "UnorderedDictionary",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "CurrentGraph",
+		"Parameters" : ["String", "ClassGen.GraphData"],
+		"Type" : "APair",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}],
+    "Views" : [{
+        "Name" : "GridView",
+        "BaseType" : "UI.GridView",
+        "Content" : [{
+            "Name" : "Root",
+            "BaseType" : "UI.GraphView",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "VerticalSizePolicy" : "Expanded",
+                "AlwaysShowVerticalShadow" : true,
+                "AlwaysShowHorizontalShadow" : true,
+                "ContentFit" : "HalfPaddings"
+            }
+        }],
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded"
+        },
+        "Variable" : true
+    }],
+    "Values" : {
+        "Data" : [{}]
+    }
+}

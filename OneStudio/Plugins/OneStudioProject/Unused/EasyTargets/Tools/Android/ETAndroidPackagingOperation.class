@@ -1,0 +1,41 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "manifestFile",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "includeFiles",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "assetsDirectories",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETAndroidPackagingOperation"
+}

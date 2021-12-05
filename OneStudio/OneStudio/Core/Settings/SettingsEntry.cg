@@ -1,0 +1,15 @@
+{
+    "Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Title",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "ContentView",
+		"Type" : "SharedReference",
+		"Visibility" : "Public<UI.View>"
+	}],
+	"Type" : "Class"
+}

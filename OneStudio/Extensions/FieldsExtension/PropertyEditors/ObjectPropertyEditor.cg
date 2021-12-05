@@ -1,0 +1,29 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Interfaces" : ["FieldEditor"],
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+
+		}, {
+
+		}],
+		"Direction" : "Vertical"
+	},
+	"Views" : [{
+		"BaseType" : "ClassGen.ClassPicker",
+		"Name" : "ClassPicker",
+		"Values" : {
+			"AffectsParentLayout" : true
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "ClassGen.EmbeddedObjectFieldEditor",
+		"Name" : "PropertyEditor",
+		"Values" : {
+			"AffectsParentLayout" : true
+		},
+		"Variable" : true
+	}]
+}

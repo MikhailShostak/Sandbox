@@ -1,0 +1,22 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioPlatform",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Identifier",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "SuppoertedTypes",
+		"Parameters" : ["Text"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Instance",
+		"Parameters" : ["OneStudioPlatform.EditorInstance"],
+		"Type" : "SharedReference",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

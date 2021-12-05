@@ -1,0 +1,44 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Interfaces" : ["FieldEditor"],
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+
+		}, {
+
+		}, {
+
+		}, {
+
+		}],
+		"Direction" : "Vertical"
+	},
+	"Views" : [{
+		"BaseType" : "UI.DropDownList",
+		"Name" : "Type",
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "X",
+		"Values" : {
+			"Placeholder" : "X"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "Y",
+		"Values" : {
+			"Placeholder" : "Y"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "Z",
+		"Values" : {
+			"Placeholder" : "Z"
+		},
+		"Variable" : true
+	}]
+}

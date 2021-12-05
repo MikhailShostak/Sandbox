@@ -1,0 +1,11 @@
+{
+	"Namespace" : "Core",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Window",
+		"Parameters" : ["Core.Window"],
+		"Type" : "SharedReference",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

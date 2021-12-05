@@ -1,0 +1,14 @@
+{
+	"Namespace" : "Graphics",
+	"Type" : "Class",
+	"BaseType" : "Graphics.VisualComponent",
+	"Properties" : [{
+		"Name" : "Mesh",
+		"Parameters" : ["Graphics.Mesh2"],
+		"Type" : "SharedReference"
+	}, {
+		"Name" : "Material",
+		"Parameters" : ["Graphics.Material2"],
+		"Type" : "SharedReference"
+	}]
+}

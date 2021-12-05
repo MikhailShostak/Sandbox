@@ -1,0 +1,21 @@
+{
+	"Namespace" : "ClassGen",
+	"Property" : [{
+		"Name" : "Sign",
+        "Type" : "String",
+        "Attributes" : "Serialized"
+	}],
+    "Functions" : [{
+		"Identifier" : "Generate",
+		"InputArguments" : [{
+			"Type": "Array<String>",
+			"Name": "Parameters"
+		}],
+		"OutputArguments" : [{
+			"Type": "String",
+			"Name": "Code"
+		}]
+    }],
+	"Type" : "Class",
+    "BaseType" : "ClassGen.Entry"
+}

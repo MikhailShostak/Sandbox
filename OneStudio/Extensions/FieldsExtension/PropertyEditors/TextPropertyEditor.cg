@@ -1,0 +1,6 @@
+{
+	"BaseType" : "UI.TextField",
+	"Namespace" : "ClassGen",
+    "Type" : "View",
+    "Interfaces" : ["FieldEditor"]
+}

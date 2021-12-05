@@ -1,0 +1,23 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Panel",
+    "Values" : {
+        "Data" : [{}, {}]
+    },
+    "Content" : [{
+        "Name" : "Background",
+        "BaseType" : "UI.ImageView",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded",
+            "FillCenter" : true,
+            "Border" : {
+                "Left" : 0,
+                "Top" : 0,
+                "Right" : 0,
+                "Bottom" : 0
+            }
+        }
+    }]
+}

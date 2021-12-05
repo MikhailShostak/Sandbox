@@ -1,0 +1,28 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Button",
+    "Properties" : [{
+        "Attributes" : "Serialized",
+        "Name" : "Text",
+        "Type" : "String",p
+        "PostCallbacks" : ["updateText"]
+    }],
+    "Views" :[{
+		"BaseType" : "UI.Label",
+        "Name" : "Title",
+        "Values" : {
+            "TextAlign" : "Center"
+        },
+        "Variable" : true
+	}],
+    "Functions" : [{
+        "Identifier" : "UpdateText",
+        "Type" : "void"
+    }],
+    "BindingContext" : {
+        "OnClick" : {
+            "null": 0
+        }
+    }
+}

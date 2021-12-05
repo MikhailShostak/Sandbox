@@ -1,0 +1,11 @@
+{
+	"BaseType" : "UI.View",
+	"Properties" : [{
+		"Name" : "Image",
+		"Type" : "Graphics.Texture",
+		"Visibility" : "Public",
+		"Attributes" : "Serialized"
+	}],
+	"Namespace":"UI",
+	"Type" : "Class"
+}

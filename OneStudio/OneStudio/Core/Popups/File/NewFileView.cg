@@ -1,0 +1,105 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Namespace" : "OneStudio",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+			"Alignment" : "Start"
+		}, {
+			"Alignment" : "End"
+		}],
+		"Direction" : "Vertical",
+		"HorizontalSizePolicy" : "Fixed",
+		"Padding" : {
+			"Bottom" : 8.000000,
+			"Left" : 8.000000,
+			"Right" : 8.000000,
+			"Top" : 8.000000
+		},
+		"Spacing" : 8.000000,
+		"VerticalSizePolicy" : "Fixed"
+	},
+	"Views" : [{
+		"BaseType" : "UI.FlexBox",
+		"Name" : "PathGroup",
+		"Values" : {
+			"Data" : [{
+				"Alignment" : "Start"
+			}],
+			"Direction" : "Horizontal",
+			"HorizontalSizePolicy" : "Expanded",
+			"Padding" : {
+				"Bottom" : 0.000000,
+				"Left" : 0.000000,
+				"Right" : 0.000000,
+				"Top" : 0.000000
+			},
+			"Spacing" : 0.000000,
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : false,
+		"Views" : [{
+			"BaseType" : "UI.PathField",
+			"Name" : "PathField",
+			"Values" : {
+				"Direction" : "Horizontal",
+				"HorizontalSizePolicy" : "Expanded",
+				"MinimalSize" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Padding" : {
+					"Bottom" : 0.000000,
+					"Left" : 0.000000,
+					"Right" : 0.000000,
+					"Top" : 0.000000
+				},
+				"Spacing" : 0.000000,
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}]
+	}, {
+		"BaseType" : "UI.FlexBox",
+		"Name" : "ButtonsGroup",
+		"Values" : {
+			"Data" : [{
+				"Alignment" : "Start"
+			}, {
+				"Alignment" : "Start"
+			}],
+			"Direction" : "Horizontal",
+			"HorizontalSizePolicy" : "ContentWrapped",
+			"Padding" : {
+				"Bottom" : 0.000000,
+				"Left" : 0.000000,
+				"Right" : 0.000000,
+				"Top" : 0.000000
+			},
+			"Spacing" : 8.000000,
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : false,
+		"Views" : [{
+			"BaseType" : "UI.TextButton",
+			"Name" : "CreateButton",
+			"Values" : {
+				"HorizontalSizePolicy" : "ContentWrapped",
+				"Text" : "Create",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "UI.TextButton",
+			"Name" : "CancelButton",
+			"Values" : {
+				"HorizontalSizePolicy" : "ContentWrapped",
+				"Text" : "Cancel",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}]
+	}]
+}

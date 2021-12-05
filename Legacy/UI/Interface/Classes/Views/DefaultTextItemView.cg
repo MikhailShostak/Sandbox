@@ -1,0 +1,29 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : true,
+		"Data" : [{
+			"Alignment" : "Center"
+		}],
+		"Padding" : {
+			"Bottom" : 2.000000,
+			"Left" : 4.000000,
+			"Right" : 4.000000,
+			"Top" : 2.000000
+		},
+		"Spacing" : 4.000000
+	},
+	"Views" : [{
+		"BaseType" : "UI.Label",
+		"Name" : "Title",
+		"Values" : {
+			"AffectsParentLayout" : true,
+			"HorizontalSizePolicy" : "Expanded",
+			"TextAlign" : "Start",
+			"TextWrapping" : "Inline"
+		},
+		"Variable" : true
+	}]
+}

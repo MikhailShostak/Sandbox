@@ -1,0 +1,21 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioCLanguage",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Archiver",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "OutputFileFlag",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Flags",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

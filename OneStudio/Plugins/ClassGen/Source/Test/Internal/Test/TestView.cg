@@ -1,0 +1,252 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Name" : "TestView",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Name" : "Test1",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Test2",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}],
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Data" : [{
+			"Alignment" : "Center"
+		}, {
+			"Alignment" : "Start"
+		}, {
+			"Alignment" : "End"
+		}],
+		"Direction" : "Vertical",
+		"HorizontalSizePolicy" : "Fixed",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Padding" : {
+			"Bottom" : 10.000000,
+			"Left" : 10.000000,
+			"Right" : 10.000000,
+			"Top" : 10.000000
+		},
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 600.000000,
+			"Y" : 800.000000,
+			"Z" : 0.000000
+		},
+		"Spacing" : 50.000000,
+		"Test1" : false,
+		"Test2" : false,
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "Fixed"
+	},
+	"Views" : [{
+		"BaseType" : "UI.View",
+		"Name" : "Test1",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 200.000000,
+				"Y" : 200.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		},
+		"Views" : [{
+			"BaseType" : "UI.Button",
+			"Name" : "Test1",
+			"Values" : {
+				"AffectsParentLayout" : false,
+				"ContentSize" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"HorizontalSizePolicy" : "Expanded",
+				"MinimalSize" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"NeededGlobalMatrixUpdate" : false,
+				"NeededGraphicsMatrixUpdate" : false,
+				"NeededGraphicsUpdate" : false,
+				"NeededLayoutUpdate" : false,
+				"Size" : {
+					"W" : 0.000000,
+					"X" : 230.000000,
+					"Y" : 60.000000,
+					"Z" : 0.000000
+				},
+				"Transform" : {
+					"Position" : {
+						"W" : 0.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					},
+					"Rotation" : {
+						"W" : 1.000000,
+						"X" : 0.000000,
+						"Y" : 0.000000,
+						"Z" : 0.000000
+					}
+				},
+				"VerticalSizePolicy" : "Fixed"
+			}
+		}]
+	}, {
+		"BaseType" : "UI.ImageView",
+		"Name" : "Test2",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Fixed",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 200.000000,
+				"Y" : 200.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 210.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Expanded"
+		}
+	}, {
+		"BaseType" : "UI.Button",
+		"Bindings" : ["OnClick"],
+		"Name" : "Test3",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Fixed",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 200.000000,
+				"Y" : 200.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		}
+	}]
+}

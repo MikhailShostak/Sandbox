@@ -1,0 +1,16 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioProject2",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Value",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

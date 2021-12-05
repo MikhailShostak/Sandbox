@@ -1,0 +1,16 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.GroupView",
+    "Interfaces" : ["ClassGen.Editor", "UI.GroupAdapter"],
+    "Properties" : [{
+        "Name" : "Name",
+        "Type" : "String"
+    }, {
+        "Name" : "Type",
+        "Type" : "ClassGen.TypeInfo"
+    }, {
+        "Name" : "BaseType",
+        "Type" : "ClassGen.TypeInfo"
+    }]
+}

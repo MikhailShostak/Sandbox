@@ -1,0 +1,26 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioProject",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "ProductName",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "SourcePaths",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "BuildingDirectory",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DestinationDirectory",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

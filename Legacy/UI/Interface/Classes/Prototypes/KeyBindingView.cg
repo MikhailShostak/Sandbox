@@ -1,0 +1,9 @@
+{
+	"Namespace" : "UI",
+	"Type" : "View",
+    "BaseType" : "UI.TextField",
+	"Properties" : [{
+		"Name" : "Shortcut",
+		"Type" : "Core.Shortcut"
+	}]
+}

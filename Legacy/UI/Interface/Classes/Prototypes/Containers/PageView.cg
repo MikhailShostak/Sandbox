@@ -1,0 +1,15 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "CurrentPage",
+		"PostCallbacks" : ["UpdateContent"],
+		"Type" : "SizeInteger",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"CurrentPage" : -1
+	}
+}

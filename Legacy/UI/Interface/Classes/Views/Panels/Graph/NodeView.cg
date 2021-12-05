@@ -1,0 +1,31 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Panel",
+    "Values" : {
+        "Data" : [{}, {
+            "Padding" : {
+                "Top" : 8,
+                "Left" : 8,
+                "Bottom" : 8,
+                "Right" : 8
+            }
+        }]
+    },
+    "Content" : [{
+        "BaseType" : "UI.BorderImageView",
+        "Name" : "Background",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded",
+            "Image" : "Node",
+            "UseOriginalContentSize" : false,
+            "Border" : {
+                "Left" : 8,
+                "Top" : 8,
+                "Right" : 8,
+                "Bottom" : 8
+            }
+        }
+    }]
+}

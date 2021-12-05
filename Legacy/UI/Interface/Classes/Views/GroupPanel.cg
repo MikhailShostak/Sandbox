@@ -1,0 +1,63 @@
+{
+	"BaseType" : "UI.Panel",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Content" : [{
+		"BaseType" : "UI.FlexBox",
+		"Name" : "Root",
+		"Values" : {
+			"Data" : [{
+
+			}, {
+
+			}],
+			"Direction" : "Vertical"
+		},
+		"Views" : [{
+			"BaseType" : "UI.View",
+			"Name" : "Header",
+			"External" : true,
+			"Default" : {
+				"Name" : "DefaultHeader",
+				"BaseType" : "UI.Overlay",
+				"Values" : {
+					"Data" : [{}, {
+						"Padding" : {
+							"Top" : 4,
+							"Left" : 8,
+							"Bottom" : 4,
+							"Right" : 8
+						}
+					}]
+				},
+				"Views" : [{
+					"Name" : "HeaderBackground",
+					"BaseType" : "UI.BorderImageView",
+					"Variable" : true,
+					"Values" : {
+						"VerticalSizePolicy" : "Expanded",
+						"UseOriginalContentSize" : false
+					}
+				}, {
+					"BaseType" : "UI.Label",
+					"Name" : "HeaderLabel",
+					"Variable" : true,
+					"Values" : {
+						"Text" : "Header"
+					}
+				}]
+			}
+		}, {
+			"BaseType" : "UI.View",
+			"Name" : "Body",
+			"External" : true,
+			"Default" : {
+				"BaseType" : "UI.Label",
+				"Name" : "DefaultHeader",
+				"Values" : {
+					"Text" : "Body"
+				}
+			}
+		}]
+	}]
+}

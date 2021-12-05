@@ -1,0 +1,5 @@
+{
+	"Type" : "Enumeration",
+	"Namespace" : "ClassGen",
+	"Values" : ["Undefined", "SimpleValue", "Object", "Structure", "Function", "Event", "Asset"]
+}

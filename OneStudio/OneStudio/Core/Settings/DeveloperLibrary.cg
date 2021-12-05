@@ -1,0 +1,13 @@
+{
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Name" : "Packages",
+		"Type" : "Array<OneStudio.PackageInfo>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "LibraryPath",
+		"Type" : "Path",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

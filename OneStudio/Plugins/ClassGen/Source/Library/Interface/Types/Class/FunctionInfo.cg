@@ -1,0 +1,22 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"BaseType" : "ClassGen.Function",
+	"Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Attributes",
+		"Type" : "ClassGen.FunctionAttributes",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "ExecutionBranches",
+		"Type" : "Array<String>",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Callable",
+		"Type" : "Boolean",
+		"Visibility" : "Public"
+	}]
+}

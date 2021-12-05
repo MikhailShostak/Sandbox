@@ -1,0 +1,151 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Name" : "Root",
+	"Namespace" : "OneStudio",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Data" : [{
+			"Alignment" : "Start"
+		}, {
+			"Alignment" : "Start"
+		}],
+		"Direction" : "Vertical",
+		"HorizontalSizePolicy" : "Expanded",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Padding" : {
+			"Bottom" : 8.000000,
+			"Left" : 8.000000,
+			"Right" : 8.000000,
+			"Top" : 8.000000
+		},
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 200.000000,
+			"Y" : 200.000000,
+			"Z" : 0.000000
+		},
+		"Spacing" : 8.000000,
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "ContentWrapped"
+	},
+	"Views" : [{
+		"BaseType" : "UI.ListView",
+		"Name" : "TypesList",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.ListView",
+		"Name" : "EditorsList",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}]
+}

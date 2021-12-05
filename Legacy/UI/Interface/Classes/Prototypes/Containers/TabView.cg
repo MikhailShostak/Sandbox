@@ -1,0 +1,45 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Name" : "TabView",
+	"Namespace" : "UI",
+	"Interfaces" : ["UI.ItemAdapter"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Tabs",
+		"Parameters" : ["Text"],
+		"Type" : "Array",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["UpdateTabs"]
+	}],
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+			"Alignment" : "Start"
+		}, {
+			"Alignment" : "Start"
+		}],
+		"Direction" : "Vertical",
+		"HorizontalSizePolicy" : "Expanded",
+		"Spacing" : 0.000000,
+		"VerticalSizePolicy" : "ContentWrapped"
+	},
+	"Views" : [{
+		"BaseType" : "UI.ListView",
+		"Name" : "Tabs",
+		"Values" : {
+			"Direction" : "Horizontal",
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "ContentWrapped"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.PageView",
+		"Name" : "Pages",
+		"Values" : {
+			"CurrentPage" : 0.000000,
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "Expanded"
+		},
+		"Variable" : true
+	}]
+}

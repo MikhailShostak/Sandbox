@@ -1,0 +1,16 @@
+{
+	"ExtensionDescription" : {
+		"Implementation" : "ApplicationFlowExtension",
+		"Interface" : "ClassGen.TypeExtension",
+		"Package" : "com.Devernity.ApplicationFlowExtension",
+		"Revision" : 0,
+		"Version" : "1.0.0"
+	},
+	"Type" : "Extension",
+    "Dependencies" : [
+        "Fields",
+        "ObjectEditor",
+        "NodeEditor",
+        "ClassEditor"
+    ]
+}

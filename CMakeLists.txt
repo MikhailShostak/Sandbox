@@ -18,6 +18,9 @@ conan_cmake_run(REQUIRES
     boost/1.77.0
     entt/3.9.0
     fmt/8.0.1
+    libjpeg/9d #legacy
+    tinyxml/2.6.2 #legacy
+    glew/2.2.0 #legacy
     glfw/3.3.4
     hlslpp/3.1
     imgui/1.84.0-ext
@@ -55,6 +58,8 @@ endfunction()
 
 
 add_subdirectory(ThirdParty)
+add_subdirectory(Legacy)
+add_subdirectory(OneStudio)
 add_subdirectory(Frameworks)
 add_subdirectory(Sandbox)
 add_subdirectory(ClassGenCompiler)

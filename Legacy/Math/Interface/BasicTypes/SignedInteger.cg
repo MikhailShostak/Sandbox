@@ -1,0 +1,4 @@
+{
+    "Source" : "using SignedInteger = signed int;",
+    "Type": "BasicType"
+}

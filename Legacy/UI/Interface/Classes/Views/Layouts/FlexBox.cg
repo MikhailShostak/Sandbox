@@ -1,0 +1,38 @@
+{
+	"BaseType" : "UI.View",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Data",
+		"Type" : "Array<UI.FlexBoxData>",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Direction",
+		"Type" : "UI.Direction",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Spacing",
+		"Type" : "SignedInteger",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Padding",
+		"Type" : "Math.Offsets",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"Direction" : "Horizontal",
+		"HorizontalSizePolicy" : "Expanded",
+        "Padding" : {
+			"Top" : 0.000000,
+			"Left" : 0.000000,
+			"Right" : 0.000000,
+			"Bottom" : 0.000000
+        },
+		"Spacing" : 0.000000,
+		"VerticalSizePolicy" : "ContentWrapped"
+	}
+}

@@ -1,0 +1,18 @@
+{
+    "Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Name" : "FileInstance",
+		"Type" : "SharedReference<OneStudio.FileInstance>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "EditorInstance",
+		"Type" : "SharedReference<OneStudioPlatform.EditorInstance>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "EditorView",
+		"Type" : "SharedReference<UI.View>",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

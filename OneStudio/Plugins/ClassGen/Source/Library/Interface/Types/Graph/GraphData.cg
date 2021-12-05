@@ -1,0 +1,25 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Nodes",
+		"Parameters" : ["ClassGen.NodeData"],
+		"Type" : "Array",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "EntryPoint",
+		"Type" : "ClassGen.NodeData",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "ReturnPoint",
+		"Type" : "ClassGen.NodeData",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

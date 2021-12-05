@@ -1,0 +1,24 @@
+{
+	"General" : {
+		"BaseDataClass" : "ADataObject",
+		"Name" : "OSCArchiverSettingsDataObject"
+	},
+	"Properties" : [{
+		"General" : {
+			"Name" : "Archiver",
+			"Type" : "String"
+		}
+        }, {
+                "General" : {
+                        "Name" : "OutputFileFlag",
+                        "Type" : "String"
+                }
+        }, {
+                "General" : {
+                        "Name" : "Flags",
+                        "Type" : "String"
+                }
+	}],
+	"Relations" : [],
+	"Scheme" : "DataObject"
+}

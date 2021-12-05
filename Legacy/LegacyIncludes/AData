@@ -1,0 +1,4 @@
+#pragma once
+
+#include <Data>
+#include <MetaObjectSerializationHelper.h>

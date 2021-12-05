@@ -1,0 +1,33 @@
+{
+	"CGClassDataDataObject" : {
+		"f7409a0ebee13f8f" : {
+			"Base" : "ADataObject",
+			"Name" : "OSTaskPropertyDataObject",
+			"Type" : "DataObject"
+		}
+	},
+	"CGPropertyDataObject" : {
+		"72f1e19ea7dd0d57" : {
+			"Name" : "Name",
+			"Type" : "String"
+		},
+		"b694ad745d122c0d" : {
+			"Name" : "Value",
+			"Type" : "String"
+		},
+		"bfc3f9d02ce70882" : {
+			"Name" : "Task",
+			"Type" : "SharedReference<OSTaskDataObject>"
+		},
+		"f7409a0ebee13f8f" : {
+			"Base" : "ADataObject",
+			"Name" : "OSTaskPropertyDataObject",
+			"Type" : "DataObject"
+		},
+		"fd19d27132e2b97d" : {
+			"Base" : "ADataObject",
+			"Name" : "OSTaskPropertyDataObject",
+			"Type" : "DataObject"
+		}
+	}
+}

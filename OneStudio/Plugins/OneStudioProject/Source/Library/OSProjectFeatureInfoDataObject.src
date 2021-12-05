@@ -1,0 +1,29 @@
+{
+	"CGClassDataDataObject" : {
+		"77b5bb7535de0da1" : {
+			"Base" : "ADataObject",
+			"Name" : "OSProjectFeatureInfoDataObject",
+			"Type" : "DataObject"
+		}
+	},
+	"CGPropertyDataObject" : {
+		"0637ad3286c65493" : {
+			"Name" : "Package",
+			"Type" : "String"
+		},
+		"0c6dfbed5457431c" : {
+			"Base" : "ADataObject",
+			"Name" : "OSProjectFeatureInfoDataObject",
+			"Type" : "DataObject"
+		},
+		"256def994d254646" : {
+			"Name" : "Path",
+			"Type" : "String"
+		},
+		"77b5bb7535de0da1" : {
+			"Base" : "ADataObject",
+			"Name" : "OSProjectFeatureInfoDataObject",
+			"Type" : "DataObject"
+		}
+	}
+}

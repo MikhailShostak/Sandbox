@@ -1,0 +1,67 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "ClassGen",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Type",
+		"Type" : "ClassGen.TypeInfo",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Parameters",
+		"Type" : "Array<String>",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "PreCallbacks",
+		"Type" : "Array<String>"",
+		"ValueType" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "PostCallbacks",
+		"Type" : "Array<String>",
+		"ValueType" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Visibility",
+		"Type" : "ClassGen.VisibilityType",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Attributes",
+		"Type" : "ClassGen.PropertyAttributes",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Variable",
+		"Type" : "Boolean",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "CustomGetter",
+		"Type" : "Boolean",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "CustomSetter",
+		"Type" : "Boolean",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"Variable" : false,
+		"CustomGetter" : false,
+		"CustomSetter" : false
+	}
+}

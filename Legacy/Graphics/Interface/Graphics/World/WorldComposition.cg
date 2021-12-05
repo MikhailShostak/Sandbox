@@ -1,0 +1,10 @@
+BaseType : Graphics.Composition
+Namespace: Core
+Properties:
+  - Attributes: Serialized
+    Name: Entities
+    Type: SharedReference<Core.Entity>
+  - Attributes: Serialized
+    Name: Lights
+    Type: SharedReference<Graphics.Light>
+Type: Class

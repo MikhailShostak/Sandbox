@@ -1,0 +1,89 @@
+
+void OSSyntaxHighlighter::highlightBlock(const QString &text)
+{
+        QRegExp exp;
+        int index;
+
+        exp.setPattern(
+        "\\boverride\\b|"
+        "\\bvirtual\\b|"
+        "\\bstatic\\b|"
+        "\\bclass\\b|"
+        "\\bstruct\\b|"
+        "\\bpublic\\b|"
+        "\\bprotected\\b|"
+        "\\bprivate\\b|"
+        "\\bif\\b|"
+        "\\breturn\\b|"
+        "\\bfor\\b|"
+        "\\bdo\\b|"
+        "\\bfor\\b|"
+        "\\bconst\\b|"
+        "\\bwhile\\b|"
+        "\\bextern\\b|"
+        "\\bregister\\b|"
+        "\\bvoid\\b|"
+        "\\bnullptr\\b|"
+        "\\bchar\\b|"
+        "\\bshort\\b|"
+        "\\bint\\b|"
+        "\\blong\\b|"
+        "\\bfloat\\b|"
+        "\\bdouble\\b|"
+        "\\bbool\\b|"
+        "\\binline\\b"
+        );
+
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index, len, keywordFormat);
+                index = exp.indexIn(text, index + len);
+        }
+
+        exp.setPattern("\\W(\\-|\\+)?\\d+\\.?\\d*f?[\\W\\s]");
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index + 1, len - 2, digitFormat);
+                index = exp.indexIn(text, index + len);
+        }
+
+        exp.setPattern("#\\w*\\b");
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index, len, preprocessorFormat);
+                index = exp.indexIn(text, index + len);
+        }
+
+        exp.setPattern("\"[^\"]*\"|\'[^\']+\'");
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index, len, textFormat);
+                index = exp.indexIn(text, index + len);
+        }
+
+        exp.setPattern("#include +<[^\\>]+>");
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index + 8, len, textFormat);
+                index = exp.indexIn(text, index + len);
+        }
+
+        exp.setPattern("\\/\\*[^\\*\\/]*\\*\\/");
+        index = exp.indexIn(text);
+        while(index >= 0)
+        {
+                int len = exp.matchedLength();
+                setFormat(index, len, commentFormat);
+                index = exp.indexIn(text, index + len);
+        }
+}

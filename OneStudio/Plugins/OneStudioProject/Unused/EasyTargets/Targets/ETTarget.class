@@ -1,0 +1,29 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "name",
+		"Type" : {
+			"Name" : "String",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Value" : "0",
+		"Name" : "property",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}],
+	"Name" : "ETTarget"
+}

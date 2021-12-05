@@ -1,0 +1,17 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "project",
+		"Type" : {
+			"Name" : "SharedReference<EAProject>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETProjectCleaningOperation"
+}

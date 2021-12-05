@@ -1,0 +1,16 @@
+{
+	"ExtensionDescription" : {
+		"Implementation" : "MaterialExtension",
+		"Interface" : "ClassGen.TypeExtension",
+		"Package" : "com.Devernity.MaterialExtension",
+		"Revision" : 0,
+		"Version" : "1.0.0"
+	},
+	"Type" : "Extension",
+    "Dependencies" : [
+        "Fields",
+        "ObjectEditor",
+        "NodeEditor",
+        "ClassEditor"
+    ]
+}

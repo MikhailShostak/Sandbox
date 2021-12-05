@@ -1,0 +1,95 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Name" : "GroupHeader",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"Data" : [{
+			"HorizontalAlignment" : "Start",
+			"Padding" : {
+				"Bottom" : 0.000000,
+				"Left" : 0.000000,
+				"Right" : 0.000000,
+				"Top" : 0.000000
+			},
+			"VerticalAlignment" : "Start"
+		}, {
+			"HorizontalAlignment" : "Start",
+			"Padding" : {
+				"Bottom" : 0.000000,
+				"Left" : 0.000000,
+				"Right" : 0.000000,
+				"Top" : 0.000000
+			},
+			"VerticalAlignment" : "Start"
+		}],
+		"HorizontalSizePolicy" : "Expanded",
+		"VerticalSizePolicy" : "Expanded"
+	},
+	"Views" : [{
+		"BaseType" : "UI.ImageView",
+		"Name" : "Background",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "Expanded"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.FlexBox",
+		"Name" : "Content",
+		"Values" : {
+			"AffectsParentLayout" : false,
+			"Data" : [{
+				"Alignment" : "Center"
+			}, {
+				"Alignment" : "Center"
+			}, {
+				"Alignment" : "Center"
+			}],
+			"Direction" : "Horizontal",
+			"HorizontalSizePolicy" : "Expanded",
+			"Padding" : {
+				"Bottom" : 4.000000,
+				"Left" : 4.000000,
+				"Right" : 4.000000,
+				"Top" : 4.000000
+			},
+			"Spacing" : 4.000000,
+			"VerticalSizePolicy" : "Expanded"
+		},
+		"Variable" : true,
+		"Views" : [{
+			"BaseType" : "UI.ImageView",
+			"Name" : "ExpandButton",
+			"Values" : {
+				"AffectsParentLayout" : false,
+				"HorizontalSizePolicy" : "ContentWrapped",
+				"Image" : "PlusButtonSmall",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "UI.Label",
+			"Name" : "Title",
+			"Values" : {
+				"AffectsParentLayout" : false,
+				"HorizontalSizePolicy" : "ContentWrapped",
+				"TextAlign" : "Start",
+				"TextWrapping" : "Inline",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}, {
+			"BaseType" : "UI.ImageView",
+			"Name" : "Separator",
+			"Values" : {
+				"AffectsParentLayout" : false,
+				"HorizontalSizePolicy" : "Expanded",
+				"VerticalSizePolicy" : "ContentWrapped"
+			},
+			"Variable" : true
+		}]
+	}]
+}

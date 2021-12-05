@@ -1,0 +1,16 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioProject2",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Type",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Data",
+		"Type" : "AJSONObject",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

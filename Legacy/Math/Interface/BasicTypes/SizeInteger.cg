@@ -1,0 +1,4 @@
+{
+    "Source" : "using SizeInteger = size_t;",
+    "Type": "BasicType"
+}

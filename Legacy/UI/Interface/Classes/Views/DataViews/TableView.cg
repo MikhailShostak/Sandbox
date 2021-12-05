@@ -1,0 +1,52 @@
+{
+	"BaseType" : "UI.ItemView<UI.ItemAdapter>",
+	"Namespace" : "UI",
+	"Type" : "Class",
+    "Content" : [{
+		"BaseType" : "UI.SplitView",
+		"Name" : "Content",
+		"Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+			"VerticalSizePolicy" : "ContentWrapped"
+		}
+	}],
+    "BindingContext" : {
+        "OnTableItemSelected" : {
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "RowIndex"
+		    }, {
+			    "Type": "SizeInteger",
+			    "Name": "ColumnIndex"
+		    }]
+        },
+        "OnTableItemTapped" : {
+		    "InputArguments" : [{
+			    "Type": "UI.TapGestureEvent",
+			    "Name": "Event"
+            }, {
+			    "Type": "SizeInteger",
+			    "Name": "RowIndex"
+		    }, {
+			    "Type": "SizeInteger",
+			    "Name": "ColumnIndex"
+		    }]
+        },
+        "CountColumns" : {
+            "BaseType": "SizeInteger"
+        },
+        "CountRows" : {
+            "BaseType": "SizeInteger"
+        },
+        "TableItem" : {
+            "BaseType": "SharedReference<UI.View>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "RowIndex"
+		    }, {
+			    "Type": "SizeInteger",
+			    "Name": "ColumnIndex"
+		    }]
+        }
+    }
+}

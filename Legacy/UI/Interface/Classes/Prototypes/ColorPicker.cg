@@ -1,0 +1,6 @@
+{
+	"Name" : "ColorPicker",
+	"Namespace" : "UI",
+	"BaseType" : "UI.FlexBox",
+	"Type" : "View"
+}

@@ -1,0 +1,4 @@
+{
+    "Source" : "using UnsignedInteger = unsigned int;",
+    "Type": "BasicType"
+}

@@ -1,0 +1,28 @@
+{
+	"Namespace" : "OneStudioPlatform",
+	"Type" : "Class",
+    "Attributes" : ["Interface"],
+	"Properties" : [{
+		"Name" : "Context",
+		"Attributes" : "ReadOnly",
+		"Type" : "OneStudioPlatform.ExtensionContext"
+	}, {
+		"Name" : "Dependencies",
+		"Attributes" : "ReadOnly",
+		"Parameters" : ["OneStudioPlatform.ExtensionDependency"],
+		"Type" : "Array"
+	}],
+	"Functions" : [{
+		"Identifier" : "Load",
+		"OutputArguments" : [{
+			"Type": "UnorderedDictionary<String, OneStudioPlatform.ExtensionContext>",
+			"Name": "SubTask"
+		}]
+	}, {
+		"Identifier" : "Unload",
+		"OutputArguments" : [{
+			"Type": "SharedReference<OneStudioPlatform.Task>",
+			"Name": "SubTask"
+		}]
+	}]
+}

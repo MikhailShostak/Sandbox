@@ -1,0 +1,77 @@
+{
+	"Aliases" : [],
+	"Description" : {
+		"Link" : "",
+		"Notes" : ""
+	},
+	"Eventhandlers" : [],
+	"Functions" : [{
+		"General" : {
+			"Abstract" : false,
+			"Name" : "main",
+			"ReturnType" : "AError",
+			"Storage" : "Value"
+		}
+	}],
+	"General" : {
+		"Attributes" : [],
+		"BaseClass" : "OSLinkageOperation",
+		"Interfaces" : [],
+		"Name" : "OSCLinkageOperation",
+		"OverrideConstructor" : false,
+		"OverrideDestructor" : false,
+		"Package" : ""
+	},
+	"GlobalIncludes" : [["AFoundation"], ["OneStudioProjectLibrary"]],
+	"ImplicitDeclarations" : [],
+	"LocalIncludes" : [["OSCLinkageSettingsDataObject.h"], ["OSCFilesSettingsDataObject.h"], ["OSCLinkerSettingsDataObject.h"], ["OSLinkageOperation.h"]],
+	"Properties" : [{
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "LinkageSettings",
+			"Storage" : "Reference",
+			"Type" : "OSCLinkageSettingsDataObject::Data",
+			"Visibity" : "Public"
+		}
+	}, {
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "BuildLibrary",
+			"Storage" : "",
+			"Type" : "bool",
+			"Visibity" : "Public"
+		}
+	}, {
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "FilesSettings",
+			"Storage" : "Reference",
+			"Type" : "OSCFilesSettingsDataObject::Data",
+			"Visibity" : "Public"
+		}
+	}, {
+		"General" : {
+			"Abstract" : false,
+			"Access" : "Read/Write",
+			"Attributes" : [],
+			"MappedData" : false,
+			"Name" : "LinkerSettings",
+			"Storage" : "Reference",
+			"Type" : "OSCLinkerSettingsDataObject::Data",
+			"Visibity" : "Public"
+		}
+	}],
+	"Scheme" : "Object",
+	"Template" : {
+		"Arguments" : []
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"Namespace" : "ClassGen",
+    "Attributes" : ["Structure"],
+	"Properties" : [{
+		"Name" : "Identifier",
+        "Type" : "String",
+        "Attributes" : "Serialized"
+	}, {
+		"Name" : "InputParameters",
+        "Type" : "Array<String>",
+        "Attributes" : "Serialized"
+	}, {
+		"Name" : "OutputParameters",
+        "Type" : "Array<String>",
+        "Attributes" : "Serialized"
+	}],
+	"Type" : "Class"
+}

@@ -1,0 +1,88 @@
+{
+    "Namespace" : "ClassGen",
+    "Type" : "View",
+    "BaseType" : "UI.FlexBox",
+    "Properties" : [{
+        "Name" : "Function",
+        "Type" : "ClassGen.FunctionInfo"
+    }],
+    "Views" : [{
+        "BaseType" : "UI.Label",
+        "Name" : "NameLabel",
+        "Values" : {
+            "Text" : "Name"
+        }
+    }, {
+        "BaseType" : "UI.TextField",
+        "Name" : "NameView",
+        "Variable" : true,
+        "Values" : {
+            
+        }
+    }, {
+        "BaseType" : "UI.Label",
+        "Name" : "InputArgumentsLabel",
+        "Values" : {
+            "Text" : "InputArguments"
+        }
+    }, {
+        "BaseType" : "UI.TextButton",
+        "Variable" : true,
+        "Name" : "InputArgumentsAddButton",
+        "Values" : {
+            "Text" : "Add",
+            "HorizontalSizePolicy" : "Expanded"
+        }
+    }, {
+        "BaseType" : "UI.ListView",
+        "Variable" : true,
+        "Name" : "InputArgumentsView",
+        "Values" : {
+            "AffectsParentLayout" : true
+        },
+        "Bindings": {
+            "CountItems": "Function.InputArguments.size()",
+            "Item": {
+	            "BaseType" : "UI.TextField",
+                "Values" : {
+                    "Text" : "writeRecursively(Function.InputArguments[Index].Type) + \" \" + Function.InputArguments[Index].Name"
+                }
+            }
+        }
+    }, {
+        "BaseType" : "UI.Label",
+        "Name" : "OutputArgumentsLabel",
+        "Values" : {
+            "Text" : "OutputArguments"
+        }
+    }, {
+        "BaseType" : "UI.TextButton",
+        "Variable" : true,
+        "Name" : "OutputArgumentsAddButton",
+        "Values" : {
+            "Text" : "Add",
+            "HorizontalSizePolicy" : "Expanded"
+        }
+    }, {
+        "BaseType" : "UI.ListView",
+        "Variable" : true,
+        "Name" : "OutputArgumentsView",
+        "Values" : {
+            "VerticalSizePolicy" : "ContentWrapped",
+            "AffectsParentLayout" : true
+        },
+        "Bindings": {
+            "CountItems": "Function.OutputArguments.size()",
+            "Item": {
+	            "BaseType" : "UI.TextField",
+                "Values" : {
+                    "Text" : "writeRecursively(Function.OutputArguments[Index].Type) + \" \" + Function.OutputArguments[Index].Name"
+                }
+            }
+        }
+    }],
+    "Values" : {
+        "Direction" : "Vertical",
+        "Data" : [{}, {}, {}, {}, {}, {}, {}, {}]
+    }
+}

@@ -1,0 +1,31 @@
+{
+	"BaseType" : "UI.FlexBox",
+	"Interfaces" : ["FieldEditor"],
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+	"Values" : {
+		"Data" : [{
+
+		}, {
+
+		}],
+		"Direction" : "Vertical",
+		"Spacing" : 4.000000
+	},
+	"Views" : [{
+		"BaseType" : "UI.TextButton",
+		"Name" : "Button",
+		"Values" : {
+			"Text" : "Add"
+		},
+		"Variable" : true
+	}, {
+		"BaseType" : "UI.ListView",
+		"Bindings" : {
+			"CountItems" : "items.size()",
+			"Item" : "items[Index].second"
+		},
+		"Name" : "List",
+		"Variable" : true
+	}]
+}

@@ -1,0 +1,7 @@
+BaseType : Graphics.Composition
+Namespace: UI
+Properties:
+  - Attributes: Serialized
+    Name: Root
+    Type: SharedReference<UI.View>
+Type: Class

@@ -1,0 +1,8 @@
+{
+	"Namespace" : "Core",
+	"Type" : "Class",
+    "Properties": [{
+        "Name": "Components",
+        "Type": "Array<SharedReference<Core.Component>>"
+    }]
+}

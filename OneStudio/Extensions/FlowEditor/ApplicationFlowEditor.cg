@@ -1,0 +1,38 @@
+{
+	"BaseType" : "ClassGen.GraphEditor",
+	"Namespace" : "ClassGen",
+	"PreViews" : [{
+		"BaseType" : "UI.PageView",
+		"Name" : "SidebarPages",
+		"Values" : {
+			"Data" : [{
+
+			}, {
+
+			}, {
+
+			}, {
+
+			}]
+		},
+		"Variable" : true,
+		"Views" : [{
+			"BaseType" : "ClassGen.ApplicationFlowProperties",
+			"Name" : "FlowProperties",
+			"Variable" : true
+		}, {
+			"BaseType" : "ClassGen.ApplicationStateProperties",
+			"Name" : "StateProperties",
+			"Variable" : true
+		}, {
+			"BaseType" : "ClassGen.ApplicationTransitionProperties",
+			"Name" : "TransitionProperties",
+			"Variable" : true
+		}, {
+			"BaseType" : "ClassGen.ObjectEditor",
+			"Name" : "ObjectEditor",
+			"Variable" : true
+		}]
+	}],
+	"Type" : "View"
+}

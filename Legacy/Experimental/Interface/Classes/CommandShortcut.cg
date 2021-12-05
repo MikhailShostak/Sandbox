@@ -1,0 +1,18 @@
+{
+	"Namespace" : "Core",
+    "Attributes" : ["Structure"],
+    "BaseType" : "Core.Shortcut",
+	"Type" : "Class",
+    "Properties" : [{
+		"Name" : "Command",
+		"Type" : "String",
+		"Visibility" : "Public",
+        "Attributes" : "Serialized"
+	}, {
+		"Name" : "Arguments",
+        "Parameters" : ["String"],
+		"Type" : "Array",
+		"Visibility" : "Public",
+        "Attributes" : "Serialized"
+	}]
+}

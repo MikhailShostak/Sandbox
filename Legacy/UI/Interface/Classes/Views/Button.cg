@@ -1,0 +1,52 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Overlay",
+    "Properties" : [{
+        "Attributes" : "Serialized",
+        "Name" : "BackgroundImage",
+		"Type" : "SharedReference<Graphics.Texture>",
+        "PostCallbacks" : ["updateTexture"]
+    }],
+    "Values" : {
+        "HorizontalSizePolicy" : "ContentWrapped",
+        "VerticalSizePolicy" : "ContentWrapped",
+        "Data" : [{
+            "HorizontalAlignment" : "Center",
+            "VerticalAlignment" : "Center"
+        }, {
+            "HorizontalAlignment" : "Center",
+            "VerticalAlignment" : "Center",
+            "Padding" : {
+                "Bottom" : 2,
+                "Left" : 4,
+                "Right" : 4,
+                "Top" : 2
+            }
+        }]
+    },
+    "Functions" : [{
+        "Identifier" : "UpdateTexture",
+        "Type" : "void"
+    }],
+    "Views" :[{
+        "BaseType" : "UI.BorderImageView",
+        "Name" : "Background",
+        "External" : true,
+        "Default" : {
+            "BaseType" : "UI.BorderImageView",
+            "Name" : "DefaultBackground",
+            "Values" : {
+                "Image" : "ButtonBackground",
+                "HorizontalSizePolicy" : "Expanded",
+                "VerticalSizePolicy" : "Expanded",
+                "Border" : {
+                    "Bottom" : 2,
+                    "Left" : 2,
+                    "Right" : 2,
+                    "Top" : 2
+                }
+            }
+        }
+	}]
+}

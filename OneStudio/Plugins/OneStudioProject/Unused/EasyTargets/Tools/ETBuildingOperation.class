@@ -1,0 +1,80 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Name" : "productName",
+		"Type" : {
+			"Name" : "String",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "sourcePaths",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "buildingDirectory",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "destinationDirectory",
+		"Type" : {
+			"Name" : "APath",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Parameters" : [{
+			"Name" : "extension",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "String",
+				"Type" : "Data"
+			}
+		}, {
+			"Name" : "delegate",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "ADelegate<void(const APath &path)>",
+				"Type" : "Data"
+			}
+		}],
+		"Type" : {
+			"Name" : "void",
+			"Type" : "Data"
+		},
+		"Virtual" : true,
+		"Name" : "findFilesWithExtension"
+	}],
+	"Extends" : "AOperation",
+	"Name" : "ETBuildingOperation"
+}

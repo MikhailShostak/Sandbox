@@ -1,0 +1,24 @@
+{
+	"BaseType" : "UI.View",
+	"Properties" : [{
+        "Attributes" : "Serialized",
+		"Name" : "On",
+		"Type" : "Boolean",
+		"Visibility" : "Public",
+        "PostCallbacks" : ["SendSwitchEvent"]
+	}],
+	"Namespace" : "UI",
+	"Type" : "Class",
+	"Values" : {
+		"HorizontalSizePolicy" : "ContentWrapped",
+		"VerticalSizePolicy" : "ContentWrapped"
+	},
+    "BindingContext" : {
+        "OnChange" : {
+            "null": 0
+        },
+        "OnSwitch" : {
+            "null": 0
+        }
+    }
+}

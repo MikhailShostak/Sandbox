@@ -1,0 +1,32 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "Math",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Top",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Right",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Bottom",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Left",
+		"Type" : "Float",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"Bottom" : 0.000000,
+		"Left" : 0.000000,
+		"Right" : 0.000000,
+		"Top" : 0.000000
+	}
+}

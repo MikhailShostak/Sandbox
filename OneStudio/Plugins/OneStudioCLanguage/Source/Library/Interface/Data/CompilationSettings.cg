@@ -1,0 +1,21 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudioCLanguage",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Defines",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Includes",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "IncludePaths",
+		"Type" : "String",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

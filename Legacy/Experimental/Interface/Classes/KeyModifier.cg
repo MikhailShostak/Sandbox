@@ -1,0 +1,5 @@
+{
+	"Namespace" : "Core",
+	"Type" : "Flags",
+	"Values" : ["Alt", "Ctrl", "Shift", "Win"]
+}

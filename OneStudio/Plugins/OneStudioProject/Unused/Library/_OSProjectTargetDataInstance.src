@@ -1,0 +1,29 @@
+{
+	"CGClassDataDataObject" : {
+		"8a98cb8fd8950327" : {
+			"Base" : "AFileDataInstance<AJSONDataStorage>",
+			"Name" : "OSProjectTargetDataInstance",
+			"Type" : "Object"
+		}
+	},
+	"CGPropertyDataObject" : {
+		"2feb669ed0184085" : {
+			"Name" : "SettingsMap",
+			"Type" : "Map<String,size_t>"
+		},
+		"70b647b4c1f0c5ff" : {
+			"Name" : "Settings",
+			"Type" : "AMap<String,SharedReference<_OSSettings>>"
+		},
+		"8a98cb8fd8950327" : {
+			"Base" : "AFileDataInstance<AJSONDataStorage>",
+			"Name" : "OSProjectTargetDataInstance",
+			"Type" : "AObject"
+		},
+		"8ddc9b28b1c968d1" : {
+			"Base" : "AFileDataInstance<AJSONDataStorage>",
+			"Name" : "OSProjectTargetDataInstance",
+			"Type" : "AObject"
+		}
+	}
+}

@@ -1,0 +1,8 @@
+Type: Enumeration
+Values:
+  - Scheduled
+  - Started
+  - Paused
+  - Canceled
+  - Failed
+  - Completed

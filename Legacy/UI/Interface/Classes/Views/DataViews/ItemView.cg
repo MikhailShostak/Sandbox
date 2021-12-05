@@ -1,0 +1,7 @@
+{
+	"BaseType" : "UI.ScrollView",
+	"Properties" : [],
+	"Namespace":"UI",
+	"Type" : "Class",
+	"Attributes" : ["Native"]
+}

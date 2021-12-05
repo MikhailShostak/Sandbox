@@ -1,0 +1,10 @@
+{
+	"Namespace" : "UI",
+	"Type" : "Class",
+	"BaseType" : "Core.Component",
+	"Properties" : [{
+		"Name" : "Entities",
+		"Parameters" : ["Core.Entity"],
+		"Type" : "ArrayWithSharedData"
+	}]
+}

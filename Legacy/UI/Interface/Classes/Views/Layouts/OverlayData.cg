@@ -1,0 +1,23 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Padding",
+		"Type" : "Math.Offsets",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "HorizontalAlignment",
+		"Type" : "Core.Alignment",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "VerticalAlignment",
+		"Type" : "Core.Alignment",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+	}
+}

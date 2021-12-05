@@ -1,0 +1,6 @@
+{
+	"BaseType" : "UI.DropDownList",
+	"Namespace" : "ClassGen",
+    "Type" : "View",
+    "Interfaces" : ["FieldEditor"]
+}

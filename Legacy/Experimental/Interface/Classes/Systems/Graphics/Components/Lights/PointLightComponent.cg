@@ -1,0 +1,5 @@
+{
+	"Namespace" : "Graphics",
+	"Type" : "Class",
+	"BaseType" : "Graphics.LightComponent"
+}

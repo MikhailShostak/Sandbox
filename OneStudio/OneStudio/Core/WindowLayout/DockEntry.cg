@@ -1,0 +1,18 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Entries",
+		"Type" : "Array<OneStudio.DockEntry>"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "WindowIdentifiers",
+		"Type" : "Array<String>"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "WindowSize",
+		"Type" : "SizeInteger"
+	}],
+	"Type" : "Class"
+}

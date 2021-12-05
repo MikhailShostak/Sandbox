@@ -1,0 +1,106 @@
+{
+	"BaseType" : "UI.View",
+	"Name" : "RenameFileDialog",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"HorizontalSizePolicy" : "Fixed",
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 770.000000,
+			"Y" : 70.000000,
+			"Z" : 0.000000
+		},
+		"VerticalSizePolicy" : "Fixed"
+	},
+	"Views" : [{
+		"BaseType" : "UI.Label",
+		"Name" : "NewNameLabel",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 250.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "New Name",
+			"TextAlign" : "End",
+			"TextWrapping" : "Inline",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 10.000000,
+					"Y" : 10.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		}
+	}, {
+		"BaseType" : "UI.TextField",
+		"Name" : "NewNameTextField",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 490.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 270.000000,
+					"Y" : 10.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		}
+	}, {
+		"BaseType" : "UI.TextButton",
+		"Name" : "RenameButton",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 80.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Rename",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 590.000000,
+					"Y" : 40.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		}
+	}, {
+		"BaseType" : "UI.TextButton",
+		"Name" : "CloseButton",
+		"Values" : {
+			"HorizontalSizePolicy" : "Fixed",
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 80.000000,
+				"Y" : 20.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Cancel",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 680.000000,
+					"Y" : 40.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Fixed"
+		}
+	}]
+}

@@ -1,0 +1,24 @@
+{
+	"Namespace" : "ClassGen",
+	"Type" : "Class",
+	"Attributes" : ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Identifier",
+		"Type" : "String",
+		"ValueType" : "Value",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "InputArguments",
+		"Parameters" : ["String"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "OutputArguments",
+		"Parameters" : ["String"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}]
+}

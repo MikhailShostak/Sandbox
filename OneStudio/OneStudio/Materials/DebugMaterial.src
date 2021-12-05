@@ -1,0 +1,12 @@
+{
+	"FragmentColor" : "",
+	"General" : {
+		"BaseMaterial" : "ModelMaterial",
+		"Name" : "DebugMaterial",
+		"Package" : "Core"
+	},
+	"MeshLayout" : [],
+	"Properties" : [],
+	"Scheme" : "Material",
+	"VertexPosition" : ""
+}

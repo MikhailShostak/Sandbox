@@ -1,0 +1,11 @@
+{
+    "Namespace" : "Math",
+	"Attributes": ["Structure"],
+	"Properties" : [{
+		"Name" : "Data",
+		"Attributes" : "Serialized",
+		"Type" : "Array",
+		"Parameters" : ["Float"]
+	}],
+	"Type" : "Class"
+}

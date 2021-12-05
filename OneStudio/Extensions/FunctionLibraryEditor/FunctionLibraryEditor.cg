@@ -1,0 +1,13 @@
+{
+	"BaseType" : "ClassGen.GraphEditor",
+	"Namespace" : "ClassGen",
+	"Type" : "View",
+    "Values" : {
+        "Data": [{}, {}]
+    },
+    "PreViews" : [{
+	    "BaseType" : "UI.ListView",
+        "Name" : "OutlinerView",
+        "Variable" : true
+    }]
+}

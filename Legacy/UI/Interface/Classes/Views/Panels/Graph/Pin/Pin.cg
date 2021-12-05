@@ -1,0 +1,36 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.FlexBox",
+    "Views" : [{
+        "BaseType" : "UI.ImageView",
+        "Name" : "Socket",
+        "Values" : {
+            "Image" : "PinSocket"
+        },
+        "Variable" : true
+    }, {
+        "BaseType" : "UI.Label",
+        "Name" : "Label",
+        "Variable" : true
+    }],
+    "Properties" : [{
+        "Type" : "UI.PinType",
+        "Name" : "Type",
+        "PostCallbacks" : ["requestLayoutUpdate"]
+    }, {
+        "Type" : "Boolean",
+        "Name" : "ConnectionSource"
+    }],
+    "Values" : {
+        "ConnectionSource" : false,
+        "Spacing" : 4,
+        "Padding" : {
+            "Left" : 4,
+            "Top" : 4,
+            "Bottom" : 4,
+            "Right" : 4
+        },
+        "Data" : [{ "Alignment" : "Center" }, { "Alignment" : "Center" }]
+    }
+}

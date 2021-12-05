@@ -1,0 +1,9 @@
+{
+	"CGClassDataDataObject" : {
+		"d7716fae4b62d4b6" : {
+			"Base" : "APlugin",
+			"Name" : "OSProjectPlugin",
+			"Type" : "Object"
+		}
+	}
+}

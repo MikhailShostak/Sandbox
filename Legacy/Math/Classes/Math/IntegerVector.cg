@@ -1,0 +1,22 @@
+{
+    "Namespace" : "Math",
+	"Attributes": ["Structure"],
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "X",
+		"Type" : "SignedInteger"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Y",
+		"Type" : "SignedInteger"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Z",
+		"Type" : "SignedInteger"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "W",
+		"Type" : "SignedInteger"
+	}],
+	"Type" : "Class"
+}

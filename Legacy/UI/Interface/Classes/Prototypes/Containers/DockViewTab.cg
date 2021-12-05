@@ -1,0 +1,11 @@
+{
+    "Attributes" : ["Structure"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Title",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

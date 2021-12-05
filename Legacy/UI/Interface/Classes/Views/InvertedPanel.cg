@@ -1,0 +1,21 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Panel",
+    "Content" : [{
+        "BaseType" : "UI.BorderImageView",
+        "Name" : "Background",
+        "Values" : {
+            "HorizontalSizePolicy" : "Expanded",
+            "VerticalSizePolicy" : "Expanded",
+            "FillCenter" : false,
+            "Image" : "InvertedFlatPanel",
+            "Border" : {
+                "Left" : 2,
+                "Top" : 2,
+                "Right" : 2,
+                "Bottom" : 2
+            }
+        }
+    }]
+}

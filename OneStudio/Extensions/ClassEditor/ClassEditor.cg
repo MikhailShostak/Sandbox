@@ -1,0 +1,106 @@
+BaseType: UI.FlexBox
+Interfaces:
+  - ClassGen.Editor
+  - UI.GroupAdapter
+Namespace: ClassGen
+Type: View
+Values:
+  Data:
+    - {}
+    - {}
+  HorizontalSizePolicy: Expanded
+  VerticalSizePolicy: Expanded
+Views:
+  - BaseType: ClassGen.LogicEditor
+    Name: LogicEditor
+    Values:
+      Visibility: SelfCollapsed|ChildrenCollapsed
+    Variable: true
+  - BaseType: UI.ScrollView
+    Content:
+      ContentView:
+        BaseType: UI.FlexBox
+        Name: ContentView
+        Values:
+          Data:
+            - {}
+            - {}
+            - {}
+            - {}
+            - {}
+          Direction: Vertical
+          HorizontalSizePolicy: Expanded
+          Spacing: 8
+          VerticalSizePolicy: ContentWrapped
+        Variable: true
+        Views:
+          - BaseType: UI.GroupPanel
+            Content:
+              Body:
+                BaseType: UI.GroupView
+                Name: ClassDetails
+                Values:
+                  HorizontalSizePolicy: Expanded
+                  VerticalSizePolicy: ContentWrapped
+                Variable: true
+            Name: ClassDetailsPanel
+            Variable: true
+          - BaseType: UI.GroupPanel
+            Content:
+              Body:
+                BaseType: UI.PageView
+                Name: Details
+                Values:
+                  AffectsParentLayout: true
+                  Data:
+                    - {}
+                    - {}
+                    - {}
+                Variable: true
+                Views:
+                  - BaseType: ClassGen.PropertyDetailsView
+                    Name: PropertyDetails
+                    Values:
+                      AffectsParentLayout: true
+                      HorizontalSizePolicy: Expanded
+                      VerticalSizePolicy: ContentWrapped
+                      Visibility: SelfCollapsed|ChildrenCollapsed
+                    Variable: true
+                  - BaseType: ClassGen.EventDetailsView
+                    Name: EventDetails
+                    Values:
+                      AffectsParentLayout: true
+                      HorizontalSizePolicy: Expanded
+                      VerticalSizePolicy: ContentWrapped
+                      Visibility: SelfCollapsed|ChildrenCollapsed
+                    Variable: true
+                  - BaseType: ClassGen.FunctionDetailsView
+                    Name: FunctionDetails
+                    Values:
+                      AffectsParentLayout: true
+                      HorizontalSizePolicy: Expanded
+                      VerticalSizePolicy: ContentWrapped
+                      Visibility: SelfCollapsed|ChildrenCollapsed
+                    Variable: true
+            Name: DetailsPanel
+            Values:
+              AffectsParentLayout: true
+              Visibility: SelfHidden|ChildrenHidden
+            Variable: true
+          - BaseType: UI.GroupPanel
+            Content:
+              Body:
+                BaseType: ClassGen.ObjectEditor
+                Name: DefaultValuesEditor
+                Values:
+                  HorizontalSizePolicy: Expanded
+                  VerticalSizePolicy: ContentWrapped
+                Variable: true
+            Name: DataPanel
+            Variable: true
+    Name: ScrollView
+    Values:
+      AffectsParentLayout: true
+      HorizontalSizePolicy: Expanded
+      VerticalSizePolicy: Expanded
+    Variable: false

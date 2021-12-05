@@ -1,0 +1,35 @@
+{
+	"BaseType" : "UI.ListView",
+	"Namespace" : "UI",
+	"Type" : "Class",
+	"Attributes" : ["Native"],
+    "BindingContext" : {
+        "CountGroups" : {
+            "BaseType": "SizeInteger"
+        },
+        "CountGroupItems" : {
+            "BaseType": "SizeInteger",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "GroupIndex"
+		    }]
+        },
+        "Group" : {
+            "BaseType": "SharedReference<UI.View>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "GroupIndex"
+		    }]
+        },
+        "GroupItem" : {
+            "BaseType": "SharedReference<UI.View>",
+		    "InputArguments" : [{
+			    "Type": "SizeInteger",
+			    "Name": "GroupIndex"
+		    }, {
+			    "Type": "SizeInteger",
+			    "Name": "Index"
+		    }]
+        }
+    }
+}

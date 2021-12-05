@@ -1,0 +1,21 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Type",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Extensions",
+		"Type" : "Array<Text>",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "AssociatedEditor",
+		"Type" : "Text",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

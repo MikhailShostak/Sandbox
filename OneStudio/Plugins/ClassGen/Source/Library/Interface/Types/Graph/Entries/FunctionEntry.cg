@@ -1,0 +1,16 @@
+{
+	"Namespace" : "ClassGen",
+    "Functions" : [{
+		"Identifier" : "Generate",
+		"InputArguments" : [{
+			"Type": "Array<String>",
+			"Name": "Parameters"
+		}],
+		"OutputArguments" : [{
+			"Type": "String",
+			"Name": "Code"
+		}]
+    }],
+	"Type" : "Class",
+    "BaseType" : "ClassGen.Entry"
+}

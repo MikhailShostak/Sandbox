@@ -1,0 +1,17 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.PinNodeView",
+    "Content" : [{
+        "BaseType" : "UI.ImageView",
+        "Name" : "NodeContent",
+        "Values" : {
+            "HorizontalSizePolicy" : "Fixed",
+            "VerticalSizePolicy" : "Fixed",
+            "Size" : {
+                "X" : 100,
+                "Y" : 100
+            }
+        }
+    }]
+}

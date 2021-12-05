@@ -1,0 +1,22 @@
+{
+	"Attributes" : ["Structure"],
+	"Namespace" : "OneStudio",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Name",
+		"Type" : "String"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "ToolbarItems",
+		"Type" : "Array<String>"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DockEntries",
+		"Type" : "Array<OneStudio.DockEntry>"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "DockDirection",
+		"Type" : "UI.Direction"
+	}],
+	"Type" : "Class"
+}

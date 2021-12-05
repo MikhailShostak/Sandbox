@@ -1,0 +1,294 @@
+{
+	"Features" : [{
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "manifestGeneratingOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidManifestGeneratingOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "assetsGeneratingOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidAssetsGeneratingOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "dalvikCompilationOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidDalvikCompilationOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "archivingOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidArchivingOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "signingOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETJavaSigningOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "aligningOperation",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidAligningOperation>",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Field",
+		"Access" : "Public",
+		"Name" : "compilationOperations",
+		"Type" : {
+			"Name" : "AOperationList",
+			"Type" : "Data"
+		},
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "androidBuildingSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETAndroidBuildingSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "unixCompilationSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixCompilationSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "unixLinkingSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETUnixLinkingSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "javaCompilationSettings",
+		"Type" : {
+			"Name" : "SharedReference<ETJavaCompilationSettings>",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "assetsDirectories",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : true,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : true,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "javaClassFiles",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : false,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : false,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Name" : "nativeObjectFiles",
+		"Type" : {
+			"Name" : "APathList",
+			"Type" : "Data"
+		},
+		"Movable" : false,
+		"Feature" : "Property",
+		"Access" : "Public",
+		"Copyable" : false,
+		"Mutable" : false
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Protected",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "main"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "generateManifest"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "generateAssets"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "compileNativeFiles"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "compileJavaFiles"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "compileClassFiles"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "archivePackage"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "signPackage"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Type" : {
+			"Name" : "int",
+			"Type" : "Data"
+		},
+		"Name" : "alignPackage"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Parameters" : [{
+			"Name" : "path",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "APath",
+				"Type" : "Data"
+			}
+		}],
+		"Type" : {
+			"Name" : "void",
+			"Type" : "Data"
+		},
+		"Name" : "addJavaSourceFile"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Parameters" : [{
+			"Name" : "path",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "APath",
+				"Type" : "Data"
+			}
+		}],
+		"Type" : {
+			"Name" : "void",
+			"Type" : "Data"
+		},
+		"Name" : "addJavaClassFile"
+	}, {
+		"Storage" : "Instance",
+		"Feature" : "Method",
+		"Access" : "Private",
+		"Parameters" : [{
+			"Name" : "path",
+			"Type" : {
+				"Constant" : true,
+				"Storage" : "LValueReference",
+				"Name" : "APath",
+				"Type" : "Data"
+			}
+		}],
+		"Type" : {
+			"Name" : "void",
+			"Type" : "Data"
+		},
+		"Name" : "addNativeSourceFile"
+	}],
+	"Extends" : "ETBuildingOperation",
+	"Name" : "ETAndroidBuildingOperation"
+}

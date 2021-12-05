@@ -1,0 +1,5 @@
+{
+    "Namespace" : "UI",
+    "Type" : "Class",
+    "BaseType" : "UI.ItemView<ItemAdapter>"
+}

@@ -1,0 +1,5 @@
+{
+    "Namespace" : "Math",
+    "Type" : "Enumeration",
+    "Values" : ["XYZ", "XZY", "YXZ", "YZX", "ZXY", "ZYX"]
+}

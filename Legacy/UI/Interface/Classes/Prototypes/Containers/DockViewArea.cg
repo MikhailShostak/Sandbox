@@ -1,0 +1,12 @@
+{
+    "Attributes" : ["Structure"],
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Tabs",
+		"Parameters" : ["UI.DockViewTab"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class"
+}

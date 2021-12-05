@@ -1,0 +1,57 @@
+{
+    "Namespace" : "UI",
+    "Type" : "View",
+    "BaseType" : "UI.Overlay",
+    "Views" : [{
+        "Name" : "Background",
+        "BaseType" : "UI.View",
+        "External" : true,
+        "Default" : {
+            "BaseType" : "UI.BorderImageView",
+            "Name" : "DefaultBackground",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "VerticalSizePolicy" : "Expanded",
+                "FillCenter" : false,
+                "Image" : "FlatPanel",
+                "Border" : {
+                    "Left" : 2,
+                    "Top" : 2,
+                    "Right" : 2,
+                    "Bottom" : 2
+                }
+            }
+        },
+        "Variable" : true
+     }, {
+        "Name" : "Root",
+        "BaseType" : "UI.View",
+        "External" : true,
+        "Default" : {
+            "BaseType" : "UI.BorderImageView",
+            "Name" : "Image",
+            "Values" : {
+                "HorizontalSizePolicy" : "Expanded",
+                "VerticalSizePolicy" : "Expanded",
+                "FillCenter" : false,
+                "Image" : "FlatPanel",
+                "Border" : {
+                    "Left" : 2,
+                    "Top" : 2,
+                    "Right" : 2,
+                    "Bottom" : 2
+                }
+            }
+        }
+     }],
+     "Values" : {
+         "Data" : [{}, {
+             "Padding" : {
+                 "Top" : 1,
+                 "Left" : 1,
+                 "Bottom" : 1,
+                 "Right" : 1
+             }
+         }]
+     }
+}

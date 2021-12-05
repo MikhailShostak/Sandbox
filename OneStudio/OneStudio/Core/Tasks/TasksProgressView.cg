@@ -1,0 +1,60 @@
+BaseType: UI.FlexBox
+Functions:
+  - Callable: true
+    Identifier: executeCommand
+Namespace: OneStudio
+Type: View
+Values:
+  Data:
+    - Alignment: Center
+    - Alignment: Center
+    - Alignment: Center
+    - Alignment: Center
+  Direction: Vertical
+  HorizontalSizePolicy: Expanded
+  Spacing: 8
+  VerticalSizePolicy: Expanded
+Views:
+  - BaseType: UI.GroupPanel
+    Content:
+      Body:
+        BaseType: OneStudio.TasksWidget
+        Name: TaskList
+        Values:
+          VerticalSizePolicy: Expanded
+        Variable: true
+    Name: TasksGroupView
+    Values:
+      VerticalSizePolicy: Expanded
+    Variable: true
+  - BaseType: UI.GroupPanel
+    Content:
+      Body:
+        BaseType: UI.FlexBox
+        Name: CommandLineContainer
+        Values:
+          Data:
+            - {}
+            - {}
+            - {}
+          Padding:
+            Bottom: 1
+            Left: 1
+            Right: 1
+            Top: 1
+          Spacing: 0
+        Variable: false
+        Views:
+          - BaseType: UI.TextField
+            Name: CommandLineField
+            Variable: true
+          - BaseType: UI.TextButton
+            Bindings:
+              OnClick: executeCommand()
+            Name: CommandLineRunButton
+            Values:
+              Text: Run
+              VerticalSizePolicy: Expanded
+            Variable: true
+    Name: CommandsGroupPanel
+    Variable: true

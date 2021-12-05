@@ -1,0 +1,6 @@
+{
+	"BaseType" : "UI.ImageView",
+	"Namespace" : "ClassGen",
+    "Type" : "View",
+    "Interfaces" : ["FieldEditor"]
+}

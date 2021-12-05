@@ -1,0 +1,55 @@
+{
+	"BaseType" : "UI.View",
+	"Namespace" : "UI",
+	"Properties" : [{
+		"Attributes" : "Serialized",
+		"Name" : "Data",
+		"Parameters" : ["UI.SplitViewLayoutData"],
+		"Type" : "Array",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Direction",
+		"Type" : "UI.Direction",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Spacing",
+		"Type" : "SignedInteger",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "PrimarySeparatorSize",
+		"Type" : "SignedInteger",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "SecondarySeparatorSize",
+		"Type" : "SignedInteger",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "PrimaryAxisLimit",
+		"Type" : "UnsignedInteger",
+		"Visibility" : "Public"
+	}, {
+		"Attributes" : "Serialized",
+		"Name" : "Padding",
+		"Type" : "Math.Offsets",
+		"Visibility" : "Public"
+	}],
+	"Type" : "Class",
+	"Values" : {
+		"Direction" : "Horizontal",
+		"Padding" : {
+			"Bottom" : 0,
+			"Left" : 0,
+			"Right" : 0,
+			"Top" : 0
+		},
+		"PrimarySeparatorSize" : 8,
+		"SecondarySeparatorSize" : 8,
+		"PrimaryAxisLimit" : -1,
+		"Spacing" : 0
+	}
+}

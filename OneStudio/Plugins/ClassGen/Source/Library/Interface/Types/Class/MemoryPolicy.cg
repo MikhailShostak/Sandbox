@@ -1,0 +1,5 @@
+{
+    "Type": "Enumeration",
+    "Namespace": "ClassGen",
+    "Values": ["Embedded", "Shared", "Referenced"]
+}

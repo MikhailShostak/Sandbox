@@ -1,0 +1,14 @@
+Functions:
+  - Callable: true
+    ExecutionBranches:
+      - ""
+    Identifier: Execute
+    OutputArguments:
+      - Name: ExitCode
+        Type: SignedInteger
+Namespace: Core
+Properties:
+  - Attributes: Serialized
+    Name: Components
+    Type: Array<SharedReference<Core.ApplicationComponent2>>
+Type: Class

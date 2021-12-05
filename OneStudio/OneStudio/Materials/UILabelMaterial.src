@@ -1,0 +1,12 @@
+{
+	"FragmentColor" : "return vec4(Color.rgb, Color.a * texture2D(TextMask, vUV).r);",
+	"General" : {
+		"BaseMaterial" : "Core::ModelMaterial",
+		"Name" : "LabelMaterial",
+		"Package" : "UI"
+	},
+	"MeshLayout" : [["Position", "Float3"], ["Normal", "Float3"], ["UV", "Float2"]],
+	"Properties" : [["TextMask", "Texture"], ["Color", "Color"]],
+	"Scheme" : "Material",
+	"VertexPosition" : "vPosition = Position;\nvUV = UV;\nreturn ModelViewProjectionMatrix * vec4(Position, 1.0);"
+}

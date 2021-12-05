@@ -1,0 +1,5 @@
+{
+	"Namespace" : "Physics",
+	"Type" : "Class",
+	"BaseType" : "Core.Component"
+}

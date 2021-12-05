@@ -1,0 +1,9 @@
+BaseType: Core.ApplicationComponent2
+Functions:
+  - Callable: true
+    Identifier: OnLoad
+  - Callable: true
+    Identifier: OnUnload
+  - Callable: true
+    Identifier: OnUpdate
+Type: Class

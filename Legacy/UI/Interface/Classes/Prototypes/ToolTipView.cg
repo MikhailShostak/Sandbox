@@ -1,0 +1,175 @@
+{
+	"BaseType" : "UI.Overlay",
+	"Name" : "ToolTipView",
+	"Namespace" : "UI",
+	"Type" : "View",
+	"Values" : {
+		"AffectsParentLayout" : false,
+		"ContentSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"Data" : [{
+			"HorizontalAlignment" : "Start",
+			"Padding" : {
+				"Bottom" : 0.000000,
+				"Left" : 0.000000,
+				"Right" : 0.000000,
+				"Top" : 0.000000
+			},
+			"VerticalAlignment" : "Start"
+		}, {
+			"HorizontalAlignment" : "Start",
+			"Padding" : {
+				"Bottom" : 50.000000,
+				"Left" : 50.000000,
+				"Right" : 50.000000,
+				"Top" : 50.000000
+			},
+			"VerticalAlignment" : "Start"
+		}, {
+			"HorizontalAlignment" : "End",
+			"Padding" : {
+				"Bottom" : 8.000000,
+				"Left" : 8.000000,
+				"Right" : 8.000000,
+				"Top" : 8.000000
+			},
+			"VerticalAlignment" : "Start"
+		}],
+		"HorizontalSizePolicy" : "Fixed",
+		"MinimalSize" : {
+			"W" : 0.000000,
+			"X" : 0.000000,
+			"Y" : 0.000000,
+			"Z" : 0.000000
+		},
+		"NeededGlobalMatrixUpdate" : false,
+		"NeededGraphicsMatrixUpdate" : false,
+		"NeededGraphicsUpdate" : false,
+		"NeededLayoutUpdate" : false,
+		"Size" : {
+			"W" : 0.000000,
+			"X" : 500.000000,
+			"Y" : 500.000000,
+			"Z" : 0.000000
+		},
+		"Transform" : {
+			"Position" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"Rotation" : {
+				"W" : 1.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			}
+		},
+		"VerticalSizePolicy" : "Fixed"
+	},
+	"Views" : [{
+		"BaseType" : "UI.BorderImageView",
+		"Name" : "Background",
+		"Values" : {
+			"AffectsParentLayout" : true,
+			"Border" : {
+				"Bottom" : 15.000000,
+				"Left" : 40.000000,
+				"Right" : 8.000000,
+				"Top" : 8.000000
+			},
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"FillCenter" : true,
+			"HorizontalSizePolicy" : "Expanded",
+			"Image" : "ToolTip",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 580.000000,
+				"Y" : 610.000000,
+				"Z" : 0.000000
+			},
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "Expanded"
+		}
+	}, {
+		"BaseType" : "UI.Label",
+		"Name" : "Text",
+		"Values" : {
+			"AffectsParentLayout" : true,
+			"ContentSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"HorizontalSizePolicy" : "Expanded",
+			"MinimalSize" : {
+				"W" : 0.000000,
+				"X" : 0.000000,
+				"Y" : 0.000000,
+				"Z" : 0.000000
+			},
+			"NeededGlobalMatrixUpdate" : false,
+			"NeededGraphicsMatrixUpdate" : false,
+			"NeededGraphicsUpdate" : false,
+			"NeededLayoutUpdate" : false,
+			"Size" : {
+				"W" : 0.000000,
+				"X" : 100.000000,
+				"Y" : 100.000000,
+				"Z" : 0.000000
+			},
+			"Text" : "Test",
+			"TextAlign" : "Center",
+			"TextWrapping" : "Inline",
+			"Transform" : {
+				"Position" : {
+					"W" : 0.000000,
+					"X" : 170.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				},
+				"Rotation" : {
+					"W" : 1.000000,
+					"X" : 0.000000,
+					"Y" : 0.000000,
+					"Z" : 0.000000
+				}
+			},
+			"VerticalSizePolicy" : "ContentWrapped"
+		}
+	}]
+}

@@ -1,0 +1,22 @@
+{
+	"Namespace" : "OneStudio",
+	"Type" : "Class",
+    "Interfaces" : ["ApplicationComponent"],
+	"Properties" : [{
+		"Name" : "WindowLayout",
+		"Type" : "OneStudio.WindowLayout",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "Shortcuts",
+		"Type" : "Array<Core.CommandShortcut>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "CurrentToolbarCommands",
+		"Type" : "Array<Text>",
+		"Visibility" : "Public"
+	}, {
+		"Name" : "AvailableToolbarCommands",
+		"Type" : "Array<OneStudio.ToolbarItem>",
+		"Visibility" : "Public"
+	}]
+}
