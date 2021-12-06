@@ -25,6 +25,12 @@
 #include <Meta/Inheritance.hpp>
 #include <Meta/Substitution.hpp>
 #include <Meta/TypeModifiers.hpp>
+#include <Multithreading/Synchronization/Locks.hpp>
+#include <Multithreading/Synchronization/Mutexes.hpp>
+#include <Multithreading/Synchronization/Semaphore.hpp>
+#include <Multithreading/SafeQueue.hpp>
+#include <Multithreading/Thread.hpp>
+#include <Multithreading/ThreadPool.hpp>
 #include <Reflection/Reflection.hpp>
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
