@@ -2,6 +2,8 @@
 
 #include <ThirdParty.pch.hpp>
 
+#include <Async/Task.hpp>
+#include <Async/TaskManager.hpp>
 #include <Containers/Array.hpp>
 #include <Containers/List.hpp>
 #include <Containers/Map.hpp>
