@@ -23,6 +23,7 @@
 #include <Meta/Aliases.hpp>
 #include <Meta/Inheritance.hpp>
 #include <Meta/Substitution.hpp>
+#include <Meta/TypeModifiers.hpp>
 #include <Reflection/Reflection.hpp>
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
