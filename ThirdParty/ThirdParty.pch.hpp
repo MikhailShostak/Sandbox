@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <any>
 #include <bitset>
 #include <charconv>
 #include <deque>
@@ -18,6 +19,7 @@
 #include <map>
 #include <memory>
 #include <new>
+#include <optional>
 #include <ostream>
 #include <queue>
 #include <random>
@@ -32,6 +34,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <variant>
 #include <vector>
 
 #include <boost/beast.hpp>
