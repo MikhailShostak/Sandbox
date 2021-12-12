@@ -29,4 +29,12 @@ inline auto Run(Args &&...args)
     return boost::process::child(std::forward<Args>(args)...);
 }
 
+template<typename ...Args>
+inline auto RunAndWait(Args &&...args)
+{
+    auto process = Run(std::forward<Args>(args)...);
+    process.wait();
+    return process.exit_code();
+}
+
 }
