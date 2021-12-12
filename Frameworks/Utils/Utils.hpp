@@ -17,6 +17,7 @@
 #include <DateTime/Time.hpp>
 #include <DateTime/Timer.hpp>
 #include <Debug/DebugUtils.hpp>
+#include <Debug/Profiler.hpp>
 #include <Memory/Allocation.hpp>
 #include <Memory/Casts.hpp>
 #include <Memory/InplaceStorage.hpp>
