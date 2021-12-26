@@ -78,6 +78,12 @@ template<typename Type, typename ...Arguments>
     return Memory::Constructor<Type>::Create(std::forward<Arguments>(arguments)...);
 }
 
+template<typename Type, typename ...Arguments>
+[[nodiscard, deprecated("Use Create instead")]] inline SharedReference<Type> CreateShared(Arguments &&...arguments)
+{
+    return SharedReference<Type>(Create<Type>(std::forward<Arguments>(arguments)...));
+}
+
 template<typename Type, typename ReturnType, typename ...Arguments>
 [[nodiscard]] inline ReturnType *CreateAs(Arguments &&...arguments)
 {
