@@ -41,3 +41,4 @@
 #include <System/Filesystem.hpp>
 #include <System/Process.hpp>
 #include <Text/String.hpp>
+#include <Text/Unicode.hpp>

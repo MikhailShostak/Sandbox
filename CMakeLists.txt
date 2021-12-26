@@ -19,6 +19,7 @@ conan_cmake_run(REQUIRES
     glfw/3.3.4
     imgui/1.84.0-ext
     range-v3/0.11.0
+    utfcpp/3.2.1
     yaml-cpp/0.7.0
     BUILD missing
     BASIC_SETUP
