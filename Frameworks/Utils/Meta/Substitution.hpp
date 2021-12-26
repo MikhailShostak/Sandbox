@@ -7,14 +7,14 @@ namespace Meta::Details\
 {\
     constexpr static False Check ## Name(...);\
     template<typename Type>\
-    constexpr static typename Type::Alias Check ## Name(Type);\
+    constexpr static typename Type::Alias Check ## Name(Type*);\
 }\
 namespace Meta\
 {\
 template<typename ClassType>\
 struct Get ## Name\
 {\
-    using Type = decltype(Details::Check ## Name(ClassType{}));\
+    using Type = decltype(Details::Check ## Name(static_cast<ClassType *>(nullptr)));\
 };\
 template<typename ClassType>\
 struct Has ## Name\
