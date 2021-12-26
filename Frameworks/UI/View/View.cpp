@@ -1,6 +1,6 @@
 #include "View.hpp"
 
-namespace UI
+namespace Experimental::UI
 {
 
 void View::Layout()

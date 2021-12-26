@@ -1,6 +1,6 @@
 #include "Label.hpp"
 
-namespace UI
+namespace Experimental::UI
 {
 
 void Label::Draw()
