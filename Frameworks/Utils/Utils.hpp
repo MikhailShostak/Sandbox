@@ -5,12 +5,14 @@
 #include <Async/Task.hpp>
 #include <Async/TaskManager.hpp>
 #include <Containers/Array.hpp>
+#include <Containers/Deque.hpp>
 #include <Containers/List.hpp>
 #include <Containers/Map.hpp>
 #include <Containers/Queue.hpp>
 #include <Containers/Set.hpp>
 #include <Containers/SortedMap.hpp>
 #include <Containers/SortedSet.hpp>
+#include <Containers/Stack.hpp>
 #include <Containers/StaticArray.hpp>
 #include <DateTime/Counter.hpp>
 #include <DateTime/Date.hpp>
