@@ -2,30 +2,14 @@
 
 #include "Memory/References.hpp"
 
+#include "Containers/Array.hpp"
+#include "Containers/ArrayUtils.hpp"
+
 #include "Multithreading/SafeQueue.hpp"
 #include "Multithreading/ThreadPool.hpp"
 
 #include "Debug/DebugUtils.hpp"
 #include "Debug/Profiler.hpp"
-
-template<typename Type>
-void Remove(Array<Type> &container, size_t index)
-{
-    size_t lastIndex = container.size() - 1;
-    if (index != lastIndex)
-    {
-        container[index] = std::move(container[lastIndex]);
-    }
-    container.resize(container.size() - 1);
-}
-
-template<typename Type>
-Type Pop(Array<Type> &container, size_t index)
-{
-    Type element = std::move(container[index]);
-    Remove(container, index);
-    return std::move(element);
-}
 
 struct TaskManager
 {
@@ -204,7 +188,7 @@ protected:
             return;
         }
 
-        auto task = Pop(tasks, 0);
+        auto task = ArrayUtils::Pop(tasks, 0);
 
         if (task->IsAwaiting())
         {
