@@ -9,6 +9,9 @@ template<typename Type>
 inline constexpr Type *Null = reinterpret_cast<Type*>(0);
 
 template<typename Type>
+inline Type Empty = Type{};
+
+template<typename Type>
 [[nodiscard]] inline Type *Allocate()
 {
     return new Type;
