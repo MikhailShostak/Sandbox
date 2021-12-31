@@ -465,6 +465,18 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ImGui::PopItemWidth();
         ImGui::NextColumn();
 
+        ImGui::Text("Template Types");
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        std::string templateTypes = Str::Join(classInfo.TemplateTypes, " ");
+        if (ImGui::InputText("##TemplateTypes", &templateTypes))
+        {
+            classInfo.TemplateTypes = Str::Split(templateTypes, " ");
+            IndexFileData(path, classInfo);
+            MarkFileDirty(path);
+        }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
         /*ImGui::Separator();
 
         ImGui::Text("Interfaces");
@@ -890,6 +902,12 @@ void ClassFileEditor::RenderFile()
         {
             file << "namespace " << classNamespace << "\n";
             file << "{\n";
+        }
+        if (!classInfo.TemplateTypes.empty())
+        {
+            file << "template<";
+            file << (classInfo.TemplateTypes | ranges::views::transform([](String &name) { return "typename " + name; }) | ranges::views::cache1 | ranges::views::join(',') | ranges::to<String>());
+            file << ">\n";
         }
         file << "struct " << className << "\n";
         if (!classInfo.BaseType.Name.empty())

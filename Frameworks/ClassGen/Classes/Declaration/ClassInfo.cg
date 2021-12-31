@@ -16,6 +16,10 @@ Properties:
     Type: Array<String>
   - Attributes:
       - Serialize
+    Name: TemplateTypes
+    Type: Array<String>
+  - Attributes:
+      - Serialize
     Name: Properties
     Type: Array<ClassGen.PropertyInfo>
   - Attributes:
