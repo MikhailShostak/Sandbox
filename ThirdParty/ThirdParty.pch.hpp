@@ -37,6 +37,7 @@
 #include <variant>
 #include <vector>
 
+#include <boost/predef.h>
 #include <boost/beast.hpp>
 #include <boost/process.hpp>
 #include <boost/algorithm/string.hpp>
