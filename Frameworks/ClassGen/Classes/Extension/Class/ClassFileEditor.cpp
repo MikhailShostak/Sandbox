@@ -924,6 +924,71 @@ void ClassFileEditor::RenderFile()
         {
             file << "    " << writeRecursivelyResolved(p.Type) << " " << p.Name << ";\n";
         }
+
+
+        bool hasCustomDefaultConstructor = ranges::contains(classInfo.Attributes, "DefaultConstructor");
+        if (hasCustomDefaultConstructor)
+        {
+            file << "    " << className << "();\n";
+        }
+
+        if (ranges::contains(classInfo.Attributes, "Copy"))
+        {
+            if (!hasCustomDefaultConstructor)
+            {
+                file << "    " << className << "() = default;\n";
+                hasCustomDefaultConstructor = true;
+            }
+            file << "    " << className << "(const " << className << " &other);\n";
+            file << "    " << className << " &operator =(const " << className << " &other);\n";
+        }
+        else if (ranges::contains(classInfo.Attributes, "DefaultCopy"))
+        {
+            if (!hasCustomDefaultConstructor)
+            {
+                file << "    " << className << "() = default;\n";
+                hasCustomDefaultConstructor = true;
+            }
+            file << "    " << className << "(const " << className << " &other) = default;\n";
+            file << "    " << className << " &operator =(const " << className << " &other) = default;\n";
+        }
+        else if (ranges::contains(classInfo.Attributes, "DeleteCopy"))
+        {
+            if (!hasCustomDefaultConstructor)
+            {
+                file << "    " << className << "() = default;\n";
+                hasCustomDefaultConstructor = true;
+            }
+            file << "    " << className << "(const " << className << " &other) = delete;\n";
+            file << "    " << className << " &operator =(const " << className << " &other) = delete;\n";
+        }
+
+        if (ranges::contains(classInfo.Attributes, "Move"))
+        {
+            if (!hasCustomDefaultConstructor)
+            {
+                file << "    " << className << "() = default;\n";
+                hasCustomDefaultConstructor = true;
+            }
+            file << "    " << className << "(" << className << " &&other);\n";
+            file << "    " << className << " &operator =(" << className << " &&other);\n";
+        }
+        else if (ranges::contains(classInfo.Attributes, "DefaultMove"))
+        {
+            if (!hasCustomDefaultConstructor)
+            {
+                file << "    " << className << "() = default;\n";
+                hasCustomDefaultConstructor = true;
+            }
+            file << "    " << className << "(" << className << " &&other) = default;\n";
+            file << "    " << className << " &operator =(" << className << " &&other) = default;\n";
+        }
+        else if (ranges::contains(classInfo.Attributes, "DeleteMove"))
+        {
+            file << "    " << className << "(" << className << " &&other) = delete;\n";
+            file << "    " << className << " &operator =(" << className << " &&other) = delete;\n";
+        }
+
         if (!isStruct)
         {
             file << "\n";
