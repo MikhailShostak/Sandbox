@@ -122,8 +122,8 @@ template<typename Type>
 inline Array<ClassReference<Type>> FindAll()
 {
     return GetTypes()
-        | ranges::view::filter([](auto &pair) { return dynamic_cast<ClassReference<Type>>(pair.second.get()); })
-        | ranges::view::transform([](auto &pair) { return static_cast<ClassReference<Type>>(pair.second.get()); })
+        | ranges::views::filter([](auto &pair) { return dynamic_cast<ClassReference<Type>>(pair.second.get()); })
+        | ranges::views::transform([](auto &pair) { return static_cast<ClassReference<Type>>(pair.second.get()); })
         | ranges::to<Array<ClassReference<Type>>>();
 }
 

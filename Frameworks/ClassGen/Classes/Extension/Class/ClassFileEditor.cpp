@@ -833,7 +833,7 @@ void RenderGlobalFile()
     }*/
     for (auto &pair : g_ClassGenCache)
     {
-        for (auto &p : ProjectFolders | ranges::view::reverse)
+        for (auto &p : ProjectFolders | ranges::views::reverse)
         {
             if (boost::starts_with(System::Path(pair.first).parent_path().generic_string(), p.generic_string()))
             {
@@ -1034,7 +1034,7 @@ void ClassFileEditor::RenderFile()
         file << "    }\n";
         for (const ClassGen::EventInfo &e : classInfo.Events)
         {
-            Array<String> parameters = e.InputParameters | ranges::view::transform([](auto &p)
+            Array<String> parameters = e.InputParameters | ranges::views::transform([](auto &p)
             {
                 auto addReference = [&](const String &name) { return p.Copy ? name : (name + " &"); };
                 auto addConst = [&](const String &name) { return p.Writable ? name : ("const " + name); };
@@ -1045,7 +1045,7 @@ void ClassFileEditor::RenderFile()
         }
         for (const ClassGen::FunctionInfo &f : classInfo.Functions)
         {
-            Array<String> parameters = f.InputParameters | ranges::view::transform([](auto &p)
+            Array<String> parameters = f.InputParameters | ranges::views::transform([](auto &p)
             {
                 auto addReference = [&](const String &name) { return p.Copy ? name : (name + " &"); };
                 auto addConst = [&](const String &name) { return p.Writable ? name : ("const " + name); };
@@ -1059,7 +1059,7 @@ void ClassFileEditor::RenderFile()
                     return "void";
                 }
 
-                Array<String> parameters = f.OutputParameters | ranges::view::transform([](auto &p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<Array<String>>();
+                Array<String> parameters = f.OutputParameters | ranges::views::transform([](auto &p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<Array<String>>();
                 return "std::tuple<" + boost::join(parameters, ", ") + ">";
             };
 

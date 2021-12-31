@@ -10,7 +10,7 @@ inline std::string writeRecursively(const ClassGen::TypeInfo &value)
     if (!value.Parameters.empty())
     {
         result.append("<");
-        result.append(boost::join(value.Parameters | ranges::view::transform([](auto &t) { return writeRecursively(t); }), ", "));
+        result.append(boost::join(value.Parameters | ranges::views::transform([](auto &t) { return writeRecursively(t); }), ", "));
         result.append(">");
     }
     return result;
@@ -22,7 +22,7 @@ inline std::string writeRecursivelyResolved(const ClassGen::TypeInfo &value)
     if (!value.Parameters.empty())
     {
         result.append("<");
-        result.append(boost::join(value.Parameters | ranges::view::transform([](auto &t) { return writeRecursivelyResolved(t); }), ", "));
+        result.append(boost::join(value.Parameters | ranges::views::transform([](auto &t) { return writeRecursivelyResolved(t); }), ", "));
         result.append(">");
     }
     return result;
