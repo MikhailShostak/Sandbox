@@ -442,8 +442,10 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ImGui::Text("Base Type");
         ImGui::NextColumn();
         ImGui::PushItemWidth(-1);
-        if (ImGui::InputText("##BaseType", &classInfo.BaseType.Name))
+        String baseType = writeRecursively(classInfo.BaseType);
+        if (ImGui::InputText("##BaseType", &baseType))
         {
+            readRecursively(baseType, classInfo.BaseType);
             IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
