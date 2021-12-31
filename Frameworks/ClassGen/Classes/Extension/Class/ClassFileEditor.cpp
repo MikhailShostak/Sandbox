@@ -477,6 +477,19 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         }
         ImGui::PopItemWidth();
         ImGui::NextColumn();
+
+        ImGui::Text("Indirect Type");
+        ImGui::NextColumn();
+        ImGui::PushItemWidth(-1);
+        String indirectType = writeRecursively(classInfo.IndirectType);
+        if (ImGui::InputText("##IndirectType", &indirectType))
+        {
+            readRecursively(indirectType, classInfo.IndirectType);
+            IndexFileData(path, classInfo);
+            MarkFileDirty(path);
+        }
+        ImGui::PopItemWidth();
+        ImGui::NextColumn();
         /*ImGui::Separator();
 
         ImGui::Text("Interfaces");
@@ -993,6 +1006,19 @@ void ClassFileEditor::RenderFile()
         {
             file << "\n";
             file << "    virtual ~" << className << "() {}\n";
+        }
+
+        auto indirectType = writeRecursivelyResolved(classInfo.IndirectType);
+        if (!indirectType.empty())
+        {
+            file << "\n";
+            file << "protected:\n";
+            file << "    " << indirectType << " *GetIndirectValue();\n";
+            file << "public:\n";
+            file << "    " << indirectType << " &operator*() { return *GetIndirectValue(); }\n";
+            file << "    const " << indirectType << " &operator*() const { return *ConstCast<decltype(this)>(this)->GetIndirectValue(); }\n";
+            file << "    " << indirectType << " *operator->() { return GetIndirectValue(); }\n";
+            file << "    const " << indirectType << " *operator->() const { return ConstCast<decltype(this)>(this)->GetIndirectValue(); }\n";
         }
         file << "\n";
         file << "    template<typename T>\n";

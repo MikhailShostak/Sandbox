@@ -11,6 +11,7 @@ struct ClassInfo
     Array<ClassGen::TypeInfo> Interfaces;
     Array<String> Attributes;
     Array<String> TemplateTypes;
+    ClassGen::TypeInfo IndirectType;
     Array<ClassGen::PropertyInfo> Properties;
     Array<ClassGen::FunctionInfo> Functions;
     Array<ClassGen::EventInfo> Events;
@@ -25,6 +26,7 @@ struct ClassInfo
         data["Interfaces"] & Interfaces;
         data["Attributes"] & Attributes;
         data["TemplateTypes"] & TemplateTypes;
+        data["IndirectType"] & IndirectType;
         data["Properties"] & Properties;
         data["Functions"] & Functions;
         data["Events"] & Events;

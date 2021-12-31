@@ -20,6 +20,10 @@ Properties:
     Type: Array<String>
   - Attributes:
       - Serialize
+    Name: IndirectType
+    Type: ClassGen.TypeInfo
+  - Attributes:
+      - Serialize
     Name: Properties
     Type: Array<ClassGen.PropertyInfo>
   - Attributes:
