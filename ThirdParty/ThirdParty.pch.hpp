@@ -43,6 +43,9 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
 
+#define HLSLPP_FEATURE_TRANSFORM 1
+#include <hlsl++.h>
+
 #ifndef IMGUI_DEFINE_MATH_OPERATORS
 #define IMGUI_DEFINE_MATH_OPERATORS
 #endif
