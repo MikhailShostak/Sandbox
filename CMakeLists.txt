@@ -20,6 +20,7 @@ conan_cmake_run(REQUIRES
     hlslpp/3.1
     imgui/1.84.0-ext
     range-v3/0.11.0
+    stb/cci.20210713
     utfcpp/3.2.1
     yaml-cpp/0.7.0
     BUILD missing
