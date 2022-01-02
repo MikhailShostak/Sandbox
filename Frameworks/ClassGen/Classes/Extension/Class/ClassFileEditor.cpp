@@ -1002,10 +1002,24 @@ void ClassFileEditor::RenderFile()
             file << "    " << className << " &operator =(" << className << " &&other) = delete;\n";
         }
 
-        if (!isStruct)
+        bool hasCustomDestructor = ranges::contains(classInfo.Attributes, "Destructor");
+        if (hasCustomDestructor || !isStruct)
         {
             file << "\n";
-            file << "    virtual ~" << className << "() {}\n";
+            file << "    ";
+            if (!isStruct)
+            {
+                file << "virtual";
+            }
+            file << " ~" << className << "()";
+            if (hasCustomDestructor)
+            {
+                file << ";";
+            }
+            else
+            {
+                file << " {}";
+            }
         }
 
         auto indirectType = writeRecursivelyResolved(classInfo.IndirectType);
