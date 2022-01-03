@@ -1,0 +1,11 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Copy
+  - Move
+  - Destructor
+Namespace: Graphics
+Properties:
+  - Name: Data
+    Type: InplaceStorage<RenderBufferPrivateData, 88, 8>

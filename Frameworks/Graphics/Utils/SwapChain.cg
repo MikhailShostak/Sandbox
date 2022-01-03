@@ -1,0 +1,44 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Resolution
+        Type: hlslpp.int2
+        Writable: false
+    Name: Resize
+  - Name: Swap
+  - Name: GetRenderBuffer
+    OutputParameters:
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics.RenderBuffer
+        Writable: false
+Graphs:
+  Function.GetRenderBuffer:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Resize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Swap:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Data
+    Type: InplaceStorage<SwapChainPrivateData, 8, 8>
+  - Name: RenderBuffer
+    Type: Graphics.RenderBuffer

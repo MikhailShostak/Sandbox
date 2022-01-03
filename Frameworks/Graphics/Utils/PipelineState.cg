@@ -1,0 +1,9 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Namespace: Graphics
+Properties:
+  - Name: Data
+    Type: InplaceStorage<PipelineStatePrivateData, 768, 8, false>

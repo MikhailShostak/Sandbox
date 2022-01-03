@@ -1,0 +1,13 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Namespace: Graphics
+Properties:
+  - Name: Vertices
+    Type: Array<Vertex>
+  - Name: Faces
+    Type: Array<Face>
+  - Name: Data
+    Type: InplaceStorage<MeshPrivateData, 16, 8>

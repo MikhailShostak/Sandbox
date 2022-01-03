@@ -1,0 +1,12 @@
+Type: Class
+Attributes:
+  - DefaultConstructor
+  - Structure
+Namespace: Graphics
+Properties:
+  - Name: Name
+    Type: String
+  - Name: Texture
+    Type: SharedReference<Graphics.Texture>
+  - Name: Flags
+    Type: ShaderFlags

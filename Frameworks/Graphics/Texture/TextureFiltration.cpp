@@ -1,0 +1,9 @@
+namespace Graphics
+{
+
+TextureFiltration::TextureFiltration()
+{
+
+}
+
+}

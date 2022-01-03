@@ -1,0 +1,38 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: Graphics.DrawBatchBase
+Functions:
+  - Name: GetLayoutInfo
+    OutputParameters:
+      - Copy: false
+        Name: Count
+        Type: size_t
+        Writable: false
+      - Copy: false
+        Name: Buffer
+        Type: void*
+        Writable: false
+      - Copy: false
+        Name: ActualBufferSize
+        Type: size_t
+        Writable: false
+      - Copy: false
+        Name: MaxBufferSize
+        Type: size_t
+        Writable: false
+Graphs:
+  Function.GetLayoutInfo:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Instances
+    Type: Array<Type>
+  - Name: MaxSize
+    Type: size_t
+TemplateTypes:
+  - Type

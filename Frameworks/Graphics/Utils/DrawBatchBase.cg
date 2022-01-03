@@ -1,0 +1,35 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Functions:
+  - Name: GetLayoutInfo
+    OutputParameters:
+      - Copy: false
+        Name: Count
+        Type: size_t
+        Writable: false
+      - Copy: false
+        Name: Buffer
+        Type: void*
+        Writable: false
+      - Copy: false
+        Name: ActualBufferSize
+        Type: size_t
+        Writable: false
+      - Copy: false
+        Name: MaxBufferSize
+        Type: size_t
+        Writable: false
+Graphs:
+  Function.GetLayoutInfo:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Data
+    Type: InplaceStorage<DrawBatchPrivateData, 8, 8>

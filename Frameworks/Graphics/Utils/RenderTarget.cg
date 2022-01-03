@@ -1,0 +1,38 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+Functions:
+  - Name: GetBuffer
+    OutputParameters:
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics.RenderBuffer
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Size
+        Type: hlslpp.int2
+        Writable: false
+    Name: Resize
+Graphs:
+  Function.GetBuffer:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Resize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Targets
+    Type: Array<SharedReference<Graphics.Texture>>
+  - Name: DepthStencil
+    Type: SharedReference<Graphics.Texture>
+  - Name: IsCompiled
+    Type: bool

@@ -1,0 +1,19 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Namespace: Graphics
+Properties:
+  - Name: SourceCode
+    Type: String
+  - Name: Data
+    Type: InplaceStorage<ShaderPrivateData, 8, 8>
+  - Name: Constants
+    Type: Array<SharedReference<ShaderMetatype>>
+  - Name: Variables
+    Type: Array<SharedReference<ShaderMetatype>>
+  - Name: InputLayout
+    Type: SharedReference<ShaderMetatype>
+  - Name: OutputLayout
+    Type: SharedReference<ShaderMetatype>

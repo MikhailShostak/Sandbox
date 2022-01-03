@@ -1,0 +1,18 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+Namespace: Graphics
+Properties:
+  - Name: VertexShader
+    Type: Graphics.Shader
+  - Name: PixelShader
+    Type: Graphics.Shader
+  - Name: TextureSamplers
+    Type: Array<TextureSampler>
+  - Name: IsCompiled
+    Type: bool
+  - Name: Settings
+    Type: Graphics.MaterialRenderingSettings
+  - Name: RenderBuffer
+    Type: Graphics.RenderBuffer

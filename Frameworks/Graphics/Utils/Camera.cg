@@ -1,0 +1,62 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+Functions:
+  - Name: GetOrthographicProjection
+    OutputParameters:
+      - Copy: false
+        Name: Projection
+        Type: hlslpp.float4x4
+        Writable: false
+  - Name: GetPerspectiveProjection
+    OutputParameters:
+      - Copy: false
+        Name: Projection
+        Type: hlslpp.float4x4
+        Writable: false
+  - Name: GetView
+    OutputParameters:
+      - Copy: false
+        Name: View
+        Type: hlslpp.float4x4
+        Writable: false
+Graphs:
+  Function.GetOrthographicProjection:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.GetPerspectiveProjection:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.GetView:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Transform
+    Type: Graphics.Transform
+  - Attributes:
+      - Serialize
+    Name: Resolution
+    Type: hlslpp.int2
+  - Attributes:
+      - Serialize
+    Name: NearPlane
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: FarPlane
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: FieldOfView
+    Type: float

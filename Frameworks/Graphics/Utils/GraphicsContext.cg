@@ -1,0 +1,242 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: NativeWindow
+        Type: Graphics.NativeWindow
+        Writable: false
+      - Copy: false
+        Name: SwapChain
+        Type: Graphics.SwapChain
+        Writable: true
+    Name: Initialize
+    OutputParameters:
+      - Copy: false
+        Name: Result
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Batch
+        Type: Graphics.DrawBatchBase
+        Writable: true
+    Name: CreateDrawBatch
+  - InputParameters:
+      - Copy: false
+        Name: Constants
+        Type: Graphics.ShaderMetatype
+        Writable: true
+    Name: CreateConstants
+  - InputParameters:
+      - Copy: false
+        Name: Mesh
+        Type: Graphics.Mesh
+        Writable: true
+    Name: CreateMesh
+  - InputParameters:
+      - Copy: false
+        Name: Texture
+        Type: Graphics.Texture
+        Writable: true
+    Name: Create2DTexture
+  - InputParameters:
+      - Copy: false
+        Name: Material
+        Type: Graphics.Material
+        Writable: true
+    Name: CreateMaterial
+  - InputParameters:
+      - Copy: false
+        Name: RenderTarget
+        Type: Graphics.RenderTarget
+        Writable: true
+    Name: CreateRenderTarget
+  - InputParameters:
+      - Copy: false
+        Name: Color
+        Type: hlslpp.float4
+        Writable: false
+    Name: ClearRenderBuffers
+  - InputParameters:
+      - Copy: true
+        Name: Value
+        Type: float
+        Writable: true
+    Name: ClearDepthBuffer
+  - InputParameters:
+      - Copy: true
+        Name: Value
+        Type: uint8_t
+        Writable: true
+    Name: ClearStencilBuffer
+  - InputParameters:
+      - Copy: true
+        Name: DepthValue
+        Type: float
+        Writable: true
+      - Copy: true
+        Name: StencilValue
+        Type: uint8_t
+        Writable: true
+    Name: ClearDepthStencilBuffers
+  - InputParameters:
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics.RenderBuffer
+        Writable: false
+    Name: SetRenderBuffer
+  - InputParameters:
+      - Copy: false
+        Name: Batch
+        Type: Graphics.DrawBatchBase
+        Writable: true
+    Name: Upload
+  - InputParameters:
+      - Copy: false
+        Name: Constants
+        Type: Graphics.ShaderMetatype
+        Writable: true
+    Name: ApplyConstants
+  - InputParameters:
+      - Copy: false
+        Name: State
+        Type: Graphics.PipelineState
+        Writable: true
+    Name: SetState
+  - InputParameters:
+      - Copy: false
+        Name: Mesh
+        Type: Graphics.Mesh
+        Writable: true
+      - Copy: false
+        Name: Batch
+        Type: Graphics.DrawBatchBase
+        Writable: true
+    Name: Draw
+  - InputParameters:
+      - Copy: false
+        Name: SwapChain
+        Type: Graphics.SwapChain
+        Writable: true
+    Name: Render
+  - InputParameters:
+      - Copy: false
+        Name: Material
+        Type: Graphics.Material
+        Writable: true
+    Name: ApplyMaterial
+Graphs:
+  Function.ApplyConstants:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ApplyMaterial:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ClearDepthBuffer:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ClearDepthStencilBuffers:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ClearRenderBuffers:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ClearStencilBuffer:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Create2DTexture:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateConstants:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateDrawBatch:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateMesh:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateRenderTarget:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Initialize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Render:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.SetRenderBuffer:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.SetState:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Upload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Graphics
+Properties:
+  - Name: Data
+    Type: InplaceStorage<GraphicsContextPrivateData, 128, 8, false>
+  - Name: Queue
+    Type: Map<Graphics.Mesh*, Array<SharedReference<Graphics.Material>>>
+  - Name: CurrentRenderBuffer
+    Type: Graphics.RenderBuffer

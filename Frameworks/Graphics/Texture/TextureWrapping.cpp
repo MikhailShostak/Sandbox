@@ -1,0 +1,9 @@
+namespace Graphics
+{
+
+TextureWrapping::TextureWrapping()
+{
+
+}
+
+}
