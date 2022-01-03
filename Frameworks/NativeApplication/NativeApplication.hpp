@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Utils.hpp>
+#include <Graphics.pch.hpp>
 
 class NativeApplication
 {
@@ -10,8 +11,14 @@ public:
 
     std::string MainWindowTitle = "Application";
     std::string ConfigFile = "config.ini";
-    Vec<int> MainWindowSize = { 1280, 720 };
-    Vec<float> BackgroundColor = { 0.2f, 0.2f, 0.2f, 1.00f };
+    hlslpp::int2 MainWindowSize = { 1280, 720 };
+    hlslpp::float4 BackgroundColor = { 0.2f, 0.2f, 0.2f, 1.00f };
+
+    Graphics::GraphicsContext m_GraphicsContext;
+    Graphics::SwapChain m_SwapChain;
+
+    DateTime::Counter<DateTime::HighResolution::Clock> m_Counter;
+    void *m_NativeWindowHandle = nullptr;
 
     NativeApplication();
     virtual ~NativeApplication();
@@ -32,11 +39,9 @@ public:
     void UpdateWindow();
 
     void Clear();
-    void Flush();
+    void Render();
 
     void Quit();
-
-    InplaceStorage<struct NativeApplicationData, 32, 8> m_Data;
 };
 
 std::unique_ptr<NativeApplication> CreateApp();

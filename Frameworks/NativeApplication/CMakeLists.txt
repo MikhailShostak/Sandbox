@@ -9,7 +9,7 @@ endif()
 
 add_library(NativeApplication ${SOURCES})
 target_include_directories(NativeApplication INTERFACE .)
-target_link_libraries(NativeApplication ThirdParty Utils)
+target_link_libraries(NativeApplication Graphics ImGuiIntegration)
 
 target_compile_definitions(NativeApplication PRIVATE -DENGINE_DLL=0 -DVULKAN_SUPPORTED=1)
 if(CMAKE_SYSTEM_NAME STREQUAL Darwin)
