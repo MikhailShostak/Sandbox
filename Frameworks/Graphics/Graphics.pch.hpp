@@ -28,3 +28,4 @@
 #include "Utils/SwapChain.hpp"
 #include "Utils/PipelineState.hpp"
 #include "Utils/GraphicsContext.hpp"
+#include "Utils/AssetLoader.hpp"
