@@ -16,6 +16,7 @@ conan_cmake_run(REQUIRES
     assimp/5.1.0
     DiligentEngine/2.5
     boost/1.77.0
+    entt/3.9.0
     fmt/8.0.1
     glfw/3.3.4
     hlslpp/3.1

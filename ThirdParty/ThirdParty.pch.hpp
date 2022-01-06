@@ -43,6 +43,8 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/range/algorithm_ext/erase.hpp>
 
+#include <entt/entt.hpp>
+
 #define HLSLPP_FEATURE_TRANSFORM 1
 #include <hlsl++.h>
 
