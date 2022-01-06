@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename Type, std::size_t Size, std::size_t Alignment>
+template<typename Type, std::size_t Size, std::size_t Alignment, bool StrictSize = true>
 class InplaceStorage
 {
 public:
@@ -52,7 +52,7 @@ private:
     template<std::size_t TypeSize, std::size_t TypeAlignment>
     constexpr static void MustBe() noexcept
     {
-        static_assert(TypeSize == Size, "InplaceStorage<Type> size mismatch");
+        static_assert(StrictSize && TypeSize == Size || !StrictSize && TypeSize <= Size, "InplaceStorage<Type> size mismatch");
         static_assert(TypeAlignment == Alignment, "InplaceStorage<Type> alignment mismatch");
     }
 
