@@ -2,7 +2,7 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
-#include "PBRMaterial.hpp"
+#include "PBR/PBRMaterial.hpp"
 
 namespace Graphics
 {
