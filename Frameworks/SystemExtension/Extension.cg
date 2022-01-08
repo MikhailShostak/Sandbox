@@ -1,0 +1,37 @@
+Type: Class
+Attributes:
+  - DefaultMove
+IndirectType: InterfaceType
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+    Name: Load
+  - Name: Unload
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Unload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: System
+Properties:
+  - Name: Path
+    Type: System.Path
+  - Name: File
+    Type: boost.dll.shared_library
+  - Name: Handle
+    Type: System.ExtensionHandle<InterfaceType>
+  - Name: Instance
+    Type: UniqueReference<InterfaceType>
+TemplateTypes:
+  - InterfaceType

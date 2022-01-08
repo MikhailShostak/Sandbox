@@ -1,0 +1,11 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: System
+Properties:
+  - Name: Info
+    Type: System.ExtensionInfo
+  - Name: Constructor
+    Type: Meta.ConstructorPointer<InterfaceType>
+TemplateTypes:
+  - InterfaceType

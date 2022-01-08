@@ -4,5 +4,6 @@
 
 #include <ClassGen.hpp>
 #include <NativeApplication.hpp>
+#include <SystemExtension.pch.hpp>
 #include <UI.hpp>
 #include <Utils.hpp>

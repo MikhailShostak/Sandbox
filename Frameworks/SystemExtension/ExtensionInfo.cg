@@ -1,0 +1,9 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: System
+Properties:
+  - Name: Version
+    Type: System.Version
+  - Name: Identifier
+    Type: System.PackageIdentifier
