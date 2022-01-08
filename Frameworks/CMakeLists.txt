@@ -1,5 +1,6 @@
 add_subdirectory(ClassGen)
 add_subdirectory(Graphics)
+add_subdirectory(ImGuiIntegration)
 add_subdirectory(NativeApplication)
 add_subdirectory(SystemExtension)
 add_subdirectory(UI)
@@ -8,6 +9,7 @@ add_subdirectory(Utils)
 set(LIBRARIES
     ClassGen
     Graphics
+    ImGuiIntegration
     NativeApplication
     SystemExtension
     UI
