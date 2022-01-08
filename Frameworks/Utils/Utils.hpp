@@ -41,8 +41,11 @@
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
+#include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
+#include <System/PackageIdentifier.hpp>
 #include <System/Process.hpp>
+#include <System/Version.hpp>
 #include <Text/String.hpp>
 #include <Text/StringUtils.hpp>
 #include <Text/Unicode.hpp>
