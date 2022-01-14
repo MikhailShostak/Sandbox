@@ -243,7 +243,7 @@ ClassGen::FileInfo FindClassByName(const String &name, const String &nameSpace)
     auto it = std::find_if(g_ClassGenCache.begin(), g_ClassGenCache.end(), [&](const auto &v)
     {
         bool result = true;
-        if (!nameSpace.empty() && !v.second.Instance->Namespace.empty())
+        if (!nameSpace.empty() && v.second.Instance && !v.second.Instance->Namespace.empty())
         {
             result = v.second.Instance->Namespace == nameSpace;
         }
