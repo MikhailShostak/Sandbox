@@ -22,13 +22,19 @@ void ClassGenEditor::IndexFile(const System::Path &path)
         return;
     }
 
-    auto [fileInfo] = g_ExtensionLibrary.Load(path);
+    auto [fileInfo] = g_ExtensionLibrary.LoadFile(path);
 }
 
 void ClassGenEditor::RenderFile(const System::Path &path)
 {
-    auto &fileInfo = g_ClassGenCache[path.generic_string()];
-    auto &editor = g_Editors[path.generic_string()];
+    auto& fileInfo = g_ClassGenCache[path.generic_string()];
+    auto& editor = g_Editors[path.generic_string()];
+    
+    if (ImGui::InputText("Type", &fileInfo.Type))
+    {
+        editor.reset();
+        MarkFileDirty(path);
+    }
     if (!editor)
     {
         auto it = g_ExtensionLibrary.FileEditors.find(fileInfo.Type);
@@ -36,6 +42,10 @@ void ClassGenEditor::RenderFile(const System::Path &path)
         {
             return;
         }
+
+        Serialization::Data data;
+        data.FromFile(path);
+        g_ExtensionLibrary.LoadData(fileInfo, data, path);
 
         editor = it->second->Create();
         editor->Data = fileInfo;

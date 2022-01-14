@@ -5,14 +5,35 @@ Functions:
         Name: Path
         Type: System.Path
         Writable: false
-    Name: Load
+    Name: LoadFile
     OutputParameters:
       - Copy: false
         Name: FileInfo
         Type: ClassGen.FileInfo
         Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: FileInfo
+        Type: ClassGen.FileInfo
+        Writable: false
+      - Copy: false
+        Name: Data
+        Type: Serialization.Data
+        Writable: false
+    Name: LoadData
+    OutputParameters:
+      - Copy: false
+        Name: Success
+        Type: bool
+        Writable: false
 Graphs:
-  Function.Load:
+  Function.LoadData:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.LoadFile:
     Nodes:
       - ID: Input
         Name: Input
