@@ -35,6 +35,28 @@ void ClassGenEditor::RenderFile(const System::Path &path)
         editor.reset();
         MarkFileDirty(path);
     }
+
+    //TODO: move this to generic file context menu
+    ImGui::SameLine();
+    if (ImGui::Button("Reload"))
+    {
+        auto [f] = g_ExtensionLibrary.LoadFile(path);
+        fileInfo = std::move(f);
+        editor.reset();
+        UnsavedFiles.erase(path.generic_string());
+    }
+
+    ImGui::SameLine();
+    if (ImGui::Button("Reset"))
+    {
+        g_ExtensionLibrary.LoadData(fileInfo, {}, path);
+        if (editor)
+        {
+            editor->Data = fileInfo;
+        }
+        MarkFileDirty(path);
+    }
+
     if (!editor)
     {
         auto it = g_ExtensionLibrary.FileEditors.find(fileInfo.Type);
