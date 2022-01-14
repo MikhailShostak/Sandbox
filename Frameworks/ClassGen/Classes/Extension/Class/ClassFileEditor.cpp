@@ -884,6 +884,54 @@ void ClassFileEditor::RenderFile()
             IndexFileData(Path, classInfo);
             MarkFileDirty(Path);
         }
+        auto base = writeRecursively(classInfo.BaseType);
+        if (!base.empty())
+        {
+            if (ImGui::BeginMenu("Override function"))
+            {
+                bool hasFunctions = false;
+                while (!base.empty())
+                {
+                    auto fileInfo = FindClassByName(base);
+                    if (auto baseClassInfo = DynamicCast<ClassInfo>(fileInfo.Instance))
+                    {
+                        if (baseClassInfo->Functions.empty())
+                        {
+                            base = writeRecursively(baseClassInfo->BaseType);
+                            continue;
+                        }
+
+                        ImGui::Text(base.data());
+                        for (const auto &function : baseClassInfo->Functions)
+                        {
+                            hasFunctions = true;
+                            if (ImGui::MenuItem(function.Name.data()))
+                            {
+                                auto f = function;
+                                classInfo.Functions.push_back(std::move(f));
+                                IndexFileData(Path, classInfo);
+                                MarkFileDirty(Path);
+                            }
+                        }
+
+                        base = writeRecursively(baseClassInfo->BaseType);
+                        if (!base.empty())
+                        {
+                            ImGui::Separator();
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (!hasFunctions)
+                {
+                    ImGui::MenuItem("None");
+                }
+                ImGui::EndMenu();
+            }
+        }
         if (ImGui::MenuItem("Add event"))
         {
             ClassGen::EventInfo e;
