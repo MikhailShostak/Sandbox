@@ -28,6 +28,7 @@
 #include <Memory/InplaceStorage.hpp>
 #include <Memory/References.hpp>
 #include <Meta/Aliases.hpp>
+#include <Meta/Flags.hpp>
 #include <Meta/Inheritance.hpp>
 #include <Meta/Substitution.hpp>
 #include <Meta/TypeModifiers.hpp>
