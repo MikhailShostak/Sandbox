@@ -140,6 +140,18 @@ inline auto Insert(Array<ValueType> &container, size_t index, OtherValueType &&v
     return Insert(container, container.begin() + index, std::forward<OtherValueType>(value));
 }
 
+template<typename ValueType, typename ...Arguments>
+inline ValueType& EmplaceFront(Array<ValueType>& container, Arguments && ...arguments)
+{
+    return container.emplace_front(std::forward<Arguments>(arguments)...);
+}
+
+template<typename ValueType, typename ...Arguments>
+inline ValueType& EmplaceBack(Array<ValueType>& container, Arguments && ...arguments)
+{
+    return container.emplace_back(std::forward<Arguments>(arguments)...);
+}
+
 template<typename ValueType>
 inline void Remove(Array<ValueType> &container, size_t index)
 {
