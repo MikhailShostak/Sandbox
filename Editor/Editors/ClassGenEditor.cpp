@@ -57,6 +57,12 @@ void ClassGenEditor::RenderFile(const System::Path &path)
         MarkFileDirty(path);
     }
 
+    ImGui::SameLine();
+    if (ImGui::Button("Compile"))
+    {
+        ClassGen::Compile(fileInfo, path);
+    }
+
     if (!editor)
     {
         auto it = g_ExtensionLibrary.FileEditors.find(fileInfo.Type);
