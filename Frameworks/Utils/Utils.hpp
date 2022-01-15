@@ -41,6 +41,7 @@
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
+#include <System/CommandLine.hpp>
 #include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
 #include <System/PackageIdentifier.hpp>
