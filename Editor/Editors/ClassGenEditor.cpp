@@ -91,6 +91,9 @@ bool ClassGenEditor::SaveFile(const System::Path &source, const System::Path &de
     Serialization::Serialize(fileInfo, data);
     Reflection::Serialize(*fileInfo.Instance, data);
     data.ToFile(destination);
+
+    ClassGen::Compile(fileInfo, destination);
+
     return true;
 }
 
