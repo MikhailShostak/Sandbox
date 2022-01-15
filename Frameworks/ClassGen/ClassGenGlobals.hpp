@@ -25,4 +25,23 @@ inline void LoadExtensions()
     }
 }
 
+inline void Compile(const ClassGen::FileInfo& FileInfo, const System::Path &SourcePath)
+{
+    auto it = g_ExtensionLibrary.Compilers.find(FileInfo.Type);
+    if (it == g_ExtensionLibrary.Compilers.end())
+    {
+        fmt::print("Warning: ClassGen compiler is not found for type \"{}\"", FileInfo.Type);
+        return;
+    }
+
+    auto compiler = UniqueReference<ClassGen::Compiler>(it->second->Create());
+    compiler->Compile(FileInfo.Instance, System::Path(SourcePath).replace_extension(".hpp"));
+}
+
+inline void Compile(const System::Path &SourcePath)
+{
+    auto [FileInfo] = g_ExtensionLibrary.LoadFile(SourcePath);
+    Compile(FileInfo, SourcePath);
+}
+
 }

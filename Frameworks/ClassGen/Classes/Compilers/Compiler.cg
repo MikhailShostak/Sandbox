@@ -1,0 +1,32 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+    Name: CompileFile
+  - InputParameters:
+      - Copy: false
+        Name: BaseInfo
+        Type: SharedReference<ClassGen.BaseInfo>
+        Writable: false
+      - Copy: false
+        Name: OutputFilePath
+        Type: System.Path
+        Writable: false
+    Name: Compile
+Graphs:
+  Function.Compile:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CompileFile:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
