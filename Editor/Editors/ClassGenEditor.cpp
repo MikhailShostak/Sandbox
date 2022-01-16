@@ -6,6 +6,12 @@
 namespace DefaultExtensions
 {
 
+void ClassGenEditor::ResetIndex()
+{
+    g_Editors.clear();
+    g_ClassGenCache.clear();
+    g_FunctionCache.clear();
+}
 
 void ClassGenEditor::IndexFile(const System::Path &path)
 {

@@ -63,6 +63,22 @@ void ReloadFiles()
     }
 }
 
+void ReindexFiles()
+{
+    if (!UnsavedFiles.empty())
+    {
+        PendingReindex = true;
+        return;
+    }
+    PendingReindex = false;
+
+    for (auto& [Name, Editor] : Editors)
+    {
+        Editor->ResetIndex();
+    }
+    ReloadFiles();
+}
+
 void OpenFile(const std::filesystem::path &path, bool remember)
 {
     if(!std::filesystem::is_regular_file(path))
@@ -111,22 +127,28 @@ void SaveFile(const std::filesystem::path &path)
     SaveFile(path, path);
 }
 
-void CloseFile(const std::filesystem::path &path)
+void CloseFile(const std::filesystem::path &path, bool reindex)
 {
     boost::remove_erase(Config.File.OpenedFiles, path);
     FileCache.erase(path.generic_string());
+
+    if (reindex)
+    {
+        ReindexFiles();
+    }
 }
 
 void CloseFiles(const std::vector<std::filesystem::path> &paths)
 {
-    std::for_each(paths.begin(), paths.end(), &CloseFile);
+    std::for_each(paths.begin(), paths.end(), std::bind(&CloseFile, std::placeholders::_1, false));
+    ReindexFiles();
 }
-
 
 void CloseAllFiles()
 {
     Config.File.OpenedFiles.clear();
     FileCache.clear();
+    ReindexFiles();
 }
 
 void OpenFolder(const std::filesystem::path &path, bool remember)
@@ -153,21 +175,30 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
     LoadFolder(path);
 }
 
-void CloseFolder(const std::filesystem::path &path)
+void CloseFolder(const std::filesystem::path &path, bool reindex)
 {
     boost::remove_erase(Config.File.OpenedFolders, path);
-    //TODO
+    MapUtils::EraseIf(FileCache, [&path](const auto& pair) {
+        return boost::starts_with(pair.first, path.generic_string());
+    });
+
+    if (reindex)
+    {
+        ReindexFiles();
+    }
 }
 
 void CloseFolders(const std::vector<std::filesystem::path> &paths)
 {
-    std::for_each(paths.begin(), paths.end(), &CloseFolder);
+    std::for_each(paths.begin(), paths.end(), std::bind(&CloseFolder, std::placeholders::_1, false));
+    ReindexFiles();
 }
 
 void CloseAllFolders()
 {
     Config.File.OpenedFolders.clear();
-    //TODO
+    FileCache.clear();
+    ReindexFiles();
 }
 
 void OpenPath(const std::filesystem::path &path, bool remember)

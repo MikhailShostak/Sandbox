@@ -25,7 +25,10 @@ void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_direc
         if(root)
         {
             ImGui::Separator();
-            ImGui::MenuItem("Close");
+            if (ImGui::MenuItem("Close"))
+            {
+                CloseFolder(path, true);
+            }
         }
         ImGui::Separator();
         Utils::Menu::ShowDefaultFileOperations(path);

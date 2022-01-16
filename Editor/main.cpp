@@ -77,7 +77,14 @@ void OnContentUpdate()
 
         ImGui::End();
     }
-    CloseFiles(FilesToClose);
+    if (!FilesToClose.empty())
+    {
+        CloseFiles(FilesToClose);
+    }
+    if (PendingReindex)
+    {
+        ReindexFiles();
+    }
 }
 
 class EditorApp final : public NativeApplication
