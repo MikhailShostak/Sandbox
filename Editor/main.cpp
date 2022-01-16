@@ -92,8 +92,19 @@ public:
         return true;
     }
 
+    void LoadIcons()
+    {
+        ImFontConfig config;
+        config.MergeMode = true;
+        config.GlyphOffset = { 0, 4 };
+        static const ImWchar IconsRanges[] = { ICON_MIN_MD, ICON_MAX_MD, 0 };
+        ImGui::LoadFont("Fonts/MaterialDesignIcons/MaterialIcons-Regular.ttf", 18_px, &config, IconsRanges);
+    }
+
     bool Init() override
     {
+        LoadIcons();
+
         if (std::filesystem::exists(ApplicationConfig))
         {
             Serialization::FromFile(ApplicationConfig, Config);
