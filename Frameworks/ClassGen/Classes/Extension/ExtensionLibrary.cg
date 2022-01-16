@@ -15,10 +15,14 @@ Functions:
       - Copy: false
         Name: FileInfo
         Type: ClassGen.FileInfo
-        Writable: false
+        Writable: true
       - Copy: false
         Name: Data
         Type: Serialization.Data
+        Writable: false
+      - Copy: false
+        Name: Path
+        Type: System::Path
         Writable: false
     Name: LoadData
     OutputParameters:
@@ -45,3 +49,5 @@ Properties:
     Type: Map<String, ClassReference<ClassGen.FileEditor>>
   - Name: Types
     Type: Map<String, ClassReference<ClassGen.BaseInfo>>
+  - Name: Compilers
+    Type: Map<String, ClassReference<ClassGen.Compiler>>
