@@ -118,7 +118,7 @@ public:
         style.ItemSpacing = { 4, 2 };
         style.ItemInnerSpacing = { 2, 2 };
         style.TouchExtraPadding = { 0, 0 };
-        style.IndentSpacing = 24;
+        style.IndentSpacing = 18;
         style.ScrollbarSize = 12;
         style.GrabMinSize = 10;
 

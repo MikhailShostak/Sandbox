@@ -7,6 +7,9 @@
 namespace View
 {
 
+auto DefaultTreeNodeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+auto DefaultTreeLeafFlags = DefaultTreeNodeFlags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
+
 static std::filesystem::path PreviousFile;
 
 void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_directory)
@@ -96,27 +99,46 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         if (needCombine)
         {
             ImGui::SameLine();
+            String title = fmt::format("{} {}", ICON_MD_DESCRIPTION, GetFileTitle(path, true));
+            if (ImGui::Selectable(title.data(), false, ImGuiSelectableFlags_AllowItemOverlap))
+            {
+                OpenFile(path, false);
+            }
         }
         else
         {
             ImGui::AlignTextToFramePadding();
+            String title = fmt::format("{} {}", ICON_MD_DESCRIPTION, GetFileTitle(path, false));
+            auto flags = DefaultTreeLeafFlags | (!Config.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
+            ImGui::TreeNodeEx(title.data(), flags);
+            if (ImGui::IsItemClicked())
+            {
+                OpenFile(path, false);
+            }
         }
 
-        if (ImGui::Selectable(fmt::format("{} {}", ICON_MD_DESCRIPTION, GetFileTitle(path, needCombine)).data(), false, ImGuiSelectableFlags_AllowItemOverlap))
-        {
-            OpenFile(path, false);
-        }
         ShowContextMenu(path, root, is_directory);
 
         PreviousFile = path.stem();
     }
     else if(is_directory)
     {
-        if (!ImGui::TreeNode(fmt::format("{} {}", ICON_MD_FOLDER, path.filename().generic_string()).data()))
+        auto pos = ImGui::GetCursorPos();
+        String title = "       " + path.filename().generic_string();
+        auto flags = DefaultTreeNodeFlags | (!Config.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
+        auto opened = ImGui::TreeNodeEx(title.data(), flags);
+        ShowContextMenu(path, root, is_directory);
+
+        ImGui::SetCursorPos(pos);
+        ImGui::TreeAdvanceToLabelPos();
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(253, 212, 81)));
+        ImGui::Text(ICON_MD_FOLDER);
+        ImGui::PopStyleColor();
+
+        if (!opened)
         {
             return;
         }
-        ShowContextMenu(path, root, is_directory);
 
         PreviousFile.clear();
 
