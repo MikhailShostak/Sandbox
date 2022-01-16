@@ -46,6 +46,7 @@
 #include <System/CommandLine.hpp>
 #include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
+#include <System/ResolutionMetrics.hpp>
 #include <System/PackageIdentifier.hpp>
 #include <System/Process.hpp>
 #include <System/Version.hpp>
