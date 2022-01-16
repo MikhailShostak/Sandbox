@@ -21,7 +21,9 @@ void TextEditor::RenderFile(const std::filesystem::path &path)
                 editor.IsOverwrite() ? "Ovr" : "Ins",
                 editor.CanUndo() ? "*" : " ",
                 editor.GetLanguageDefinition().mName.c_str(), f.string());*/
+    ImGui::PushMonospacedFont();
     InternalEditor.Render("TextEditor");
+    ImGui::PopFont();
 
     if (InternalEditor.IsTextChanged())
     {
