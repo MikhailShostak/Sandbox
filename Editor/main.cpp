@@ -101,9 +101,48 @@ public:
         ImGui::LoadFont("Fonts/MaterialDesignIcons/MaterialIcons-Regular.ttf", 18_px, &config, IconsRanges);
     }
 
+    void ApplyStyle()
+    {
+        ImGuiStyle& style = ImGui::GetStyle();
+
+        style.WindowPadding = { 4, 4 };
+        style.FramePadding = { 4, 2 };
+        style.CellPadding = { 4, 2 };
+        style.ItemSpacing = { 4, 2 };
+        style.ItemInnerSpacing = { 2, 2 };
+        style.TouchExtraPadding = { 0, 0 };
+        style.IndentSpacing = 24;
+        style.ScrollbarSize = 12;
+        style.GrabMinSize = 10;
+
+        style.WindowBorderSize = 1;
+        style.ChildBorderSize = 1;
+        style.PopupBorderSize = 1;
+        style.FrameBorderSize = 0;
+        style.TabBorderSize = 0;
+
+        style.WindowRounding = 4;
+        style.ChildRounding = 0;
+        style.FrameRounding = 2;
+        style.PopupRounding = 0;
+        style.ScrollbarRounding = 0;
+        style.GrabRounding = 0;
+        style.LogSliderDeadzone = 4;
+        style.TabRounding = 4;
+
+        style.WindowTitleAlign = { 0.5f, 0.5f };
+        style.WindowMenuButtonPosition = ImGuiDir_Left;
+        style.ColorButtonPosition = ImGuiDir_Right;
+        style.ButtonTextAlign = { 0.5f, 0.5f };
+        style.SelectableTextAlign = { 0.0f, 0.5f };
+
+        style.DisplaySafeAreaPadding = { 3, 3 };
+    }
+
     bool Init() override
     {
         LoadIcons();
+        ApplyStyle();
 
         if (std::filesystem::exists(ApplicationConfig))
         {
