@@ -26,6 +26,8 @@ public:
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.IniFilename = ConfigFile;
 
+        FontConfig.MergeMode = true;
+
         ImGui_ImplGlfw_InitForOther(window, false);
     }
 
@@ -47,6 +49,12 @@ public:
     {
         VERIFY(SurfacePreTransform == Diligent::SURFACE_TRANSFORM_IDENTITY, "Unexpected surface pre-transform");
 
+        if (RebuildFonts)
+        {
+            UpdateFontsTexture();
+            RebuildFonts = false;
+        }
+
         ImGui_ImplGlfw_NewFrame();
         ImGuiImplDiligent::NewFrame(RenderSurfaceWidth, RenderSurfaceHeight, SurfacePreTransform);
 
@@ -62,14 +70,30 @@ public:
     }
 
     Graphics::GraphicsContext &Context;
-    Graphics::SwapChain &SwapChain;
+    Graphics::SwapChain& SwapChain;
+
+    bool RebuildFonts = false;
+
+    ImFontConfig FontConfig;
 };
 
 UniqueReference<ImGuiImplGLFW> g_ImGui;
 
+ImFont* g_DefaultUIFont = nullptr;
+ImFont* g_DefaultMonospacedFont = nullptr;
+
 void Initialize(void *window, Graphics::GraphicsContext &Context, Graphics::SwapChain &SwapChain, const char *ConfigFile)
 {
     g_ImGui = std::make_unique<ImGuiImplGLFW>(ReinterpretCast<GLFWwindow>(window), Context, SwapChain, ConfigFile);
+
+#if BOOST_OS_WINDOWS
+    g_DefaultMonospacedFont = LoadFont("C:/Windows/Fonts/consola.ttf", 10_pt);
+    g_DefaultUIFont = LoadFont("C:/Windows/Fonts/segoeui.ttf", 12_pt);
+#else
+    ImFont* font = ImGui::GetDefaultFont();
+    g_DefaultMonospacedFont = font;
+    g_DefaultUIFont = font;
+#endif
 }
 
 void Deinitialize()
@@ -86,6 +110,8 @@ void BeginRender()
 
     const auto &SCDesc = g_ImGui->SwapChain.Data->Handle->GetDesc();
     g_ImGui->NewFrame(SCDesc.Width, SCDesc.Height, SCDesc.PreTransform);
+
+    ImGui::PushUIFont();
 }
 
 void EndRender()
@@ -94,6 +120,8 @@ void EndRender()
     {
         return;
     }
+
+    ImGui::PopFont();
 
     g_ImGui->Render(g_ImGui->Context.Data->Handle);
 
@@ -134,6 +162,23 @@ void MouseEvent()
 void ScrollEvent(void *window, double dx, double dy)
 {
     ImGui_ImplGlfw_ScrollCallback(ReinterpretCast<GLFWwindow>(window), dx, dy);
+}
+
+void PushUIFont()
+{
+    ImGui::PushFont(g_DefaultUIFont);
+}
+
+void PushMonospacedFont()
+{
+    ImGui::PushFont(g_DefaultMonospacedFont);
+}
+
+ImFont* LoadFont(const System::Path& Path, const fpixel_t Size, ImFontConfig *Config, const ImWchar* GlyphRange)
+{
+    g_ImGui->RebuildFonts = true;
+    ImGuiIO& io = ImGui::GetIO();
+    return io.Fonts->AddFontFromFileTTF(Path.generic_string().data(), Size, Config, GlyphRange);
 }
 
 ImTextureID TexID(Graphics::Texture &texture)
