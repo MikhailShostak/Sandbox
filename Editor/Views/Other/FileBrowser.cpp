@@ -93,15 +93,13 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         if (needCombine)
         {
             ImGui::SameLine();
-            ImGui::Text("|");
-            ImGui::SameLine();
         }
         else
         {
             ImGui::AlignTextToFramePadding();
         }
 
-        if (ImGui::Selectable(GetFileTitle(path, needCombine).data(), false, ImGuiSelectableFlags_AllowItemOverlap))
+        if (ImGui::Selectable(fmt::format("{} {}", ICON_MD_DESCRIPTION, GetFileTitle(path, needCombine)).data(), false, ImGuiSelectableFlags_AllowItemOverlap))
         {
             OpenFile(path, false);
         }
@@ -111,7 +109,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
     }
     else if(is_directory)
     {
-        if (!ImGui::TreeNode(path.filename().string().data()))
+        if (!ImGui::TreeNode(fmt::format("{} {}", ICON_MD_FOLDER, path.filename().generic_string()).data()))
         {
             return;
         }
