@@ -9,6 +9,7 @@
 #include <Containers/Deque.hpp>
 #include <Containers/List.hpp>
 #include <Containers/Map.hpp>
+#include <Containers/MapUtils.hpp>
 #include <Containers/Queue.hpp>
 #include <Containers/Set.hpp>
 #include <Containers/SortedMap.hpp>
