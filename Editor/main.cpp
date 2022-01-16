@@ -178,6 +178,7 @@ public:
         {
             ImGui::ShowDemoWindow();
         }
+        Debug::ShowDebugWindow();
     }
 
     void Draw() override

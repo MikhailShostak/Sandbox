@@ -73,6 +73,7 @@ void ShowMainMenu()
             ImGui::Separator();
             if (ImGui::BeginMenu("Debug"))
             {
+                ImGui::MenuItem("Debug Window", nullptr, &Debug::DisplayDebugWindow);
                 ImGui::MenuItem("ImGui Demo", nullptr, &Debug::DisplayImGuiDemo);
                 ImGui::EndMenu();
             }

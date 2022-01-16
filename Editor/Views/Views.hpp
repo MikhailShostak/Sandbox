@@ -70,6 +70,9 @@ namespace Debug
 {
 
 inline bool DisplayImGuiDemo = false;
+inline bool DisplayDebugWindow = false;
+
+void ShowDebugWindow();
 
 }
 
