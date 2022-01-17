@@ -1,0 +1,8 @@
+Type: Class
+BaseType: ClassGen.BaseInfo
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Values
+    Type: Array<String>
