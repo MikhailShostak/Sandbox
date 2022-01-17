@@ -1,23 +1,34 @@
 #pragma once
 
 #include "Storage.hpp"
+#include "Meta/Inheritance.hpp"
 
 namespace Serialization
 {
+
+template<typename Type>
+struct ObjectSerializer
+{
+    template<typename DataType, typename ValueType>
+    static void Serialize(DataType &&data, ValueType &&value)
+    {
+        value.Serialize(std::forward<DataType>(data));
+    }
+};
 
 namespace Details
 {
 template<typename MapType, typename Type>
 inline void ProcessObject(MapType &&map, Type &&value)
 {
-    using T = std::remove_reference_t<Type>;
+    using T = std::decay_t<Type>;
     if constexpr (Meta::HasBaseType<T>::Value)
     {
         using Super = typename T::Super;
         using BaseType = std::conditional_t<std::is_rvalue_reference_v<Type>, Super &&, Super &>;
         ProcessObject(std::forward<MapType>(map), std::forward<BaseType>(value));
     }
-    value.Serialize(std::forward<MapType>(map));
+    ObjectSerializer<T>::Serialize(std::forward<MapType>(map), std::forward<Type>(value));
 }
 }
 
