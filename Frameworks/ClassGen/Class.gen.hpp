@@ -10,6 +10,7 @@ Reflection::Add<ClassGen::ParameterInfo>("ClassGen.ParameterInfo");
 Reflection::Add<ClassGen::PropertyInfo>("ClassGen.PropertyInfo");
 Reflection::Add<ClassGen::TypeInfo>("ClassGen.TypeInfo");
 Reflection::Add<ClassGen::FileEditor>("ClassGen.FileEditor");
+Reflection::Add<ClassGen::PropertyEditor>("ClassGen.PropertyEditor");
 Reflection::Add<ClassGen::ClassExtension>("ClassGen.ClassExtension");
 Reflection::Add<ClassGen::ClassCompiler>("ClassGen.ClassCompiler");
 Reflection::Add<ClassGen::ClassFileEditor>("ClassGen.ClassFileEditor");

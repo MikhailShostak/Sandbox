@@ -45,6 +45,10 @@ Graphs:
         Name: Output
 Namespace: ClassGen
 Properties:
+  - Name: PropertyTypeEditors
+    Type: Map<String, ClassReference<ClassGen.PropertyEditor>>
+  - Name: PropertyInstanceEditors
+    Type: Map<String, ClassReference<ClassGen.PropertyEditor>>
   - Name: FileEditors
     Type: Map<String, ClassReference<ClassGen.FileEditor>>
   - Name: Types

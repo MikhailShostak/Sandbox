@@ -109,6 +109,44 @@ void ShowDebugWindow()
             }
         }
 
+        if (ImGui::CollapsingHeader("Property Type Editors##DebugWindow", nullptr))
+        {
+            if (ImGui::BeginTable("Property Type Editors##DebugWindow", 2, DefaultTableFlags))
+            {
+                ImGui::TableSetupColumn("ClassGen Type", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("C++ Class", ImGuiTableColumnFlags_WidthStretch);
+                ImGui::TableHeadersRow();
+                for (auto& [Name, Type] : g_ExtensionLibrary.PropertyTypeEditors)
+                {
+                    ImGui::TableNextRow();
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Text(Name.data());
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::Text(Type->m_Name);
+                }
+                ImGui::EndTable();
+            }
+        }
+
+        if (ImGui::CollapsingHeader("Property Instance Editors##DebugWindow", nullptr))
+        {
+            if (ImGui::BeginTable("Property Instance Editors##DebugWindow", 2, DefaultTableFlags))
+            {
+                ImGui::TableSetupColumn("ClassGen Type", ImGuiTableColumnFlags_WidthFixed);
+                ImGui::TableSetupColumn("C++ Class", ImGuiTableColumnFlags_WidthStretch);
+                ImGui::TableHeadersRow();
+                for (auto& [Name, Type] : g_ExtensionLibrary.PropertyInstanceEditors)
+                {
+                    ImGui::TableNextRow();
+                    ImGui::TableSetColumnIndex(0);
+                    ImGui::Text(Name.data());
+                    ImGui::TableSetColumnIndex(1);
+                    ImGui::Text(Type->m_Name);
+                }
+                ImGui::EndTable();
+            }
+        }
+
         if (ImGui::CollapsingHeader("ReflectedTypes##DebugWindow", nullptr))
         {
             for (auto &[Hash, Type] : Reflection::GetTypes())

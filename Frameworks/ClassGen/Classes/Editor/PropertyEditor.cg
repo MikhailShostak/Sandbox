@@ -1,0 +1,38 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Data
+        Type: Serialization.Data
+        Writable: true
+    Name: Serialize
+  - InputParameters:
+      - Copy: false
+        Name: Data
+        Type: Serialization.Data
+        Writable: false
+    Name: Deserialize
+  - Name: Draw
+Graphs:
+  Function.Deserialize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Serialize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: ID
+    Type: String

@@ -375,41 +375,51 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
     if (ImGui::CollapsingHeader(name.data(), ImGuiTreeNodeFlags_DefaultOpen))
     {
         ImGui::Columns(2);
+
+        //TODO: rework based on property renaming
+        MapUtils::EraseIf(PropertyEditors, [&](const auto& pair)
+        {
+            for (auto& p : classInfo->Properties)
+            {
+                auto AbsolutePropertyName = name + "." + p.Name;
+                if (pair.first == AbsolutePropertyName)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
         for (auto &p : classInfo->Properties)
         {
             ImGui::Text(p.Name.data());
             auto propertyId = fmt::format("##PropertyValue{}", (void *)&p);
             auto type = writeRecursively(p.Type);
             ImGui::NextColumn();
-            if (type == "Boolean")
+
+            auto AbsolutePropertyName = name + "." + p.Name;
+            auto &editor = PropertyEditors[AbsolutePropertyName];
+            if (editor == nullptr)
             {
-                static bool value = true;
-                ImGui::Checkbox(propertyId.data(), &value);
-            }
-            else if (type == "Integer")
-            {
-                static int value = 100;
-                ImGui::DragInt(propertyId.data(), &value, 1);
-            }
-            else if (type == "Float")
-            {
-                static float value = 1.0f;
-                ImGui::DragFloat(propertyId.data(), &value, 0.01f);
-            }
-            else
-            {
-                ImGui::PushItemWidth(-1);
-                if (type == "std.string")
+                if (auto it = g_ExtensionLibrary.PropertyInstanceEditors.find(type);  it != g_ExtensionLibrary.PropertyInstanceEditors.end())
                 {
-                    static String value;
-                    ImGui::InputText(propertyId.data(), &value);
+                    editor = UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
                 }
-                else if (type == "std.filesystem.path")
+                else
                 {
-                    static String value;
-                    ImGui::InputText(propertyId.data(), &value);
+                    ClassGen::FileInfo propertyFileInfo = FindClassByName(p.Type.Name);
+                    if (auto it = g_ExtensionLibrary.PropertyTypeEditors.find(propertyFileInfo.Type); it != g_ExtensionLibrary.PropertyTypeEditors.end())
+                    {
+                        editor = UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
+                    }
                 }
-                ImGui::PopItemWidth();
+            }
+
+            if (editor)
+            {
+                editor->ID = propertyId;
+                editor->Draw();
             }
             ImGui::NextColumn();
         }

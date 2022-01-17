@@ -17,6 +17,7 @@
 #include "Classes/Declaration/ClassInfo.hpp"
 #include "Classes/Compilers/Compiler.hpp"
 #include "Classes/Compilers/ClassCompiler.hpp"
+#include "Classes/Editor/PropertyEditor.hpp"
 #include "Classes/Editor/FileEditor.hpp"
 #include "Classes/Extension/ExtensionLibrary.hpp"
 #include "Classes/Extension/ExtensionInterface.hpp"

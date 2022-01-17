@@ -5,6 +5,8 @@ namespace ClassGen
 struct ExtensionLibrary
 {
     using This = ExtensionLibrary;
+    Map<String, ClassReference<ClassGen::PropertyEditor>> PropertyTypeEditors;
+    Map<String, ClassReference<ClassGen::PropertyEditor>> PropertyInstanceEditors;
     Map<String, ClassReference<ClassGen::FileEditor>> FileEditors;
     Map<String, ClassReference<ClassGen::BaseInfo>> Types;
     Map<String, ClassReference<ClassGen::Compiler>> Compilers;
