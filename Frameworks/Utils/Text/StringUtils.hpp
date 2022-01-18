@@ -18,10 +18,18 @@ inline auto Join(ContainerType &&strings, SeparatorType &&separator)
 }
 
 template<typename StringType, typename SeparatorType>
-inline auto Split(StringType &&string, SeparatorType &&separators)
+inline auto Split(StringType &&string, SeparatorType &&separators, bool empty = false)
 {
     Array<std::remove_cv_t<std::remove_reference_t<StringType>>> strings;
-    boost::split(strings, string, boost::is_any_of(separators));
+    if(empty)
+    {
+        boost::split(strings, string, boost::is_any_of(separators));
+    }
+    else
+    {
+        boost::split(strings, boost::trim_copy_if(string, boost::is_any_of(separators)), boost::is_any_of(separators));
+        boost::remove_erase_if(strings, [](auto& value) { return value.empty(); });
+    }
     return strings;
 }
 
