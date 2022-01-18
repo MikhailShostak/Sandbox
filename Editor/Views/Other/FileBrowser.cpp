@@ -11,6 +11,8 @@ auto DefaultTreeNodeFlags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_
 auto DefaultTreeLeafFlags = DefaultTreeNodeFlags | ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen;
 
 static std::filesystem::path PreviousFile;
+static String g_Search;
+static Array<String> g_SearchKeywords;
 
 void ShowContextMenu(const std::filesystem::path &path, bool root, bool is_directory)
 {
@@ -95,6 +97,14 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
 
     if (is_file)
     {
+        if(!g_SearchKeywords.empty())
+        {
+            if (!Str::Contains(path.filename().generic_string(), g_SearchKeywords))
+            {
+                return;
+            }
+        }
+
         bool needCombine = Config.FileBrowser.CombineFilesWithSameBasename && !PreviousFile.empty() && PreviousFile == path.stem();
         if (needCombine)
         {
@@ -126,18 +136,21 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         auto pos = ImGui::GetCursorPos();
         String title = "       " + path.filename().generic_string();
         auto flags = DefaultTreeNodeFlags | (!Config.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
-        auto opened = ImGui::TreeNodeEx(title.data(), flags);
-        ShowContextMenu(path, root, is_directory);
-
-        ImGui::SetCursorPos(pos);
-        ImGui::TreeAdvanceToLabelPos();
-        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(253, 212, 81)));
-        ImGui::Text(ICON_MD_FOLDER);
-        ImGui::PopStyleColor();
-
-        if (!opened)
+        if (g_SearchKeywords.empty())
         {
-            return;
+            bool expanded = ImGui::TreeNodeEx(title.data(), flags);
+            ShowContextMenu(path, root, is_directory);
+
+            ImGui::SetCursorPos(pos);
+            ImGui::TreeAdvanceToLabelPos();
+            ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(ImColor(253, 212, 81)));
+            ImGui::Text(ICON_MD_FOLDER);
+            ImGui::PopStyleColor();
+
+            if (!expanded)
+            {
+                return;
+            }
         }
 
         PreviousFile.clear();
@@ -153,7 +166,10 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
             ShowPath(p);
         }
 
-        ImGui::TreePop();
+        if (g_SearchKeywords.empty())
+        {
+            ImGui::TreePop();
+        }
     }
 }
 
@@ -176,6 +192,12 @@ void ShowFileBrowser()
         }
         else
         {
+            ImGui::PushItemWidth(-1);
+            if (ImGui::InputText("##FileBrowserSearch", &g_Search))
+            {
+                g_SearchKeywords = Str::Split(g_Search, " ");
+            }
+            ImGui::PopItemWidth();
             for(auto f : folders)
             {
                 ShowPath(f, true);
