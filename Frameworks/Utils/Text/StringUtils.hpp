@@ -6,6 +6,35 @@
 namespace Str
 {
 
+inline bool Contains(const String &string, const String &substring)
+{
+    return boost::contains(string, substring);
+}
+
+inline bool Contains(const String &string, const Array<String> &substrings)
+{
+    for (const auto& substring : substrings)
+    {
+        if (!Contains(string, substring))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+inline size_t ContainsAny(const String &string, const Array<String> &substrings)
+{
+    for (size_t i = 0; i < substrings.size(); ++i)
+    {
+        if (Contains(string, substrings[i]))
+        {
+            return i;
+        }
+    }
+    return ArrayUtils::InvalidIndex;
+}
+
 inline String Quote(const String &string)
 {
     return "\"" + string + "\"";
