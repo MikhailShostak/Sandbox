@@ -4,7 +4,10 @@ namespace ClassGen
 void StringPropertyEditor::Draw()
 {
     ImGui::PushItemWidth(-1);
-    ImGui::InputText(ID.data(), &Value);
+    if (ImGui::InputText(ID.data(), &Value))
+    {
+        Changed();
+    }
     ImGui::PopItemWidth();
 }
 

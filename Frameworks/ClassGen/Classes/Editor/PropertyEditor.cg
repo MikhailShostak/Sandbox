@@ -1,4 +1,6 @@
 Type: Class
+Events:
+  - Name: Changed
 Functions:
   - InputParameters:
       - Copy: false
@@ -13,7 +15,14 @@ Functions:
         Writable: false
     Name: Deserialize
   - Name: Draw
+  - Name: Clear
 Graphs:
+  Function.Clear:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
   Function.Deserialize:
     Nodes:
       - ID: Input

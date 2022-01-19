@@ -12,8 +12,10 @@ struct PropertyEditor
     void Serialize(T &&data)
     {
     }
+    Meta::Function<void> Changed;
     virtual void Serialize(Serialization::Data & Data);
     virtual void Deserialize(const Serialization::Data & Data);
     virtual void Draw();
+    virtual void Clear();
 };
 }

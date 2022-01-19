@@ -15,4 +15,10 @@ inline void ValuePropertyEditor<ValueType>::Deserialize(const Serialization::Dat
     Value = Serialization::Deserialize<ValueType>(Data);
 }
 
+template<typename ValueType>
+inline void ValuePropertyEditor<ValueType>::Clear()
+{
+    Value = ValueType();
+}
+
 }

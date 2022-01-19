@@ -16,9 +16,9 @@ struct ClassInfo
     Array<ClassGen::FunctionInfo> Functions;
     Array<ClassGen::EventInfo> Events;
     SortedMap<String, ClassGen::GraphInfo> Graphs;
+    Map<String, Serialization::Data> Values;
 
     virtual ~ClassInfo() {}
-
     template<typename T>
     void Serialize(T &&data)
     {
@@ -31,6 +31,7 @@ struct ClassInfo
         data["Functions"] & Functions;
         data["Events"] & Events;
         data["Graphs"] & Graphs;
+        data["Values"] & Values;
     }
 };
 }

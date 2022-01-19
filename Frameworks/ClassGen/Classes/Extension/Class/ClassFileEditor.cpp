@@ -393,13 +393,31 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
 
         for (auto &p : classInfo->Properties)
         {
+            auto AbsolutePropertyName = name + "." + p.Name;
+            auto& editor = PropertyEditors[AbsolutePropertyName];
+
             ImGui::Text(p.Name.data());
             auto propertyId = fmt::format("##PropertyValue{}", (void *)&p);
             auto type = writeRecursively(p.Type);
+
+            if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
+            {
+                ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
+                constexpr const char* ICON_MD_DELETE = "\xee\xa1\xb2";
+                if (ImGui::Button(fmt::format("{}##{}", ICON_MD_DELETE, fmt::ptr(&p)).data()))
+                {
+                    classInfo->Values.erase(p.Name);
+                    if (editor != nullptr)
+                    {
+                        editor->Clear();
+                    }
+                    MarkFileDirty(root);
+                }
+                ImGui::SameLine();
+            }
+
             ImGui::NextColumn();
 
-            auto AbsolutePropertyName = name + "." + p.Name;
-            auto &editor = PropertyEditors[AbsolutePropertyName];
             if (editor == nullptr)
             {
                 if (auto it = g_ExtensionLibrary.PropertyInstanceEditors.find(type);  it != g_ExtensionLibrary.PropertyInstanceEditors.end())
@@ -412,6 +430,19 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
                     if (auto it = g_ExtensionLibrary.PropertyTypeEditors.find(propertyFileInfo.Type); it != g_ExtensionLibrary.PropertyTypeEditors.end())
                     {
                         editor = UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
+                    }
+                }
+
+                if (editor)
+                {
+                    editor->Changed = [&]()
+                    {
+                        editor->Serialize(classInfo->Values[p.Name]);
+                        MarkFileDirty(root);
+                    };
+                    if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
+                    {
+                        editor->Deserialize(it->second);
                     }
                 }
             }

@@ -10,6 +10,7 @@ void PathPropertyEditor::Draw()
     if (ImGui::InputText(ID.data(), &string))
     {
         Value = string;
+        Changed();
     }
     ImGui::PopItemWidth();
     ImGui::SameLine();

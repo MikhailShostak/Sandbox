@@ -3,7 +3,10 @@ namespace ClassGen
 
 void BooleanPropertyEditor::Draw()
 {
-    ImGui::Checkbox(ID.data(), &Value);
+    if (ImGui::Checkbox(ID.data(), &Value))
+    {
+        Changed();
+    }
 }
 
 }

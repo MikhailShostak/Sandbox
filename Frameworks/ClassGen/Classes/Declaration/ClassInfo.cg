@@ -38,3 +38,7 @@ Properties:
       - Serialize
     Name: Graphs
     Type: SortedMap<String, ClassGen.GraphInfo>
+  - Attributes:
+      - Serialize
+    Name: Values
+    Type: Map<String, Serialization.Data>

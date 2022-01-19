@@ -17,5 +17,6 @@ struct ValuePropertyEditor
     }
     virtual void Serialize(Serialization::Data & Data);
     virtual void Deserialize(const Serialization::Data & Data);
+    virtual void Clear();
 };
 }
