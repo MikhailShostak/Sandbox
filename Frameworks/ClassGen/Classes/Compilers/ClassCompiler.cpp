@@ -156,6 +156,12 @@ void ClassCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
     file << "    }\n";
     for (const ClassGen::EventInfo& e : classInfo.Events)
     {
+        if (e.InputParameters.empty())
+        {
+            file << "    Meta::Function<void> " << e.Name << ";\n";
+            continue;
+        }
+
         Array<String> parameters = e.InputParameters | ranges::views::transform([](auto& p)
             {
                 auto addReference = [&](const String& name) { return p.Copy ? name : (name + " &"); };
