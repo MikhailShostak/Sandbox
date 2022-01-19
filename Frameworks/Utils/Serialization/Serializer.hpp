@@ -173,6 +173,26 @@ struct Serializer<OutputValue, MapTag<KeyType, Type>>
 };
 
 template<>
+struct Serializer<InputValue, Data>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue&& data, ValueType&& value)
+    {
+        value.m_Storage = data.m_Storage;
+    }
+};
+
+template<>
+struct Serializer<OutputValue, Data>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue&& data, ValueType&& value)
+    {
+        data.m_Storage = value.m_Storage;
+    }
+};
+
+template<>
 struct Serializer<InputValue, std::filesystem::path>
 {
     template<typename InputValue, typename ValueType>
