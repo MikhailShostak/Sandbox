@@ -567,6 +567,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ClassGen::PropertyInfo* propertyToDelete = nullptr;
         static ClassGen::PropertyInfo *selectedProperty = nullptr;
         bool selection = false;
+        size_t i = 0;
         for (auto &p : classInfo.Properties)
         {
             bool selected = selectedProperty == &p;
@@ -575,6 +576,18 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedProperty = &p;
             }
             selection |= selected;
+
+            if (ImGui::IsItemActive() && !ImGui::IsItemHovered())
+            {
+                int next = i + (ImGui::GetMouseDragDelta(0).y < 0.f ? -1 : 1);
+                if (next >= 0 && next < classInfo.Properties.size())
+                {
+                    std::swap(classInfo.Properties[i], classInfo.Properties[next]);
+                    ImGui::ResetMouseDragDelta();
+                }
+            }
+            ++i;
+
             if (ImGui::BeginPopupContextItem())
             {
                 if (ImGui::Selectable(fmt::format("Remove##PropertyItem{}", fmt::ptr(&p)).data()))
@@ -739,6 +752,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ClassGen::EventInfo* eventToDetele = nullptr;
         static ClassGen::EventInfo *selectedEvent = nullptr;
         bool selection = false;
+        size_t i = 0;
         for (auto &e : classInfo.Events)
         {
             bool selected = selectedEvent == &e;
@@ -747,6 +761,18 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedEvent = &e;
             }
             selection |= selected;
+
+            if (ImGui::IsItemActive() && !ImGui::IsItemHovered())
+            {
+                int next = i + (ImGui::GetMouseDragDelta(0).y < 0.f ? -1 : 1);
+                if (next >= 0 && next < classInfo.Events.size())
+                {
+                    std::swap(classInfo.Events[i], classInfo.Events[next]);
+                    ImGui::ResetMouseDragDelta();
+                }
+            }
+            ++i;
+
             if (ImGui::BeginPopupContextItem())
             {
                 if (ImGui::Selectable(fmt::format("Remove##EventItem{}", fmt::ptr(&e)).data()))
@@ -804,6 +830,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ClassGen::FunctionInfo* functionToDetele = nullptr;
         static ClassGen::FunctionInfo *selectedFunction = nullptr;
         bool selection = false;
+        size_t i = 0;
         for (auto &f : classInfo.Functions)
         {
             bool selected = selectedFunction == &f;
@@ -812,6 +839,18 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedFunction = &f;
             }
             selection |= selected;
+
+            if (ImGui::IsItemActive() && !ImGui::IsItemHovered())
+            {
+                int next = i + (ImGui::GetMouseDragDelta(0).y < 0.f ? -1 : 1);
+                if (next >= 0 && next < classInfo.Functions.size())
+                {
+                    std::swap(classInfo.Functions[i], classInfo.Functions[next]);
+                    ImGui::ResetMouseDragDelta();
+                }
+            }
+            ++i;
+
             if (ImGui::BeginPopupContextItem())
             {
                 if (ImGui::Selectable(fmt::format("Remove##FunctionItem{}", fmt::ptr(&f)).data()))
