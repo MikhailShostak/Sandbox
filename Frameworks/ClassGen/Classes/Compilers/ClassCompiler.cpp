@@ -193,6 +193,25 @@ void ClassCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
 
             file << "    virtual " << resolveReturnType() << " " << f.Name << "(" << boost::join(parameters, ", ") << ");\n";
     }
+
+    file << "\n";
+    file << "    void Initialize()\n";
+    file << "    {\n";
+    if (!classInfo.BaseType.Name.empty())
+    {
+        file << "        Super::Initialize();\n";
+    }
+    for (auto& [ValueName, ValueData] : classInfo.Values)
+    {
+        file << "        {\n";
+        file << "            String data =\nR\"(\n";
+        file << ValueData.ToString();
+        file << "\n)\";\n";
+        file << "            Serialization::FromString(data, " << ValueName << ");\n";
+        file << "        }\n";
+    }
+    file << "    }\n";
+
     file << "};\n";
 
     if (!classNamespace.empty())
