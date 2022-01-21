@@ -1,0 +1,10 @@
+Type: Class
+BaseType: WindowComponent
+Functions:
+  - Name: Draw
+Namespace: UI
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Views
+    Type: Array<SharedReference<UI.BaseView>>

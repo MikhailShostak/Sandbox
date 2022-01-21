@@ -1,0 +1,11 @@
+Type: Class
+Functions:
+  - Name: Draw
+Graphs:
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: UI

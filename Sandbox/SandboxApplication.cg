@@ -1,0 +1,80 @@
+Type: Class
+Attributes:
+  - DefaultConstructor
+BaseType: Core.Application
+Graphs:
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Init:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.PreInit:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.UpdateUI:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Values:
+  Components:
+    - Type: UI.ViewWindowComponent
+      Values:
+        BackgroundColor:
+          w: 1
+          x: 1
+          y: 0
+          z: 0
+        Enabled: true
+        Size:
+          x: 800
+          y: 480
+        TerminateOnClose: true
+        Title: Sandbox (Red)
+        Views:
+          - Type: UI.DemoView
+    - Type: UI.ViewWindowComponent
+      Values:
+        BackgroundColor:
+          w: 1
+          x: 0
+          y: 1
+          z: 0
+        Enabled: true
+        Size:
+          x: 800
+          y: 480
+        Title: Sandbox (Green)
+        Views:
+          - Type: UI.DemoView
+    - Type: UI.ViewWindowComponent
+      Values:
+        BackgroundColor:
+          w: 1
+          x: 0
+          y: 0
+          z: 1
+        Enabled: true
+        Size:
+          x: 800
+          y: 480
+        Title: Sandbox (Blue)
+        Views:
+          - Type: UI.DemoView

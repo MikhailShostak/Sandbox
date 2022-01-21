@@ -1,0 +1,5 @@
+Type: Class
+BaseType: UI.BaseView
+Functions:
+  - Name: Draw
+Namespace: UI
