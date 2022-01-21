@@ -26,6 +26,7 @@ Reflection::Add<ClassGen::StringPropertyEditor>("ClassGen.StringPropertyEditor")
 Reflection::Add<ClassGen::PathPropertyEditor>("ClassGen.PathPropertyEditor");
 Reflection::Add<ClassGen::ArrayPropertyEditor>("ClassGen.ArrayPropertyEditor");
 Reflection::Add<ClassGen::ObjectPropertyEditor>("ClassGen.ObjectPropertyEditor");
+Reflection::Add<ClassGen::InstancePropertyEditor>("ClassGen.InstancePropertyEditor");
 Reflection::Add<ClassGen::ClassExtension>("ClassGen.ClassExtension");
 Reflection::Add<ClassGen::ClassCompiler>("ClassGen.ClassCompiler");
 Reflection::Add<ClassGen::ClassFileEditor>("ClassGen.ClassFileEditor");

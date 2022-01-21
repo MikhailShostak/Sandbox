@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Utils.hpp>
+#include <Graphics.pch.hpp>
 
 //TODO: sort
 #include "Classes/Declaration/BaseInfo.hpp"
@@ -21,6 +21,7 @@
 #include "Classes/Editor/FileEditor.hpp"
 #include "Classes/Extension/ExtensionLibrary.hpp"
 #include "Classes/Extension/ExtensionInterface.hpp"
+#include "Classes/Extension/Basic/InstanceInfo.hpp"
 #include "Classes/Extension/Basic/ValuePropertyEditor.hpp"
 #include "Classes/Extension/Basic/ValuePropertyEditor.inl"
 #include "Classes/Extension/Basic/BooleanPropertyEditor.hpp"
@@ -37,6 +38,7 @@
 #include "Classes/Extension/Basic/PathPropertyEditor.hpp"
 #include "Classes/Extension/Basic/ArrayPropertyEditor.hpp"
 #include "Classes/Extension/Basic/ObjectPropertyEditor.hpp"
+#include "Classes/Extension/Basic/InstancePropertyEditor.hpp"
 #include "Classes/Extension/Basic/BasicExtension.hpp"
 #include "Classes/Extension/Class/ClassFileEditor.hpp"
 #include "Classes/Extension/Class/ClassExtension.hpp"

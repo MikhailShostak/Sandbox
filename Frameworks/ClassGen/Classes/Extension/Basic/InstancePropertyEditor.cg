@@ -1,0 +1,8 @@
+Type: Class
+BaseType: ClassGen.ValuePropertyEditor<ClassGen.InstanceInfo>
+Functions:
+  - Name: Draw
+Namespace: ClassGen
+Properties:
+  - Name: ValuesEditor
+    Type: ClassGen.ObjectPropertyEditor

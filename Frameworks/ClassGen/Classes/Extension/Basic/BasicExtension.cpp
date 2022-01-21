@@ -31,5 +31,8 @@ void BasicExtension::Load(ClassGen::ExtensionLibrary &Library)
     Library.PropertyInstanceEditors["System.Path"] = Reflection::Find<ClassGen::PathPropertyEditor>();
 
     Library.PropertyInstanceEditors["Array"] = Reflection::Find<ClassGen::ArrayPropertyEditor>();
+
+    Library.PropertyInstanceEditors["UniqueReference"] = Reflection::Find<ClassGen::InstancePropertyEditor>();
+    Library.PropertyInstanceEditors["SharedReference"] = Reflection::Find<ClassGen::InstancePropertyEditor>();
 }
 }
