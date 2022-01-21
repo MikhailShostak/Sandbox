@@ -4,6 +4,8 @@
 namespace ClassGen
 {
 
+constexpr const char* ICON_MD_DELETE = "\xee\xa1\xb2";
+
 inline static ImGuiTableFlags DefaultTableFlags =
     ImGuiTableFlags_SizingFixedFit |
     ImGuiTableFlags_RowBg |
@@ -403,7 +405,6 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
             if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
             {
                 ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
-                constexpr const char* ICON_MD_DELETE = "\xee\xa1\xb2";
                 if (ImGui::Button(fmt::format("{}##{}", ICON_MD_DELETE, fmt::ptr(&p)).data()))
                 {
                     classInfo->Values.erase(p.Name);
@@ -461,6 +462,15 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
     {
         RenderDataRecursively(root, baseType);
     }
+}
+
+template<typename Type>
+auto SamePointer(const Type& value)
+{
+    return [&value](auto& item)
+    {
+        return &item == value;
+    };
 }
 
 void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInfo &classInfo)
@@ -544,6 +554,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
 
     if (ImGui::CollapsingHeader("Properties", ImGuiTreeNodeFlags_DefaultOpen))
     {
+        ClassGen::PropertyInfo* propertyToDelete = nullptr;
         static ClassGen::PropertyInfo *selectedProperty = nullptr;
         bool selection = false;
         for (auto &p : classInfo.Properties)
@@ -554,6 +565,22 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedProperty = &p;
             }
             selection |= selected;
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::Selectable(fmt::format("Remove##PropertyItem{}", fmt::ptr(&p)).data()))
+                {
+                    propertyToDelete = &p;
+                }
+                ImGui::EndPopup();
+            }
+        }
+        if (propertyToDelete)
+        {
+            boost::remove_erase_if(classInfo.Properties, SamePointer(propertyToDelete));
+            if (propertyToDelete == selectedProperty)
+            {
+                selectedProperty = nullptr;
+            }
         }
         if (!selection)
         {
@@ -699,6 +726,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
 
     if (ImGui::CollapsingHeader("Events", ImGuiTreeNodeFlags_DefaultOpen))
     {
+        ClassGen::EventInfo* eventToDetele = nullptr;
         static ClassGen::EventInfo *selectedEvent = nullptr;
         bool selection = false;
         for (auto &e : classInfo.Events)
@@ -709,6 +737,22 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedEvent = &e;
             }
             selection |= selected;
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::Selectable(fmt::format("Remove##EventItem{}", fmt::ptr(&e)).data()))
+                {
+                    eventToDetele = &e;
+                }
+                ImGui::EndPopup();
+            }
+        }
+        if (eventToDetele)
+        {
+            boost::remove_erase_if(classInfo.Events, SamePointer(eventToDetele));
+            if (eventToDetele == selectedEvent)
+            {
+                selectedEvent = nullptr;
+            }
         }
         if (!selection)
         {
@@ -747,6 +791,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
 
     if (ImGui::CollapsingHeader("Functions", ImGuiTreeNodeFlags_DefaultOpen))
     {
+        ClassGen::FunctionInfo* functionToDetele = nullptr;
         static ClassGen::FunctionInfo *selectedFunction = nullptr;
         bool selection = false;
         for (auto &f : classInfo.Functions)
@@ -757,6 +802,22 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 selectedFunction = &f;
             }
             selection |= selected;
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::Selectable(fmt::format("Remove##FunctionItem{}", fmt::ptr(&f)).data()))
+                {
+                    functionToDetele = &f;
+                }
+                ImGui::EndPopup();
+            }
+        }
+        if (functionToDetele)
+        {
+            boost::remove_erase_if(classInfo.Functions, SamePointer(functionToDetele));
+            if (functionToDetele == selectedFunction)
+            {
+                selectedFunction = nullptr;
+            }
         }
         if (!selection)
         {
