@@ -1,0 +1,12 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+  - Destructor
+  - Copy
+  - Move
+Properties:
+  - Attributes:
+      - Incomplete
+    Name: Data
+    Type: InplaceStorage<NativeWindowHandleData, 64, 8, false>

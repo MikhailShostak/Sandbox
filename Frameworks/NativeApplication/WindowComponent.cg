@@ -1,0 +1,149 @@
+Type: Class
+BaseType: Core.ApplicationComponent
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Load
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Unload
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Update
+  - Name: CreateWindowHandle
+  - Name: DestroyWindowHandle
+  - Name: CreateGraphicsContext
+  - Name: DestroyGraphicsContext
+  - Name: CreateUI
+  - Name: DestroyUI
+  - Name: Render
+  - Name: Clear
+  - Name: Draw
+  - Name: Flush
+  - Name: Show
+  - Name: Hide
+Graphs:
+  Function.Clear:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateGraphicsContext:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateUI:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.CreateWindowHandle:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DestroyGraphicsContext:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DestroyUI:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DestroyWindowHandle:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Flush:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Hide:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Render:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Show:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Unload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Title
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Size
+    Type: Int2
+  - Attributes:
+      - Serialize
+    Name: BackgroundColor
+    Type: Color
+  - Name: GraphicsContext
+    Type: Graphics.GraphicsContext
+  - Name: SwapChain
+    Type: Graphics.SwapChain
+  - Name: FrameCounter
+    Type: DateTime.Counter<DateTime.HighResolution.Clock>
+  - Name: Handle
+    Type: NativeWindowHandle
+  - Attributes:
+      - Serialize
+    Name: TerminateOnClose
+    Type: bool
