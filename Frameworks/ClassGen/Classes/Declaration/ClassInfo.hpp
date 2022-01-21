@@ -7,16 +7,16 @@ struct ClassInfo
 {
     using This = ClassInfo;
     using Super = ClassGen::BaseInfo;
-    ClassGen::TypeInfo BaseType;
-    Array<ClassGen::TypeInfo> Interfaces;
-    Array<String> Attributes;
-    Array<String> TemplateTypes;
-    ClassGen::TypeInfo IndirectType;
-    Array<ClassGen::PropertyInfo> Properties;
-    Array<ClassGen::FunctionInfo> Functions;
-    Array<ClassGen::EventInfo> Events;
-    SortedMap<String, ClassGen::GraphInfo> Graphs;
-    Map<String, Serialization::Data> Values;
+    ClassGen::TypeInfo BaseType = {};
+    Array<ClassGen::TypeInfo> Interfaces = {};
+    Array<String> Attributes = {};
+    Array<String> TemplateTypes = {};
+    ClassGen::TypeInfo IndirectType = {};
+    Array<ClassGen::PropertyInfo> Properties = {};
+    Array<ClassGen::FunctionInfo> Functions = {};
+    Array<ClassGen::EventInfo> Events = {};
+    SortedMap<String, ClassGen::GraphInfo> Graphs = {};
+    Map<String, Serialization::Data> Values = {};
 
     virtual ~ClassInfo() {}
     template<typename T>
@@ -32,6 +32,11 @@ struct ClassInfo
         data["Events"] & Events;
         data["Graphs"] & Graphs;
         data["Values"] & Values;
+    }
+
+    void Initialize()
+    {
+        Super::Initialize();
     }
 };
 }

@@ -14,5 +14,10 @@ struct Int2PropertyEditor
     {
     }
     virtual void Draw();
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }

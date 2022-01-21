@@ -9,11 +9,15 @@ struct ClassExtension
     using Super = ClassGen::ExtensionInterface;
 
     virtual ~ClassExtension() {}
-
     template<typename T>
     void Serialize(T &&data)
     {
     }
     virtual void Load(ClassGen::ExtensionLibrary & Library);
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }

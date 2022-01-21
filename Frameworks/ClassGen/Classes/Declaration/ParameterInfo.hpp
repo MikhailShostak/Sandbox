@@ -5,10 +5,10 @@ namespace ClassGen
 struct ParameterInfo
 {
     using This = ParameterInfo;
-    ClassGen::TypeInfo Type;
-    String Name;
-    bool Writable = false;
-    bool Copy = false;
+    ClassGen::TypeInfo Type = {};
+    String Name = {};
+    bool Writable = {};
+    bool Copy = {};
 
     template<typename T>
     void Serialize(T &&data)
@@ -17,6 +17,10 @@ struct ParameterInfo
         data["Name"] & Name;
         data["Writable"] & Writable;
         data["Copy"] & Copy;
+    }
+
+    void Initialize()
+    {
     }
 };
 }

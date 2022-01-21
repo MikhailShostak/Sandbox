@@ -5,9 +5,9 @@ namespace ClassGen
 struct PropertyInfo
 {
     using This = PropertyInfo;
-    ClassGen::TypeInfo Type;
-    String Name;
-    Array<String> Attributes;
+    ClassGen::TypeInfo Type = {};
+    String Name = {};
+    Array<String> Attributes = {};
 
     template<typename T>
     void Serialize(T &&data)
@@ -15,6 +15,10 @@ struct PropertyInfo
         data["Type"] & Type;
         data["Name"] & Name;
         data["Attributes"] & Attributes;
+    }
+
+    void Initialize()
+    {
     }
 };
 }

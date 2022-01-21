@@ -14,5 +14,10 @@ struct Float3PropertyEditor
     {
     }
     virtual void Draw();
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }

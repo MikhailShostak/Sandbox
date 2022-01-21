@@ -14,5 +14,10 @@ struct PathPropertyEditor
     {
     }
     virtual void Draw();
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }

@@ -8,7 +8,7 @@ struct ValuePropertyEditor
 {
     using This = ValuePropertyEditor;
     using Super = ClassGen::PropertyEditor;
-    ValueType Value;
+    ValueType Value = {};
 
     virtual ~ValuePropertyEditor() {}
     template<typename T>
@@ -18,5 +18,10 @@ struct ValuePropertyEditor
     virtual void Serialize(Serialization::Data & Data);
     virtual void Deserialize(const Serialization::Data & Data);
     virtual void Clear();
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }

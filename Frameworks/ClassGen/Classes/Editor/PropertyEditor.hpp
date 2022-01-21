@@ -19,5 +19,9 @@ struct PropertyEditor
     virtual void DrawLabel(const String & Name);
     virtual void Draw();
     virtual void Clear();
+
+    void Initialize()
+    {
+    }
 };
 }

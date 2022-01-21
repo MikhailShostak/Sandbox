@@ -3,8 +3,8 @@ Functions:
   - InputParameters:
       - Copy: false
         Name: Library
-        ReadOnly: false
         Type: ClassGen.ExtensionLibrary
+        Writable: true
     Name: Load
 Graphs:
   Function.Load:

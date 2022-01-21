@@ -14,5 +14,10 @@ struct ClassCompiler
     {
     }
     virtual void Compile(const SharedReference<ClassGen::BaseInfo> & BaseInfo, const System::Path & OutputFilePath);
+
+    void Initialize()
+    {
+        Super::Initialize();
+    }
 };
 }
