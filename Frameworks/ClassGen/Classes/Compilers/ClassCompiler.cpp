@@ -43,7 +43,7 @@ void ClassCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
     }
     for (const auto& p : classInfo.Properties)
     {
-        file << "    " << writeRecursivelyResolved(p.Type) << " " << p.Name << ";\n";
+        file << "    " << writeRecursivelyResolved(p.Type) << " " << p.Name << " = {};\n";
     }
 
 
