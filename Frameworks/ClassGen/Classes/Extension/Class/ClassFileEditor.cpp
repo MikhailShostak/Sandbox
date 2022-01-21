@@ -421,18 +421,28 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
 
             if (editor == nullptr)
             {
-                if (auto it = g_ExtensionLibrary.PropertyInstanceEditors.find(type);  it != g_ExtensionLibrary.PropertyInstanceEditors.end())
-                {
-                    editor = UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
-                }
-                else
-                {
+                editor = [&]() {
+                    if (auto it = g_ExtensionLibrary.PropertyInstanceEditors.find(type);  it != g_ExtensionLibrary.PropertyInstanceEditors.end())
+                    {
+                        return UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
+                    }
+
+                    if (!p.Type.Parameters.empty())
+                    {
+                        if (auto it = g_ExtensionLibrary.PropertyInstanceEditors.find(p.Type.Name);  it != g_ExtensionLibrary.PropertyInstanceEditors.end())
+                        {
+                            return UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
+                        }
+                    }
+
                     ClassGen::FileInfo propertyFileInfo = FindClassByName(p.Type.Name);
                     if (auto it = g_ExtensionLibrary.PropertyTypeEditors.find(propertyFileInfo.Type); it != g_ExtensionLibrary.PropertyTypeEditors.end())
                     {
-                        editor = UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
+                        return UniqueReference<ClassGen::PropertyEditor>(it->second->Create());
                     }
-                }
+
+                    return UniqueReference<ClassGen::PropertyEditor>();
+                }();
 
                 if (editor)
                 {
