@@ -18,5 +18,6 @@ struct ExtensionLibrary
     }
     virtual std::tuple<ClassGen::FileInfo/*FileInfo*/> LoadFile(const System::Path & Path);
     virtual std::tuple<bool/*Success*/> LoadData(ClassGen::FileInfo & FileInfo, const Serialization::Data & Data, const System::Path& Path);
+    virtual std::tuple<UniqueReference<ClassGen::PropertyEditor>/*Editor*/> FindEditor(const ClassGen::TypeInfo & Type);
 };
 }

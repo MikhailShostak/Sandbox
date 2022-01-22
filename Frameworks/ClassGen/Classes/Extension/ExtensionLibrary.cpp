@@ -43,4 +43,28 @@ std::tuple<ClassGen::FileInfo/*FileInfo*/> ExtensionLibrary::LoadFile(const Syst
     return { fileInfo };
 }
 
+std::tuple<UniqueReference<ClassGen::PropertyEditor>/*Editor*/> ExtensionLibrary::FindEditor(const ClassGen::TypeInfo& Type)
+{
+    if (auto it = PropertyInstanceEditors.find(writeRecursively(Type));  it != PropertyInstanceEditors.end())
+    {
+        return { UniqueReference<ClassGen::PropertyEditor>(it->second->Create()) };
+    }
+
+    if (!Type.Parameters.empty())
+    {
+        if (auto it = PropertyInstanceEditors.find(Type.Name);  it != PropertyInstanceEditors.end())
+        {
+            return { UniqueReference<ClassGen::PropertyEditor>(it->second->Create()) };
+        }
+    }
+
+    ClassGen::FileInfo propertyFileInfo = FindClassByName(Type.Name);
+    if (auto it = PropertyTypeEditors.find(propertyFileInfo.Type); it != PropertyTypeEditors.end())
+    {
+        return { UniqueReference<ClassGen::PropertyEditor>(it->second->Create()) };
+    }
+
+    return { UniqueReference<ClassGen::PropertyEditor>() };
+}
+
 }

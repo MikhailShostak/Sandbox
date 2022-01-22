@@ -30,7 +30,24 @@ Functions:
         Name: Success
         Type: bool
         Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Type
+        Type: ClassGen.TypeInfo
+        Writable: false
+    Name: FindEditor
+    OutputParameters:
+      - Copy: false
+        Name: Editor
+        Type: UniqueReference<ClassGen.PropertyEditor>
+        Writable: false
 Graphs:
+  Function.FindEditor:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
   Function.LoadData:
     Nodes:
       - ID: Input
