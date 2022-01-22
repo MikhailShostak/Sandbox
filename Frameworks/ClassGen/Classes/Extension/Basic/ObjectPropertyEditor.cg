@@ -1,0 +1,53 @@
+Type: Class
+BaseType: ClassGen.ValuePropertyEditor<Map<String, Serialization.Data>>
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Name
+        Type: String
+        Writable: false
+    Name: DrawLabel
+  - Name: Draw
+  - InputParameters:
+      - Copy: false
+        Name: ClassInfo
+        Type: ClassGen.ClassInfo
+        Writable: true
+    Name: DrawProperties
+  - Name: DrawAllProperties
+  - Name: Clear
+Graphs:
+  Function.Clear:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DrawAllProperties:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DrawLabel:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.DrawProperties:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: PropertyEditors
+    Type: Map<String, UniqueReference<ClassGen.PropertyEditor>>

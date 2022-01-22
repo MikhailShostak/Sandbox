@@ -15,6 +15,7 @@ namespace ClassGen
 {
 
 inline String ICON_DELETE = "\xee\xa1\xb2";
+inline String ICON_OPEN_IN_NEW = "\xee\xa2\x9e";
 
 inline void LoadExtensions()
 {

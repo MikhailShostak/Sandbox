@@ -7,6 +7,7 @@ struct ClassFileEditor
 {
     using This = ClassFileEditor;
     using Super = ClassGen::FileEditor;
+    ClassGen::ObjectPropertyEditor DataEditor = {};
 
     virtual ~ClassFileEditor() {}
     template<typename T>
@@ -16,7 +17,6 @@ struct ClassFileEditor
     virtual void ShowGraph(const System::Path & Path);
     virtual void RenderDetails(const System::Path & Path, ClassGen::ClassInfo & ClassInfo);
     virtual void RenderData(const System::Path & Path, ClassGen::ClassInfo & ClassInfo);
-    virtual void RenderDataRecursively(const System::Path & Root, const String & Name);
     virtual void RenderFile();
 
     void Initialize()

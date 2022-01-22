@@ -70,3 +70,6 @@ Graphs:
       - ID: Output
         Name: Output
 Namespace: ClassGen
+Properties:
+  - Name: DataEditor
+    Type: ClassGen.ObjectPropertyEditor

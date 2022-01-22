@@ -4,8 +4,6 @@
 namespace ClassGen
 {
 
-constexpr const char* ICON_MD_DELETE = "\xee\xa1\xb2";
-
 inline static ImGuiTableFlags DefaultTableFlags =
     ImGuiTableFlags_SizingFixedFit |
     ImGuiTableFlags_RowBg |
@@ -325,95 +323,6 @@ void IndexFileData(const System::Path &path, const ClassGen::BaseInfo &baseInfo)
 
     IndexProperties(classInfo->Properties, namespaceName);
     IndexFunctions(classInfo->Functions, namespaceName);
-}
-
-void ClassFileEditor::RenderDataRecursively(const System::Path &root, const String &name)
-{
-    ClassGen::FileInfo fileInfo = FindClassByName(name);
-    auto classInfo = std::dynamic_pointer_cast<ClassGen::ClassInfo>(fileInfo.Instance);
-    if (!classInfo)
-    {
-        ImGui::Text(fmt::format("Base Class Not Found: {}", name).data());
-        return;
-    }
-
-    if (ImGui::CollapsingHeader(name.data(), ImGuiTreeNodeFlags_DefaultOpen))
-    {
-        ImGui::Columns(2);
-
-        //TODO: rework based on property renaming
-        MapUtils::EraseIf(PropertyEditors, [&](const auto& pair)
-        {
-            for (auto& p : classInfo->Properties)
-            {
-                auto AbsolutePropertyName = name + "." + p.Name;
-                if (pair.first == AbsolutePropertyName)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-
-        for (auto &p : classInfo->Properties)
-        {
-            auto& editor = PropertyEditors[p.Name];
-            if (editor == nullptr)
-            {
-                auto [e] = g_ExtensionLibrary.FindEditor(p.Type);
-                editor = std::move(e);
-                if (editor)
-                {
-                    editor->Changed = [&]()
-                    {
-                        editor->Serialize(classInfo->Values[p.Name]);
-                        MarkFileDirty(root);
-                    };
-                    if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
-                    {
-                        editor->Deserialize(it->second);
-                    }
-                }
-            }
-
-            if (editor)
-            {
-                auto propertyId = fmt::format("##PropertyValue{}", (void*)&p);
-                editor->ID = propertyId;
-                if (editor->TypeInfo.Type != p.Type.Name)
-                {
-                    //TODO: optimize
-                    editor->TypeInfo = FindClassByName(p.Type.Name);
-                }
-
-                editor->DrawLabel(p.Name);
-                if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
-                {
-                    ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
-                    if (ImGui::Button(fmt::format("{}##{}", ICON_DELETE, fmt::ptr(&p)).data()))
-                    {
-                        classInfo->Values.erase(p.Name);
-                        if (editor != nullptr)
-                        {
-                            editor->Clear();
-                        }
-                        MarkFileDirty(root);
-                    }
-                    ImGui::SameLine();
-                }
-                ImGui::NextColumn();
-                editor->Draw();
-                ImGui::NextColumn();
-            }
-        }
-        ImGui::Columns(1);
-    }
-    auto baseType = writeRecursively(classInfo->BaseType);
-    if (!baseType.empty())
-    {
-        RenderDataRecursively(root, baseType);
-    }
 }
 
 template<typename Type>
@@ -888,7 +797,22 @@ void ClassFileEditor::RenderData(const System::Path &path, ClassGen::ClassInfo &
 {
     //TODO: Check FileData
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(2, 2));
-    RenderDataRecursively(path, classInfo.Namespace.empty() ? path.stem().generic_string() : (classInfo.Namespace + "." + path.stem().generic_string()));
+
+    if (!DataEditor.Changed)
+    {
+        DataEditor.Value = classInfo.Values;
+        DataEditor.Changed = [&]()
+        {
+            classInfo.Values = DataEditor.Value;
+            MarkFileDirty(path);
+        };
+    }
+    DataEditor.TypeInfo = Data;
+    DataEditor.ID = fmt::format("##PropertyValue{}", fmt::ptr(&DataEditor));
+
+    ImGui::Columns(2);
+    DataEditor.DrawAllProperties();
+    ImGui::Columns(1);
     ImGui::PopStyleVar();
 }
 
@@ -1057,6 +981,16 @@ void ClassFileEditor::RenderFile()
         {
             RenderData(Path, classInfo);
             ImGui::EndTabItem();
+        }
+        if (!classInfo.Values.empty())
+        {
+            if (ImGui::BeginTabItem(fmt::format("{}##{}", ICON_DELETE, fmt::ptr(&DataEditor)).data()))
+            {
+                classInfo.Values.clear();
+                DataEditor.Clear();
+                MarkFileDirty(Path);
+                ImGui::EndTabItem();
+            }
         }
         ImGui::EndTabBar();
     }

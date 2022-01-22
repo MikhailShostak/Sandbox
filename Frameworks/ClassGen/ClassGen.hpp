@@ -35,6 +35,7 @@
 #include "Classes/Extension/Basic/ColorPropertyEditor.hpp"
 #include "Classes/Extension/Basic/StringPropertyEditor.hpp"
 #include "Classes/Extension/Basic/PathPropertyEditor.hpp"
+#include "Classes/Extension/Basic/ObjectPropertyEditor.hpp"
 #include "Classes/Extension/Basic/BasicExtension.hpp"
 #include "Classes/Extension/Class/ClassFileEditor.hpp"
 #include "Classes/Extension/Class/ClassExtension.hpp"

@@ -24,6 +24,7 @@ Reflection::Add<ClassGen::Float4PropertyEditor>("ClassGen.Float4PropertyEditor")
 Reflection::Add<ClassGen::ColorPropertyEditor>("ClassGen.ColorPropertyEditor");
 Reflection::Add<ClassGen::StringPropertyEditor>("ClassGen.StringPropertyEditor");
 Reflection::Add<ClassGen::PathPropertyEditor>("ClassGen.PathPropertyEditor");
+Reflection::Add<ClassGen::ObjectPropertyEditor>("ClassGen.ObjectPropertyEditor");
 Reflection::Add<ClassGen::ClassExtension>("ClassGen.ClassExtension");
 Reflection::Add<ClassGen::ClassCompiler>("ClassGen.ClassCompiler");
 Reflection::Add<ClassGen::ClassFileEditor>("ClassGen.ClassFileEditor");
