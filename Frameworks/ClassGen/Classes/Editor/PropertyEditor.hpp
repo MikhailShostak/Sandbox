@@ -5,7 +5,8 @@ namespace ClassGen
 struct PropertyEditor
 {
     using This = PropertyEditor;
-    String ID;
+    String ID = {};
+    ClassGen::FileInfo TypeInfo = {};
 
     virtual ~PropertyEditor() {}
     template<typename T>

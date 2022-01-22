@@ -403,6 +403,11 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
             if (editor)
             {
                 editor->ID = propertyId;
+                if (editor->TypeInfo.Type != p.Type.Name)
+                {
+                    //TODO: optimize
+                    editor->TypeInfo = FindClassByName(p.Type.Name);
+                }
                 editor->Draw();
             }
             ImGui::NextColumn();

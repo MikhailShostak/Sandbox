@@ -45,3 +45,5 @@ Namespace: ClassGen
 Properties:
   - Name: ID
     Type: String
+  - Name: TypeInfo
+    Type: ClassGen.FileInfo
