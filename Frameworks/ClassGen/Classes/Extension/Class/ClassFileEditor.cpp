@@ -4,6 +4,8 @@
 namespace ClassGen
 {
 
+constexpr int ButtonSize = 26;
+
 inline static ImGuiTableFlags DefaultTableFlags =
     ImGuiTableFlags_SizingFixedFit |
     ImGuiTableFlags_RowBg |
@@ -334,6 +336,30 @@ auto SamePointer(const Type& value)
     };
 }
 
+bool DrawTypeEditor(ClassGen::TypeInfo& typeInfo)
+{
+    ClassGen::FileInfo baseTypeInfo = FindClassByName(typeInfo.Name);
+    auto ButtonOffset = !baseTypeInfo.Type.empty() ? -ButtonSize - ImGui::GetStyle().ItemInnerSpacing.x : 0;
+    ImGui::PushItemWidth(ButtonOffset - 1);
+    String baseType = writeRecursively(typeInfo);
+    if (ImGui::InputText(fmt::format("##{}", fmt::ptr(&typeInfo)).data(), &baseType))
+    {
+        readRecursively(baseType, typeInfo);
+        return true;
+    }
+    if (!baseTypeInfo.Type.empty())
+    {
+        ImGui::SameLine();
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + ImGui::GetStyle().ItemInnerSpacing.x - ImGui::GetStyle().ItemSpacing.x);
+        if (ImGui::Button(fmt::format("{}##Navigation{}", ICON_OPEN_IN_NEW, fmt::ptr(&typeInfo)).data()))
+        {
+            g_ExtensionLibrary.Navigate(baseTypeInfo);
+        }
+    }
+    ImGui::PopItemWidth();
+    return false;
+}
+
 void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInfo &classInfo)
 {
     if (ImGui::CollapsingHeader("Details", ImGuiTreeNodeFlags_DefaultOpen))
@@ -353,15 +379,12 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
 
         ImGui::Text("Base Type");
         ImGui::NextColumn();
-        ImGui::PushItemWidth(-1);
-        String baseType = writeRecursively(classInfo.BaseType);
-        if (ImGui::InputText("##BaseType", &baseType))
+        if (DrawTypeEditor(classInfo.BaseType))
         {
-            readRecursively(baseType, classInfo.BaseType);
             IndexFileData(path, classInfo);
             MarkFileDirty(path);
         }
-        ImGui::PopItemWidth();
+
         ImGui::NextColumn();
 
         ImGui::Text("Attributes");
@@ -469,7 +492,6 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         ImGui::Columns(2);
         if (selectedProperty)
         {
-            String type = writeRecursively(selectedProperty->Type);
             ImGui::Text("Name");
             ImGui::NextColumn();
             ImGui::PushItemWidth(-1);
@@ -484,14 +506,11 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
 
             ImGui::Text("Type");
             ImGui::NextColumn();
-            ImGui::PushItemWidth(-1);
-            if (ImGui::InputText(fmt::format("##PropertyType{}", (void *)selectedProperty).data(), &type))
+            if (DrawTypeEditor(selectedProperty->Type))
             {
-                readRecursively(type, selectedProperty->Type);
                 IndexFileData(path, classInfo);
                 MarkFileDirty(path);
             }
-            ImGui::PopItemWidth();
             ImGui::NextColumn();
 
             ImGui::Text("Attributes");
@@ -557,15 +576,11 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
             ApplyPadding();
             ImGui::Text("Type");
             ImGui::NextColumn();
-            String type = writeRecursively(p.Type);
-            ImGui::PushItemWidth(-1);
-            if (ImGui::InputText(fmt::format("##Type{}", (void *)&p).data(), &type))
+            if (DrawTypeEditor(p.Type))
             {
-                readRecursively(type, p.Type);
                 IndexFileData(path, classInfo);
                 MarkFileDirty(path);
             }
-            ImGui::PopItemWidth();
             ImGui::NextColumn();
 
             ImGui::Text("Writable");
