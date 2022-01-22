@@ -14,6 +14,8 @@ inline Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
 namespace ClassGen
 {
 
+inline String ICON_DELETE = "\xee\xa1\xb2";
+
 inline void LoadExtensions()
 {
     auto extensions = Reflection::FindAll<ClassGen::ExtensionInterface>();

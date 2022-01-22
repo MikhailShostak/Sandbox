@@ -368,7 +368,7 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
             if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
             {
                 ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
-                if (ImGui::Button(fmt::format("{}##{}", ICON_MD_DELETE, fmt::ptr(&p)).data()))
+                if (ImGui::Button(fmt::format("{}##{}", ICON_DELETE, fmt::ptr(&p)).data()))
                 {
                     classInfo->Values.erase(p.Name);
                     if (editor != nullptr)
