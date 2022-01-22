@@ -186,6 +186,11 @@ void ClassCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
                 {
                     return "void";
                 }
+                else if (f.OutputParameters.size() == 1)
+                {
+                    const auto& p = f.OutputParameters[0];
+                    return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/";;
+                }
 
                 Array<String> parameters = f.OutputParameters | ranges::views::transform([](auto& p) { return writeRecursivelyResolved(p.Type) + "/*" + p.Name + "*/"; }) | ranges::to<Array<String>>();
                 return "std::tuple<" + boost::join(parameters, ", ") + ">";
