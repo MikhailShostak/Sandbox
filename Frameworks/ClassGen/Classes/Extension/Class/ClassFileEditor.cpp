@@ -238,43 +238,6 @@ void ClassFileEditor::ShowGraph(const System::Path &path)
     ImGui::End();
 }
 
-ClassGen::FileInfo FindClassByName(const String &name, const String &nameSpace)
-{
-    ClassGen::FileInfo node;
-
-    auto it = std::find_if(g_ClassGenCache.begin(), g_ClassGenCache.end(), [&](const auto &v)
-    {
-        bool result = true;
-        if (!nameSpace.empty() && v.second.Instance && !v.second.Instance->Namespace.empty())
-        {
-            result = v.second.Instance->Namespace == nameSpace;
-        }
-
-        return result && System::Path(v.first).stem().generic_string() == name;
-    });
-    if (it != g_ClassGenCache.end())
-    {
-        node = it->second;
-    }
-
-    return node;
-}
-
-ClassGen::FileInfo FindClassByName(const String &fullname)
-{
-    System::Path p(fullname);
-    if (p.has_extension())
-    {
-        auto name = p.extension().generic_string();
-        boost::trim_left_if(name, boost::is_any_of("."));
-        return FindClassByName(name, p.stem().generic_string());
-    }
-    else
-    {
-        return FindClassByName(p.stem().generic_string(), String());
-    }
-}
-
 namespace
 {
 
