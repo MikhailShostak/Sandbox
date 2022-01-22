@@ -6,6 +6,7 @@ struct FileInfo
 {
     using This = FileInfo;
     String Type = {};
+    System::Path Path = {};
     std::shared_ptr<ClassGen::BaseInfo> Instance = {};
 
     template<typename T>

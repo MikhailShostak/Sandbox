@@ -7,5 +7,7 @@ Properties:
       - Serialize
     Name: Type
     Type: String
+  - Name: Path
+    Type: System.Path
   - Name: Instance
     Type: std.shared_ptr<ClassGen.BaseInfo>

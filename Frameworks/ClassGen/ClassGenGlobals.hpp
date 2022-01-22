@@ -27,7 +27,7 @@ inline void LoadExtensions()
     }
 }
 
-inline void Compile(const ClassGen::FileInfo& FileInfo, const System::Path &SourcePath)
+inline void Compile(const ClassGen::FileInfo& FileInfo)
 {
     auto it = g_ExtensionLibrary.Compilers.find(FileInfo.Type);
     if (it == g_ExtensionLibrary.Compilers.end())
@@ -37,13 +37,13 @@ inline void Compile(const ClassGen::FileInfo& FileInfo, const System::Path &Sour
     }
 
     auto compiler = UniqueReference<ClassGen::Compiler>(it->second->Create());
-    compiler->Compile(FileInfo.Instance, System::Path(SourcePath).replace_extension(".hpp"));
+    compiler->Compile(FileInfo.Instance, System::Path(FileInfo.Path).replace_extension(".hpp"));
 }
 
-inline void Compile(const System::Path &SourcePath)
+inline void Compile(const System::Path &Path)
 {
-    auto [FileInfo] = g_ExtensionLibrary.LoadFile(SourcePath);
-    Compile(FileInfo, SourcePath);
+    auto [FileInfo] = g_ExtensionLibrary.LoadFile(Path);
+    Compile(FileInfo);
 }
 
 inline ClassGen::FileInfo FindClassByName(const String& name, const String& nameSpace)

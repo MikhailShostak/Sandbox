@@ -20,10 +20,6 @@ Functions:
         Name: Data
         Type: Serialization.Data
         Writable: false
-      - Copy: false
-        Name: Path
-        Type: System::Path
-        Writable: false
     Name: LoadData
     OutputParameters:
       - Copy: false

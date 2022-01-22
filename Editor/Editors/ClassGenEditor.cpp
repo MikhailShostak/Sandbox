@@ -55,7 +55,7 @@ void ClassGenEditor::RenderFile(const System::Path &path)
     ImGui::SameLine();
     if (ImGui::Button("Reset"))
     {
-        g_ExtensionLibrary.LoadData(fileInfo, {}, path);
+        g_ExtensionLibrary.LoadData(fileInfo, {});
         if (editor)
         {
             editor->Data = fileInfo;
@@ -66,7 +66,7 @@ void ClassGenEditor::RenderFile(const System::Path &path)
     ImGui::SameLine();
     if (ImGui::Button("Compile"))
     {
-        ClassGen::Compile(fileInfo, path);
+        ClassGen::Compile(fileInfo);
     }
 
     if (!editor)
@@ -79,7 +79,7 @@ void ClassGenEditor::RenderFile(const System::Path &path)
 
         Serialization::Data data;
         data.FromFile(path);
-        g_ExtensionLibrary.LoadData(fileInfo, data, path);
+        g_ExtensionLibrary.LoadData(fileInfo, data);
 
         editor = it->second->Create();
         editor->Data = fileInfo;
@@ -98,7 +98,17 @@ bool ClassGenEditor::SaveFile(const System::Path &source, const System::Path &de
     Reflection::Serialize(*fileInfo.Instance, data);
     data.ToFile(destination);
 
-    ClassGen::Compile(fileInfo, destination);
+    if (source != destination)
+    {
+        //TODO: rework
+        auto [newFileInfo] = g_ExtensionLibrary.LoadFile(destination);
+        ClassGen::Compile(newFileInfo);
+        g_ExtensionLibrary.Navigate(newFileInfo);
+    }
+    else
+    {
+        ClassGen::Compile(fileInfo);
+    }
 
     return true;
 }
