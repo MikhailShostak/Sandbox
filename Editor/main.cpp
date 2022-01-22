@@ -166,6 +166,13 @@ public:
         Editors.insert({"ClassGenEditor", std::make_unique<DefaultExtensions::ClassGenEditor>() });
         
         ClassGen::LoadExtensions();
+        g_ExtensionLibrary.Navigate = [](const ClassGen::FileInfo &type)
+        {
+            if (System::IsRegularFile(type.Path))
+            {
+                OpenFile(type.Path, false);
+            }
+        };
 
         ReloadFiles();
 

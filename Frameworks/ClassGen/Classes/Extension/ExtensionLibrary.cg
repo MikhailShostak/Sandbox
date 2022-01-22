@@ -1,4 +1,11 @@
 Type: Class
+Events:
+  - InputParameters:
+      - Copy: false
+        Name: TypeName
+        Type: ClassGen.FileInfo
+        Writable: false
+    Name: Navigate
 Functions:
   - InputParameters:
       - Copy: false
