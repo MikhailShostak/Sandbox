@@ -583,6 +583,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 if (next >= 0 && next < classInfo.Properties.size())
                 {
                     std::swap(classInfo.Properties[i], classInfo.Properties[next]);
+                    MarkFileDirty(path);
                     ImGui::ResetMouseDragDelta();
                 }
             }
@@ -604,6 +605,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
             {
                 selectedProperty = nullptr;
             }
+            MarkFileDirty(path);
         }
         if (!selection)
         {
@@ -768,6 +770,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 if (next >= 0 && next < classInfo.Events.size())
                 {
                     std::swap(classInfo.Events[i], classInfo.Events[next]);
+                    MarkFileDirty(path);
                     ImGui::ResetMouseDragDelta();
                 }
             }
@@ -789,6 +792,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
             {
                 selectedEvent = nullptr;
             }
+            MarkFileDirty(path);
         }
         if (!selection)
         {
@@ -846,6 +850,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
                 if (next >= 0 && next < classInfo.Functions.size())
                 {
                     std::swap(classInfo.Functions[i], classInfo.Functions[next]);
+                    MarkFileDirty(path);
                     ImGui::ResetMouseDragDelta();
                 }
             }
@@ -867,6 +872,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
             {
                 selectedFunction = nullptr;
             }
+            MarkFileDirty(path);
         }
         if (!selection)
         {
