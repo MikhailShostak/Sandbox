@@ -537,6 +537,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         if (ImGui::Button(fmt::format("+##{}", (void *)&data).data()))
         {
             data.push_back({});
+            MarkFileDirty(path);
         }
         ImGui::PopItemWidth();
         ImGui::NextColumn();
@@ -612,6 +613,7 @@ void ClassFileEditor::RenderDetails(const System::Path &path, ClassGen::ClassInf
         if (itemToRemove != -1)
         {
             data.erase(data.begin() + itemToRemove);
+            MarkFileDirty(path);
         }
     };
 
