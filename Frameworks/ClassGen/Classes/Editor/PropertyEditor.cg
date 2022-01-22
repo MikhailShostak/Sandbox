@@ -14,6 +14,12 @@ Functions:
         Type: Serialization.Data
         Writable: false
     Name: Deserialize
+  - InputParameters:
+      - Copy: false
+        Name: Name
+        Type: String
+        Writable: false
+    Name: DrawLabel
   - Name: Draw
   - Name: Clear
 Graphs:
@@ -29,7 +35,7 @@ Graphs:
         Name: Input
       - ID: Output
         Name: Output
-  Function.Draw:
+  Function.DrawLabel:
     Nodes:
       - ID: Input
         Name: Input

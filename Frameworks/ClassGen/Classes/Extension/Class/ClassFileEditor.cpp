@@ -358,30 +358,7 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
 
         for (auto &p : classInfo->Properties)
         {
-            auto AbsolutePropertyName = name + "." + p.Name;
-            auto& editor = PropertyEditors[AbsolutePropertyName];
-
-            ImGui::Text(p.Name.data());
-            auto propertyId = fmt::format("##PropertyValue{}", (void *)&p);
-            auto type = writeRecursively(p.Type);
-
-            if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
-            {
-                ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
-                if (ImGui::Button(fmt::format("{}##{}", ICON_DELETE, fmt::ptr(&p)).data()))
-                {
-                    classInfo->Values.erase(p.Name);
-                    if (editor != nullptr)
-                    {
-                        editor->Clear();
-                    }
-                    MarkFileDirty(root);
-                }
-                ImGui::SameLine();
-            }
-
-            ImGui::NextColumn();
-
+            auto& editor = PropertyEditors[p.Name];
             if (editor == nullptr)
             {
                 auto [e] = g_ExtensionLibrary.FindEditor(p.Type);
@@ -402,15 +379,33 @@ void ClassFileEditor::RenderDataRecursively(const System::Path &root, const Stri
 
             if (editor)
             {
+                auto propertyId = fmt::format("##PropertyValue{}", (void*)&p);
                 editor->ID = propertyId;
                 if (editor->TypeInfo.Type != p.Type.Name)
                 {
                     //TODO: optimize
                     editor->TypeInfo = FindClassByName(p.Type.Name);
                 }
+
+                editor->DrawLabel(p.Name);
+                if (auto it = classInfo->Values.find(p.Name); it != classInfo->Values.end())
+                {
+                    ImGui::SameLine(ImGui::GetColumnWidth(0) - 24);
+                    if (ImGui::Button(fmt::format("{}##{}", ICON_DELETE, fmt::ptr(&p)).data()))
+                    {
+                        classInfo->Values.erase(p.Name);
+                        if (editor != nullptr)
+                        {
+                            editor->Clear();
+                        }
+                        MarkFileDirty(root);
+                    }
+                    ImGui::SameLine();
+                }
+                ImGui::NextColumn();
                 editor->Draw();
+                ImGui::NextColumn();
             }
-            ImGui::NextColumn();
         }
         ImGui::Columns(1);
     }
