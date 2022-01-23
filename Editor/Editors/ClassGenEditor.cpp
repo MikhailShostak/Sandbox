@@ -34,6 +34,10 @@ void ClassGenEditor::IndexFile(const System::Path &path)
 void ClassGenEditor::RenderFile(const System::Path &path)
 {
     auto& fileInfo = g_ClassGenCache[path.generic_string()];
+    if (fileInfo.Path.empty())
+    {
+        fileInfo.Path = path;
+    }
     auto& editor = g_Editors[path.generic_string()];
     
     if (ImGui::InputText("Type", &fileInfo.Type))
