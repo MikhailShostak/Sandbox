@@ -35,7 +35,8 @@ void ObjectPropertyEditor::DrawProperties(ClassGen::ClassInfo &classInfo)
             editor->ID = propertyId;
 
             //TODO: optimize
-            editor->TypeInfo = FindClassByName(p.Type.Name);
+            editor->TypeInfo = p.Type;
+            editor->FileInfo = FindClassByName(editor->TypeInfo);
 
             editor->DrawLabel(p.Name);
             if (auto it = Value.find(p.Name); it != Value.end())
@@ -68,7 +69,7 @@ void ObjectPropertyEditor::Draw()
 {
     if (ImGui::Button(fmt::format("{}##{}", ICON_OPEN_IN_NEW, ID).data()))
     {
-        g_ExtensionLibrary.Navigate(TypeInfo);
+        g_ExtensionLibrary.Navigate(FileInfo);
     }
     ImGui::NextColumn();
     ImGui::Indent();
@@ -79,7 +80,7 @@ void ObjectPropertyEditor::Draw()
 
 void ObjectPropertyEditor::DrawAllProperties()
 {
-    auto classInfo = DynamicCast<ClassGen::ClassInfo>(TypeInfo.Instance);
+    auto classInfo = DynamicCast<ClassGen::ClassInfo>(FileInfo.Instance);
     if (!classInfo)
     {
         return;

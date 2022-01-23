@@ -824,7 +824,13 @@ void ClassFileEditor::RenderData(const System::Path &path, ClassGen::ClassInfo &
             MarkFileDirty(path);
         };
     }
-    DataEditor.TypeInfo = Data;
+    auto className = path.stem().generic_string();
+    if (!classInfo.Namespace.empty())
+    {
+        className = classInfo.Namespace + "." + className;
+    }
+    DataEditor.TypeInfo.Name = className;
+    DataEditor.FileInfo = Data;
     DataEditor.ID = fmt::format("##PropertyValue{}", fmt::ptr(&DataEditor));
 
     ImGui::Columns(2);

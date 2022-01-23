@@ -6,7 +6,8 @@ struct PropertyEditor
 {
     using This = PropertyEditor;
     String ID = {};
-    ClassGen::FileInfo TypeInfo = {};
+    ClassGen::TypeInfo TypeInfo = {};
+    ClassGen::FileInfo FileInfo = {};
 
     virtual ~PropertyEditor() {}
     template<typename T>
