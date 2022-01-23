@@ -29,5 +29,7 @@ void BasicExtension::Load(ClassGen::ExtensionLibrary &Library)
 
     Library.PropertyInstanceEditors["String"] = Reflection::Find<ClassGen::StringPropertyEditor>();
     Library.PropertyInstanceEditors["System.Path"] = Reflection::Find<ClassGen::PathPropertyEditor>();
+
+    Library.PropertyInstanceEditors["Array"] = Reflection::Find<ClassGen::ArrayPropertyEditor>();
 }
 }

@@ -14,6 +14,7 @@ inline Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
 namespace ClassGen
 {
 
+inline String ICON_ADD = "\xee\x85\x85";
 inline String ICON_DELETE = "\xee\xa1\xb2";
 inline String ICON_OPEN_IN_NEW = "\xee\xa2\x9e";
 

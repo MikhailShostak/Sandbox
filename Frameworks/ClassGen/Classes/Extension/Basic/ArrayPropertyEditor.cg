@@ -1,0 +1,28 @@
+Type: Class
+BaseType: ClassGen.ValuePropertyEditor<List<Serialization.Data>>
+Functions:
+  - Name: Draw
+  - Name: CreateDefaultData
+    OutputParameters:
+      - Copy: false
+        Name: DefaultData
+        Type: Serialization.Data
+        Writable: false
+  - Name: RebuildEditors
+Graphs:
+  Function.CreateDefaultData:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RebuildEditors:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: PropertyEditors
+    Type: Array<UniqueReference<ClassGen.PropertyEditor>>
