@@ -106,7 +106,7 @@ struct Serializer<InputValue, ArrayTag<Type>>
         }
 
         value.clear();
-        value.reserve(data.m_Storage.size());
+        //value.reserve(data.m_Storage.size());
         for (const auto &node : data.m_Storage)
         {
             Type v{};
