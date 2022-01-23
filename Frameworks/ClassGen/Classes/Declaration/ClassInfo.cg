@@ -41,4 +41,4 @@ Properties:
   - Attributes:
       - Serialize
     Name: Values
-    Type: Map<String, Serialization.Data>
+    Type: SortedMap<String, Serialization.Data>

@@ -1,5 +1,5 @@
 Type: Class
-BaseType: ClassGen.ValuePropertyEditor<Map<String, Serialization.Data>>
+BaseType: ClassGen.ValuePropertyEditor<SortedMap<String, Serialization.Data>>
 Functions:
   - InputParameters:
       - Copy: false

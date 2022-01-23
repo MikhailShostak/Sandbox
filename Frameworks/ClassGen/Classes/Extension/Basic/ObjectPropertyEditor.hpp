@@ -3,10 +3,10 @@
 namespace ClassGen
 {
 struct ObjectPropertyEditor
-    : public ClassGen::ValuePropertyEditor<Map<String, Serialization::Data>>
+    : public ClassGen::ValuePropertyEditor<SortedMap<String, Serialization::Data>>
 {
     using This = ObjectPropertyEditor;
-    using Super = ClassGen::ValuePropertyEditor<Map<String, Serialization::Data>>;
+    using Super = ClassGen::ValuePropertyEditor<SortedMap<String, Serialization::Data>>;
     Map<String, UniqueReference<ClassGen::PropertyEditor>> PropertyEditors = {};
 
     virtual ~ObjectPropertyEditor() {}
