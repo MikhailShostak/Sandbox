@@ -22,6 +22,7 @@ public:
         Context(Context),
         SwapChain(SwapChain)
     {
+        imguiContext = ImGui::GetCurrentContext();
         ImGuiIO &io = ImGui::GetIO();
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
         io.IniFilename = ConfigFile;
@@ -33,7 +34,11 @@ public:
 
     ~ImGuiImplGLFW()
     {
-        ImGui_ImplGlfw_Shutdown();
+        if (imguiContext)
+        {
+            ImGui::SetCurrentContext(imguiContext);
+            ImGui_ImplGlfw_Shutdown();
+        }
     }
 
     //LRESULT Win32_ProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -73,57 +78,73 @@ public:
     Graphics::SwapChain& SwapChain;
 
     bool RebuildFonts = false;
+    ImGuiContext* imguiContext = nullptr;
 
     ImFontConfig FontConfig;
+
+    ImFont* DefaultUIFont = nullptr;
+    ImFont* DefaultMonospacedFont = nullptr;
 };
 
-UniqueReference<ImGuiImplGLFW> g_ImGui;
+Map<void*, UniqueReference<ImGuiImplGLFW>> g_ImGui;
+ImGuiImplGLFW* g_CurrentImGui = nullptr;
 
-ImFont* g_DefaultUIFont = nullptr;
-ImFont* g_DefaultMonospacedFont = nullptr;
+ImFont* LoadFontInternaly(void* window, const System::Path& Path, const fpixel_t Size, ImFontConfig* Config = nullptr, const ImWchar* GlyphRange = nullptr)
+{
+    auto& imgui = g_ImGui[window];
+    imgui->RebuildFonts = true;
+    ImGuiIO& io = ImGui::GetIO();
+    return io.Fonts->AddFontFromFileTTF(Path.generic_string().data(), Size, Config, GlyphRange);
+}
 
 void Initialize(void *window, Graphics::GraphicsContext &Context, Graphics::SwapChain &SwapChain, const char *ConfigFile)
 {
-    g_ImGui = std::make_unique<ImGuiImplGLFW>(ReinterpretCast<GLFWwindow>(window), Context, SwapChain, ConfigFile);
+    auto &imgui = g_ImGui[window];
+    ImGui::SetCurrentContext(nullptr);
+    imgui = std::make_unique<ImGuiImplGLFW>(ReinterpretCast<GLFWwindow>(window), Context, SwapChain, ConfigFile);
 
 #if BOOST_OS_WINDOWS
-    g_DefaultMonospacedFont = LoadFont("C:/Windows/Fonts/consola.ttf", 10_pt);
-    g_DefaultUIFont = LoadFont("C:/Windows/Fonts/segoeui.ttf", 12_pt);
+    imgui->DefaultMonospacedFont = LoadFontInternaly(window, "C:/Windows/Fonts/consola.ttf", 10_pt);
+    imgui->DefaultUIFont = LoadFontInternaly(window, "C:/Windows/Fonts/segoeui.ttf", 12_pt);
 #else
     ImFont* font = ImGui::GetDefaultFont();
-    g_DefaultMonospacedFont = font;
-    g_DefaultUIFont = font;
+    imgui->DefaultMonospacedFont = font;
+    imgui->DefaultUIFont = font;
 #endif
 }
 
-void Deinitialize()
+void Deinitialize(void* window)
 {
-    g_ImGui.reset();
+    auto &imgui = g_ImGui[window];
+    imgui.reset();
+    g_ImGui.erase(window);
 }
 
-void BeginRender()
+void BeginRender(void* window)
 {
-    if (!g_ImGui)
+    g_CurrentImGui = g_ImGui[window].get();
+    if (!g_CurrentImGui)
     {
         return;
     }
+    ImGui::SetCurrentContext(g_CurrentImGui->imguiContext);
 
-    const auto &SCDesc = g_ImGui->SwapChain.Data->Handle->GetDesc();
-    g_ImGui->NewFrame(SCDesc.Width, SCDesc.Height, SCDesc.PreTransform);
+    const auto &SCDesc = g_CurrentImGui->SwapChain.Data->Handle->GetDesc();
+    g_CurrentImGui->NewFrame(SCDesc.Width, SCDesc.Height, SCDesc.PreTransform);
 
     ImGui::PushUIFont();
 }
 
 void EndRender()
 {
-    if (!g_ImGui)
+    if (!g_CurrentImGui)
     {
         return;
     }
 
     ImGui::PopFont();
 
-    g_ImGui->Render(g_ImGui->Context.Data->Handle);
+    g_CurrentImGui->Render(g_CurrentImGui->Context.Data->Handle);
 
     ImGuiIO &io = ImGui::GetIO();
     if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
@@ -131,15 +152,21 @@ void EndRender()
         ImGui::UpdatePlatformWindows();
         ImGui::RenderPlatformWindowsDefault();
     }
+    g_CurrentImGui = nullptr;
 }
 
 void CharEvent(void *window, unsigned int c)
 {
+    auto& imgui = g_ImGui[window];
+    SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_CharCallback(ReinterpretCast<GLFWwindow>(window), c);
+    SetCurrentContext(nullptr);
 }
 
 void KeyEvent(void *window, int key, int scancode, int state, int mods)
 {
+    auto& imgui = g_ImGui[window];
+    SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_KeyCallback(ReinterpretCast<GLFWwindow>(window), key, scancode, state, mods);
     ImGuiIO &io = ImGui::GetIO();
     if (!io.WantCaptureKeyboard)
@@ -147,6 +174,7 @@ void KeyEvent(void *window, int key, int scancode, int state, int mods)
         //TODO: Keyboard Input
         //auto w = static_cast<NativeApplication*>(glfwGetWindowUserPointer(window));
     }
+    SetCurrentContext(nullptr);
 }
 
 void MouseEvent()
@@ -161,24 +189,30 @@ void MouseEvent()
 
 void ScrollEvent(void *window, double dx, double dy)
 {
+    auto& imgui = g_ImGui[window];
+    SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_ScrollCallback(ReinterpretCast<GLFWwindow>(window), dx, dy);
+    SetCurrentContext(nullptr);
 }
 
 void PushUIFont()
 {
-    ImGui::PushFont(g_DefaultUIFont);
+    ImGui::PushFont(g_CurrentImGui->DefaultUIFont);
 }
 
 void PushMonospacedFont()
 {
-    ImGui::PushFont(g_DefaultMonospacedFont);
+    ImGui::PushFont(g_CurrentImGui->DefaultMonospacedFont);
 }
 
 ImFont* LoadFont(const System::Path& Path, const fpixel_t Size, ImFontConfig *Config, const ImWchar* GlyphRange)
 {
-    g_ImGui->RebuildFonts = true;
-    ImGuiIO& io = ImGui::GetIO();
-    return io.Fonts->AddFontFromFileTTF(Path.generic_string().data(), Size, Config, GlyphRange);
+    for (auto &[window, imgui] : g_ImGui)
+    {
+        LoadFontInternaly(window, Path, Size, Config, GlyphRange);
+    }
+
+    return nullptr;
 }
 
 ImTextureID TexID(Graphics::Texture &texture)

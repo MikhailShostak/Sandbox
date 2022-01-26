@@ -4,9 +4,9 @@ namespace ImGui
 {
 
 void Initialize(void *window, Graphics::GraphicsContext &Context, Graphics::SwapChain &SwapChain, const char *ConfigFile);
-void Deinitialize();
+void Deinitialize(void* window);
 
-void BeginRender();
+void BeginRender(void* window);
 void EndRender();
 
 void CharEvent(void *window, unsigned int c);

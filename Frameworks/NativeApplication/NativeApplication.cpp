@@ -100,7 +100,7 @@ NativeApplication::NativeApplication()
 
 NativeApplication::~NativeApplication()
 {
-    ImGui::Deinitialize();
+    ImGui::Deinitialize(g_MainWindow);
     GLFW_DestroyMainWindow();
 }
 
@@ -141,7 +141,7 @@ void NativeApplication::Loop()
 
 void NativeApplication::UpdateWindow()
 {
-    ImGui::BeginRender();
+    ImGui::BeginRender(g_MainWindow);
 
     auto dt = m_Counter.CountValueAs<DateTime::SecondRatio>();
     Update(dt);
