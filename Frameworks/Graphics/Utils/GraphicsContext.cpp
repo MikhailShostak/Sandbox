@@ -115,8 +115,21 @@ std::tuple<bool/*Result*/> GraphicsContext::Initialize(const Graphics::NativeWin
 #endif
         Diligent::EngineVkCreateInfo EngineCI;
 
-        auto *pFactoryVk = Diligent::GetEngineFactoryVk();
-        pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &Data->Device, &Data->Handle);
+        auto* pFactoryVk = Diligent::GetEngineFactoryVk();
+
+        //TODO: Rework (only one instance of logical device is allowed)
+        static Diligent::RefCntAutoPtr<Diligent::IDeviceContext> Handle;
+        static Diligent::RefCntAutoPtr<Diligent::IRenderDevice> Device;
+
+        static bool initialized = false;
+        if (!initialized)
+        {
+            pFactoryVk->CreateDeviceAndContextsVk(EngineCI, &Device, &Handle);
+            initialized = true;
+        }
+
+        Data->Device = Device;
+        Data->Handle = Handle;
 
         if (!SwapChain.Data->Handle)
         {
