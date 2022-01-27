@@ -24,6 +24,10 @@ void ArrayPropertyEditor::RebuildEditors()
     for (auto& data : Value)
     {
         auto [editor] = g_ExtensionLibrary.FindEditor(ItemTypeInfo);
+        if (!editor)
+        {
+            return;
+        }
 
         auto propertyId = fmt::format("##PropertyValue{}", fmt::ptr(&data));
         editor->ID = propertyId;
