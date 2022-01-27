@@ -7,13 +7,13 @@ Functions:
         Name: Data
         Type: Serialization.Data
         Writable: true
-    Name: Serialize
+    Name: SerializeProperty
   - InputParameters:
       - Copy: false
         Name: Data
         Type: Serialization.Data
         Writable: false
-    Name: Deserialize
+    Name: DeserializeProperty
   - InputParameters:
       - Copy: false
         Name: Name
@@ -29,7 +29,7 @@ Graphs:
         Name: Input
       - ID: Output
         Name: Output
-  Function.Deserialize:
+  Function.DeserializeProperty:
     Nodes:
       - ID: Input
         Name: Input
@@ -41,7 +41,7 @@ Graphs:
         Name: Input
       - ID: Output
         Name: Output
-  Function.Serialize:
+  Function.SerializeProperty:
     Nodes:
       - ID: Input
         Name: Input

@@ -11,7 +11,7 @@ Serialization::Data ArrayPropertyEditor::CreateDefaultData()
     {
         return DefaultData;
     }
-    editor->Serialize(DefaultData);
+    editor->SerializeProperty(DefaultData);
     return DefaultData;
 };
 
@@ -35,12 +35,12 @@ void ArrayPropertyEditor::RebuildEditors()
         editor->TypeInfo = ItemTypeInfo;
         editor->FileInfo = FindClassByName(editor->TypeInfo);
 
-        editor->Deserialize(data);
+        editor->DeserializeProperty(data);
 
         auto editorPtr = editor.get();
         editor->Changed = [&, editorPtr]()
         {
-            editorPtr->Serialize(data);
+            editorPtr->SerializeProperty(data);
             Changed();
         };
 

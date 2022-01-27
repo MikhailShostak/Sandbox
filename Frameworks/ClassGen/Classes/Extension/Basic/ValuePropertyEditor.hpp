@@ -15,8 +15,8 @@ struct ValuePropertyEditor
     void Serialize(T &&data)
     {
     }
-    virtual void Serialize(Serialization::Data & Data);
-    virtual void Deserialize(const Serialization::Data & Data);
+    virtual void SerializeProperty(Serialization::Data & Data);
+    virtual void DeserializeProperty(const Serialization::Data & Data);
     virtual void Clear();
 
     void Initialize()

@@ -15,8 +15,8 @@ struct PropertyEditor
     {
     }
     Meta::Function<void> Changed;
-    virtual void Serialize(Serialization::Data & Data);
-    virtual void Deserialize(const Serialization::Data & Data);
+    virtual void SerializeProperty(Serialization::Data & Data);
+    virtual void DeserializeProperty(const Serialization::Data & Data);
     virtual void DrawLabel(const String & Name);
     virtual void Draw();
     virtual void Clear();

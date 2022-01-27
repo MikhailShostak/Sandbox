@@ -6,22 +6,22 @@ Functions:
         Name: Data
         Type: Serialization.Data
         Writable: true
-    Name: Serialize
+    Name: SerializeProperty
   - InputParameters:
       - Copy: false
         Name: Data
         Type: Serialization.Data
         Writable: false
-    Name: Deserialize
+    Name: DeserializeProperty
   - Name: Clear
 Graphs:
-  Function.Deserialize:
+  Function.DeserializeProperty:
     Nodes:
       - ID: Input
         Name: Input
       - ID: Output
         Name: Output
-  Function.Serialize:
+  Function.SerializeProperty:
     Nodes:
       - ID: Input
         Name: Input

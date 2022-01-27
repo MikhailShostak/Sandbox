@@ -19,12 +19,12 @@ void ObjectPropertyEditor::DrawProperties(ClassGen::ClassInfo &classInfo)
             {
                 editor->Changed = [&]()
                 {
-                    editor->Serialize(Value[p.Name]);
+                    editor->SerializeProperty(Value[p.Name]);
                     Changed();
                 };
                 if (auto it = Value.find(p.Name); it != Value.end())
                 {
-                    editor->Deserialize(it->second);
+                    editor->DeserializeProperty(it->second);
                 }
             }
         }
