@@ -24,6 +24,7 @@
 #include <DateTime/Timer.hpp>
 #include <Debug/DebugUtils.hpp>
 #include <Debug/Profiler.hpp>
+#include <Image/Color.hpp>
 #include <Math/Matrix.hpp>
 #include <Math/Quaternion.hpp>
 #include <Math/Ratio.hpp>
