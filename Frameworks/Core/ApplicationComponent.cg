@@ -1,0 +1,45 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Load
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Unload
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Update
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Unload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Core
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Enabled
+    Type: bool

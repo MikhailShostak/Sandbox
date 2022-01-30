@@ -1,0 +1,25 @@
+Type: Class
+Functions:
+  - Name: Run
+    OutputParameters:
+      - Copy: false
+        Name: Result
+        Type: int
+        Writable: false
+Graphs:
+  Function.Run:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: Core
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Components
+    Type: Array<UniqueReference<Core.ApplicationComponent>>
+  - Name: Running
+    Type: bool
+  - Name: ErrorCode
+    Type: int
