@@ -1,0 +1,31 @@
+Type: Class
+Attributes:
+  - ""
+BaseType: WindowComponent
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Load
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Unload
+  - Name: Draw
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Unload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output

@@ -1,0 +1,14 @@
+Type: Class
+Attributes:
+  - DefaultConstructor
+BaseType: Core.Application
+Values:
+  Components:
+    - Type: EditorWindow
+      Values:
+        Enabled: true
+        Size:
+          x: 1900
+          y: 1000
+        TerminateOnClose: true
+        Title: Editor
