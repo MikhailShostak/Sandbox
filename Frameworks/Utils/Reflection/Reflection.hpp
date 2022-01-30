@@ -233,6 +233,116 @@ struct Serializer<OutputValue, Reflection::MetaObjectTag<Type>>
 template<typename Type> struct Serializer<InputValue, Reflection::MetaObject<Type>*> : public Serializer<InputValue, Reflection::MetaObjectTag<Type>> {};
 template<typename Type> struct Serializer<OutputValue, Reflection::MetaObject<Type>*> : public Serializer<OutputValue, Reflection::MetaObjectTag<Type>> {};
 
+
+template<typename Type>
+struct Serializer<InputValue, UniqueReference<Type>>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue&& data, ValueType&& value)
+    {
+        if (!data.m_Storage.IsMap())
+        {
+            return;
+        }
+
+        ClassReference<Type> type;
+        Serialization::InputValue typeData{};
+        typeData.m_Storage = data.m_Storage["Type"].template as<YAML::Node>();
+        typeData & type;
+
+        if (!type)
+        {
+            return;
+        }
+
+        value = type->Create();
+
+        Serialization::Data valuesData{};
+        valuesData.m_Storage = data.m_Storage["Values"].template as<YAML::Node>();
+        Reflection::Deserialize(valuesData, *value);
+    }
+};
+
+template<typename Type>
+struct Serializer<OutputValue, UniqueReference<Type>>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue&& data, ValueType&& value)
+    {
+        if (!value)
+        {
+            return;
+        }
+
+        ClassReference<Type> type = Reflection::Find(*value.get());
+        if (!type)
+        {
+            return;
+        }
+
+        data.m_Storage["Type"] = type->m_Name;
+
+        Serialization::Data valuesData{};
+        Reflection::Serialize(*value, valuesData);
+        data.m_Storage["Values"] = std::move(valuesData.m_Storage);
+    }
+};
+
+
+template<typename Type>
+struct Serializer<InputValue, SharedReference<Type>>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue&& data, ValueType&& value)
+    {
+        if (!data.m_Storage.IsMap())
+        {
+            return;
+        }
+
+        ClassReference<Type> type;
+        Serialization::InputValue typeData{};
+        typeData.m_Storage = data.m_Storage["Type"].template as<YAML::Node>();
+        typeData& type;
+
+        if (!type)
+        {
+            return;
+        }
+
+        value = SharedReference<Type>(type->Create().release());
+
+        Serialization::Data valuesData{};
+        valuesData.m_Storage = data.m_Storage["Values"].template as<YAML::Node>();
+        Reflection::Deserialize(valuesData, *value);
+    }
+};
+
+template<typename Type>
+struct Serializer<OutputValue, SharedReference<Type>>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue&& data, ValueType&& value)
+    {
+        if (!value)
+        {
+            return;
+        }
+
+        ClassReference<Type> type = Reflection::Find(*value.get());
+        if (!type)
+        {
+            return;
+        }
+
+        data.m_Storage["Type"] = type->m_Name;
+
+        Serialization::Data valuesData{};
+        Reflection::Serialize(*value, valuesData);
+        data.m_Storage["Values"] = std::move(valuesData.m_Storage);
+    }
+};
+
 }
 
 /*
