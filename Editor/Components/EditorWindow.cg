@@ -15,6 +15,7 @@ Functions:
         Type: Core.Application
         Writable: true
     Name: Unload
+  - Name: CreateUI
   - Name: Draw
 Graphs:
   Function.Load:
