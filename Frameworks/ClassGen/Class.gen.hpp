@@ -3,6 +3,7 @@
 namespace { struct { struct Dummy { Dummy() {
 Reflection::Add<ClassGen::BaseInfo>("ClassGen.BaseInfo");
 Reflection::Add<ClassGen::ClassInfo>("ClassGen.ClassInfo");
+Reflection::Add<ClassGen::AssetInfo>("ClassGen.AssetInfo");
 Reflection::Add<ClassGen::EventInfo>("ClassGen.EventInfo");
 Reflection::Add<ClassGen::FileInfo>("ClassGen.FileInfo");
 Reflection::Add<ClassGen::FunctionInfo>("ClassGen.FunctionInfo");
@@ -29,7 +30,9 @@ Reflection::Add<ClassGen::ObjectPropertyEditor>("ClassGen.ObjectPropertyEditor")
 Reflection::Add<ClassGen::InstancePropertyEditor>("ClassGen.InstancePropertyEditor");
 Reflection::Add<ClassGen::ClassExtension>("ClassGen.ClassExtension");
 Reflection::Add<ClassGen::ClassCompiler>("ClassGen.ClassCompiler");
+Reflection::Add<ClassGen::AssetCompiler>("ClassGen.AssetCompiler");
 Reflection::Add<ClassGen::ClassFileEditor>("ClassGen.ClassFileEditor");
+Reflection::Add<ClassGen::AssetFileEditor>("ClassGen.AssetFileEditor");
 Reflection::Add<ClassGen::ExtensionInterface>("ClassGen.ExtensionInterface");
 Reflection::Add<ClassGen::ExtensionLibrary>("ClassGen.ExtensionLibrary");
 Reflection::Add<ClassGen::ConnectionInfo>("ClassGen.ConnectionInfo");

@@ -1,0 +1,59 @@
+Type: Class
+BaseType: ClassGen.FileEditor
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+      - Copy: false
+        Name: AssetInfo
+        Type: ClassGen.AssetInfo
+        Writable: true
+    Name: RenderDetails
+  - InputParameters:
+      - Copy: false
+        Name: Path
+        Type: System.Path
+        Writable: false
+      - Copy: false
+        Name: AssetInfo
+        Type: ClassGen.AssetInfo
+        Writable: true
+    Name: RenderData
+  - Name: RenderFile
+Graphs:
+  Function.RenderData:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderDataRecursively:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderDetails:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.RenderFile:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.ShowGraph:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen
+Properties:
+  - Name: DataEditor
+    Type: ClassGen.ObjectPropertyEditor

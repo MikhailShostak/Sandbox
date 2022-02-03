@@ -1,0 +1,12 @@
+Type: Class
+BaseType: ClassGen.BaseInfo
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: BaseType
+    Type: ClassGen.TypeInfo
+  - Attributes:
+      - Serialize
+    Name: Values
+    Type: SortedMap<String, Serialization.Data>
