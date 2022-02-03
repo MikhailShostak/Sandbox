@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Memory/Allocation.hpp"
+#include "Memory/Assets.hpp"
 #include "Memory/References.hpp"
 #include "Serialization/Serialization.hpp"
 #include "Text/String.hpp"
@@ -300,10 +301,21 @@ struct Serializer<InputValue, SharedReference<Type>>
             return;
         }
 
+        const auto &typeNode = data.m_Storage["Type"];
+        if (typeNode.IsScalar())
+        {
+            //TODO: how to serialize it to OutputValue?
+            value = AssetStorage::Load<Type>(typeNode.template as<std::string>());
+            if (value)
+            {
+                return;
+            }
+        }
+
         ClassReference<Type> type;
         Serialization::InputValue typeData{};
-        typeData.m_Storage = data.m_Storage["Type"].template as<YAML::Node>();
-        typeData& type;
+        typeData.m_Storage = typeNode.template as<YAML::Node>();
+        typeData & type;
 
         if (!type)
         {

@@ -30,6 +30,7 @@
 #include <Math/Ratio.hpp>
 #include <Math/Vector.hpp>
 #include <Memory/Allocation.hpp>
+#include <Memory/Assets.hpp>
 #include <Memory/Casts.hpp>
 #include <Memory/InplaceStorage.hpp>
 #include <Memory/References.hpp>
