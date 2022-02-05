@@ -50,6 +50,7 @@
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
 #include <System/CommandLine.hpp>
+#include <System/ConfigFile.hpp>
 #include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
 #include <System/ResolutionMetrics.hpp>
@@ -59,3 +60,5 @@
 #include <Text/String.hpp>
 #include <Text/StringUtils.hpp>
 #include <Text/Unicode.hpp>
+
+#include <System/ConfigFile.inl>

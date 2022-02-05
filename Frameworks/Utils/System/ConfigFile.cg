@@ -1,0 +1,40 @@
+Type: Class
+Attributes:
+  - Structure
+Functions:
+  - Name: Load
+    OutputParameters:
+      - Copy: false
+        Name: Result
+        Type: bool
+        Writable: false
+  - Name: Save
+    OutputParameters:
+      - Copy: false
+        Name: Result
+        Type: bool
+        Writable: false
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Save:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+IndirectType: Type
+Namespace: System
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Path
+    Type: System.Path
+  - Name: Data
+    Type: Type
+TemplateTypes:
+  - Type
