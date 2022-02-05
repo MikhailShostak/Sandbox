@@ -1,4 +1,3 @@
-#include "Data/Config.hpp"
 #include "Data/Extensions.hpp"
 #include "Data/Workspace.hpp"
 #include "Editors/BinaryEditor.hpp"
@@ -8,14 +7,12 @@
 
 #include <Class.gen.hpp>
 
-#include "Components/EditorWindow.hpp"
-
 void OnContentUpdate()
 {
     ImGuiID Workspace = ImGui::GetID("Workspace");
 
     std::vector<std::filesystem::path> FilesToClose;
-    for (const auto& f : Config.File.OpenedFiles)
+    for (const auto& f : g_Config->Data.File.OpenedFiles)
     {
         ImGui::SetNextWindowDockID(Workspace, ImGuiCond_Once);
         bool IsOpen = true;
@@ -50,11 +47,11 @@ void OnContentUpdate()
 
             std::string ext = f.extension().string();
             std::string EditorName = "TextEditor";
-            auto it1 = ranges::find_if(Config.FileTypes, [&](const auto& v)
+            auto it1 = ranges::find_if(g_Config->Data.FileTypes, [&](const auto& v)
             {
                 return v.Extensions == ext;
             });
-            if (it1 != Config.FileTypes.end())
+            if (it1 != g_Config->Data.FileTypes.end())
             {
                 EditorName = it1->Editor;
             }
@@ -88,8 +85,6 @@ void OnContentUpdate()
         ReindexFiles();
     }
 }
-
-std::string ApplicationConfig = "config.yaml";
 
 void LoadIcons()
 {
@@ -149,13 +144,14 @@ void EditorWindow::Load(Core::Application& Application)
 {
     Super::Load(Application);
 
-    if (std::filesystem::exists(ApplicationConfig))
+    g_Config = Config;
+
+    if (Config->Load())
     {
-        Serialization::FromFile(ApplicationConfig, Config);
         ReloadExtensions();
-        if (!Config.File.OpenedFolders.empty())
+        if (!g_Config->Data.File.OpenedFolders.empty())
         {
-            File::DialogWorkingDirectory = Config.File.OpenedFolders[0];
+            File::DialogWorkingDirectory = g_Config->Data.File.OpenedFolders[0];
         }
     }
 
@@ -177,7 +173,7 @@ void EditorWindow::Load(Core::Application& Application)
 
 void EditorWindow::Unload(Core::Application& Application)
 {
-    Serialization::ToFile(Config, ApplicationConfig);
+    Config->Save();
 
     Super::Unload(Application);
 }

@@ -52,12 +52,12 @@ void ReloadFiles()
 {
     FileCache.clear();
 
-    for(const auto &path : Config.File.OpenedFiles)
+    for(const auto &path : g_Config->Data.File.OpenedFiles)
     {
         LoadFile(path);
     }
 
-    for (const auto &path : Config.File.OpenedFolders)
+    for (const auto &path : g_Config->Data.File.OpenedFolders)
     {
         LoadFolder(path);
     }
@@ -86,8 +86,8 @@ void OpenFile(const std::filesystem::path &path, bool remember)
         return;
     }
 
-    auto it = ranges::find(Config.File.OpenedFiles, path);
-    if(it != Config.File.OpenedFiles.end())
+    auto it = ranges::find(g_Config->Data.File.OpenedFiles, path);
+    if(it != g_Config->Data.File.OpenedFiles.end())
     {
         //TODO: select file
         return;
@@ -95,10 +95,10 @@ void OpenFile(const std::filesystem::path &path, bool remember)
 
     if(remember)
     {
-        boost::remove_erase(Config.File.RecentFiles, path);
-        Config.File.RecentFiles.push_back(path);
+        boost::remove_erase(g_Config->Data.File.RecentFiles, path);
+        g_Config->Data.File.RecentFiles.push_back(path);
     }
-    Config.File.OpenedFiles.push_back(path);
+    g_Config->Data.File.OpenedFiles.push_back(path);
 
     LoadFile(path);
 }
@@ -129,7 +129,7 @@ void SaveFile(const std::filesystem::path &path)
 
 void CloseFile(const std::filesystem::path &path, bool reindex)
 {
-    boost::remove_erase(Config.File.OpenedFiles, path);
+    boost::remove_erase(g_Config->Data.File.OpenedFiles, path);
     FileCache.erase(path.generic_string());
 
     if (reindex)
@@ -146,7 +146,7 @@ void CloseFiles(const std::vector<std::filesystem::path> &paths)
 
 void CloseAllFiles()
 {
-    Config.File.OpenedFiles.clear();
+    g_Config->Data.File.OpenedFiles.clear();
     FileCache.clear();
     ReindexFiles();
 }
@@ -158,26 +158,26 @@ void OpenFolder(const std::filesystem::path &path, bool remember)
         return;
     }
 
-    auto it = ranges::find(Config.File.OpenedFolders, path);
-    if(it != Config.File.OpenedFolders.end())
+    auto it = ranges::find(g_Config->Data.File.OpenedFolders, path);
+    if(it != g_Config->Data.File.OpenedFolders.end())
     {
         return;
     }
 
     if(remember)
     {
-        boost::remove_erase(Config.File.RecentFolders, path);
-        Config.File.RecentFolders.push_back(path);
+        boost::remove_erase(g_Config->Data.File.RecentFolders, path);
+        g_Config->Data.File.RecentFolders.push_back(path);
     }
 
-    Config.File.OpenedFolders.push_back(path);
+    g_Config->Data.File.OpenedFolders.push_back(path);
     
     LoadFolder(path);
 }
 
 void CloseFolder(const std::filesystem::path &path, bool reindex)
 {
-    boost::remove_erase(Config.File.OpenedFolders, path);
+    boost::remove_erase(g_Config->Data.File.OpenedFolders, path);
     MapUtils::EraseIf(FileCache, [&path](const auto& pair) {
         return boost::starts_with(pair.first, path.generic_string());
     });
@@ -196,7 +196,7 @@ void CloseFolders(const std::vector<std::filesystem::path> &paths)
 
 void CloseAllFolders()
 {
-    Config.File.OpenedFolders.clear();
+    g_Config->Data.File.OpenedFolders.clear();
     FileCache.clear();
     ReindexFiles();
 }

@@ -1,0 +1,12 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Attributes:
+      - Serialize
+    Name: ConfigFilename
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: SearchDirectory
+    Type: String

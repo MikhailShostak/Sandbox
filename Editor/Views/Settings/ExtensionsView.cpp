@@ -1,6 +1,5 @@
 #include "../Views.hpp"
 
-#include "../../Data/Config.hpp"
 #include "../../Data/Extensions.hpp"
 
 namespace Settings
@@ -37,7 +36,7 @@ void ShowExtension(const std::filesystem::path &path, Extension &extension)
 
 void ShowExtensions()
 {
-    ImGui::InputText("SearchDirectory", &Config.Extensions.SearchDirectory);
+    ImGui::InputText("SearchDirectory", &g_Config->Data.Extensions.SearchDirectory);
     ImGui::SameLine();
     if (ImGui::Button("Reload"))
     {
@@ -78,7 +77,7 @@ void ShowExtensions()
         ImGui::TextWrapped(text.data());
         if (ImGui::Button("Create"))
         {
-            CreateExtension(path / Config.Extensions.ConfigFilename);
+            CreateExtension(path / g_Config->Data.Extensions.ConfigFilename);
             ImGui::CloseCurrentPopup();
         }
         ImGui::SameLine();

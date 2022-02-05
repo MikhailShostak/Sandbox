@@ -1,7 +1,3 @@
-#include "EditorApplication.hpp"
-#include "EditorReflection.hpp"
-
-
 EditorApplication::EditorApplication()
 {
     Initialize();

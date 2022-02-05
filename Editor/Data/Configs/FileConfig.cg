@@ -1,0 +1,24 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Attributes:
+      - Serialize
+    Name: RecentFiles
+    Type: Array<System.Path>
+  - Attributes:
+      - Serialize
+    Name: RecentFolders
+    Type: Array<System.Path>
+  - Attributes:
+      - Serialize
+    Name: OpenedFiles
+    Type: Array<System.Path>
+  - Attributes:
+      - Serialize
+    Name: OpenedFolders
+    Type: Array<System.Path>
+  - Attributes:
+      - Serialize
+    Name: PinnedPaths
+    Type: Array<System.Path>

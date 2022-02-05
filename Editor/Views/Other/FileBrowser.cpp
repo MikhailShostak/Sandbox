@@ -1,6 +1,5 @@
 #include "../Views.hpp"
 
-#include "../../Data/Config.hpp"
 #include "../../Data/Workspace.hpp"
 #include "../Views.hpp"
 
@@ -105,7 +104,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
             }
         }
 
-        bool needCombine = Config.FileBrowser.CombineFilesWithSameBasename && !PreviousFile.empty() && PreviousFile == path.stem();
+        bool needCombine = g_Config->Data.FileBrowser.CombineFilesWithSameBasename && !PreviousFile.empty() && PreviousFile == path.stem();
         if (needCombine)
         {
             ImGui::SameLine();
@@ -119,7 +118,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
         {
             ImGui::AlignTextToFramePadding();
             String title = fmt::format("{} {}", ICON_MD_DESCRIPTION, GetFileTitle(path, false));
-            auto flags = DefaultTreeLeafFlags | (!Config.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
+            auto flags = DefaultTreeLeafFlags | (!g_Config->Data.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
             ImGui::TreeNodeEx(title.data(), flags);
             if (ImGui::IsItemClicked())
             {
@@ -135,7 +134,7 @@ void ShowPath(const std::filesystem::path &path, bool root = false)
     {
         auto pos = ImGui::GetCursorPos();
         String title = "       " + path.filename().generic_string();
-        auto flags = DefaultTreeNodeFlags | (!Config.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
+        auto flags = DefaultTreeNodeFlags | (!g_Config->Data.FileBrowser.CombineFilesWithSameBasename ? ImGuiTreeNodeFlags_SpanFullWidth : 0);
         if (g_SearchKeywords.empty())
         {
             bool expanded = ImGui::TreeNodeEx(title.data(), flags);
@@ -182,7 +181,7 @@ void ShowFileBrowser()
 
     if (ImGui::Begin("File Browser"))
     {
-        auto folders = Config.File.OpenedFolders;
+        auto folders = g_Config->Data.File.OpenedFolders;
         if (folders.size() == 0)
         {
             if (ImGui::Button("Open Folder"))

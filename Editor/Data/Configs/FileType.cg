@@ -1,0 +1,16 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Title
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Editor
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Extensions
+    Type: String

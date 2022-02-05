@@ -9,6 +9,6 @@ set(ASSETS
 
 add_executable(Editor ${SOURCES})
 target_include_directories(Editor PRIVATE .)
+target_precompile_headers(Editor PRIVATE Editor.pch.hpp)
 target_copy_assets(Editor ${ASSETS})
-target_precompile_headers(Editor PRIVATE Icons/IconsMaterialDesign.h)
 target_link_libraries(Editor Frameworks)

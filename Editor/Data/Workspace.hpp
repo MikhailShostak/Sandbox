@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Config.hpp"
-
 inline std::unordered_map<std::string, std::string> FileCache; //path, data
 inline std::unordered_map<std::string, class Editor*> UnsavedFiles; //path, editor
 inline bool PendingReindex = false;

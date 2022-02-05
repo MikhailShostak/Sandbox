@@ -1,6 +1,5 @@
 #include "../Views.hpp"
 
-#include "../../Data/Config.hpp"
 #include "../../Data/Workspace.hpp"
 
 void ShowWelcomePage()
@@ -8,7 +7,7 @@ void ShowWelcomePage()
     if(ImGui::Begin("Welcome Page", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |ImGuiWindowFlags_NoMove))
     {
         ImGui::Text("Pinned Paths");
-        for(const auto &path : Config.File.PinnedPaths)
+        for(const auto &path : g_Config->Data.File.PinnedPaths)
         {
             auto absolutePath = std::filesystem::absolute(path);
             if(ImGui::Selectable(absolutePath.string().data()))
@@ -20,7 +19,7 @@ void ShowWelcomePage()
         ImGui::Separator();
 
         ImGui::Text("Recent Folders");
-        for(const auto &path : Config.File.RecentFolders)
+        for(const auto &path : g_Config->Data.File.RecentFolders)
         {
             auto absolutePath = std::filesystem::absolute(path);
             if(ImGui::Selectable(absolutePath.string().data()))
@@ -32,7 +31,7 @@ void ShowWelcomePage()
         ImGui::Separator();
 
         ImGui::Text("Recent Files");
-        for(const auto &path : Config.File.RecentFiles)
+        for(const auto &path : g_Config->Data.File.RecentFiles)
         {
             auto absolutePath = std::filesystem::absolute(path);
             if(ImGui::Selectable(absolutePath.string().data()))

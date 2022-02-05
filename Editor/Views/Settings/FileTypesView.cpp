@@ -1,6 +1,5 @@
 #include "../Views.hpp"
 
-#include "../../Data/Config.hpp"
 #include "../../Editors/Editor.hpp"
 
 namespace Settings
@@ -21,7 +20,7 @@ void ShowFileTypes()
         ImGui::TableSetupColumn("Extensions", ImGuiTableColumnFlags_WidthStretch);
         ImGui::TableHeadersRow();
 
-        for(auto &fileType : Config.FileTypes)
+        for(auto &fileType : g_Config->Data.FileTypes)
         {
             ImGui::TableNextRow();
 
@@ -44,7 +43,7 @@ void ShowFileTypes()
         ImGui::EndTable();
     }
 
-    static DataConfig::FileType fileType;
+    static FileType fileType;
     ImGui::InputText("Title", &fileType.Title);
 
     static int SelectedItem = 0;
@@ -55,7 +54,7 @@ void ShowFileTypes()
     if (ImGui::Button("Add") && !fileType.Title.empty() && !fileType.Extensions.empty())
     {
         fileType.Editor = EditorNames[SelectedItem];
-        Config.FileTypes.push_back(fileType);
+        g_Config->Data.FileTypes.push_back(fileType);
     }
 }
 

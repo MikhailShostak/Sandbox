@@ -1,0 +1,8 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Attributes:
+      - Serialize
+    Name: ExternalTextEditor
+    Type: String

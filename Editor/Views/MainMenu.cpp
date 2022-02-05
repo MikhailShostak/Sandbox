@@ -31,8 +31,8 @@ void ShowMainMenu()
             ImGui::Separator();
             ImGui::MenuItem("Open File...", nullptr, &File::DisplayOpenFileDialog);
             ImGui::MenuItem("Open Folder...", nullptr, &File::DisplayOpenFolderDialog);
-            auto &recentFiles = Config.File.RecentFiles;
-            auto &recentFolders = Config.File.RecentFolders;
+            auto &recentFiles = g_Config->Data.File.RecentFiles;
+            auto &recentFolders = g_Config->Data.File.RecentFolders;
             if (ImGui::BeginMenu("Open Recent", recentFiles.size() > 0 || recentFolders.size() > 0))
             {
                 if(recentFolders.size() > 0)
@@ -51,7 +51,7 @@ void ShowMainMenu()
                 }
                 ImGui::EndMenu();
             }
-            ShowPathListMenu("Open Pinned", Config.File.PinnedPaths);
+            ShowPathListMenu("Open Pinned", g_Config->Data.File.PinnedPaths);
             if(!PathToOpen.empty())
             {
                 OpenPath(PathToOpen);

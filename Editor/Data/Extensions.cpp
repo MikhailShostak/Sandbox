@@ -1,7 +1,5 @@
 #include "Extensions.hpp"
 
-#include "Config.hpp"
-
 std::string GetExtensionID(const std::string &author, const std::string &title)
 {
     return author + "." + title;
@@ -9,7 +7,7 @@ std::string GetExtensionID(const std::string &author, const std::string &title)
 
 std::filesystem::path GetExtensionPath(const std::string &id)
 {
-    return std::filesystem::current_path() / Config.Extensions.SearchDirectory / id;
+    return std::filesystem::current_path() / g_Config->Data.Extensions.SearchDirectory / id;
 }
 
 std::filesystem::path GetExtensionPath(const std::string &author, const std::string &title)
@@ -19,7 +17,7 @@ std::filesystem::path GetExtensionPath(const std::string &author, const std::str
 
 std::filesystem::path GetExtensionConfig(const std::string &id)
 {
-    return GetExtensionPath(id) / Config.Extensions.ConfigFilename;
+    return GetExtensionPath(id) / g_Config->Data.Extensions.ConfigFilename;
 }
 
 std::filesystem::path GetExtensionConfig(const std::string &author, const std::string &title)
@@ -37,13 +35,13 @@ void LoadExtension(const std::filesystem::path &configPath)
 void ReloadExtensions()
 {
     ExtensionsCache.clear();
-    if(!std::filesystem::is_directory(Config.Extensions.SearchDirectory))
+    if(!std::filesystem::is_directory(g_Config->Data.Extensions.SearchDirectory))
     {
         return;
     }
-    for(const auto &entry: std::filesystem::directory_iterator{Config.Extensions.SearchDirectory})
+    for(const auto &entry: std::filesystem::directory_iterator{ g_Config->Data.Extensions.SearchDirectory})
     {
-        std::filesystem::path configPath = entry.path() / Config.Extensions.ConfigFilename;
+        std::filesystem::path configPath = entry.path() / g_Config->Data.Extensions.ConfigFilename;
         if(!std::filesystem::exists(configPath))
         {
             continue;

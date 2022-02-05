@@ -21,6 +21,8 @@ struct EditorApplication
 R"(
 - Type: EditorWindow
   Values:
+    Config:
+      Type: EditorConfigData
     Enabled: true
     Size:
       x: 1900

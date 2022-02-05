@@ -1,0 +1,24 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Attributes:
+      - Serialize
+    Name: General
+    Type: GeneralConfig
+  - Attributes:
+      - Serialize
+    Name: FileBrowser
+    Type: FileBrowserConfig
+  - Attributes:
+      - Serialize
+    Name: File
+    Type: FileConfig
+  - Attributes:
+      - Serialize
+    Name: Extensions
+    Type: ExtensionsConfig
+  - Attributes:
+      - Serialize
+    Name: FileTypes
+    Type: Array<FileType>

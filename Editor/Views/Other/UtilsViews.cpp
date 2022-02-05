@@ -1,7 +1,5 @@
 #include "../Views.hpp"
 
-#include "../../Data/Config.hpp"
-
 std::filesystem::path RetrieveDirectory(const std::filesystem::path &path) { return std::filesystem::is_directory(path) ? path : path.parent_path(); }
 
 namespace Utils
@@ -44,12 +42,12 @@ void ShowInExternalTextEditor(const std::filesystem::path &path)
         return;
     }
 
-    if(Config.General.ExternalTextEditor.empty())
+    if(g_Config->Data.General.ExternalTextEditor.empty())
     {
         return;
     }
 
-    auto executable = boost::process::search_path(Config.General.ExternalTextEditor);
+    auto executable = boost::process::search_path(g_Config->Data.General.ExternalTextEditor);
     std::string arg = std::filesystem::path(path).make_preferred().string();
     std::cout << executable << " " << arg << std::endl;
     boost::process::spawn(executable, arg);

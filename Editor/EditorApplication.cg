@@ -6,6 +6,8 @@ Values:
   Components:
     - Type: EditorWindow
       Values:
+        Config:
+          Type: EditorConfigData
         Enabled: true
         Size:
           x: 1900

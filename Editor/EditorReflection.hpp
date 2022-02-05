@@ -1,5 +1,3 @@
-#include "Components/EditorWindow.hpp"
-
 namespace
 {
 

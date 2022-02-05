@@ -30,3 +30,8 @@ Graphs:
         Name: Input
       - ID: Output
         Name: Output
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Config
+    Type: SharedReference<System.ConfigFile<EditorConfig>>
