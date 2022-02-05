@@ -146,9 +146,9 @@ void ClassCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
         file << "    " << indirectType << " *GetIndirectValue();\n";
         file << "public:\n";
         file << "    " << indirectType << " &operator*() { return *GetIndirectValue(); }\n";
-        file << "    const " << indirectType << " &operator*() const { return *ConstCast<decltype(this)>(this)->GetIndirectValue(); }\n";
+        file << "    const " << indirectType << " &operator*() const { return *ConstCast(this)->GetIndirectValue(); }\n";
         file << "    " << indirectType << " *operator->() { return GetIndirectValue(); }\n";
-        file << "    const " << indirectType << " *operator->() const { return ConstCast<decltype(this)>(this)->GetIndirectValue(); }\n";
+        file << "    const " << indirectType << " *operator->() const { return ConstCast(this)->GetIndirectValue(); }\n";
     }
     file << "\n";
     file << "    template<typename T>\n";
