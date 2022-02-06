@@ -20,6 +20,6 @@ void PushMonospacedFont();
 ImFont* LoadFont(const System::Path& Path, const fpixel_t Size, ImFontConfig* Config = nullptr, const ImWchar* GlyphRange = nullptr);
 
 ImTextureID TexID(Graphics::Texture &texture);
-inline ImTextureID TexID(SharedReference<Graphics::Texture> &texture) { return TexID(*texture.get()); }
+ImTextureID TexID(SharedReference<Graphics::Texture> &texture);
 
 }

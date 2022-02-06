@@ -52,6 +52,8 @@ public:
 
     virtual void NewFrame(Diligent::Uint32 RenderSurfaceWidth, Diligent::Uint32 RenderSurfaceHeight, Diligent::SURFACE_TRANSFORM SurfacePreTransform) override final
     {
+        Textures.clear();
+
         VERIFY(SurfacePreTransform == Diligent::SURFACE_TRANSFORM_IDENTITY, "Unexpected surface pre-transform");
 
         if (RebuildFonts)
@@ -84,6 +86,8 @@ public:
 
     ImFont* DefaultUIFont = nullptr;
     ImFont* DefaultMonospacedFont = nullptr;
+
+    Array<SharedReference<Graphics::Texture>> Textures;
 };
 
 Map<void*, UniqueReference<ImGuiImplGLFW>> g_ImGui;
@@ -218,6 +222,12 @@ ImFont* LoadFont(const System::Path& Path, const fpixel_t Size, ImFontConfig *Co
 ImTextureID TexID(Graphics::Texture &texture)
 {
     return (ImTextureID)texture.Data->Handle->GetDefaultView(Diligent::TEXTURE_VIEW_SHADER_RESOURCE);
+}
+
+ImTextureID TexID(SharedReference<Graphics::Texture> &texture)
+{
+    g_CurrentImGui->Textures.push_back(texture);
+    return TexID(*texture.get());
 }
 
 }
