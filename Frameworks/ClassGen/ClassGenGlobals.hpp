@@ -11,6 +11,8 @@ inline Map<String, UniqueReference<ClassGen::FileEditor>> g_Editors;
 
 inline Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
 
+inline Graphics::GraphicsContext *g_GraphicsContext = nullptr;
+
 namespace ClassGen
 {
 

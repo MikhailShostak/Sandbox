@@ -1,0 +1,10 @@
+Type: Class
+BaseType: ClassGen.FileEditor
+Functions:
+  - Name: RenderFile
+Namespace: ClassGen
+Properties:
+  - Name: Animation
+    Type: SharedReference<Graphics.Mesh>
+  - Name: LastPath
+    Type: System.Path

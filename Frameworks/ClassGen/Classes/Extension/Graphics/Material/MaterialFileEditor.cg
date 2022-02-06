@@ -1,0 +1,10 @@
+Type: Class
+BaseType: ClassGen.FileEditor
+Functions:
+  - Name: RenderFile
+Namespace: ClassGen
+Properties:
+  - Name: Material
+    Type: SharedReference<Graphics.Material>
+  - Name: LastPath
+    Type: System.Path

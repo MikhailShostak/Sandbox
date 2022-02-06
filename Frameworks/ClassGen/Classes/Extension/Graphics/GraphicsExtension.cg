@@ -1,0 +1,17 @@
+Type: Class
+BaseType: ClassGen.ExtensionInterface
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Library
+        Type: ClassGen.ExtensionLibrary
+        Writable: true
+    Name: Load
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ClassGen

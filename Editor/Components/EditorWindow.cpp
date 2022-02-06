@@ -180,6 +180,7 @@ void EditorWindow::Unload(Core::Application& Application)
 
 void EditorWindow::Draw()
 {
+    g_GraphicsContext = &GraphicsContext;
     ShowRootView(&OnContentUpdate);
 
     File::ProcessDialogs();
@@ -192,4 +193,5 @@ void EditorWindow::Draw()
         ImGui::ShowDemoWindow();
     }
     Debug::ShowDebugWindow();
+    g_GraphicsContext = nullptr;
 }

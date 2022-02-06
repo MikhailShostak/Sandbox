@@ -1,0 +1,12 @@
+Type: Class
+BaseType: ClassGen.FileEditor
+Functions:
+  - Name: RenderFile
+Namespace: ClassGen
+Properties:
+  - Name: Texture
+    Type: SharedReference<Graphics.Texture>
+  - Name: LastPath
+    Type: System.Path
+  - Name: Zoom
+    Type: Float2
