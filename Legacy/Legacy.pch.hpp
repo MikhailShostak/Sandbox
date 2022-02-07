@@ -4,7 +4,6 @@
 
 #include "Assets/Interface/AssetsRepository.h"
 #include "Assets/Interface/Includes/AssetManager.h"
-#include "Assets2/Interface/AssetManager.gen.h"
 #include "BuildSystem/Interface/ArchiverSettings.gen.h"
 #include "BuildSystem/Interface/BuildingSettings.gen.h"
 #include "BuildSystem/Interface/CompilationSettings.gen.h"
