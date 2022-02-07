@@ -1,0 +1,9 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ECS
+Properties:
+  - Name: Mesh
+    Type: SharedReference<Graphics.Mesh>
+  - Name: Material
+    Type: SharedReference<Graphics.Material>

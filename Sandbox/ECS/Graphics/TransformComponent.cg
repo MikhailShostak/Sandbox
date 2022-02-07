@@ -1,0 +1,11 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+BaseType: Graphics.Transform
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Scale
+    Type: hlslpp.float3

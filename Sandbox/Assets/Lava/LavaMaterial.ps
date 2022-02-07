@@ -1,0 +1,25 @@
+void main(in PSInput In, out PSOutput Out)
+{
+    float2 uv = In.UV;
+
+    Out.BaseColor = g_BaseColor.Sample(g_BaseColor_sampler, uv);
+    if (Out.BaseColor.a < 0.1f)
+    {
+	    clip(-1);
+        return;
+    }
+
+    float3 normal = normalize(In.Normal + g_Normals.Sample(g_Normals_sampler, uv));
+
+    float3 light_pos = float3(0.0f, 10.0f, -3.0f);
+    float3 lightToPixelVec = light_pos - In.WorldPos;
+    float d = length(lightToPixelVec);
+    lightToPixelVec /= d;
+    float intensity = saturate(dot(lightToPixelVec, normal));
+
+    float3 ambient_light = float3(0.2f, 0.2f, 0.2f);
+
+    Out.Position = float4(In.WorldPos.zzz, 1.0f);
+    Out.Normal = float4(normal.xyz, 1.0f);
+    Out.Data = float4(Out.BaseColor.rgb * (ambient_light + float3(intensity, intensity, intensity)), 1.0f);
+}

@@ -13,6 +13,8 @@ inline Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
 
 inline Graphics::GraphicsContext *g_GraphicsContext = nullptr;
 
+inline Map<void*, std::function<void(Graphics::GraphicsContext& context)>> g_DrawRequests;
+
 namespace ClassGen
 {
 

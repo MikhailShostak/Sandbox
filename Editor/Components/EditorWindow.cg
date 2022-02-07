@@ -16,9 +16,16 @@ Functions:
         Writable: true
     Name: Unload
   - Name: CreateUI
+  - Name: Render
   - Name: Draw
 Graphs:
   Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Render:
     Nodes:
       - ID: Input
         Name: Input

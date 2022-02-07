@@ -1,0 +1,15 @@
+Type: Material
+Name: UV
+Path: C:/Assets/EditorContent.fbx
+PixelShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/Lava/LavaMaterial.ps
+Textures:
+  - SamplerName: BaseColor
+    TextureName: LavaTexture_BaseColor
+  - SamplerName: Normals
+    TextureName: LavaTexture_Normals
+    UseInVertexShader: true
+    UseInPixelShader: true
+  - SamplerName: Displacement
+    TextureName: LavaTexture_Displacement
+    UseInVertexShader: true
+VertexShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/Lava/LavaMaterial.vs

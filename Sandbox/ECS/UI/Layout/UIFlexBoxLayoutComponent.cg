@@ -1,0 +1,21 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: StartPadding
+    Type: hlslpp.int2
+  - Attributes:
+      - Serialize
+    Name: EndPadding
+    Type: hlslpp.int2
+  - Attributes:
+      - Serialize
+    Name: Spacing
+    Type: int32_t
+  - Attributes:
+      - Serialize
+    Name: Direction
+    Type: UI.Direction

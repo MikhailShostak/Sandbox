@@ -1,0 +1,29 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Position
+    Type: hlslpp.int3
+  - Attributes:
+      - Serialize
+    Name: Rotation
+    Type: hlslpp.quaternion
+  - Attributes:
+      - Serialize
+    Name: Size
+    Type: hlslpp.int2
+  - Attributes:
+      - Serialize
+    Name: HorizontalSizePolicy
+    Type: UI.SizePolicy
+  - Attributes:
+      - Serialize
+    Name: VerticalSizePolicy
+    Type: UI.SizePolicy
+  - Name: GlobalPosition
+    Type: hlslpp.int3
+  - Name: PreferedSize
+    Type: hlslpp.int2

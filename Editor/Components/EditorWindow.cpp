@@ -178,9 +178,20 @@ void EditorWindow::Unload(Core::Application& Application)
     Super::Unload(Application);
 }
 
+void EditorWindow::Render()
+{
+    for (auto &[id, request] : g_DrawRequests)
+    {
+        request(GraphicsContext);
+    }
+
+    Super::Render();
+}
+
 void EditorWindow::Draw()
 {
     g_GraphicsContext = &GraphicsContext;
+
     ShowRootView(&OnContentUpdate);
 
     File::ProcessDialogs();

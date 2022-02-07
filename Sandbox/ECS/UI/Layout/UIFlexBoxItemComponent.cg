@@ -1,0 +1,7 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ECS
+Properties:
+  - Name: Alignment
+    Type: size_t

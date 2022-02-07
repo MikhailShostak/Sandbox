@@ -1,0 +1,17 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: UI.Layout
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Entity
+        Type: ECS.Entity
+        Writable: false
+    Name: OnPrePass
+    OutputParameters:
+      - Copy: false
+        Name: Success
+        Type: bool
+        Writable: false
+Namespace: UI

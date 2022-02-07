@@ -1,0 +1,4 @@
+Type: Mesh
+Path: C:/Assets/Sphere.fbx
+Name: Sphere
+Material: TestMaterial

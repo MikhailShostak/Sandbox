@@ -16,6 +16,7 @@ struct EditorWindow
     virtual void Load(Core::Application & Application);
     virtual void Unload(Core::Application & Application);
     virtual void CreateUI();
+    virtual void Render();
     virtual void Draw();
 
     void Initialize()

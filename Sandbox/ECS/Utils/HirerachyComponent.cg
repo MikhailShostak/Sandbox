@@ -1,0 +1,9 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ECS
+Properties:
+  - Name: Parent
+    Type: std.optional<ECS.Entity>
+  - Name: Children
+    Type: Array<ECS.Entity>

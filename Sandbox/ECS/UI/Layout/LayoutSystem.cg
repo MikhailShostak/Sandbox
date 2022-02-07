@@ -1,0 +1,10 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.System
+Functions:
+  - Name: OnUpdate
+Namespace: ECS
+Properties:
+  - Name: Layouts
+    Type: Array<UniqueReference<UI.Layout>>

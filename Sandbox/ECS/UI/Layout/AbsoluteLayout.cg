@@ -1,0 +1,24 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: UI.Layout
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Entity
+        Type: ECS.Entity
+        Writable: false
+    Name: OnLayout
+    OutputParameters:
+      - Copy: false
+        Name: Success
+        Type: bool
+        Writable: false
+Graphs:
+  Function.OnLayout:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: UI

@@ -1,0 +1,9 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.System
+Functions:
+  - Name: OnLoad
+  - Name: OnUnload
+  - Name: OnUpdate
+Namespace: ECS
