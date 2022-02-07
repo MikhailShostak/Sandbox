@@ -2,6 +2,35 @@
 
 namespace Graphics
 {
+
+SharedReference<Graphics::Texture> CreateTextureBuffer(const Int3& size)
+{
+    SharedReference<Graphics::Texture> texture = CreateShared<Graphics::Texture>();
+    texture->Size = size;
+    texture->Channels = 4;
+
+    size_t s = texture->Size.x * texture->Size.y * texture->Size.z * texture->Channels;
+    texture->Buffer.resize(s);
+
+    return texture;
+}
+
+SharedReference<Graphics::Texture> CreateTexture(const Color& color, const Int3& size)
+{
+    SharedReference<Graphics::Texture> texture = CreateTextureBuffer(size);
+
+    Color colorBytes = color * std::numeric_limits<uint8_t>::max();
+    for (size_t i = 0; i < texture->Buffer.size(); i += texture->Channels)
+    {
+        texture->Buffer[i] = colorBytes.r;
+        texture->Buffer[i + 1] = colorBytes.g;
+        texture->Buffer[i + 2] = colorBytes.b;
+        texture->Buffer[i + 3] = colorBytes.a;
+    }
+
+    return texture;
+}
+
 void LoadTexture(Graphics::Texture& texture, const System::Path& path)
 {
     int width, height, channels;
