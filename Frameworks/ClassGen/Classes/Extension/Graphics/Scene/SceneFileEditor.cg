@@ -4,9 +4,7 @@ Functions:
   - Name: RenderFile
 Namespace: ClassGen
 Properties:
-  - Name: Material
-    Type: SharedReference<Graphics.Material>
+  - Name: Scene
+    Type: SharedReference<Graphics.Scene>
   - Name: LastPath
     Type: System.Path
-  - Name: PreviewViewport
-    Type: ClassGen.PreviewViewport

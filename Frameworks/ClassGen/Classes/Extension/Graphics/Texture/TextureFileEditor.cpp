@@ -26,8 +26,7 @@ void TextureFileEditor::RenderFile()
     if (LastPath != info.Path)
     {
         LastPath = info.Path;
-        Texture = Graphics::LoadTexture(info.Path);
-        g_GraphicsContext->Create2DTexture(*Texture);
+        Texture = info.Load(*g_GraphicsContext);
     }
 
     if (Texture && ReinterpretCast<void>(&Texture->Data))

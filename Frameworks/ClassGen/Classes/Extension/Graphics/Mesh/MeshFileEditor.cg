@@ -8,3 +8,5 @@ Properties:
     Type: SharedReference<Graphics.Mesh>
   - Name: LastPath
     Type: System.Path
+  - Name: PreviewViewport
+    Type: ClassGen.PreviewViewport

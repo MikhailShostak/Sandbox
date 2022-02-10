@@ -1,0 +1,21 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: SamplerName
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: TextureName
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: UseInVertexShader
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: UseInPixelShader
+    Type: bool

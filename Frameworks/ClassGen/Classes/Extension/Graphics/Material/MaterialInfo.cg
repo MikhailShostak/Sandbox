@@ -1,8 +1,68 @@
 Type: Class
 BaseType: ClassGen.BaseInfo
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Context
+        Type: Graphics::GraphicsContext
+        Writable: true
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics::RenderBuffer
+        Writable: false
+    Name: Load
+    OutputParameters:
+      - Copy: false
+        Name: Material
+        Type: SharedReference<Graphics.Material>
+        Writable: false
+  - Name: Update
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.LoadInstance:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Update:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
 Namespace: ClassGen
 Properties:
   - Attributes:
       - Serialize
     Name: Path
     Type: System.Path
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Properties
+    Type: Array<ClassGen.MaterialProperty>
+  - Attributes:
+      - Serialize
+    Name: Textures
+    Type: Array<ClassGen.TextureSamplerInfo>
+  - Attributes:
+      - Serialize
+    Name: VertexShader
+    Type: System.Path
+  - Attributes:
+      - Serialize
+    Name: PixelShader
+    Type: System.Path
+  - Name: MaterialInstance
+    Type: SharedReference<Graphics.Material>
+  - Name: Samplers
+    Type: Array<Graphics.TextureSampler>

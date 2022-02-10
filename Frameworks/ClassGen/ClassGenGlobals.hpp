@@ -21,6 +21,12 @@ namespace ClassGen
 inline String ICON_ADD = "\xee\x85\x85";
 inline String ICON_DELETE = "\xee\xa1\xb2";
 inline String ICON_OPEN_IN_NEW = "\xee\xa2\x9e";
+inline String ICON_VIDEOCAM = "\xee\x81\x8b";
+inline String ICON_360_ROTATION = "\xee\x95\xb7";
+inline String ICON_BUILD = "\xee\xa8\xbc";
+inline String ICON_PANORAMA1 = "\xee\x90\x8b";
+inline String ICON_PANORAMA2 = "\xef\x82\x82"; 
+inline String ICON_MODEL = "\xee\xa7\xbe";
 
 inline void LoadExtensions()
 {

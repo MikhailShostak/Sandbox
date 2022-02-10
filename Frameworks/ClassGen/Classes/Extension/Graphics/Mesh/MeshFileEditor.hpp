@@ -9,6 +9,7 @@ struct MeshFileEditor
     using Super = ClassGen::FileEditor;
     SharedReference<Graphics::Mesh> Mesh = {};
     System::Path LastPath = {};
+    ClassGen::PreviewViewport PreviewViewport = {};
 
     virtual ~MeshFileEditor() {}
     template<typename T>

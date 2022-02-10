@@ -1,0 +1,25 @@
+Type: Class
+Attributes:
+  - Structure
+Namespace: ClassGen
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Attribute
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Value
+    Type: Float4
+  - Attributes:
+      - Serialize
+    Name: UseInVertexShader
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: UseInPixelShader
+    Type: bool

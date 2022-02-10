@@ -1,8 +1,49 @@
 Type: Class
 BaseType: ClassGen.BaseInfo
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Context
+        Type: Graphics::GraphicsContext
+        Writable: true
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics::RenderBuffer
+        Writable: false
+    Name: Load
+    OutputParameters:
+      - Copy: false
+        Name: Mesh
+        Type: SharedReference<Graphics.Mesh>
+        Writable: false
+Graphs:
+  Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.LoadInstance:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
 Namespace: ClassGen
 Properties:
   - Attributes:
       - Serialize
     Name: Path
     Type: System.Path
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: String
+  - Attributes:
+      - Serialize
+    Name: Material
+    Type: String
+  - Name: MeshInstance
+    Type: SharedReference<Graphics.Mesh>
+  - Name: MaterialInstance
+    Type: SharedReference<Graphics.Material>

@@ -2,21 +2,21 @@
 
 namespace ClassGen
 {
-struct TextureInfo
+struct SceneInfo
     : public ClassGen::BaseInfo
 {
-    using This = TextureInfo;
+    using This = SceneInfo;
     using Super = ClassGen::BaseInfo;
     System::Path Path = {};
-    SharedReference<Graphics::Texture> TextureInstance = {};
+    String Name = {};
 
-    virtual ~TextureInfo() {}
+    virtual ~SceneInfo() {}
     template<typename T>
     void Serialize(T &&data)
     {
         data["Path"] & Path;
+        data["Name"] & Name;
     }
-    virtual SharedReference<Graphics::Texture>/*Texture*/ Load(Graphics::GraphicsContext & Context);
 
     void Initialize()
     {

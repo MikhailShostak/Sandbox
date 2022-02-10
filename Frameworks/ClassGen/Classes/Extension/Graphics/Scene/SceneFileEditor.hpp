@@ -2,16 +2,15 @@
 
 namespace ClassGen
 {
-struct MaterialFileEditor
+struct SceneFileEditor
     : public ClassGen::FileEditor
 {
-    using This = MaterialFileEditor;
+    using This = SceneFileEditor;
     using Super = ClassGen::FileEditor;
-    SharedReference<Graphics::Material> Material = {};
+    SharedReference<Graphics::Scene> Scene = {};
     System::Path LastPath = {};
-    ClassGen::PreviewViewport PreviewViewport = {};
 
-    virtual ~MaterialFileEditor() {}
+    virtual ~SceneFileEditor() {}
     template<typename T>
     void Serialize(T &&data)
     {
