@@ -79,6 +79,11 @@ void ShowMainMenu()
             }
             ImGui::EndMenu();
         }
+        if (ImGui::BeginMenu("Tools"))
+        {
+            ImGui::MenuItem("Import...", nullptr, &Tools::DisplayImportWindow);
+            ImGui::EndMenu();
+        }
         ImGui::EndMenuBar();
     }
 }

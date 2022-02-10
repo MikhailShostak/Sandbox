@@ -52,6 +52,14 @@ void ShowFileBrowser();
 
 }
 
+namespace Tools
+{
+
+inline bool DisplayImportWindow = false;
+void ShowImportWindow();
+
+}
+
 namespace Utils
 {
 

@@ -199,6 +199,7 @@ void EditorWindow::Draw()
     Settings::ShowSettings();
     View::ShowFileBrowser();
     View::ShowConsole();
+    Tools::ShowImportWindow();
     if (Debug::DisplayImGuiDemo)
     {
         ImGui::ShowDemoWindow();
