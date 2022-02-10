@@ -17,5 +17,9 @@ struct RenderBuffer
     void Serialize(T &&data)
     {
     }
+
+    void Initialize()
+    {
+    }
 };
 }

@@ -1,7 +1,6 @@
 Type: Class
 Attributes:
   - Structure
-  - DefaultConstructor
 Namespace: Graphics
 Properties:
   - Name: VertexShader

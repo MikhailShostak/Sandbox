@@ -3,10 +3,4 @@
 namespace Graphics
 {
 
-Material::Material() :
-    IsCompiled(false)
-{
-
-}
-
 }

@@ -39,17 +39,12 @@ Diligent::RENDER_DEVICE_TYPE g_DeviceType = getPreferedDeviceType();
 namespace Graphics
 {
 
-GraphicsContext::GraphicsContext()
-{
+GraphicsContext::GraphicsContext() = default;
+GraphicsContext::GraphicsContext(GraphicsContext && other) = default;
+GraphicsContext& GraphicsContext::operator =(GraphicsContext && other) = default;
+GraphicsContext::~GraphicsContext() = default;
 
-}
-
-GraphicsContext::~GraphicsContext()
-{
-
-}
-
-std::tuple<bool/*Result*/> GraphicsContext::Initialize(const Graphics::NativeWindow &NativeWindow, Graphics::SwapChain &SwapChain)
+bool/*Result*/ GraphicsContext::Initialize(const Graphics::NativeWindow &NativeWindow, Graphics::SwapChain &SwapChain)
 {
 #if PLATFORM_WIN32
     Diligent::NativeWindow window(NativeWindow);
@@ -359,15 +354,15 @@ void GraphicsContext::CreateMaterial(Graphics::Material &Material)
             "Texture2D " + name + ";\n"
             "SamplerState " + name + "_sampler;\n";
     };
-    for (const Graphics::TextureSampler *sampler : Material.TextureSamplers)
+    for (const Graphics::TextureSampler &sampler : Material.TextureSamplers)
     {
-        if (sampler->Flags & Graphics::ShaderFlags::UseInVertexShader)
+        if (sampler.Flags & Graphics::ShaderFlags::UseInVertexShader)
         {
-            VertexSamplers.append(Generate2DSamplerCode(sampler->Name));
+            VertexSamplers.append(Generate2DSamplerCode(sampler.Name));
         }
-        if (sampler->Flags & Graphics::ShaderFlags::UseInPixelShader)
+        if (sampler.Flags & Graphics::ShaderFlags::UseInPixelShader)
         {
-            PixelSamplers.append(Generate2DSamplerCode(sampler->Name));
+            PixelSamplers.append(Generate2DSamplerCode(sampler.Name));
         }
     }
 
@@ -437,6 +432,11 @@ void GraphicsContext::SetState(PipelineState &State)
 
 void GraphicsContext::Draw(Graphics::Mesh &Mesh, Graphics::DrawBatchBase &Batch)
 {
+    if (!Mesh.IsCompiled)
+    {
+        CreateMesh(Mesh);
+    }
+
     auto [count, buffer, size, max] = Batch.GetLayoutInfo();
 
     StaticArray<Diligent::Uint32, 2> offsets = { 0, 0 };
@@ -450,6 +450,8 @@ void GraphicsContext::Draw(Graphics::Mesh &Mesh, Graphics::DrawBatchBase &Batch)
     DrawAttrs.NumInstances = count;
     DrawAttrs.Flags = Diligent::DRAW_FLAG_VERIFY_ALL;
     Data->Handle->DrawIndexed(DrawAttrs);
+
+    Mesh.IsCompiled = true;
 }
 
 void GraphicsContext::ApplyMaterial(Graphics::Material &material)
@@ -458,12 +460,17 @@ void GraphicsContext::ApplyMaterial(Graphics::Material &material)
     if (it == Data->Pipelines.end())
     {
         Graphics::PipelineState state;
-        it = Data->Pipelines.insert({ &material, state }).first;
+        it = Data->Pipelines.insert({ &material, std::move(state) }).first;
 
         it->second.Data->material = &material;
         it->second.Data->CompileState(*this);
     }
     auto &pipeline = it->second;
+
+    if (!pipeline.Data->Handle)
+    {
+        return;
+    }
 
     auto ApplyShaderData = [this, &pipeline](Graphics::Shader &shader, Diligent::SHADER_TYPE type)
     {
@@ -489,6 +496,11 @@ void GraphicsContext::ApplyMaterial(Graphics::Material &material)
 
     pipeline.Data->BindTextures();
     SetState(pipeline);
+}
+
+void GraphicsContext::InvalidateMaterial(Graphics::Material& material)
+{
+    Data->Pipelines.erase(&material);
 }
 
 }

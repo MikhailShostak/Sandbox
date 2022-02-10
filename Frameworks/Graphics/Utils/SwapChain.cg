@@ -3,11 +3,12 @@ Attributes:
   - Structure
   - DefaultConstructor
   - Destructor
+  - Move
 Functions:
   - InputParameters:
       - Copy: false
         Name: Resolution
-        Type: hlslpp.int2
+        Type: Int2
         Writable: false
     Name: Resize
   - Name: Swap
@@ -38,7 +39,9 @@ Graphs:
         Name: Output
 Namespace: Graphics
 Properties:
-  - Name: Data
+  - Attributes:
+      - Incomplete
+    Name: Data
     Type: InplaceStorage<SwapChainPrivateData, 8, 8>
   - Name: RenderBuffer
     Type: Graphics.RenderBuffer

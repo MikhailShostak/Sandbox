@@ -3,7 +3,10 @@ Attributes:
   - Structure
   - DefaultConstructor
   - Destructor
+  - Move
 Namespace: Graphics
 Properties:
-  - Name: Data
+  - Attributes:
+      - Incomplete
+    Name: Data
     Type: InplaceStorage<PipelineStatePrivateData, 768, 8, false>

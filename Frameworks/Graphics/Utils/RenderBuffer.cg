@@ -7,5 +7,7 @@ Attributes:
   - Destructor
 Namespace: Graphics
 Properties:
-  - Name: Data
+  - Attributes:
+      - Incomplete
+    Name: Data
     Type: InplaceStorage<RenderBufferPrivateData, 88, 8>

@@ -3,6 +3,7 @@ Attributes:
   - Structure
   - DefaultConstructor
   - Destructor
+  - Move
 Namespace: Graphics
 Properties:
   - Name: SourceCode

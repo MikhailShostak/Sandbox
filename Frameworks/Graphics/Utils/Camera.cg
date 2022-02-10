@@ -7,19 +7,19 @@ Functions:
     OutputParameters:
       - Copy: false
         Name: Projection
-        Type: hlslpp.float4x4
+        Type: Matrix4
         Writable: false
   - Name: GetPerspectiveProjection
     OutputParameters:
       - Copy: false
         Name: Projection
-        Type: hlslpp.float4x4
+        Type: Matrix4
         Writable: false
   - Name: GetView
     OutputParameters:
       - Copy: false
         Name: View
-        Type: hlslpp.float4x4
+        Type: Matrix4
         Writable: false
 Graphs:
   Function.GetOrthographicProjection:
@@ -42,12 +42,14 @@ Graphs:
         Name: Output
 Namespace: Graphics
 Properties:
-  - Name: Transform
+  - Attributes:
+      - Serialize
+    Name: Transform
     Type: Graphics.Transform
   - Attributes:
       - Serialize
     Name: Resolution
-    Type: hlslpp.int2
+    Type: Int2
   - Attributes:
       - Serialize
     Name: NearPlane

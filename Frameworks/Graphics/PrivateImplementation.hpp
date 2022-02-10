@@ -250,12 +250,12 @@ public:
 
         SetupInputLayout();
 
-        for (const Graphics::TextureSampler *sampler : material->TextureSamplers)
+        for (const Graphics::TextureSampler &sampler : material->TextureSamplers)
         {
-            if (sampler->Texture)
+            if (sampler.Texture)
             {
-                RegisterSampler(*sampler);
-                context.Create2DTexture(*sampler->Texture);
+                RegisterSampler(sampler);
+                context.Create2DTexture(*sampler.Texture);
             }
         }
         SetupDynamicResoruces();
@@ -266,7 +266,10 @@ public:
 
         context.Data->Device->CreateGraphicsPipelineState(PSOCreateInfo, &Handle);
 
-        BindStaticResources();
+        if (Handle)
+        {
+            BindStaticResources();
+        }
     }
 
     void BindStaticResources()
@@ -283,7 +286,7 @@ public:
         Handle->CreateShaderResourceBinding(&Binding, true);
     }
 
-    void BindTexture(const std::string &name, Diligent::RefCntAutoPtr<Diligent::ITexture> &texture)
+    void BindTexture(const std::string &name, Diligent::SHADER_TYPE shaderType, Diligent::RefCntAutoPtr<Diligent::ITexture> &texture)
     {
         if (!texture)
         {
@@ -291,7 +294,7 @@ public:
         }
 
         auto TextureResourceView = texture->GetDefaultView(Diligent::TEXTURE_VIEW_SHADER_RESOURCE);
-        auto handle = Binding->GetVariableByName(Diligent::SHADER_TYPE_PIXEL, name.data());
+        auto handle = Binding->GetVariableByName(shaderType, name.data());
         if (!handle)
         {
             fmt::print("Warning: Texture sampler \"{}\" not found in shader code:\n{}\n", name, material->PixelShader.SourceCode);
@@ -302,11 +305,18 @@ public:
 
     void BindTextures()
     {
-        for (const Graphics::TextureSampler *sampler : material->TextureSamplers)
+        for (const Graphics::TextureSampler &sampler : material->TextureSamplers)
         {
-            if (sampler->Texture)
+            if (sampler.Texture)
             {
-                BindTexture(sampler->Name, sampler->Texture->Data->Handle);
+                if (sampler.Flags & Graphics::ShaderFlags::UseInPixelShader)
+                {
+                    BindTexture(sampler.Name, Diligent::SHADER_TYPE_PIXEL, sampler.Texture->Data->Handle);
+                }
+                if (sampler.Flags & Graphics::ShaderFlags::UseInVertexShader)
+                {
+                    BindTexture(sampler.Name, Diligent::SHADER_TYPE_VERTEX, sampler.Texture->Data->Handle);
+                }
             }
         }
     }

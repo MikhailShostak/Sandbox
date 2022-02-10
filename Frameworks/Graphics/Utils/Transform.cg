@@ -1,18 +1,19 @@
 Type: Class
 Attributes:
   - Structure
+  - DefaultConstructor
 Functions:
   - Name: GetMatrix
     OutputParameters:
       - Copy: false
         Name: Transform
-        Type: hlslpp.float4x4
+        Type: Matrix4
         Writable: false
   - Name: GetInverseMatrix
     OutputParameters:
       - Copy: false
         Name: Transform
-        Type: hlslpp.float4x4
+        Type: Matrix4
         Writable: false
 Graphs:
   Function.GetInverseMatrix:
@@ -32,8 +33,12 @@ Properties:
   - Attributes:
       - Serialize
     Name: Position
-    Type: hlslpp.float3
+    Type: Float3
   - Attributes:
       - Serialize
     Name: Rotation
-    Type: hlslpp.quaternion
+    Type: Float3
+  - Attributes:
+      - Serialize
+    Name: Scale
+    Type: Float3

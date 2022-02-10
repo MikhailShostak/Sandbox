@@ -3,13 +3,7 @@
 namespace Graphics
 {
 
-RenderTarget::RenderTarget() :
-    IsCompiled(false)
-{
-
-}
-
-std::tuple<Graphics::RenderBuffer/*RenderBuffer*/> RenderTarget::GetBuffer()
+Graphics::RenderBuffer/*RenderBuffer*/ RenderTarget::GetBuffer()
 {
     Graphics::RenderBuffer buffer;
     buffer.Data->Size = Targets.size();

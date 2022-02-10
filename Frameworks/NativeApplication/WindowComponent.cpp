@@ -160,7 +160,7 @@ void WindowComponent::CreateGraphicsContext()
     throw std::runtime_error("Missing window handle");
 #endif
 
-    auto [result] = GraphicsContext.Initialize(h, SwapChain);
+    auto result = GraphicsContext.Initialize(h, SwapChain);
 }
 
 void WindowComponent::DestroyGraphicsContext()
@@ -205,8 +205,7 @@ void WindowComponent::Render()
 
 void WindowComponent::Clear()
 {
-    auto [RenderBuffer] = SwapChain.GetRenderBuffer();
-    GraphicsContext.SetRenderBuffer(RenderBuffer);
+    GraphicsContext.SetRenderBuffer(SwapChain.GetRenderBuffer());
     GraphicsContext.ClearRenderBuffers(BackgroundColor);
     GraphicsContext.ClearDepthStencilBuffers(1.0f, 0);
 }

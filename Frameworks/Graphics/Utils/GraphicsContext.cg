@@ -3,6 +3,7 @@ Attributes:
   - Structure
   - DefaultConstructor
   - Destructor
+  - Move
 Functions:
   - InputParameters:
       - Copy: false
@@ -129,6 +130,12 @@ Functions:
         Type: Graphics.Material
         Writable: true
     Name: ApplyMaterial
+  - InputParameters:
+      - Copy: false
+        Name: Material
+        Type: Graphics.Material
+        Writable: false
+    Name: InvalidateMaterial
 Graphs:
   Function.ApplyConstants:
     Nodes:
@@ -208,6 +215,12 @@ Graphs:
         Name: Input
       - ID: Output
         Name: Output
+  Function.InvalidateMaterial:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
   Function.Render:
     Nodes:
       - ID: Input
@@ -234,7 +247,9 @@ Graphs:
         Name: Output
 Namespace: Graphics
 Properties:
-  - Name: Data
+  - Attributes:
+      - Incomplete
+    Name: Data
     Type: InplaceStorage<GraphicsContextPrivateData, 128, 8, false>
   - Name: Queue
     Type: Map<Graphics.Mesh*, Array<SharedReference<Graphics.Material>>>

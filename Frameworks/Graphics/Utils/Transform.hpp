@@ -5,16 +5,23 @@ namespace Graphics
 struct Transform
 {
     using This = Transform;
-    hlslpp::float3 Position;
-    hlslpp::quaternion Rotation;
+    Float3 Position = {};
+    Float3 Rotation = {};
+    Float3 Scale = {};
+    Transform();
 
     template<typename T>
     void Serialize(T &&data)
     {
         data["Position"] & Position;
         data["Rotation"] & Rotation;
+        data["Scale"] & Scale;
     }
-    virtual std::tuple<hlslpp::float4x4/*Transform*/> GetMatrix();
-    virtual std::tuple<hlslpp::float4x4/*Transform*/> GetInverseMatrix();
+    virtual Matrix4/*Transform*/ GetMatrix();
+    virtual Matrix4/*Transform*/ GetInverseMatrix();
+
+    void Initialize()
+    {
+    }
 };
 }

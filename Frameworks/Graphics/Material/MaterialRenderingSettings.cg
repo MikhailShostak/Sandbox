@@ -1,4 +1,34 @@
 Type: Class
 Attributes:
   - Structure
+  - DefaultConstructor
 Namespace: Graphics
+Properties:
+  - Attributes:
+      - Serialize
+    Name: StencilReadMask
+    Type: uint8_t
+  - Attributes:
+      - Serialize
+    Name: StencilWriteMask
+    Type: uint8_t
+  - Attributes:
+      - Serialize
+    Name: StencilEnabled
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: DepthTestEnabled
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: DepthWriteEnabled
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: Wireframe
+    Type: bool
+  - Attributes:
+      - Serialize
+    Name: Cullback
+    Type: bool

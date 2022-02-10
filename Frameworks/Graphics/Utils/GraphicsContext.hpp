@@ -6,16 +6,18 @@ struct GraphicsContext
 {
     using This = GraphicsContext;
     InplaceStorage<GraphicsContextPrivateData, 128, 8, false> Data;
-    Map<Graphics::Mesh*, Array<SharedReference<Graphics::Material>>> Queue;
-    Graphics::RenderBuffer CurrentRenderBuffer;
+    Map<Graphics::Mesh*, Array<SharedReference<Graphics::Material>>> Queue = {};
+    Graphics::RenderBuffer CurrentRenderBuffer = {};
     GraphicsContext();
+    GraphicsContext(GraphicsContext &&other);
+    GraphicsContext &operator =(GraphicsContext &&other);
 
      ~GraphicsContext();
     template<typename T>
     void Serialize(T &&data)
     {
     }
-    virtual std::tuple<bool/*Result*/> Initialize(const Graphics::NativeWindow & NativeWindow, Graphics::SwapChain & SwapChain);
+    virtual bool/*Result*/ Initialize(const Graphics::NativeWindow & NativeWindow, Graphics::SwapChain & SwapChain);
     virtual void CreateDrawBatch(Graphics::DrawBatchBase & Batch);
     virtual void CreateConstants(Graphics::ShaderMetatype & Constants);
     virtual void CreateMesh(Graphics::Mesh & Mesh);
@@ -33,5 +35,10 @@ struct GraphicsContext
     virtual void Draw(Graphics::Mesh & Mesh, Graphics::DrawBatchBase & Batch);
     virtual void Render(Graphics::SwapChain & SwapChain);
     virtual void ApplyMaterial(Graphics::Material & Material);
+    virtual void InvalidateMaterial(Graphics::Material & Material);
+
+    void Initialize()
+    {
+    }
 };
 }

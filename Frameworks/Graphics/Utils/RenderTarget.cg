@@ -1,7 +1,6 @@
 Type: Class
 Attributes:
   - Structure
-  - DefaultConstructor
 Functions:
   - Name: GetBuffer
     OutputParameters:
@@ -12,7 +11,7 @@ Functions:
   - InputParameters:
       - Copy: false
         Name: Size
-        Type: hlslpp.int2
+        Type: Int2
         Writable: false
     Name: Resize
 Graphs:

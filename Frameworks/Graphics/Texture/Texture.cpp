@@ -12,9 +12,8 @@ Texture::Texture():
 
 }
 
-Texture::~Texture()
-{
-
-}
+Texture::Texture(Texture&& other) = default;
+Texture& Texture::operator =(Texture&& other) = default;
+Texture::~Texture() = default;
 
 }

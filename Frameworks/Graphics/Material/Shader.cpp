@@ -3,14 +3,9 @@
 namespace Graphics
 {
 
-Shader::Shader()
-{
-
-}
-
-Shader::~Shader()
-{
-
-}
+Shader::Shader() = default;
+Shader::~Shader() = default;
+Shader::Shader(Shader&& other) = default;
+Shader& Shader::operator =(Shader&& other) = default;
 
 }
