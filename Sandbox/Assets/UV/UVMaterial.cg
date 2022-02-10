@@ -1,0 +1,6 @@
+Type: Material
+Name: UV
+Path: C:/Assets/EditorContent.fbx
+Textures:
+  - SamplerName: BaseColor
+    TextureName: UVTexture

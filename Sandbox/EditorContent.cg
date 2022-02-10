@@ -1,0 +1,4 @@
+Type: Mesh
+Material: SkyMaterial
+Name: Suzanne
+Path: C:/Assets/EditorContent.fbx

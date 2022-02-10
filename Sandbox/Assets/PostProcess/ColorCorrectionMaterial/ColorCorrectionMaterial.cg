@@ -1,0 +1,5 @@
+Type: Material
+PixelShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/PostProcess/ColorCorrectionMaterial/ColorCorrectionMaterial.ps
+Textures:
+  - SamplerName: BaseColor
+VertexShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/PostProcess/ColorCorrectionMaterial/ColorCorrectionMaterial.vs

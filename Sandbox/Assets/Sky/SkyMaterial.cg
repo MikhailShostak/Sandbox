@@ -1,0 +1,6 @@
+Type: Material
+Name: Sky
+Path: C:/Assets/Sky.fbx
+Textures:
+  - SamplerName: BaseColor
+    TextureName: SkyTexture
