@@ -221,6 +221,11 @@ ImFont* LoadFont(const System::Path& Path, const fpixel_t Size, ImFontConfig *Co
 
 ImTextureID TexID(Graphics::Texture &texture)
 {
+    if(!texture.Data->Handle)
+    {
+        g_CurrentImGui->Context.Create2DTexture(texture);
+    }
+
     return (ImTextureID)texture.Data->Handle->GetDefaultView(Diligent::TEXTURE_VIEW_SHADER_RESOURCE);
 }
 
