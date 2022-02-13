@@ -437,6 +437,8 @@ void GraphicsContext::Draw(Graphics::Mesh &Mesh, Graphics::DrawBatchBase &Batch)
         CreateMesh(Mesh);
     }
 
+    Upload(Batch);
+
     auto [count, buffer, size, max] = Batch.GetLayoutInfo();
 
     StaticArray<Diligent::Uint32, 2> offsets = { 0, 0 };
