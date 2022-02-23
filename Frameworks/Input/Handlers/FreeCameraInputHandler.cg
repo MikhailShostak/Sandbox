@@ -1,0 +1,140 @@
+Type: Class
+BaseType: InputHandler
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchMove
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+Graphs:
+  Function.OnTouchDown:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchMove:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchUp:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnUpdate:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Speed
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: Sensetivity
+    Type: Float2
+  - Attributes:
+      - Serialize
+    Name: SprintFactor
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: CurrentCamera
+    Type: ECS.Entity
+  - Name: LastPosition
+    Type: Int2
+  - Name: Velocity
+    Type: Float2
+  - Name: Rotation
+    Type: Float3
+  - Name: Captured
+    Type: bool

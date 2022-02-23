@@ -1,0 +1,120 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchMove
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+      - Copy: true
+        Name: Intersected
+        Type: bool
+        Writable: true
+    Name: OnTouchUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+Graphs:
+  Function.OnKeyDown:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnKeyUp:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchDown:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchMove:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchUp:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output

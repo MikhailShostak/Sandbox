@@ -1,0 +1,7 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: MouseInput
+Properties:
+  - Name: Delta
+    Type: int

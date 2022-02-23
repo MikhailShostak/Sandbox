@@ -1,0 +1,124 @@
+Type: Class
+BaseType: ECS.System
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+    Name: OnTouchDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+    Name: OnTouchMove
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+    Name: OnTouchUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: TouchInput
+        Writable: false
+    Name: OnTouch
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: WheelInput
+        Writable: false
+    Name: OnWheelMove
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyDown
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+  - InputParameters:
+      - Copy: false
+        Name: Input
+        Type: KeyboardInput
+        Writable: false
+    Name: OnKeyUp
+    OutputParameters:
+      - Copy: false
+        Name: Handled
+        Type: bool
+        Writable: false
+Graphs:
+  Function.OnKeyDown:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnKeyUp:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouch:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchDown:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchMove:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnTouchUp:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnWheelMove:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ECS

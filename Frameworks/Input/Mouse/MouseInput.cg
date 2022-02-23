@@ -1,0 +1,6 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Name: Position
+    Type: Int2

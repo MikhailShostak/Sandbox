@@ -1,0 +1,8 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Name: Key
+    Type: int
+  - Name: Char
+    Type: int

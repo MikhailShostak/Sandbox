@@ -1,0 +1,12 @@
+Type: Class
+Attributes:
+  - Structure
+  - DeleteCopy
+  - DefaultMove
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Handlers
+    Type: Array<UniqueReference<InputHandler>>
