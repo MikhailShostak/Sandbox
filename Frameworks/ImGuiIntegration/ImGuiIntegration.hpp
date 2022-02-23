@@ -9,10 +9,9 @@ void Deinitialize(void* window);
 void BeginRender(void* window);
 void EndRender();
 
-void CharEvent(void *window, unsigned int c);
-void MouseEvent();
-void KeyEvent(void *window, int key, int scancode, int state, int mods);
-void ScrollEvent(void *window, double dx, double dy);
+bool CharEvent(void *window, unsigned int c);
+bool KeyEvent(void *window, int key, int scancode, int state, int mods);
+bool ScrollEvent(void *window, double dx, double dy);
 
 void PushUIFont();
 void PushMonospacedFont();

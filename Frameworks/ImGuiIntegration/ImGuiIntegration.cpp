@@ -159,44 +159,34 @@ void EndRender()
     g_CurrentImGui = nullptr;
 }
 
-void CharEvent(void *window, unsigned int c)
+bool CharEvent(void *window, unsigned int c)
 {
     auto& imgui = g_ImGui[window];
     SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_CharCallback(ReinterpretCast<GLFWwindow>(window), c);
+    bool handled = ImGui::GetIO().WantTextInput;
     SetCurrentContext(nullptr);
+    return handled;
 }
 
-void KeyEvent(void *window, int key, int scancode, int state, int mods)
+bool KeyEvent(void *window, int key, int scancode, int state, int mods)
 {
     auto& imgui = g_ImGui[window];
     SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_KeyCallback(ReinterpretCast<GLFWwindow>(window), key, scancode, state, mods);
-    ImGuiIO &io = ImGui::GetIO();
-    if (!io.WantCaptureKeyboard)
-    {
-        //TODO: Keyboard Input
-        //auto w = static_cast<NativeApplication*>(glfwGetWindowUserPointer(window));
-    }
+    bool handled = ImGui::GetIO().WantCaptureKeyboard;
     SetCurrentContext(nullptr);
+    return handled;
 }
 
-void MouseEvent()
-{
-    ImGuiIO &io = ImGui::GetIO();
-    if (!io.WantCaptureMouse)
-    {
-        //TODO: Mouse Input
-        //auto w = static_cast<NativeApplication*>(glfwGetWindowUserPointer(window));
-    }
-}
-
-void ScrollEvent(void *window, double dx, double dy)
+bool ScrollEvent(void *window, double dx, double dy)
 {
     auto& imgui = g_ImGui[window];
     SetCurrentContext(imgui->imguiContext);
     ImGui_ImplGlfw_ScrollCallback(ReinterpretCast<GLFWwindow>(window), dx, dy);
+    bool handled = ImGui::GetIO().WantCaptureMouse;
     SetCurrentContext(nullptr);
+    return handled;
 }
 
 void PushUIFont()
