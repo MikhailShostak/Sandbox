@@ -8,11 +8,40 @@
 #include <GLFW/glfw3.h>
 #include <GLFW/glfw3native.h>
 
+void CharCallback(WindowComponent* window, unsigned int c);
+void KeyCallback(WindowComponent* window, int key, int scancode, int state, int mods);
+void MouseButtonCallback(WindowComponent* window, int button, bool pressed);
+void CursorPosCallback(WindowComponent* window, double xpos, double ypos);
+void MouseWheelCallback(WindowComponent* window, double dx, double dy);
+
+
 #if PLATFORM_MACOS
 extern void* GetNSWindowView(GLFWwindow* wnd);
 #endif
 
 struct GLFWwindow *&GetWindowHandle(NativeWindowHandle& Handle);
+
+static int32_t MouseCaptured = 0;
+
+bool IsMouseCaptured() { return MouseCaptured > 0; }
+
+void CaptureMouse(bool Captured)
+{
+    MouseCaptured += Captured ? 1 : -1;
+}
+
+void UpdateMouseCapture(WindowComponent* window)
+{
+    auto& w = GetWindowHandle(window->Handle);
+    if (IsMouseCaptured())
+    {
+        glfwSetInputMode(w, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    }
+    else
+    {
+        glfwSetInputMode(w, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+}
 
 namespace
 {
@@ -28,31 +57,57 @@ void GLFW_ResizeCallback(GLFWwindow* window, int width, int height)
 
 void GLFW_CharCallback(GLFWwindow* window, unsigned int c)
 {
-    ImGui::CharEvent(window, c);
+    if (!IsMouseCaptured() && ImGui::CharEvent(window, c))
+    {
+        return;
+    }
+    auto* w = static_cast<WindowComponent*>(glfwGetWindowUserPointer(window));
+    CharCallback(w, c);
 }
 
 void GLFW_KeyCallback(GLFWwindow* window, int key, int scancode, int state, int mods)
 {
-    ImGui::KeyEvent(window, key, scancode, state, mods);
+    if (!IsMouseCaptured() && ImGui::KeyEvent(window, key, scancode, state, mods))
+    {
+        return;
+    }
+    auto* w = static_cast<WindowComponent*>(glfwGetWindowUserPointer(window));
+    KeyCallback(w, key, scancode, state, mods);
 }
 
-void GLFW_MouseButtonCallback(GLFWwindow* window, int button, int state, int)
+void GLFW_MouseButtonCallback(GLFWwindow* window, int button, int action, int)
 {
-
+    if (!IsMouseCaptured() && ImGui::GetCurrentContext() && ImGui::GetIO().WantCaptureMouse)
+    {
+        return;
+    }
+    auto* w = static_cast<WindowComponent*>(glfwGetWindowUserPointer(window));
+    MouseButtonCallback(w, button, action == GLFW_PRESS);
+    UpdateMouseCapture(w);
 }
 
 void GLFW_CursorPosCallback(GLFWwindow* window, double xpos, double ypos)
 {
+    /*if (ImGui::GetIO().WantSetMousePos)
+    {
+        return;
+    }*/
     float xscale = 1;
     float yscale = 1;
     glfwGetWindowContentScale(window, &xscale, &yscale);
-    //TODO: Mouse Input
-    //auto w = static_cast<NativeApplication*>(glfwGetWindowUserPointer(window));
+    auto* w = static_cast<WindowComponent*>(glfwGetWindowUserPointer(window));
+    CursorPosCallback(w, xpos, ypos);
 }
 
 void GLFW_MouseWheelCallback(GLFWwindow* window, double dx, double dy)
 {
-    ImGui::ScrollEvent(window, dx, dy);
+    if (ImGui::ScrollEvent(window, dx, dy))
+    {
+        return;
+    }
+
+    auto* w = static_cast<WindowComponent*>(glfwGetWindowUserPointer(window));
+    MouseWheelCallback(w, dx, dy);
 }
 
 }
@@ -185,15 +240,13 @@ void WindowComponent::Render()
     auto w = GetWindowHandle(Handle);
     ImGui::BeginRender(w);
 
-    auto dt = FrameCounter.CountValueAs<DateTime::SecondRatio>();
-    //Update(dt);
-    //UpdateUI(dt);
+    //auto dt = FrameCounter.CountValueAs<DateTime::SecondRatio>();
+    PreDraw();
 
     int width, height;
     auto window = GetWindowHandle(Handle);
     glfwGetWindowSize(window, &width, &height);
 
-    //PreDraw();
     Clear();
 
     if (width > 0 && height > 0)
@@ -208,6 +261,11 @@ void WindowComponent::Clear()
     GraphicsContext.SetRenderBuffer(SwapChain.GetRenderBuffer());
     GraphicsContext.ClearRenderBuffers(BackgroundColor);
     GraphicsContext.ClearDepthStencilBuffers(1.0f, 0);
+}
+
+void WindowComponent::PreDraw()
+{
+
 }
 
 void WindowComponent::Draw()

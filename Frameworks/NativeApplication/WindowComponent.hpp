@@ -34,6 +34,7 @@ struct WindowComponent
     virtual void DestroyUI();
     virtual void Render();
     virtual void Clear();
+    virtual void PreDraw();
     virtual void Draw();
     virtual void Flush();
     virtual void Show();

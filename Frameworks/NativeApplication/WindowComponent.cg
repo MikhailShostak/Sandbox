@@ -27,6 +27,7 @@ Functions:
   - Name: DestroyUI
   - Name: Render
   - Name: Clear
+  - Name: PreDraw
   - Name: Draw
   - Name: Flush
   - Name: Show
@@ -93,6 +94,12 @@ Graphs:
       - ID: Output
         Name: Output
   Function.Load:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.PreDraw:
     Nodes:
       - ID: Input
         Name: Input
