@@ -1,0 +1,5 @@
+Type: Class
+Namespace: ECS
+Properties:
+  - Name: Reserved
+    Type: bool

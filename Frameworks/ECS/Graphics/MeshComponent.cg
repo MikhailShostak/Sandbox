@@ -1,0 +1,14 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Mesh
+    Type: SharedReference<Graphics.Mesh>
+  - Attributes:
+      - Serialize
+    Name: Material
+    Type: SharedReference<Graphics.Material>

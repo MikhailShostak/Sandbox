@@ -1,0 +1,18 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Acceleration
+    Type: Float3
+  - Attributes:
+      - Serialize
+    Name: Velocity
+    Type: Float3
+  - Attributes:
+      - Serialize
+    Name: Mass
+    Type: float

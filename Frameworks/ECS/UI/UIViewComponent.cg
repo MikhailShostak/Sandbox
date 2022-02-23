@@ -1,0 +1,30 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Position
+    Type: Int3
+  - Attributes:
+      - Serialize
+    Name: Rotation
+    Type: Quaternion
+  - Attributes:
+      - Serialize
+    Name: Size
+    Type: Int2
+  - Attributes:
+      - ""
+    Name: HorizontalSizePolicy
+    Type: UI.SizePolicy
+  - Attributes:
+      - ""
+    Name: VerticalSizePolicy
+    Type: UI.SizePolicy
+  - Name: GlobalPosition
+    Type: Int3
+  - Name: PreferedSize
+    Type: Int2

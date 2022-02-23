@@ -1,0 +1,10 @@
+Type: Class
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Name
+    Type: String
+  - Name: Components
+    Type: Array<ECS.EntityComponent*>

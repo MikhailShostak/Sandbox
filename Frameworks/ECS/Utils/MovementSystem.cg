@@ -1,0 +1,19 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.System
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnUpdate
+Graphs:
+  Function.OnUpdate:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ECS

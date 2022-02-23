@@ -1,0 +1,8 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Name: Texture
+    Type: SharedReference<Graphics.Texture>

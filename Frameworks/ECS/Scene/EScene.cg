@@ -1,0 +1,10 @@
+Type: Class
+Attributes:
+  - Structure
+Properties:
+  - Name: Registry
+    Type: entt.registry
+  - Attributes:
+      - Serialize
+    Name: Systems
+    Type: Array<UniqueReference<ECS.System>>

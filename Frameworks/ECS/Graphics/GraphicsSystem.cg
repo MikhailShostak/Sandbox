@@ -1,0 +1,64 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.System
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnLoad
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnUnload
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnUpdate
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: Render
+Graphs:
+  Function.OnLoad:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnUnload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnUpdate:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Render:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ECS
+Properties:
+  - Name: Transforms
+    Type: Graphics.DrawBatch<hlslpp.float4x4>
+  - Name: GBuffer
+    Type: Graphics.RenderTarget
+  - Attributes:
+      - Serialize
+    Name: CurrentCamera
+    Type: ECS.Entity

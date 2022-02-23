@@ -1,0 +1,47 @@
+Type: Class
+Attributes:
+  - ""
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnLoad
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnUnload
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+    Name: OnUpdate
+Graphs:
+  Function.OnLoad:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnUnload:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.OnUpdate:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ECS
+Properties:
+  - Name: m_GraphicsContext
+    Type: Graphics.GraphicsContext*
+  - Name: m_Resolution
+    Type: Int2

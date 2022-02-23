@@ -1,0 +1,22 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: StartPadding
+    Type: Int2
+  - Attributes:
+      - Serialize
+    Name: EndPadding
+    Type: Int2
+  - Attributes:
+      - Serialize
+    Name: Spacing
+    Type: int32_t
+  - Attributes:
+      - ""
+    Name: Direction
+    Type: UI.Direction

@@ -1,0 +1,22 @@
+Type: Class
+Attributes:
+  - Structure
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Mobility
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: Speed
+    Type: float
+  - Attributes:
+      - Serialize
+    Name: RelativeInput
+    Type: bool
+  - Name: InputVector
+    Type: Float3
+  - Name: Rotation
+    Type: Quaternion

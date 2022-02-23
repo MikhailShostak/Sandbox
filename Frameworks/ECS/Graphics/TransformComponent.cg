@@ -1,0 +1,11 @@
+Type: Class
+Attributes:
+  - Structure
+  - DefaultConstructor
+BaseType: ECS.EntityComponent
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Transform
+    Type: Graphics.Transform

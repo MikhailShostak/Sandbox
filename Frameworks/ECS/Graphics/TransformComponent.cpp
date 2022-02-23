@@ -1,0 +1,7 @@
+
+namespace ECS
+{
+
+TransformComponent::TransformComponent() {}
+
+}
