@@ -464,6 +464,11 @@ void GraphicsContext::ApplyMaterial(Graphics::Material &material)
         Graphics::PipelineState state;
         it = Data->Pipelines.insert({ &material, std::move(state) }).first;
 
+        if (!material.RenderBuffer.Data->RenderTargets[0])
+        {
+            fmt::print("WARNING: Material Render is not set, current will be used instead...\n");
+            material.RenderBuffer = CurrentRenderBuffer;
+        }
         it->second.Data->material = &material;
         it->second.Data->CompileState(*this);
     }
