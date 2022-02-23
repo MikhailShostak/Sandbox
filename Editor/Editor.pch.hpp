@@ -1,7 +1,8 @@
 #pragma once
 
 #include <ClassGen.hpp>
-#include <NativeApplication.pch.hpp>
+#include <Input.pch.hpp>
+#include <SceneWindow.pch.hpp>
 
 #include "Icons/IconsMaterialDesign.h"
 

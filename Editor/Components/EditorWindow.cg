@@ -1,7 +1,7 @@
 Type: Class
 Attributes:
   - ""
-BaseType: WindowComponent
+BaseType: SceneWindowComponent
 Functions:
   - InputParameters:
       - Copy: false

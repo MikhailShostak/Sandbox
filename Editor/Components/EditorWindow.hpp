@@ -1,10 +1,10 @@
 #pragma once
 
 struct EditorWindow
-    : public WindowComponent
+    : public SceneWindowComponent
 {
     using This = EditorWindow;
-    using Super = WindowComponent;
+    using Super = SceneWindowComponent;
     SharedReference<System::ConfigFile<EditorConfig>> Config = {};
 
     virtual ~EditorWindow() {}

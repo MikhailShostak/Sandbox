@@ -191,6 +191,7 @@ void EditorWindow::Render()
 void EditorWindow::Draw()
 {
     g_GraphicsContext = &GraphicsContext;
+    g_SceneWindow = this;
 
     ShowRootView(&OnContentUpdate);
 
