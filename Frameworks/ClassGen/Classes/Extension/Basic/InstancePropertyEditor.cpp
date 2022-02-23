@@ -3,7 +3,7 @@ namespace ClassGen
 
 void InstancePropertyEditor::Draw()
 {
-    ImGui::PushItemWidth(-24);
+    ImGui::PushItemWidth(-28);
     if (ImGui::InputText(ID.data(), &Value.Type))
     {
         Changed();
