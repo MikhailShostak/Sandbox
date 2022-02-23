@@ -26,11 +26,13 @@ void RenderTarget::Resize(const hlslpp::int2 &Size)
     auto newSize = hlslpp::int3{ Size, 1 };
     for (auto &texture : Targets)
     {
+        texture->Data->Handle = nullptr;
         texture->Size = newSize;
         texture->Channels = 4;
     }
     if (DepthStencil)
     {
+        DepthStencil->Data->Handle = nullptr;
         DepthStencil->Size = newSize;
         DepthStencil->Channels = 4;
     }
