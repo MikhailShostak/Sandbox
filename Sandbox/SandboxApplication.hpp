@@ -19,21 +19,17 @@ struct SandboxApplication
         {
             String data =
 R"(
-- Type: UI.ViewWindowComponent
+- Type: SceneWindowComponent
   Values:
-    BackgroundColor:
-      w: 1
-      x: 0
-      y: 0
-      z: 0
     Enabled: true
+    Scene:
+      Scenes:
+        - Type: SandboxScene
     Size:
       x: 800
-      y: 480
+      y: 600
     TerminateOnClose: true
-    Title: Sandbox (Red)
-    Views:
-      - Type: UI.DemoView
+    Title: Sandbox
 )";
             Serialization::FromString(data, Components);
         }

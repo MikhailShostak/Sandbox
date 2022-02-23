@@ -1,0 +1,4 @@
+Type: Texture
+Path: C:/Assets/Grid.png
+TextureFiltration: Nearest
+TextureWrapping: TiledWrapping

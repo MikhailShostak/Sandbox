@@ -1,9 +1,0 @@
-Type: Class
-Attributes:
-  - Structure
-Namespace: ECS
-Properties:
-  - Attributes:
-      - Serialize
-    Name: Text
-    Type: String

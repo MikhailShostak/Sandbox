@@ -1,0 +1,22 @@
+void main(in PSInput In, out PSOutput Out)
+{
+    float4 c = Color * g_BaseColor.Sample(g_BaseColor_sampler, In.UV);
+
+    if (c.a < 0.1f)
+    {
+	    clip(-1);
+        return;
+    }
+
+    Out.BaseColor = c;
+}
+
+
+
+
+
+
+
+
+
+

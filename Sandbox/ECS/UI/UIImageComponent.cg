@@ -1,7 +1,0 @@
-Type: Class
-Attributes:
-  - Structure
-Namespace: ECS
-Properties:
-  - Name: Texture
-    Type: SharedReference<Graphics.Texture>

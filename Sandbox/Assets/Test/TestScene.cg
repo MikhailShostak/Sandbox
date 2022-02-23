@@ -1,0 +1,129 @@
+Type: Scene
+Entities:
+  - Components:
+      - Type: ECS.TransformComponent
+        Values:
+          Transform:
+            Position:
+              x: 0
+              y: 0
+              z: 0
+            Rotation:
+              x: 0
+              y: 0
+              z: 47.5099983
+      - Type: ECS.MovementComponent
+        Values:
+          Acceleration:
+            x: 0
+            y: 0
+            z: -0.0979999974
+      - Type: ECS.MeshComponent
+        Values:
+          Material:
+            Type: TableMaterial
+          Mesh:
+            Type: TableMesh
+    Name: Table
+  - Components:
+      - Type: ECS.TransformComponent
+        Values:
+          Transform:
+            Position:
+              x: 0.699999988
+              y: -0.910000026
+              z: 0.540000021
+            Rotation:
+              x: -90
+              y: 0
+              z: 160
+            Scale:
+              x: 0.00999999978
+              y: 0.00999999978
+              z: 0.00999999978
+      - Type: ECS.MovementComponent
+        Values:
+          Acceleration:
+            x: 0
+            y: 0
+            z: -0.0979999974
+      - Type: ECS.MeshComponent
+        Values:
+          Material:
+            Type: ChairMaterial
+          Mesh:
+            Type: ChairMesh
+    Name: Chair1
+  - Components:
+      - Type: ECS.TransformComponent
+        Values:
+          Transform:
+            Position:
+              x: 0.560000002
+              y: 0.75
+              z: 0.540000021
+            Rotation:
+              x: -90
+              y: 0
+              z: 30
+            Scale:
+              x: 0.00999999978
+              y: 0.00999999978
+              z: 0.00999999978
+      - Type: ECS.MovementComponent
+        Values:
+          Acceleration:
+            x: 0
+            y: 0
+            z: -0.0979999974
+      - Type: ECS.MeshComponent
+        Values:
+          Material:
+            Type: ChairMaterial
+          Mesh:
+            Type: ChairMesh
+    Name: Chair2
+  - Components:
+      - Type: ECS.TransformComponent
+        Values:
+          Transform:
+            Position:
+              x: 0
+              y: 0
+              z: 0
+            Scale:
+              x: 5
+              y: 5
+              z: 5
+      - Type: ECS.MeshComponent
+        Values:
+          Material:
+            Type: SkyMaterial
+          Mesh:
+            Type: SkyMesh
+    Name: Sky
+  - Components:
+      - Type: ECS.TransformComponent
+        Values:
+          Transform:
+            Position:
+              x: 0
+              y: 0
+              z: -0.0500000007
+            Scale:
+              x: 3
+              y: 3
+              z: 0.100000001
+      - Type: ECS.MeshComponent
+        Values:
+          Material:
+            Type: FloorMaterial
+          Mesh:
+            Type: CubeMesh
+    Name: Plane
+Systems:
+  - Type: ECS.MovementSystem
+  - Type: ECS.GraphicsSystem
+    Values:
+      CurrentCamera:
+        Type: Camera$
