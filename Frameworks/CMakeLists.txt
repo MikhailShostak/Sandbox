@@ -5,6 +5,7 @@ add_subdirectory(Graphics)
 add_subdirectory(ImGuiIntegration)
 add_subdirectory(Input)
 add_subdirectory(NativeApplication)
+add_subdirectory(SceneWindow)
 add_subdirectory(SystemExtension)
 add_subdirectory(UI)
 add_subdirectory(Utils)
@@ -17,6 +18,7 @@ set(LIBRARIES
     ImGuiIntegration
     Input
     NativeApplication
+    SceneWindow
     SystemExtension
     UI
     Utils

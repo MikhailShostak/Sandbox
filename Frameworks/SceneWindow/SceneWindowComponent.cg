@@ -1,0 +1,34 @@
+Type: Class
+BaseType: WindowComponent
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Load
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Unload
+  - InputParameters:
+      - Copy: false
+        Name: Application
+        Type: Core.Application
+        Writable: true
+    Name: Update
+  - Name: PreDraw
+Graphs:
+  Function.PreDraw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Scene
+    Type: ECS.SceneSystem
