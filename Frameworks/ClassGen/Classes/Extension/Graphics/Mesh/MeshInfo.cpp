@@ -11,10 +11,6 @@ SharedReference<Graphics::Mesh>/*Mesh*/ MeshInfo::Load(Graphics::GraphicsContext
     }
 
     MeshInstance = Graphics::AssetLoader::LoadMesh(Path, Name);
-    if (MeshInstance)
-    {
-        Context.CreateMesh(*MeshInstance);
-    }
 
     auto FileInfo = FindClassByName(Material);
     auto MaterialInfo = DynamicCast<ClassGen::MaterialInfo>(FileInfo.Instance);

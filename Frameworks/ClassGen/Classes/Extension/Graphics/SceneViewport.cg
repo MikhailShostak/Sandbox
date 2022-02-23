@@ -1,0 +1,43 @@
+Type: Class
+Attributes:
+  - DefaultConstructor
+  - Destructor
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Toolbar
+        Type: std.function<void()>
+        Writable: false
+    Name: Draw
+  - InputParameters:
+      - Copy: false
+        Name: Size
+        Type: Int2
+        Writable: false
+    Name: Resize
+Graphs:
+  Function.Draw:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.Resize:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Properties:
+  - Name: ContentScene
+    Type: SharedReference<EScene>
+  - Attributes:
+      - ""
+    Name: ViewportScene
+    Type: SharedReference<EScene>
+  - Name: Texture
+    Type: SharedReference<Graphics.Texture>
+  - Name: LastSize
+    Type: Int2
+  - Name: MSAAFactor
+    Type: float

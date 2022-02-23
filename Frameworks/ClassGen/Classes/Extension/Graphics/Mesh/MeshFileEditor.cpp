@@ -7,7 +7,7 @@ void MeshFileEditor::RenderFile()
 {
     PreviewViewport.Load(*g_GraphicsContext);
 
-    auto& info = *std::dynamic_pointer_cast<ClassGen::MeshInfo>(Data.Instance);
+    auto& info = *DynamicCast<ClassGen::MeshInfo>(Data.Instance);
 
     if (ImGui::InputText("Namespace", &info.Namespace))
     {

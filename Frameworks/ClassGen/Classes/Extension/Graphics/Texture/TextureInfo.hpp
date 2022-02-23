@@ -8,6 +8,8 @@ struct TextureInfo
     using This = TextureInfo;
     using Super = ClassGen::BaseInfo;
     System::Path Path = {};
+    Graphics::TextureFiltration TextureFiltration = {};
+    Graphics::TextureWrapping TextureWrapping = {};
     SharedReference<Graphics::Texture> TextureInstance = {};
 
     virtual ~TextureInfo() {}
@@ -15,6 +17,8 @@ struct TextureInfo
     void Serialize(T &&data)
     {
         data["Path"] & Path;
+        data["TextureFiltration"] & TextureFiltration;
+        data["TextureWrapping"] & TextureWrapping;
     }
     virtual SharedReference<Graphics::Texture>/*Texture*/ Load(Graphics::GraphicsContext & Context);
 

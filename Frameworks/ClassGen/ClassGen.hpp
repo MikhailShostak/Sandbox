@@ -1,6 +1,9 @@
 #pragma once
 
 #include <Graphics.pch.hpp>
+#include <ECS.pch.hpp>
+#include <Input.pch.hpp>
+#include <SceneWindow.pch.hpp>
 
 //TODO: sort
 #include "Classes/Declaration/BaseInfo.hpp"
@@ -56,10 +59,11 @@
 #include "Classes/Extension/Graphics/Material/MaterialInfo.hpp"
 #include "Classes/Extension/Graphics/Mesh/MeshInfo.hpp"
 #include "Classes/Extension/Graphics/ParticleSystem/ParticleSystemInfo.hpp"
-#include "Classes/Extension/Graphics/Scene/Scene.hpp"
+#include "Classes/Extension/Graphics/Scene/EntityInfo.hpp"
 #include "Classes/Extension/Graphics/Scene/SceneInfo.hpp"
 #include "Classes/Extension/Graphics/Texture/TextureInfo.hpp"
 #include "Classes/Extension/Graphics/PreviewViewport.hpp"
+#include "Classes/Extension/Graphics/SceneViewport.hpp"
 #include "Classes/Extension/Graphics/Animation/AnimationCompiler.hpp"
 #include "Classes/Extension/Graphics/Animation/AnimationFileEditor.hpp"
 #include "Classes/Extension/Graphics/Material/MaterialCompiler.hpp"

@@ -19,8 +19,14 @@ void GraphicsExtension::Load(ClassGen::ExtensionLibrary& Library)
     Library.FileEditors["ParticleSystem"] = Reflection::Find<ClassGen::ParticleSystemFileEditor>();
     Library.Compilers["ParticleSystem"] = Reflection::Find<ClassGen::ParticleSystemCompiler>();
 
+    Library.Types["Scene"] = Reflection::Find<ClassGen::SceneInfo>();
+    Library.FileEditors["Scene"] = Reflection::Find<ClassGen::SceneFileEditor>();
+    Library.Compilers["Scene"] = Reflection::Find<ClassGen::SceneCompiler>();
+
     Library.Types["Texture"] = Reflection::Find<ClassGen::TextureInfo>();
     Library.FileEditors["Texture"] = Reflection::Find<ClassGen::TextureFileEditor>();
     Library.Compilers["Texture"] = Reflection::Find<ClassGen::TextureCompiler>();
+
+    Library.PropertyInstanceEditors["ECS.Entity"] = Reflection::Find<ClassGen::InstancePropertyEditor>();
 }
 }

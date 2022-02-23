@@ -7,6 +7,8 @@ struct TextureFileEditor
 {
     using This = TextureFileEditor;
     using Super = ClassGen::FileEditor;
+    ClassGen::EnumerationPropertyEditor FiltrationEditor = {};
+    ClassGen::EnumerationPropertyEditor WrappingEditor = {};
     SharedReference<Graphics::Texture> Texture = {};
     System::Path LastPath = {};
     Float2 Zoom = {};

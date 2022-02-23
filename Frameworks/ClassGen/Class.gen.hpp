@@ -52,6 +52,7 @@ Reflection::Add<ClassGen::MeshFileEditor>("ClassGen.MeshFileEditor");
 Reflection::Add<ClassGen::ParticleSystemInfo>("ClassGen.ParticleSystemInfo");
 Reflection::Add<ClassGen::ParticleSystemCompiler>("ClassGen.ParticleSystemCompiler");
 Reflection::Add<ClassGen::ParticleSystemFileEditor>("ClassGen.ParticleSystemFileEditor");
+Reflection::Add<ClassGen::EntityInfo>("ClassGen.EntityInfo");
 Reflection::Add<ClassGen::SceneInfo>("ClassGen.SceneInfo");
 Reflection::Add<ClassGen::SceneCompiler>("ClassGen.SceneCompiler");
 Reflection::Add<ClassGen::SceneFileEditor>("ClassGen.SceneFileEditor");

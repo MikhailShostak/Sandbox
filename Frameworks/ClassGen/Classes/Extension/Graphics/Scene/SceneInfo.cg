@@ -10,3 +10,11 @@ Properties:
       - Serialize
     Name: Name
     Type: String
+  - Attributes:
+      - Serialize
+    Name: Systems
+    Type: Array<InstanceInfo>
+  - Attributes:
+      - Serialize
+    Name: Entities
+    Type: Array<ClassGen.EntityInfo>

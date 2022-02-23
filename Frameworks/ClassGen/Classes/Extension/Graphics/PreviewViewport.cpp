@@ -14,10 +14,10 @@ PreviewViewport::PreviewViewport()
     Transforms.Instances[0] = Matrix4::identity();
     Transforms.MaxSize = 1;
 
-    Camera.Transform.Position.y = 2.7;
+    Camera.Transform.Position = { 0, 3, 1 };
+    Camera.Transform.Rotation.x = 20;
     Camera.Resolution = { 512, 512 };
     Camera.FarPlane = 200;
-    UpdateCameraRotation();
 }
 
 PreviewViewport::~PreviewViewport()
@@ -94,14 +94,8 @@ void PreviewViewport::Render(Graphics::GraphicsContext& context)
             //-std::chrono::duration_cast<DateTime::Seconds>(DateTime::HighResolution::Clock::now().time_since_epoch()).count();
 
         context.ApplyMaterial(*Material);
-        context.Upload(Transforms);
         context.Draw(*Mesh, Transforms);
     }
-}
-
-void PreviewViewport::UpdateCameraRotation()
-{
-    Camera.Transform.Rotation = hlslpp::axisangle(hlslpp::normalize(CameraRotation), CameraRotationAngle * (3.14 / 180));
 }
 
 void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::function<void()>& ToolBar)
@@ -123,9 +117,7 @@ void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::functi
         if (ImGui::BeginPopup("CameraContextMenu"))
         {
             ImGui::DragFloat3("Position", Camera.Transform.Position.f32, 0.01f, -100, 100);
-            ImGui::DragFloat3("Rotation Axis", CameraRotation.f32, 0.001f, -1, 1);
-            ImGui::DragFloat("Rotation Angle", &CameraRotationAngle, 1.f, -360, 360);
-            UpdateCameraRotation();
+            ImGui::DragFloat3("Rotation", Camera.Transform.Rotation.f32, 1.0f, -180, 180);
             //ImGui::SliderFloat3("Camera Rotation", g_Camera.Transform.Rotation.f32, 0, 360);
             ImGui::DragFloat("Near Plane", &Camera.NearPlane, 0.01f, 0.001f, 10000);
             ImGui::DragFloat("Far Plane", &Camera.FarPlane, 0.01f, 0.001f, 10000);

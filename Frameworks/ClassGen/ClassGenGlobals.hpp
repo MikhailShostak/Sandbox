@@ -13,6 +13,7 @@ inline Array<UniqueReference<ClassGen::ExtensionInterface>> g_Extensions;
 
 inline Graphics::GraphicsContext *g_GraphicsContext = nullptr;
 
+inline SceneWindowComponent *g_SceneWindow = nullptr;
 inline Map<void*, std::function<void(Graphics::GraphicsContext& context)>> g_DrawRequests;
 
 namespace ClassGen
@@ -27,6 +28,8 @@ inline String ICON_BUILD = "\xee\xa8\xbc";
 inline String ICON_PANORAMA1 = "\xee\x90\x8b";
 inline String ICON_PANORAMA2 = "\xef\x82\x82"; 
 inline String ICON_MODEL = "\xee\xa7\xbe";
+inline String ICON_PLAY_ARROW = "\xee\x80\xb7";
+inline String ICON_PAUSE = "\xee\x80\xb4";
 
 inline void LoadExtensions()
 {

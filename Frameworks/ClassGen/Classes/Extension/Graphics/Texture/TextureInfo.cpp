@@ -10,10 +10,15 @@ SharedReference<Graphics::Texture>/*Texture*/ TextureInfo::Load(Graphics::Graphi
         return TextureInstance;
     }
 
-    TextureInstance = Graphics::LoadTexture(Path);
-    TextureInstance->Wrapping = Graphics::TextureWrapping::TiledWrapping;
-    context.Create2DTexture(*TextureInstance);
+    if (!System::IsRegularFile(Path))
+    {
+        TextureInstance = nullptr;
+        return TextureInstance;
+    }
 
+    TextureInstance = Graphics::LoadTexture(Path);
+    TextureInstance->Filtration = TextureFiltration;
+    TextureInstance->Wrapping = TextureWrapping;
     return TextureInstance;
 }
 

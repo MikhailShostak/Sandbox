@@ -26,9 +26,6 @@ struct PreviewViewport
     bool rotate = true;
     float rotationAngle = 0;
 
-    Float3 CameraRotation{ 1, 0, 0 };
-    float CameraRotationAngle = 90;
-
     PreviewViewport();
     ~PreviewViewport();
     void Load(Graphics::GraphicsContext& context);

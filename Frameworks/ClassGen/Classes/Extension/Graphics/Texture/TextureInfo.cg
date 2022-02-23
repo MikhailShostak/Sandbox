@@ -25,5 +25,13 @@ Properties:
       - Serialize
     Name: Path
     Type: System.Path
+  - Attributes:
+      - Serialize
+    Name: TextureFiltration
+    Type: Graphics.TextureFiltration
+  - Attributes:
+      - Serialize
+    Name: TextureWrapping
+    Type: Graphics.TextureWrapping
   - Name: TextureInstance
     Type: SharedReference<Graphics.Texture>

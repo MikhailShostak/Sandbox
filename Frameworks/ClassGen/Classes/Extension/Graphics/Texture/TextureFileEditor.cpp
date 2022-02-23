@@ -4,7 +4,7 @@ namespace ClassGen
 
 void TextureFileEditor::RenderFile()
 {
-    auto& info = *std::dynamic_pointer_cast<ClassGen::TextureInfo>(Data.Instance);
+    auto& info = *DynamicCast<ClassGen::TextureInfo>(Data.Instance);
 
     if (ImGui::InputText("Namespace", &info.Namespace))
     {
@@ -22,6 +22,33 @@ void TextureFileEditor::RenderFile()
             return;
         }
     }
+
+    if (!FiltrationEditor.Changed)
+    {
+        FiltrationEditor.ID = fmt::format("Filtration##{}", fmt::ptr(&info.TextureFiltration));
+        FiltrationEditor.TypeInfo.Name = "Graphics.TextureFiltration";
+        FiltrationEditor.FileInfo = FindClassByName(FiltrationEditor.TypeInfo);
+        FiltrationEditor.Value = Serialization::ToString(info.TextureFiltration);
+        FiltrationEditor.Changed = [this, &info]()
+        {
+            info.TextureInstance = nullptr;
+            MarkFileDirty(Data.Path);
+        };
+    }
+    if (!WrappingEditor.Changed)
+    {
+        WrappingEditor.ID = fmt::format("Wrapping##{}", fmt::ptr(&info.TextureWrapping));
+        WrappingEditor.TypeInfo.Name = "Graphics.TextureWrapping";
+        WrappingEditor.FileInfo = FindClassByName(WrappingEditor.TypeInfo);
+        WrappingEditor.Value = Serialization::ToString(info.TextureWrapping);
+        WrappingEditor.Changed = [this, &info]()
+        {
+            info.TextureInstance = nullptr;
+            MarkFileDirty(Data.Path);
+        };
+    }
+    FiltrationEditor.Draw();
+    WrappingEditor.Draw();
 
     if (LastPath != info.Path)
     {
@@ -44,8 +71,6 @@ void TextureFileEditor::RenderFile()
         }
 
         ImGui::Text(fmt::format("Size: {}{}", s, Metrics[i]).data());
-        ImGui::Text(fmt::format("Filtration: {}", Texture->Filtration.toString()).data());
-        ImGui::Text(fmt::format("Wrapping: {}", Texture->Wrapping.toString()).data());
 
         ImGui::Image(ImGui::TexID(Texture), { (float)Texture->Size.x, (float)Texture->Size.y });
     }

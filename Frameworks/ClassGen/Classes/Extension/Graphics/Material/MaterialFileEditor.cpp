@@ -16,6 +16,7 @@ void MaterialFileEditor::RenderFile()
     if ((int32_t)PreviewViewport.Camera.Resolution.x != (int32_t)PreviewViewport.GBuffer.Targets[0]->Size.x)
     {
         PreviewViewport.GBuffer.Resize(PreviewViewport.Camera.Resolution);
+        g_GraphicsContext->CreateRenderTarget(PreviewViewport.GBuffer);
     }
 
     PreviewViewport.Draw(*g_GraphicsContext, [&]() {

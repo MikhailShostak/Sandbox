@@ -3,15 +3,15 @@ namespace ClassGen
 
 void SceneCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo, const System::Path& OutputFilePath)
 {
-    auto t = DynamicCast<ClassGen::MeshInfo>(BaseInfo);
-    if (!t)
+    auto s = DynamicCast<ClassGen::SceneInfo>(BaseInfo);
+    if (!s)
     {
         return;
     }
-    auto& textureInfo = *t;
+    auto& sceneInfo = *s;
 
     auto name = OutputFilePath.stem().generic_string();
-    auto Namespace = boost::replace_all_copy(textureInfo.Namespace, ".", "::");
+    auto Namespace = boost::replace_all_copy(sceneInfo.Namespace, ".", "::");
 
     std::ofstream file;
     file.open(OutputFilePath.generic_string(), std::ios::binary);
@@ -26,7 +26,7 @@ void SceneCompiler::Compile(const SharedReference<ClassGen::BaseInfo>& BaseInfo,
     }
 
     file << "\n";
-    file << "inline DynamicAsset<Graphics::Scene> " << name << " = { \"" << name << "\", [](auto &instance)\n{\n";
+    file << "inline DynamicAsset<EScene> " << name << " = { \"" << name << "\", [](auto &instance)\n{\n";
     //file << "Graphics::LoadTexture(instance, \"" << Serialization::ToString(textureInfo.Path) << "\");\n"
     file << "} };\n";
 

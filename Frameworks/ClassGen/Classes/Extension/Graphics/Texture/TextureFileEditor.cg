@@ -4,6 +4,10 @@ Functions:
   - Name: RenderFile
 Namespace: ClassGen
 Properties:
+  - Name: FiltrationEditor
+    Type: ClassGen.EnumerationPropertyEditor
+  - Name: WrappingEditor
+    Type: ClassGen.EnumerationPropertyEditor
   - Name: Texture
     Type: SharedReference<Graphics.Texture>
   - Name: LastPath

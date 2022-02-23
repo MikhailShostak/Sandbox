@@ -7,8 +7,14 @@ struct SceneFileEditor
 {
     using This = SceneFileEditor;
     using Super = ClassGen::FileEditor;
-    SharedReference<Graphics::Scene> Scene = {};
-    System::Path LastPath = {};
+    SceneViewport Viewport = {};
+    Map<String, SharedReference<ECS::System>> SystemInstances = {};
+    ClassGen::ArrayPropertyEditor SystemDataEditor = {};
+    ClassGen::ArrayPropertyEditor ComponentDataEditor = {};
+    ClassGen::ObjectPropertyEditor DataEditor = {};
+    bool Outdated = {};
+    ClassGen::ObjectPropertyEditor SimulationDataEditor = {};
+    bool Simulation = {};
 
     virtual ~SceneFileEditor() {}
     template<typename T>
