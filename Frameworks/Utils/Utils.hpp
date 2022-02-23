@@ -45,7 +45,10 @@
 #include <Multithreading/SafeQueue.hpp>
 #include <Multithreading/Thread.hpp>
 #include <Multithreading/ThreadPool.hpp>
-#include <Reflection/Reflection.hpp>
+#include <Reflection/ClassReference.hpp>
+#include <Reflection/MetaObject.hpp>
+#include <Reflection/MetaObjectStorage.hpp>
+#include <Reflection/DynamicSerialization.hpp>
 #include <Serialization/Serialization.hpp>
 #include <Serialization/Serializer.hpp>
 #include <Serialization/Storage.hpp>
