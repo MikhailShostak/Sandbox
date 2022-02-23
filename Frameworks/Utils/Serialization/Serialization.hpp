@@ -48,6 +48,18 @@ inline Type Deserialize(const Data &data)
     return value;
 }
 
+template<typename OutputType, typename InputType>
+inline void Convert(const InputType& inputValue, OutputType& outputValue)
+{
+    Deserialize(Serialize(inputValue), outputValue);
+}
+
+template<typename OutputType, typename InputType>
+inline OutputType Convert(const InputType& inputValue)
+{
+    return Deserialize<OutputType>(Serialize(inputValue));
+}
+
 template<typename Type>
 inline std::string ToString(const Type &value)
 {
