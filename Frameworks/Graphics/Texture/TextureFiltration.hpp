@@ -2,58 +2,51 @@
 
 namespace Graphics
 {
-
-class TextureFiltration
+enum class TextureFiltration
 {
-public:
-    enum Enum
+    Nearest,
+    Bilinear,
+    Trilinear,
+    Anisotropic,
+};
+}
+
+namespace Serialization
+{
+template<>
+struct Serializer<InputValue, Graphics::TextureFiltration>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue&& data, ValueType&& value)
     {
-        Nearest,
-        Bilinear,
-        Trilinear,
-        Anisotropic,
-    };
-    Enum value = Nearest;
-    TextureFiltration();
-    inline TextureFiltration(Enum value):value(value) {}
-    inline TextureFiltration(const TextureFiltration &value):value(value.value) {}
-    inline operator Enum() const { return value; }
-    static constexpr const char *Names[] =
-    {
-        "Nearest",
-        "Bilinear",
-        "Trilinear",
-        "Anisotropic",
-    };
-    inline TextureFiltration(const String &name)
-    {
-        if (name == "Nearest") { value = Nearest; return; }
-        if (name == "Bilinear") { value = Bilinear; return; }
-        if (name == "Trilinear") { value = Trilinear; return; }
-        if (name == "Anisotropic") { value = Anisotropic; return; }
+        if (data.m_Storage.IsScalar())
+        {
+            const auto &valueName = data.m_Storage.template as<String>();
+            if (valueName == "Nearest") { value = Graphics::TextureFiltration::Nearest; return; }
+            if (valueName == "Bilinear") { value = Graphics::TextureFiltration::Bilinear; return; }
+            if (valueName == "Trilinear") { value = Graphics::TextureFiltration::Trilinear; return; }
+            if (valueName == "Anisotropic") { value = Graphics::TextureFiltration::Anisotropic; return; }
+            value = Graphics::TextureFiltration::Nearest;
+
+        }
     }
-    inline String toString() const
+};
+
+template<>
+struct Serializer<OutputValue, Graphics::TextureFiltration>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue&& data, ValueType&& value)
     {
-        switch (value)
+
+        switch(value)
         {
-        case TextureFiltration::Nearest:
-        {
-            return Names[0];
+        case Graphics::TextureFiltration::Nearest: data.m_Storage = "Nearest"; return;
+        case Graphics::TextureFiltration::Bilinear: data.m_Storage = "Bilinear"; return;
+        case Graphics::TextureFiltration::Trilinear: data.m_Storage = "Trilinear"; return;
+        case Graphics::TextureFiltration::Anisotropic: data.m_Storage = "Anisotropic"; return;
         }
-        case TextureFiltration::Bilinear:
-        {
-            return Names[1];
-        }
-        case TextureFiltration::Trilinear:
-        {
-            return Names[2];
-        }
-        case TextureFiltration::Anisotropic:
-        {
-            return Names[3];
-        }
-        }
-        return String();
+
     }
 };
 

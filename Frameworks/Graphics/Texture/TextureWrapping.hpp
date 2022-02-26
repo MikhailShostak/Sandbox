@@ -2,88 +2,64 @@
 
 namespace Graphics
 {
-
-class TextureWrapping
+enum class TextureWrapping
 {
-public:
-    enum Enum
-    {
-        TiledWrapping,
-        HorizontalTiledWrapping,
-        VerticalTiledWrapping,
-        MirroredTiledWrapping,
-        HorizontalMirroredTiledWrapping,
-        VerticalMirroredTiledWrapping,
-        WrapToBorder,
-        WrapToEdge,
-    };
-    Enum value = TiledWrapping;
-    TextureWrapping();
-    inline TextureWrapping(Enum value):value(value) {}
-    inline TextureWrapping(const TextureWrapping &value):value(value.value) {}
-    inline operator Enum() const { return value; }
-    static constexpr const char *Names[] =
-    {
-        "TiledWrapping",
-        "HorizontalTiledWrapping",
-        "VerticalTiledWrapping",
-        "MirroredTiledWrapping",
-        "HorizontalMirroredTiledWrapping",
-        "VerticalMirroredTiledWrapping",
-        "WrapToBorder",
-        "WrapToEdge",
-    };
-    inline TextureWrapping(const String &name)
-    {
-        if (name == "TiledWrapping") { value = TiledWrapping; return; }
-        if (name == "HorizontalTiledWrapping") { value = HorizontalTiledWrapping; return; }
-        if (name == "VerticalTiledWrapping") { value = VerticalTiledWrapping; return; }
-        if (name == "MirroredTiledWrapping") { value = MirroredTiledWrapping; return; }
-        if (name == "HorizontalMirroredTiledWrapping") { value = HorizontalMirroredTiledWrapping; return; }
-        if (name == "VerticalMirroredTiledWrapping") { value = VerticalMirroredTiledWrapping; return; }
-        if (name == "WrapToBorder") { value = WrapToBorder; return; }
-        if (name == "WrapToEdge") { value = WrapToEdge; return; }
-    }
-    inline String toString() const
-    {
-        switch (value)
-        {
-        case TextureWrapping::TiledWrapping:
-        {
-            return Names[0];
-        }
-        case TextureWrapping::HorizontalTiledWrapping:
-        {
-            return Names[1];
-        }
-        case TextureWrapping::VerticalTiledWrapping:
-        {
-            return Names[2];
-        }
-        case TextureWrapping::MirroredTiledWrapping:
-        {
-            return Names[3];
-        }
-        case TextureWrapping::HorizontalMirroredTiledWrapping:
-        {
-            return Names[4];
-        }
-        case TextureWrapping::VerticalMirroredTiledWrapping:
-        {
-            return Names[5];
-        }
-        case TextureWrapping::WrapToBorder:
-        {
-            return Names[6];
-        }
-        case TextureWrapping::WrapToEdge:
-        {
-            return Names[7];
-        }
-        }
-        return String();
-    }
+    TiledWrapping,
+    HorizontalTiledWrapping,
+    VerticalTiledWrapping,
+    MirroredTiledWrapping,
+    HorizontalMirroredTiledWrapping,
+    VerticalMirroredTiledWrapping,
+    WrapToBorder,
+    WrapToEdge,
+};
+}
 
+namespace Serialization
+{
+template<>
+struct Serializer<InputValue, Graphics::TextureWrapping>
+{
+    template<typename InputValue, typename ValueType>
+    static void Write(InputValue&& data, ValueType&& value)
+    {
+        if (data.m_Storage.IsScalar())
+        {
+            const auto &valueName = data.m_Storage.template as<String>();
+            if (valueName == "TiledWrapping") { value = Graphics::TextureWrapping::TiledWrapping; return; }
+            if (valueName == "HorizontalTiledWrapping") { value = Graphics::TextureWrapping::HorizontalTiledWrapping; return; }
+            if (valueName == "VerticalTiledWrapping") { value = Graphics::TextureWrapping::VerticalTiledWrapping; return; }
+            if (valueName == "MirroredTiledWrapping") { value = Graphics::TextureWrapping::MirroredTiledWrapping; return; }
+            if (valueName == "HorizontalMirroredTiledWrapping") { value = Graphics::TextureWrapping::HorizontalMirroredTiledWrapping; return; }
+            if (valueName == "VerticalMirroredTiledWrapping") { value = Graphics::TextureWrapping::VerticalMirroredTiledWrapping; return; }
+            if (valueName == "WrapToBorder") { value = Graphics::TextureWrapping::WrapToBorder; return; }
+            if (valueName == "WrapToEdge") { value = Graphics::TextureWrapping::WrapToEdge; return; }
+            value = Graphics::TextureWrapping::TiledWrapping;
+
+        }
+    }
+};
+
+template<>
+struct Serializer<OutputValue, Graphics::TextureWrapping>
+{
+    template<typename OutputValue, typename ValueType>
+    static void Write(OutputValue&& data, ValueType&& value)
+    {
+
+        switch(value)
+        {
+        case Graphics::TextureWrapping::TiledWrapping: data.m_Storage = "TiledWrapping"; return;
+        case Graphics::TextureWrapping::HorizontalTiledWrapping: data.m_Storage = "HorizontalTiledWrapping"; return;
+        case Graphics::TextureWrapping::VerticalTiledWrapping: data.m_Storage = "VerticalTiledWrapping"; return;
+        case Graphics::TextureWrapping::MirroredTiledWrapping: data.m_Storage = "MirroredTiledWrapping"; return;
+        case Graphics::TextureWrapping::HorizontalMirroredTiledWrapping: data.m_Storage = "HorizontalMirroredTiledWrapping"; return;
+        case Graphics::TextureWrapping::VerticalMirroredTiledWrapping: data.m_Storage = "VerticalMirroredTiledWrapping"; return;
+        case Graphics::TextureWrapping::WrapToBorder: data.m_Storage = "WrapToBorder"; return;
+        case Graphics::TextureWrapping::WrapToEdge: data.m_Storage = "WrapToEdge"; return;
+        }
+
+    }
 };
 
 }

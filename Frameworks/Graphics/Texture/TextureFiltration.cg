@@ -1,0 +1,7 @@
+Type: Enumeration
+Namespace: Graphics
+Values:
+  - Nearest
+  - Bilinear
+  - Trilinear
+  - Anisotropic
