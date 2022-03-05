@@ -18,6 +18,7 @@ struct EditorConfig
         data["Extensions"] & Extensions;
         data["FileTypes"] & FileTypes;
     }
+    virtual Array<std::pair<String, String>>/*Filters*/ CreateFilters();
 
     void Initialize()
     {

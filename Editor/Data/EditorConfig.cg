@@ -1,6 +1,20 @@
 Type: Class
 Attributes:
   - Structure
+Functions:
+  - Name: CreateFilters
+    OutputParameters:
+      - Copy: false
+        Name: Filters
+        Type: Array<std.pair<String, String>>
+        Writable: false
+Graphs:
+  Function.CreateFilters:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
 Properties:
   - Attributes:
       - Serialize

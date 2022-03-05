@@ -1,7 +1,5 @@
 #include "../Views.hpp"
 
-#include <ImGuiFileDialog.h>
-
 #include "../../Data/Workspace.hpp"
 
 namespace File
@@ -9,84 +7,69 @@ namespace File
 
 void ShowNewDialog()
 {
-    if(File::DisplayNewDialog)
+    if (!File::DisplayNewDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("NewDialog", "New File", ".*,.txt", File::DialogWorkingDirectory.generic_string());
-        File::DisplayNewDialog = false;
+        return;
     }
 
-    ImGui::SetNextWindowSize({800, 480});
-    if (ImGuiFileDialog::Instance()->Display("NewDialog"))
-    {
-        if (ImGuiFileDialog::Instance()->IsOk())
-        {
-            std::filesystem::path path = ImGuiFileDialog::Instance()->GetFilePathName();
-            std::fstream f;
-            f.open(path, std::ios::binary | std::ios::out);
-        }
+    File::DisplayNewDialog = false;
+    
+    auto path = System::Dialogs::SaveFile("New File", g_Config->Data.CreateFilters(), File::DialogWorkingDirectory);
 
-        ImGuiFileDialog::Instance()->Close();
+    if (!path.empty())
+    {
+        std::fstream f;
+        f.open(path, std::ios::binary | std::ios::out);
     }
 }
 
 
 void ShowOpenFileDialog()
 {
-    if(File::DisplayOpenFileDialog)
+    if (!File::DisplayOpenFileDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("OpenFileDialog", "Open File", ".*,.txt", File::DialogWorkingDirectory.generic_string());
-        File::DisplayOpenFileDialog = false;
+        return;
     }
 
-    ImGui::SetNextWindowSize({800, 480});
-    if (ImGuiFileDialog::Instance()->Display("OpenFileDialog"))
+    File::DisplayOpenFileDialog = false;
+
+    auto path = System::Dialogs::OpenFile("Open File", g_Config->Data.CreateFilters(), File::DialogWorkingDirectory);
+
+    if (!path.empty())
     {
-        if (ImGuiFileDialog::Instance()->IsOk())
-        {
-            std::filesystem::path path = ImGuiFileDialog::Instance()->GetFilePathName();
-            OpenFile(path);
-        }
-        ImGuiFileDialog::Instance()->Close();
+        OpenFile(path);
     }
 }
 
 void ShowOpenFolderDialog()
 {
-    if(File::DisplayOpenFolderDialog)
+    if (!File::DisplayOpenFolderDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("OpenFolderDialog", "Open Folder", "", File::DialogWorkingDirectory.generic_string());
-        File::DisplayOpenFolderDialog = false;
+        return;
     }
 
-    ImGui::SetNextWindowSize({800, 480});
-    if (ImGuiFileDialog::Instance()->Display("OpenFolderDialog"))
+    File::DisplayOpenFolderDialog = false;
+
+    auto path = System::Dialogs::SelectFolder("Open Folder", File::DialogWorkingDirectory);
+    if (!path.empty())
     {
-        if (ImGuiFileDialog::Instance()->IsOk())
-        {
-            std::filesystem::path path = ImGuiFileDialog::Instance()->GetFilePathName();
-            OpenFolder(path);
-        }
-        ImGuiFileDialog::Instance()->Close();
+        OpenFolder(path);
     }
 }
 
 void ShowSaveAsDialog()
 {
-    if(File::DisplaySaveAsDialog)
+    if (!File::DisplaySaveAsDialog)
     {
-        ImGuiFileDialog::Instance()->OpenModal("SaveAsDialog", "Save File", (FileToSave.extension().generic_string() + ",.*").data(), FileToSave.generic_string());
-        File::DisplaySaveAsDialog = false;
+        return;
     }
 
-    ImGui::SetNextWindowSize({800, 480});
-    if (ImGuiFileDialog::Instance()->Display("SaveAsDialog"))
+    File::DisplaySaveAsDialog = false;
+
+    auto path = System::Dialogs::SaveFile("Save As", g_Config->Data.CreateFilters(), FileToSave);
+    if (!path.empty())
     {
-        if (ImGuiFileDialog::Instance()->IsOk())
-        {
-            std::filesystem::path path = ImGuiFileDialog::Instance()->GetFilePathName();
-            SaveFile(FileToSave, path);
-        }
-        ImGuiFileDialog::Instance()->Close();
+        SaveFile(FileToSave, path);
     }
 }
 
