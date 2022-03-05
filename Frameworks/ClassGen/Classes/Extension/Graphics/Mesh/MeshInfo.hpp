@@ -21,7 +21,7 @@ struct MeshInfo
         data["Name"] & Name;
         data["Material"] & Material;
     }
-    virtual SharedReference<Graphics::Mesh>/*Mesh*/ Load(Graphics::GraphicsContext & Context, const Graphics::RenderBuffer & RenderBuffer);
+    virtual SharedReference<Graphics::Mesh>/*Mesh*/ Load(Graphics::GraphicsContext & Context);
 
     void Initialize()
     {

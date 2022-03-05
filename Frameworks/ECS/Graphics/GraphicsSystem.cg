@@ -62,3 +62,11 @@ Properties:
       - Serialize
     Name: CurrentCamera
     Type: ECS.Entity
+  - Attributes:
+      - Serialize
+    Name: PostProcessSteps
+    Type: Array<UniqueReference<ECS.PostProcessStep>>
+  - Name: RenderTargets
+    Type: StaticArray<Graphics.RenderTarget, 2>
+  - Name: CurrentTarget
+    Type: size_t

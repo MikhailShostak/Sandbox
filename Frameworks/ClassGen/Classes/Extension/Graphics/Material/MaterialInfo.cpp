@@ -39,7 +39,7 @@ struct MaterialProperties : public Graphics::ShaderMetatype
     }
 };
 
-SharedReference<Graphics::Material>/*Material*/ MaterialInfo::Load(Graphics::GraphicsContext& Context, const Graphics::RenderBuffer& RenderBuffer)
+SharedReference<Graphics::Material>/*Material*/ MaterialInfo::Load(Graphics::GraphicsContext& Context)
 {
     if (MaterialInstance)
     {
@@ -178,8 +178,6 @@ SharedReference<Graphics::Material>/*Material*/ MaterialInfo::Load(Graphics::Gra
     }
     )";
     }
-
-    MaterialInstance->RenderBuffer = RenderBuffer;
 
     return MaterialInstance;
 }

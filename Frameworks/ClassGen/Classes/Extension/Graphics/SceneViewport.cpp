@@ -19,6 +19,7 @@ inline DynamicAsset<Graphics::Mesh> ChairMeshAsset = { "ChairMesh", [](auto& ins
 inline DynamicAsset<Graphics::Texture> UVTextureAsset = { "UVTexture", [](auto& instance) { Graphics::LoadTexture(instance, "C:/Assets/UV.jpg"); } };
 inline DynamicAsset<Graphics::Texture> FloorTextureAsset = { "FloorTexture", [](auto& instance) { Graphics::LoadTexture(instance, "C:/Assets/Meshes/Table/floor.jpg"); } };
 inline DynamicAsset<Graphics::Texture> GridTextureAsset = { "GridTexture", [](auto& instance) { Graphics::LoadTexture(instance, "C:/Assets/Grid.png"); } };
+inline DynamicAsset<Graphics::Mesh> SphereMesh = { "SphereMesh", [](auto& instance) { instance = std::move(*Graphics::AssetLoader::LoadMesh("C:/Assets/EditorContent.fbx", "Sphere")); } };
 inline DynamicAsset<Graphics::Mesh> CubeMesh = { "CubeMesh", [](auto& instance) { instance = std::move(*Graphics::AssetLoader::LoadMesh("C:/Assets/EditorContent.fbx", "Cube")); } };
 inline DynamicAsset<Graphics::Mesh> ZPlainMeshAsset = { "Z-PlainMesh", [](auto& instance) { instance = std::move(*Graphics::AssetLoader::LoadMesh("C:/Assets/EditorContent.fbx", "Z-Plane")); } };
 
@@ -105,19 +106,37 @@ struct ObjectSerializer<Graphics::Material>
             String samplerName = Serialization::Deserialize<String>(Texture.at("SamplerName"));
             sampler.Name = "g_" + samplerName;
 
-            String textureName = Serialization::Deserialize<String>(Texture.at("TextureName"));
-            sampler.Texture = AssetStorage::Load<Graphics::Texture>(textureName);
-
-            bool UseInVertexShader = Serialization::Deserialize<bool>(Texture.at("UseInVertexShader"));
-            if (UseInVertexShader)
             {
-                sampler.Flags = Graphics::ShaderFlags::UseInVertexShader;
+                auto it = Texture.find("TextureName");
+                if (it != Texture.end())
+                {
+                    String textureName = Serialization::Deserialize<String>(it->second);
+                    sampler.Texture = AssetStorage::Load<Graphics::Texture>(textureName);
+                }
             }
 
-            bool UseInPixelShader = Serialization::Deserialize<bool>(Texture.at("UseInPixelShader"));
-            if (UseInPixelShader)
             {
-                sampler.Flags |= Graphics::ShaderFlags::UseInPixelShader;
+                auto it = Texture.find("UseInVertexShader");
+                if (it != Texture.end())
+                {
+                    bool UseInVertexShader = Serialization::Deserialize<bool>(it->second);
+                    if (UseInVertexShader)
+                    {
+                        sampler.Flags = Graphics::ShaderFlags::UseInVertexShader;
+                    }
+                }
+            }
+
+            {
+                auto it = Texture.find("UseInPixelShader");
+                if (it != Texture.end())
+                {
+                    bool UseInPixelShader = Serialization::Deserialize<bool>(it->second);
+                    if (UseInPixelShader)
+                    {
+                        sampler.Flags |= Graphics::ShaderFlags::UseInPixelShader;
+                    }
+                }
             }
 
             if (sampler.Flags == Graphics::ShaderFlags::None)
@@ -518,33 +537,10 @@ Textures:
     Serialization::FromString(Material, instance);
 } };
 
-SceneViewport::SceneViewport()
+
+inline void CreateViewportScene(EScene& instance)
 {
-    g_DrawRequests.insert({ this, [&](auto& context)
-        {
-            ECS::Update(*ViewportScene);
-        }
-    });
-
-    MSAAFactor = 2;
-
-    ContentScene = CreateShared<EScene>();
-}
-
-SceneViewport::~SceneViewport()
-{
-    g_DrawRequests.erase(this);
-    boost::remove_erase(g_SceneWindow->Scene.Scenes, ViewportScene);
-}
-
-void SceneViewport::Draw(const std::function<void()>& Toolbar)
-{
-    if (!ViewportScene)
-    {
-        ViewportScene = CreateShared<EScene>();
-        g_SceneWindow->Scene.Scenes.push_back(ViewportScene);
-
-        String SceneData =
+String Scene =
 R"(
 Systems:
   - Type: ECS.UIInputSystem
@@ -554,6 +550,11 @@ Systems:
     Values:
       CurrentCamera:
         Type: Camera$
+      PostProcessSteps:
+        - Type: ECS.GlowPostProcessStep
+          Values:
+            Material:
+              Type: GlowMaterial
   - Type: ECS.SceneSystem
 Entities:
   - Name: Camera
@@ -605,7 +606,36 @@ Entities:
           Material:
             Type: GridMaterial
 )";
-        Serialization::FromString<EScene>(SceneData, *ViewportScene);
+    Serialization::FromString<EScene>(Scene, instance);
+};
+
+SceneViewport::SceneViewport()
+{
+    g_DrawRequests.insert({ this, [&](auto& context)
+        {
+            ECS::Update(*ViewportScene);
+        }
+    });
+
+    MSAAFactor = 2;
+
+    ContentScene = CreateShared<EScene>();
+}
+
+SceneViewport::~SceneViewport()
+{
+    g_DrawRequests.erase(this);
+    boost::remove_erase(g_SceneWindow->Scene.Scenes, ViewportScene);
+}
+
+void SceneViewport::Draw(const std::function<void()>& Toolbar)
+{
+    if (!ViewportScene)
+    {
+        ViewportScene = CreateShared<EScene>();
+        g_SceneWindow->Scene.Scenes.push_back(ViewportScene);
+
+        CreateViewportScene(*ViewportScene);
 
         for (auto& system : ViewportScene->Systems)
         {
@@ -619,19 +649,6 @@ Entities:
         ECS::FindSystem<ECS::SceneSystem>(*ViewportScene)->Scenes.push_back(ContentScene);
         Texture = graphics->GBuffer.Targets[0];
     }
-
-    auto FindPersistentEntity = [](EScene& scene, const String& name) {
-        std::tuple<ECS::Entity, ECS::PersistentComponent*> result{};
-        auto v = scene.Registry.view<ECS::PersistentComponent>();
-        for (const auto& [id, component] : v.each())
-        {
-            if (component.Name == name)
-            {
-                result = { { &scene, id }, &component };
-            }
-        }
-        return result;
-    };
 
     ImGui::Begin("Viewport");
     auto size = ImGui::GetContentRegionAvail();

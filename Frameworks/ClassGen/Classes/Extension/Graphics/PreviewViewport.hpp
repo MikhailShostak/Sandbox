@@ -1,33 +1,27 @@
 #pragma once
 
+#include "SceneViewport.hpp"
+
 namespace ClassGen
 {
 
 struct PreviewViewport
 {
+    SceneViewport Viewport;
+
     inline static String EditorContentPath = "C:/Assets/EditorContent.fbx";
-    String MeshName = "Sphere";
-
-    SharedReference<Graphics::Mesh> SkyMesh;
-    SharedReference<Graphics::Material> SkyMaterial;
-
-    SharedReference<Graphics::Mesh> Mesh;
-    SharedReference<Graphics::Material> Material;
-
-    Graphics::RenderTarget GBuffer;
-    Graphics::DrawBatch<Matrix4> Transforms;
-    Graphics::Camera Camera;
 
     SharedReference<Graphics::Texture> Texture;
 
     bool initislized = false;
-
-    bool sky = true;
     bool rotate = true;
-    float rotationAngle = 0;
 
     PreviewViewport();
     ~PreviewViewport();
+
+    void SetMaterial(const SharedReference<Graphics::Material>& Material);
+    void SetMesh(const SharedReference<Graphics::Mesh>& Mesh);
+
     void Load(Graphics::GraphicsContext& context);
     void Render(Graphics::GraphicsContext& context);
     void UpdateCameraRotation();

@@ -134,8 +134,14 @@ Functions:
       - Copy: false
         Name: Material
         Type: Graphics.Material
-        Writable: false
+        Writable: true
     Name: InvalidateMaterial
+  - InputParameters:
+      - Copy: false
+        Name: Texture
+        Type: Graphics.Texture
+        Writable: true
+    Name: InvalidateTexture
 Graphs:
   Function.ApplyConstants:
     Nodes:
@@ -216,6 +222,12 @@ Graphs:
       - ID: Output
         Name: Output
   Function.InvalidateMaterial:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+  Function.InvalidateTexture:
     Nodes:
       - ID: Input
         Name: Input

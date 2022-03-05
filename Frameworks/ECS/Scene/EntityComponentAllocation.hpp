@@ -15,7 +15,9 @@ struct Constructor<Type, ECS::EntityComponent>
 {
     inline static Type* Create()
     {
-        return &ECS::g_AllocationEntity.AddComponent<Type>();
+        auto &component = ECS::g_AllocationEntity.AddComponent<Type>();
+        component.Initialize();
+        return &component;
     }
 };
 

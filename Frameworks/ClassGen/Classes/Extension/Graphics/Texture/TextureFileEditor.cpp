@@ -31,7 +31,10 @@ void TextureFileEditor::RenderFile()
         FiltrationEditor.Value = Serialization::ToString(info.TextureFiltration);
         FiltrationEditor.Changed = [this, &info]()
         {
-            info.TextureInstance = nullptr;
+            Serialization::FromString(FiltrationEditor.Value, info.TextureFiltration);
+            info.TextureInstance->Filtration = info.TextureFiltration;
+            g_GraphicsContext->InvalidateTexture(*info.TextureInstance);
+            g_GraphicsContext->Create2DTexture(*info.TextureInstance);
             MarkFileDirty(Data.Path);
         };
     }
@@ -43,7 +46,10 @@ void TextureFileEditor::RenderFile()
         WrappingEditor.Value = Serialization::ToString(info.TextureWrapping);
         WrappingEditor.Changed = [this, &info]()
         {
-            info.TextureInstance = nullptr;
+            Serialization::FromString(WrappingEditor.Value, info.TextureWrapping);
+            info.TextureInstance->Wrapping = info.TextureWrapping;
+            g_GraphicsContext->InvalidateTexture(*info.TextureInstance);
+            g_GraphicsContext->Create2DTexture(*info.TextureInstance);
             MarkFileDirty(Data.Path);
         };
     }

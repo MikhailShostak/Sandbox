@@ -6,10 +6,6 @@ Functions:
         Name: Context
         Type: Graphics::GraphicsContext
         Writable: true
-      - Copy: false
-        Name: RenderBuffer
-        Type: Graphics::RenderBuffer
-        Writable: false
     Name: Load
     OutputParameters:
       - Copy: false

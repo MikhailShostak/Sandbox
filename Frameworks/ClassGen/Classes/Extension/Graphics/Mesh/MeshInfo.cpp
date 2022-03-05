@@ -3,7 +3,7 @@
 namespace ClassGen
 {
 
-SharedReference<Graphics::Mesh>/*Mesh*/ MeshInfo::Load(Graphics::GraphicsContext& Context, const Graphics::RenderBuffer &RenderBuffer)
+SharedReference<Graphics::Mesh>/*Mesh*/ MeshInfo::Load(Graphics::GraphicsContext& Context)
 {
     if (MeshInstance)
     {
@@ -16,7 +16,7 @@ SharedReference<Graphics::Mesh>/*Mesh*/ MeshInfo::Load(Graphics::GraphicsContext
     auto MaterialInfo = DynamicCast<ClassGen::MaterialInfo>(FileInfo.Instance);
     if (MaterialInfo)
     {
-        MaterialInstance = MaterialInfo->Load(Context, RenderBuffer);
+        MaterialInstance = MaterialInfo->Load(Context);
     }
 
     return MeshInstance;

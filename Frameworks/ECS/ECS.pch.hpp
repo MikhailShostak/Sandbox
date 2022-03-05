@@ -6,9 +6,9 @@
 #include "System/System.hpp"
 #include "Scene/EScene.hpp"
 #include "Scene/Entity.hpp"
-#include "Scene/SceneUtils.hpp"
 #include "Scene/EntityComponent.hpp"
 #include "Scene/PersistentComponent.hpp"
+#include "Scene/SceneUtils.hpp"
 #include "Scene/EntityComponentAllocation.hpp"
 
 #include "Utils/MovementComponent.hpp"
@@ -16,6 +16,9 @@
 
 #include "Utils/PawnComponent.hpp"
 #include "Utils/PawnSystem.hpp"
+
+#include "Graphics/PostProcess/PostProcessStep.hpp"
+#include "Graphics/PostProcess/GlowPostProcessStep.hpp"
 
 #include "Graphics/MeshComponent.hpp"
 #include "Graphics/TransformComponent.hpp"

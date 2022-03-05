@@ -510,4 +510,9 @@ void GraphicsContext::InvalidateMaterial(Graphics::Material& material)
     Data->Pipelines.erase(&material);
 }
 
+void GraphicsContext::InvalidateTexture(Graphics::Texture & Texture)
+{
+    Texture.Data->Handle = nullptr;
+}
+
 }

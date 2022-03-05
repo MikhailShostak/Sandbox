@@ -148,20 +148,7 @@ void SceneFileEditor::RenderFile()
 
                         for (auto& componentInfo : selectedEntity->Components)
                         {
-                            auto FindPersistentEntity = [](EScene& scene, const String& name) {
-                                std::tuple<ECS::Entity, ECS::PersistentComponent*> result{};
-                                auto v = scene.Registry.view<ECS::PersistentComponent>();
-                                for (const auto& [id, component] : v.each())
-                                {
-                                    if (component.Name == name)
-                                    {
-                                        result = { { &scene, id }, &component };
-                                    }
-                                }
-                                return result;
-                            };
-
-                            auto [entity, component] = FindPersistentEntity(*Viewport.ContentScene, selectedEntity->Name);
+                            auto [entity, component] = ECS::FindPersistentEntity(*Viewport.ContentScene, selectedEntity->Name);
                             ECS::PersistentComponent* comp = component;
                             auto FindComponent = [&](const String& name) -> ECS::EntityComponent*
                             {

@@ -18,6 +18,13 @@ void GraphicsSystem::OnLoad(EScene &scene)
     GBuffer.Resize(m_Resolution * MSAAFactor);
     m_GraphicsContext->CreateRenderTarget(GBuffer);
 
+    for (size_t i = 0; i < RenderTargets.size(); ++i)
+    {
+        RenderTargets[i].Targets.push_back(CreateShared<Graphics::Texture>());
+        RenderTargets[i].Resize(m_Resolution * MSAAFactor);
+        m_GraphicsContext->CreateRenderTarget(RenderTargets[i]);
+    }
+
     Transforms.MaxSize = 1;
     Transforms.Instances.resize(Transforms.MaxSize);
     m_GraphicsContext->CreateDrawBatch(Transforms);
@@ -40,6 +47,12 @@ void GraphicsSystem::OnUpdate(EScene& scene)
     m_GraphicsContext->ClearDepthStencilBuffers(1.0f, 0);
 
     Render(scene);
+
+    for (auto& postProcessStep : PostProcessSteps)
+    {
+        CurrentTarget = (CurrentTarget + 1) % 2;
+        postProcessStep->Render(scene, RenderTargets[CurrentTarget].GetBuffer());
+    }
 }
 
 void GraphicsSystem::Render(EScene& scene)
@@ -61,7 +74,7 @@ void GraphicsSystem::Render(EScene& scene)
     auto view = scene.Registry.view<ECS::TransformComponent, ECS::MeshComponent>();
     view.each([this](auto& transformComponent, auto& meshComponent)
     {
-        if (!meshComponent.Material || !meshComponent.Mesh)
+        if (!meshComponent.Visible || !meshComponent.Material || !meshComponent.Mesh)
         {
             return;
         }

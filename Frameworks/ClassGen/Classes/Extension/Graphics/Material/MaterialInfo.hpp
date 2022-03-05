@@ -27,7 +27,7 @@ struct MaterialInfo
         data["VertexShader"] & VertexShader;
         data["PixelShader"] & PixelShader;
     }
-    virtual SharedReference<Graphics::Material>/*Material*/ Load(Graphics::GraphicsContext & Context, const Graphics::RenderBuffer & RenderBuffer);
+    virtual SharedReference<Graphics::Material>/*Material*/ Load(Graphics::GraphicsContext & Context);
     virtual void Update();
 
     void Initialize()

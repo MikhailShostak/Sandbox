@@ -12,3 +12,9 @@ Properties:
       - Serialize
     Name: Material
     Type: SharedReference<Graphics.Material>
+  - Attributes:
+      - Serialize
+    Name: Visible
+    Type: bool
+Values:
+  Visible: true

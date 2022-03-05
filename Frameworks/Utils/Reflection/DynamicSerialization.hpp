@@ -107,6 +107,7 @@ struct Serializer<InputValue, UniqueReference<Type>>
         }
 
         value = type->Create();
+        value->Initialize();
 
         Serialization::Data valuesData{};
         valuesData.m_Storage = data.m_Storage["Values"].template as<YAML::Node>();
@@ -173,7 +174,7 @@ struct Serializer<InputValue, SharedReference<Type>>
         }
 
         value = SharedReference<Type>(type->Create().release());
-
+        value->Initialize();
         Serialization::Data valuesData{};
         valuesData.m_Storage = data.m_Storage["Values"].template as<YAML::Node>();
         Reflection::Deserialize(valuesData, *value);

@@ -36,6 +36,7 @@ struct GraphicsContext
     virtual void Render(Graphics::SwapChain & SwapChain);
     virtual void ApplyMaterial(Graphics::Material & Material);
     virtual void InvalidateMaterial(Graphics::Material & Material);
+    virtual void InvalidateTexture(Graphics::Texture & Texture);
 
     void Initialize()
     {

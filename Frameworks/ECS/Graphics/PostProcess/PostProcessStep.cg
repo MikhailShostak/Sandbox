@@ -1,0 +1,25 @@
+Type: Class
+Functions:
+  - InputParameters:
+      - Copy: false
+        Name: Scene
+        Type: EScene
+        Writable: true
+      - Copy: false
+        Name: RenderBuffer
+        Type: Graphics.RenderBuffer
+        Writable: false
+    Name: Render
+Graphs:
+  Function.Render:
+    Nodes:
+      - ID: Input
+        Name: Input
+      - ID: Output
+        Name: Output
+Namespace: ECS
+Properties:
+  - Attributes:
+      - Serialize
+    Name: Material
+    Type: SharedReference<Graphics.Material>

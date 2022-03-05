@@ -1,5 +1,32 @@
 #pragma once
 
+inline void CreatePreviewScene(EScene& instance)
+{
+    String Scene =
+        R"(
+Entities:
+  - Name: Sky
+    Components:
+      - Type: ECS.TransformComponent
+      - Type: ECS.MeshComponent
+        Values:
+          Mesh:
+            Type: SkyMesh
+          Material:
+            Type: SkyMaterial
+  - Name: PreviewMesh
+    Components:
+      - Type: ECS.TransformComponent
+      - Type: ECS.MeshComponent
+        Values:
+          Mesh:
+            Type: SphereMesh
+          Material:
+            Type: UVMaterial
+)";
+    Serialization::FromString<EScene>(Scene, instance);
+};
+
 #include <Utils/AssetLoader.hpp>
 #include <PBR/PBRMaterial.hpp>
 #include "MaterialGlobalConstants.hpp"
@@ -7,23 +34,89 @@
 namespace ClassGen
 {
 
+SharedReference<Graphics::Material> CreateSimplePostEffect(
+    Graphics::GraphicsContext& context,
+    const SharedReference<Graphics::Texture>& baseColorTexture,
+    const SharedReference<Graphics::Texture>& emission)
+{
+    auto MaterialInstance = CreateShared<Graphics::Material>();
+
+    {
+        Graphics::TextureSampler sampler;
+        sampler.Name = "g_BaseColor";
+        sampler.Texture = baseColorTexture;
+        sampler.Flags = Graphics::ShaderFlags::UseInPixelShader;
+        MaterialInstance->TextureSamplers.push_back(std::move(sampler));
+    }
+    {
+        Graphics::TextureSampler sampler;
+        sampler.Name = "g_Emission";
+        sampler.Texture = emission;
+        sampler.Flags = Graphics::ShaderFlags::UseInPixelShader;
+        MaterialInstance->TextureSamplers.push_back(std::move(sampler));
+    }
+    MaterialInstance->Settings.DepthTestEnabled = false;
+    MaterialInstance->Settings.DepthWriteEnabled = false;
+    MaterialInstance->Settings.StencilEnabled = false;
+    MaterialInstance->Settings.Cullback = false;
+
+    MaterialInstance->VertexShader.InputLayout = CreateShared<VSInput>();
+    MaterialInstance->VertexShader.OutputLayout = CreateShared<PSInput>();
+    MaterialInstance->PixelShader.InputLayout = MaterialInstance->VertexShader.OutputLayout;
+    MaterialInstance->PixelShader.OutputLayout = CreateShared<PSOutput>();
+
+    MaterialInstance->VertexShader.SourceCode = R"(
+    void main(in VSInput In, out PSInput Out)
+    {
+        float4x4 InstanceTransform = transpose(MatrixFromRows(In.MtrxRow0, In.MtrxRow1, In.MtrxRow2, In.MtrxRow3));
+        Out.Pos = mul(InstanceTransform, float4(In.Pos.xyz, 1.0));
+        Out.UV  = In.UV.xy;
+    }
+    )";
+
+    MaterialInstance->PixelShader.SourceCode = R"(
+    void main(in PSInput In, out PSOutput Out)
+    {
+        float Pi = 6.28318530718; // Pi*2
+        float Directions = 32.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
+        float Quality = 8.0; // BLUR QUALITY (Default 4.0 - More is better but slower)
+        float Radius = 0.05;
+    
+        float4 c = g_Emission.Sample(g_Emission_sampler, In.UV);
+    
+        // Blur calculations
+        for(float d = 0.0; d < Pi; d += Pi / Directions)
+        {
+		    for(float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
+            {
+                float2 uv = In.UV + float2(cos(d), sin(d)) * Radius.xx * i;
+			    c.rgb += g_Emission.Sample(g_Emission_sampler, uv).r * g_BaseColor.Sample(g_BaseColor_sampler, uv).rgb;		
+            }
+        }
+    
+        // Output to screen
+        c /= Quality * Directions - 15.0;
+
+        Out.BaseColor = g_BaseColor.Sample(g_BaseColor_sampler, In.UV) + c;
+    }
+    )";
+
+    return MaterialInstance;
+}
 
 PreviewViewport::PreviewViewport()
 {
-    Transforms.Instances.resize(1);
-    Transforms.Instances[0] = Matrix4::identity();
-    Transforms.MaxSize = 1;
-
-    Camera.Transform.Position = { 0, 3, 1 };
-    Camera.Transform.Rotation.x = 20;
-    Camera.Resolution = { 512, 512 };
-    Camera.FarPlane = 200;
+    CreatePreviewScene(*Viewport.ContentScene);
 }
 
 PreviewViewport::~PreviewViewport()
 {
     g_DrawRequests.erase(this);
 }
+
+SharedReference<Graphics::Mesh> PostEffectMesh;
+SharedReference<Graphics::Material> PostEffectMaterial;
+Graphics::RenderTarget PostEffectBuffer;
 
 void PreviewViewport::Load(Graphics::GraphicsContext& context)
 {
@@ -38,102 +131,63 @@ void PreviewViewport::Load(Graphics::GraphicsContext& context)
     g_BlackPlaceholder = Graphics::CreateTexture(Color{ 0, 0, 0, 0 });//Graphics::LoadTexture("C:/Assets/Meshes/black.png");
     g_NormalPlaceholder = Graphics::CreateTexture(Color{ 0.5, 0.5, 1, 1 });//Graphics::LoadTexture("C:/Assets/Meshes/normal.png");
 
-    context.CreateDrawBatch(Transforms);
+    //context.CreateDrawBatch(Transforms);
 
-    GBuffer.Targets = {
-        CreateShared<Graphics::Texture>(),
-        CreateShared<Graphics::Texture>(),
-        CreateShared<Graphics::Texture>(),
+    /*PostEffectBuffer.Targets = {
         CreateShared<Graphics::Texture>(),
     };
-    GBuffer.DepthStencil = CreateShared<Graphics::Texture>();
-
-    GBuffer.Resize(Camera.Resolution);
-    context.CreateRenderTarget(GBuffer);
+    PostEffectBuffer.DepthStencil = CreateShared<Graphics::Texture>();
+    PostEffectBuffer.Resize(Camera.Resolution);
+    context.CreateRenderTarget(PostEffectBuffer);
 
     auto buffer = GBuffer.GetBuffer();
     g_DrawRequests.insert({ this, [&](auto& context) { Render(context); } });
 
-    Mesh = Graphics::AssetLoader::LoadMesh(EditorContentPath, MeshName);
-
-    auto UVFileInfo = FindClassByName("UVMaterial");
-    auto UVMaterialInfo = DynamicCast<ClassGen::MaterialInfo>(UVFileInfo.Instance);
-    if (UVMaterialInfo)
-    {
-        Material = UVMaterialInfo->Load(*g_GraphicsContext, buffer);
-    }
-
-    auto SkyFileInfo = FindClassByName("SkyMesh");
-    auto SkyMeshInfo = DynamicCast<ClassGen::MeshInfo>(SkyFileInfo.Instance);
-    if (SkyMeshInfo)
-    {
-        SkyMesh = SkyMeshInfo->Load(*g_GraphicsContext, buffer);
-        SkyMaterial = SkyMeshInfo->MaterialInstance;
-    }
+    PostEffectMesh = AssetStorage::Load<Graphics::Mesh>("Z-PlainMesh");
+    PostEffectMaterial = CreateSimplePostEffect(*g_GraphicsContext, GBuffer.Targets[0], GBuffer.Targets[3]);*/
 }
 
 void PreviewViewport::Render(Graphics::GraphicsContext& context)
 {
-    context.SetRenderBuffer(GBuffer.GetBuffer());
+    g_GlobalConstants->g_Time = std::chrono::duration_cast<DateTime::SecondRatio>(DateTime::HighResolution::Clock::now().time_since_epoch()).count();
+
+    /*context.SetRenderBuffer(PostEffectBuffer.GetBuffer());
     context.ClearRenderBuffers({ 0.0, 0.0, 0.0, 0.0 });
     context.ClearDepthStencilBuffers(1.0f, 0);
-
-    g_CameraConstants->g_ViewProj = Camera.GetView();
-
-    if (sky && SkyMesh && SkyMaterial)
+    if (PostEffectMesh && PostEffectMaterial)
     {
-        context.ApplyMaterial(*SkyMaterial);
-        context.Upload(Transforms);
-        context.Draw(*SkyMesh, Transforms);
-    }
+        Transforms.Instances[0] = Matrix4::identity();
+        context.ApplyMaterial(*PostEffectMaterial);
+        context.Draw(*PostEffectMesh, Transforms);
+    }*/
+}
 
-    if (Mesh && Material)
-    {
-        g_GlobalConstants->g_Time =
-            std::chrono::duration_cast<DateTime::SecondRatio>(DateTime::HighResolution::Clock::now().time_since_epoch()).count();
-            //-std::chrono::duration_cast<DateTime::Seconds>(DateTime::HighResolution::Clock::now().time_since_epoch()).count();
+void PreviewViewport::SetMaterial(const SharedReference<Graphics::Material>& Material)
+{
+    auto meshComponent = ECS::FindPersistentComponent<ECS::MeshComponent>(*Viewport.ContentScene, "PreviewMesh");
+    meshComponent->Material = Material;
+}
 
-        context.ApplyMaterial(*Material);
-        context.Draw(*Mesh, Transforms);
-    }
+void PreviewViewport::SetMesh(const SharedReference<Graphics::Mesh>& Mesh)
+{
+    auto meshComponent = ECS::FindPersistentComponent<ECS::MeshComponent>(*Viewport.ContentScene, "PreviewMesh");
+    meshComponent->Mesh = Mesh;
 }
 
 void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::function<void()>& ToolBar)
 {
-    auto& texture = GBuffer.Targets[0];
-    ImVec2 size{ (float)texture->Size.x, (float)texture->Size.y };
-    ImVec2 padding = ImVec2(2, 2);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, padding);
-    if (ImGui::BeginChild("PreviewViewport", size + padding * 2, true))
+    Viewport.Draw([&]()
     {
-        ImGui::Image(ImGui::TexID(texture), size);
-
-        ImGui::SetCursorPos(ImGui::GetCursorPos() - ImVec2{ 0, size.y } + ImVec2(4, 4));
-
         if (ImGui::Button(ICON_VIDEOCAM.data()))
         {
             ImGui::OpenPopup("CameraContextMenu");
         }
         if (ImGui::BeginPopup("CameraContextMenu"))
         {
-            ImGui::DragFloat3("Position", Camera.Transform.Position.f32, 0.01f, -100, 100);
-            ImGui::DragFloat3("Rotation", Camera.Transform.Rotation.f32, 1.0f, -180, 180);
-            //ImGui::SliderFloat3("Camera Rotation", g_Camera.Transform.Rotation.f32, 0, 360);
-            ImGui::DragFloat("Near Plane", &Camera.NearPlane, 0.01f, 0.001f, 10000);
-            ImGui::DragFloat("Far Plane", &Camera.FarPlane, 0.01f, 0.001f, 10000);
-            ImGui::DragFloat("FOV", &Camera.FieldOfView, 0.1f, 1, 180);
-            if (ImGui::DragInt2("Resolution", Camera.Resolution.i32, 1.0f, 1, 2048))
-            {
-                GBuffer.Targets = {
-                    CreateShared<Graphics::Texture>(),
-                    CreateShared<Graphics::Texture>(),
-                    CreateShared<Graphics::Texture>(),
-                    CreateShared<Graphics::Texture>(),
-                };
-                GBuffer.DepthStencil = CreateShared<Graphics::Texture>();
-                GBuffer.Resize(Camera.Resolution);
-                context.CreateRenderTarget(GBuffer);
-            }
+            auto [CameraComponent] = ECS::FindPersistentComponents<ECS::CameraComponent>(*Viewport.ViewportScene, "Camera");
+            ImGui::DragFloat("Near Plane", &CameraComponent->Camera.NearPlane, 0.01f, 0.001f, 10000);
+            ImGui::DragFloat("Far Plane", &CameraComponent->Camera.FarPlane, 0.01f, 0.001f, 10000);
+            ImGui::DragFloat("FOV", &CameraComponent->Camera.FieldOfView, 0.1f, 1, 180);
             ImGui::EndPopup();
         }
 
@@ -146,15 +200,16 @@ void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::functi
 
         if (rotate)
         {
-            rotationAngle += 0.1f;
-            Transforms.Instances[0] = Matrix4(hlslpp::axisangle(hlslpp::normalize(Float3(0, 0, 1)), rotationAngle * (3.14 / 180)));
+            auto TransformComponent = ECS::FindPersistentComponent<ECS::TransformComponent>(*Viewport.ContentScene, "PreviewMesh");
+            TransformComponent->Transform.Rotation.z += 0.1f;
         }
 
         ImGui::SameLine();
 
         if (ImGui::Button(ICON_PANORAMA1.data()))
         {
-            sky = !sky;
+            auto MeshComponent = ECS::FindPersistentComponent<ECS::MeshComponent>(*Viewport.ContentScene, "Sky");
+            MeshComponent->Visible = !MeshComponent->Visible;
         }
 
         ImGui::SameLine();
@@ -165,12 +220,6 @@ void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::functi
         }
         if (ImGui::BeginPopup("PreviewMeshContextMenu"))
         {
-            auto SetPreviewMesh = [this](const String& name)
-            {
-                MeshName = name;
-                Mesh = Graphics::AssetLoader::LoadMesh(EditorContentPath, MeshName);
-            };
-
             static String AvaiableMeshes[] = {
                 "Cone",
                 "Cube",
@@ -188,7 +237,7 @@ void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::functi
             {
                 if (ImGui::Selectable(mesh.data()))
                 {
-                    SetPreviewMesh(mesh);
+                    SetMesh(Graphics::AssetLoader::LoadMesh(EditorContentPath, mesh));
                 }
             }
             ImGui::EndPopup();
@@ -198,9 +247,7 @@ void PreviewViewport::Draw(Graphics::GraphicsContext& context, const std::functi
         {
             ToolBar();
         }
-    }
-    ImGui::EndChild();
-    ImGui::PopStyleVar();
+    });
 }
 
 }

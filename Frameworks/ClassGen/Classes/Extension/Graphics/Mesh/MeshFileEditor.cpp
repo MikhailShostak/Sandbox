@@ -9,27 +9,31 @@ void MeshFileEditor::RenderFile()
 
     auto& info = *DynamicCast<ClassGen::MeshInfo>(Data.Instance);
 
-    if (ImGui::InputText("Namespace", &info.Namespace))
+    if (ImGui::Begin("Properties"))
     {
-        MarkFileDirty(Data.Path);
-    }
+        if (ImGui::InputText("Namespace", &info.Namespace))
+        {
+            MarkFileDirty(Data.Path);
+        }
 
-    String s = info.Path.generic_string();
-    if (ImGui::InputText("Path", &s))
-    {
-        info.Path = s;
-        MarkFileDirty(Data.Path);
-    }
+        String s = info.Path.generic_string();
+        if (ImGui::InputText("Path", &s))
+        {
+            info.Path = s;
+            MarkFileDirty(Data.Path);
+        }
 
-    if (ImGui::InputText("Name", &info.Name))
-    {
-        MarkFileDirty(Data.Path);
-    }
+        if (ImGui::InputText("Name", &info.Name))
+        {
+            MarkFileDirty(Data.Path);
+        }
 
-    if (ImGui::InputText("Material", &info.Material))
-    {
-        MarkFileDirty(Data.Path);
+        if (ImGui::InputText("Material", &info.Material))
+        {
+            MarkFileDirty(Data.Path);
+        }
     }
+    ImGui::End();
 
     auto p = info.Path / info.Name;
     if (LastPath != p)
@@ -39,8 +43,8 @@ void MeshFileEditor::RenderFile()
         if (System::IsRegularFile(info.Path) && !info.Name.empty() && !info.Material.empty())
         {
             info.MeshInstance = nullptr;
-            PreviewViewport.Mesh = info.Load(*g_GraphicsContext, PreviewViewport.GBuffer.GetBuffer());
-            PreviewViewport.Material = info.MaterialInstance;
+            PreviewViewport.SetMesh(info.Load(*g_GraphicsContext));
+            PreviewViewport.SetMaterial(info.MaterialInstance);
         }
     }
 

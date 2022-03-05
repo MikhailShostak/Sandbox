@@ -20,6 +20,9 @@ struct ECSReflectionType
         Reflection::Add<ECS::MeshComponent>("ECS.MeshComponent");
         Reflection::Add<ECS::TransformComponent>("ECS.TransformComponent");
 
+        Reflection::Add<ECS::PostProcessStep>("ECS.PostProcessStep");
+        Reflection::Add<ECS::GlowPostProcessStep>("ECS.GlowPostProcessStep");
+
         Reflection::Add<ECS::GraphicsSystem>("ECS.GraphicsSystem");
         Reflection::Add<ECS::LayoutSystem>("ECS.LayoutSystem");
         Reflection::Add<ECS::ImGuiSystem>("ECS.ImGuiSystem");

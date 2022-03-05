@@ -164,7 +164,8 @@ public:
 
     void RegisterSampler(const Graphics::TextureSampler &sampler)
     {
-        auto f = [&sampler]() {
+        Diligent::Uint32 MaxAnisotropy = 0;
+        auto f = [&sampler, &MaxAnisotropy]() {
             switch (sampler.Texture->Filtration)
             {
             case Graphics::TextureFiltration::Nearest:
@@ -172,8 +173,10 @@ public:
             case Graphics::TextureFiltration::Bilinear:
                 return Diligent::FILTER_TYPE_LINEAR;
             case Graphics::TextureFiltration::Trilinear:
+                MaxAnisotropy = 1;
                 return Diligent::FILTER_TYPE_ANISOTROPIC;
             case Graphics::TextureFiltration::Anisotropic:
+                MaxAnisotropy = 16;
                 return Diligent::FILTER_TYPE_ANISOTROPIC;
             };
             return Diligent::FILTER_TYPE_LINEAR;
@@ -206,8 +209,9 @@ public:
             Samplers.push_back({ shaderType, sampler.Name.data(), Diligent::SamplerDesc{
                 f, f, f,
                 w, w, w,
-                } });
-            Variables.push_back({ shaderType, sampler.Name.data(), Diligent::SHADER_RESOURCE_VARIABLE_TYPE_MUTABLE });
+                0, MaxAnisotropy,
+            } });
+            Variables.push_back({ shaderType, sampler.Name.data(), Diligent::SHADER_RESOURCE_VARIABLE_TYPE_DYNAMIC });
         };
 
         if (sampler.Flags & Graphics::ShaderFlags::UseInPixelShader)
