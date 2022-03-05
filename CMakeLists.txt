@@ -21,6 +21,7 @@ conan_cmake_run(REQUIRES
     glfw/3.3.4
     hlslpp/3.1
     imgui/1.84.0-ext
+    portable-file-dialogs/0.1.0
     range-v3/0.11.0
     stb/cci.20210713
     utfcpp/3.2.1
