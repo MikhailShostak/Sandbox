@@ -57,6 +57,7 @@
 #include <System/Dialogs.hpp>
 #include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
+#include <System/Notifications.hpp>
 #include <System/ResolutionMetrics.hpp>
 #include <System/PackageIdentifier.hpp>
 #include <System/Process.hpp>
