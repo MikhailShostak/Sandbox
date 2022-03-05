@@ -54,6 +54,7 @@
 #include <Serialization/Storage.hpp>
 #include <System/CommandLine.hpp>
 #include <System/ConfigFile.hpp>
+#include <System/Dialogs.hpp>
 #include <System/Domain.hpp>
 #include <System/Filesystem.hpp>
 #include <System/ResolutionMetrics.hpp>
