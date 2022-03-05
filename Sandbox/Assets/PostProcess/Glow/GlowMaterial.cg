@@ -1,0 +1,6 @@
+Type: Material
+PixelShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/PostProcess/Glow/GlowMaterial.ps
+Textures:
+  - SamplerName: BaseColor
+  - SamplerName: Emission
+VertexShader: D:/Projects/CMake/Sandbox/Sandbox/Assets/PostProcess/Glow/GlowMaterial.vs

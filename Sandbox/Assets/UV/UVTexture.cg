@@ -1,2 +1,4 @@
 Type: Texture
 Path: C:/Assets/UV.jpg
+TextureFiltration: Anisotropic
+TextureWrapping: TiledWrapping

@@ -1,2 +1,4 @@
 Type: Texture
 Path: C:/Assets/uv.jpg
+TextureFiltration: Nearest
+TextureWrapping: TiledWrapping

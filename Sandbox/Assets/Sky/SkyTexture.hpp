@@ -2,5 +2,5 @@
 
 inline DynamicAsset<Graphics::Texture> SkyTexture = { "SkyTexture", [](auto &instance)
 {
-Graphics::LoadTexture(instance, "C:/Assets/Sky-mini.jpg");
+Graphics::LoadTexture(instance, "C:/Assets/Sky-small.jpg");
 } };

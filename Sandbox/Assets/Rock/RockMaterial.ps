@@ -1,0 +1,20 @@
+void main(in PSInput In, out PSOutput Out)
+{
+    float4 c;
+    c = Color * g_BaseColor.Sample(g_BaseColor_sampler, In.UV);
+    c = c * float4(g_AmbientOcclusion.Sample(g_AmbientOcclusion_sampler, In.UV).xxx, 1.0);
+
+    float3 rc = float3(1.0, 0.0, 0.0);
+    float mask = g_SymbolMask.Sample(g_SymbolMask_sampler, In.UV / 3.0).x;
+
+    c.xyz = lerp(c.xyz, rc, mask.xxx);
+
+    if (c.a < 0.1f)
+    {
+	    clip(-1);
+        return;
+    }
+
+    Out.BaseColor = c;
+    Out.Data = float4(rc * mask, 1.0);
+}

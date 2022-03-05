@@ -1,2 +1,4 @@
 Type: Texture
 Path: C:/Assets/Lava/Lava_DISP.png
+TextureFiltration: Anisotropic
+TextureWrapping: TiledWrapping

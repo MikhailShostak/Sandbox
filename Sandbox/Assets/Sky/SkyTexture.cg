@@ -1,2 +1,4 @@
 Type: Texture
-Path: C:/Assets/Sky.jpg
+Path: C:/Assets/Sky-small.jpg
+TextureFiltration: Bilinear
+TextureWrapping: TiledWrapping

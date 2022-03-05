@@ -1,0 +1,4 @@
+Type: Texture
+Path: C:/Assets/Rock/SymbolMask.jpg
+TextureFiltration: Anisotropic
+TextureWrapping: WrapToEdge

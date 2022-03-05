@@ -1,0 +1,24 @@
+void main(in PSInput In, out PSOutput Out)
+{
+    float Pi = 6.28318530718; // Pi*2
+    float Directions = 32.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
+    float Quality = 8.0; // BLUR QUALITY (Default 4.0 - More is better but slower)
+    float Radius = 0.05;
+    
+    float4 c = g_Emission.Sample(g_Emission_sampler, In.UV);
+    
+    // Blur calculations
+    for(float d = 0.0; d < Pi; d += Pi / Directions)
+    {
+		for(float i = 1.0 / Quality; i <= 1.0; i += 1.0 / Quality)
+        {
+            float2 uv = In.UV + float2(cos(d), sin(d)) * Radius.xx * i;
+			c.rgb += g_Emission.Sample(g_Emission_sampler, uv).r * g_BaseColor.Sample(g_BaseColor_sampler, uv).rgb;		
+        }
+    }
+    
+    // Output to screen
+    c /= Quality * Directions - 15.0;
+
+    Out.BaseColor = g_BaseColor.Sample(g_BaseColor_sampler, In.UV) + c;
+}
